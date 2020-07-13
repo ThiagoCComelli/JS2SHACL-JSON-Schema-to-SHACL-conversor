@@ -5,17 +5,25 @@
       "persona": {
         "type": "object",
         "properties": {
-                "name": { "type": "string" },
-                "children": { "type": "string"}
+                "name000": { "type": "string" },
+                "children000": { "type": "string"},
+                "asdasdasd000": { "type": "string"}
             }
         },
-        "naopessoa": {
-            "type": "object",
-            "properties": {
-                "name": { "type": "string" },
-                "children": { "type": "string"}
-            }
+      "naopessoa": {
+          "type": "object",
+          "properties": {
+              "name111": { "type": "string" },
+              "children111": { "type": "string"}
+          }
+      },
+      "alo": {
+        "type": "object",
+        "properties": {
+            "name222": { "type": "string" },
+            "children222": { "type": "string"}
         }
+    }
       
     },
   

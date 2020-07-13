@@ -7,15 +7,14 @@ module.exports = {
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
-        var scope = 1
-        var op = false
         
         var datatypeMapped = []
         var newNodes = {}
         var defSectionElements = {}
         var schemaSectionElements = []
         var shacl
-        var definitiveShacl = ''
+        var scope = 1
+        var op = false
         
         //#region STARTUP SECTION
         
@@ -72,13 +71,10 @@ module.exports = {
         }
         
         function create_New_Complex_NodeShape(schema,name){
-            definitiveShacl += shacl
             shacl = ''
-            node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex${name};\n`
+            node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name};\n`
         
             newNodes[name] = node + create_Complex_Property(element,name)
-            // console.log(newNodes[name])
-            definitiveShacl += newNodes[name]
         }
         
         
@@ -118,7 +114,6 @@ module.exports = {
         function create_Complex_Property(element,name,op){
             var propertyElements = getPropertyElements(element)
             var newShapes = []
-        
             for(var i in propertyElements){
         
                 // funcao criada para tratar esta excessao nao definida no algoritmo
@@ -179,13 +174,15 @@ module.exports = {
             // getPropertyElements(schema)
             createElementsDefSection(schema)
             op = 1
-            // shacl = 0
             setMainNodeShape(schema)
             createPropertiesSection(schema)
-            shacl += definitiveShacl
         }
         
         setup(schema)
+
+        for(var i in newNodes){
+            shacl += `\n${newNodes[i]}`
+        }
         
         //#endregion
 

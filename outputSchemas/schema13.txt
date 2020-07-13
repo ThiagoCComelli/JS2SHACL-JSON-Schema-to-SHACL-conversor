@@ -25,34 +25,40 @@ ex:children_Shape a sh:NodeShape;
     sh:datatype decimal;
     sh:minInclusive 0;
   ];
-undefinedex:persona_Shape a sh:NodeShape;
-  sh:targetClass expersona;
 
+ex:persona_Shape a sh:NodeShape;
+  sh:targetClass ex:persona;
   sh:property [
-    sh:path name;
+    sh:path name000;
     sh:datatype string;
   ];
   sh:property [
-    sh:path children;
+    sh:path children000;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path asdasdasd000;
     sh:datatype string;
   ];
 
-  sh:property [
-    sh:path name;
-    sh:datatype string;
-  ];
-  sh:property [
-    sh:path children;
-    sh:datatype string;
-  ];
 ex:naopessoa_Shape a sh:NodeShape;
-  sh:targetClass exnaopessoa;
-
+  sh:targetClass ex:naopessoa;
   sh:property [
-    sh:path name;
+    sh:path name111;
     sh:datatype string;
   ];
   sh:property [
-    sh:path children;
+    sh:path children111;
+    sh:datatype string;
+  ];
+
+ex:alo_Shape a sh:NodeShape;
+  sh:targetClass ex:alo;
+  sh:property [
+    sh:path name222;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path children222;
     sh:datatype string;
   ];
