@@ -1,194 +1,162 @@
-var fs = require('fs')
+const fs = require('fs')
+const inquirer = require('inquirer')
+const {performance} = require('perf_hooks')
 const { Console } = require('console')
+const conversor = require('./conversor')
 
-var JS4GeoDataTypes = {'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
-var dataTypes = {"string":"string","integer":"decimal","boolean":"boolean","null":"null",
-"Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
-var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in"}
-var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
-var scope = 1
-var op = false
+var totalFilesAnalized = 0
+var totalFilesInRepository = 0
+var totalTime = 0
+var totalTimeOnlyConversion = 0
+var totalFiles = 0
+var file
+var session = 0
+var option
+var t0
+var t1
+var t00
+var t11
+var dirInputName = __dirname+"/inputSchemas"
+var dirOutputName = __dirname+"/outputSchemas"
+var initialQuestion = [{
+  type:'input',
+  name:'option',
+  message:'Convert single file or a repository (0 => file || 1 => repository)'
+}]
+var dirLocation = [{
+  type:'input',
+  name:'location',
+  message:'Directory location (ex: /home/thiago/Documents/JSON-Schema-SHACL/random/v3/inputSchemas)'
+}]
+var fileName = [{
+  type:'input',
+  name:'name',
+  message:'File name (ex: schema00.json)'
+}]
 
-var datatypeMapped = []
-var newNodes = {}
-var defSectionElements = {}
-var schemaSectionElements = []
-var shacl
+function writeFile(_name,cont){
+  try {
+    t11 = performance.now()
 
-//#region STARTUP SECTION
+    totalTimeOnlyConversion += t11-t00
+  } catch {
 
-function setMainNodeShape(schema) {
-    shacl = 'ex:JS_id a sh:NodeShape;\n' + addSpaces() + 'sh:targetClass: JS_id;\n'
+  }
+
+  var name = _name.split('.')
+  fs.writeFile(`${dirOutputName}/${name[0]}.txt`,cont,(err,contents)=>{
+    
+  })
+  if(totalFilesAnalized == totalFilesInRepository){
+    t1 = performance.now()
+    console.timeEnd('exec')
+    session++
+    stats()
+  }
 }
 
-function getDefSectionElements(schema){
-    if(schema.definitions){
-        return schema.definitions
-    }
-}
+// FINAL STEP - SHOW THE LOG
 
-function getPropertyElements(schema){
-    if(schema.properties){
-        return schema.properties
-    }
-}
+function stats(){
+  
+  totalTime = t1-t0
 
-//#endregion
+  console.log(`Session: ${session}\nAll files converted: ${totalFilesAnalized}\nExecution total time (read and write file): ${totalTime} ms\nExecution total time only conversion: ${totalTimeOnlyConversion} ms\n`)
 
-function createElementsDefSection(schema){
-    defSectionElements = getDefSectionElements(schema)
+  totalFilesAnalized = 0
+  totalFilesInRepository = 0
+  totalTimeOnlyConversion = 0
 
-    for(var i in defSectionElements){
-        element = defSectionElements[i]
-        if(!(element.type in dataTypes)){
-            if(element.type in JS4GeoDataTypes){
-                create_New_JS4Geon_NodeShape(element)
-            } else {
-                create_New_Complex_NodeShape(element,i)
-            }
-        }
-        datatypeMapped.push(i)
-    }
-}
+  totalFiles++
 
-function createPropertiesSection(schema){
-    schemaSectionElements = getPropertyElements(schema)
-
-    for(var item in schemaSectionElements){
-        element = schemaSectionElements[item]
-
-        if(element.type in dataTypes){
-            setPrimitiveProperty(element,item,checkRequired(schema,item))
-        } else {
-            create_Complex_Property(element,item)
-        }
-    }
-}
-
-function create_New_JS4Geon_NodeShape(schema){
-
-}
-
-function create_New_Complex_NodeShape(schema,name){
-    shacl = ''
-    node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex${name};\n`
-
-    newNodes[name] = node + create_Complex_Property(element,name)
-    console.log(newNodes[name])
-}
-
-
-function setPrimitiveProperty(element,name,required){
-    shacl += addSpaces() + 'sh:property [\n' + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:datatype ${dataTypes[element.type]};\n`
-    for(var item in element){
-        if(item in constraints){
-            shacl += addSpaces() + `sh:${constraints[item]} ${element[item]};\n`
-        }
-    }
-    if(required){
-        shacl += addSpaces() + `sh:minCount 1;\n`
-    }
-    shacl += addSpaces(-1) + '];\n'
-}
-
-function setComplexNodeShape(element,name,required,ref = null){
-    if(ref != null){
-        shacl += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${ref}_Shape;\n`
-
-    } else {
-        shacl += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${name}_Shape;\n`
-
-    }
-    if(required){
-        shacl += addSpaces() + `sh:minCount 1;\n`
-    } else {
-        shacl += addSpaces(-1) + '];\n'
-    }
-}
-
-function create_New_NodeShape(element,name){
-    shacl += `\nex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name};\n`
-    create_Complex_Property(element,name)
-}
-
-function create_Complex_Property(element,name,op){
-    var propertyElements = getPropertyElements(element)
-    var newShapes = []
-
-    for(var i in propertyElements){
-
-        if(propertyElements[i].$ref){
-            shape = propertyElements[i].$ref.split('/')[2]
-            
-            setComplexNodeShape(propertyElements[i],i,checkRequired(element,i),shape)
-        }
-        else if(propertyElements[i].type in dataTypes){
-            setPrimitiveProperty(propertyElements[i],i,checkRequired(element,i))
-        } else if(propertyElements[i].type == 'object'){
-            if(!(i in newNodes)){
-                newShapes.push({name:i,schema:propertyElements[i]})
-            }
-            setComplexNodeShape(propertyElements[i],i,checkRequired(element,i))
-        }
-    }
-    newShapes.forEach(element_ => {
-        create_New_NodeShape(element_.schema,element_.name)
-    })
-
-    if(!op){
-        return shacl
-    }
-}
-
-
-//#region FUNCTIONS TO HELP
-
-function addSpaces(quant = 0){
-    scope += quant
-    return Array(scope*2).fill('\xa0').join('')
-}
-
-function checkRequired(schema,item){
-    var op
-    if(schema.required){
-        schema.required.forEach(itemRequired => {
-            if(item == itemRequired){
-                op = true
-            } else {
-                op = false
-            }
-        });
-    } else {
-        op = false
-    }
-    return op
-}
-
-//#endregion
-
-//#region SETUP SECTION
-
-function setup(schema) {
-    // setMainNodeShape(schema)
-    getDefSectionElements(schema)
-    // getPropertyElements(schema)
-    createElementsDefSection(schema)
-    op = 1
-    shacl = 0
-    setMainNodeShape(schema)
-    createPropertiesSection(schema)
-    console.log(shacl)
-}
-
-fs.readFile('./input/schema13.json','utf8',(err,data)=>{
-    try{
-        var cont = JSON.parse(data)
-    } catch{
-        console.log(e)
-        return
+  if (totalFiles < 11){
+    
+    if(option){
+      readSingleFile(file)
+    }else{
+      readRepository()
     }
     
-    setup(cont)
-})
+  }
 
-//#endregion
+  // readFiles()
+}
+
+// READ ALL FILES IN DIRECTORY TO MAKE A CONVERSION
+
+function readRepository(){
+  t0 = performance.now()
+  console.time('exec')
+  
+  // session++
+
+  fs.readdir(dirInputName['location'],(err,filenames)=>{
+    if(err){
+      return
+    }
+
+    lastFile = filenames[filenames.length-1]
+    totalFilesInRepository = filenames.length
+
+    filenames.forEach((filename)=>{
+      fs.readFile(dirInputName['location'] + '/' + filename,'utf8',(err,contents)=>{
+        try{
+          var cont = JSON.parse(contents)
+        } catch {
+          totalFilesInRepository--
+          return
+        }
+        
+        totalFilesAnalized++
+
+        t00 = performance.now()
+
+        // START CONVERSION - WRITE FILE
+        writeFile(filename,conversor.setup(cont))
+      })
+    })
+  })
+}
+
+function readSingleFile(name){
+  t0 = performance.now()
+  
+  fs.readFile(dirInputName['location'] + '/' + name,'utf8',(err,contents)=>{
+    try{
+      var cont = JSON.parse(contents)
+    } catch {
+    }
+    
+    totalFilesAnalized++
+    totalFilesInRepository++
+
+    t00 = performance.now()
+    console.time('exec')
+
+    // START CONVERSION - WRITE FILE
+    writeFile(name,conversor.start(cont))
+  })
+}
+
+
+// START THE WHOLE PROCESS
+
+inquirer.prompt(initialQuestion).then(answers => {
+  if(answers['option'] == "1"){
+    inquirer.prompt(dirLocation).then(location => {
+      dirInputName = location
+      option = false
+      readRepository()
+    })
+    
+  }else if (answers['option'] == "0"){
+    inquirer.prompt(dirLocation).then(location => {
+      inquirer.prompt(fileName).then(name => {
+        dirInputName = location
+        file = name['name']
+        option = true
+        readSingleFile(name['name'])
+      })
+    })
+  }
+})
