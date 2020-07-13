@@ -1,0 +1,52 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+  
+    "definitions": {
+      "persona": {
+        "type": "object",
+        "properties": {
+                "name": { "type": "string" },
+                "children": { "type": "string"}
+            }
+        },
+        "naopessoa": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "children": { "type": "string"}
+            }
+        }
+      
+    },
+  
+    "type": "object",
+  
+    "properties": {
+      "person": {
+        "type": "object",
+        "properties": {
+            "name": { 
+              "type": "string" 
+            },
+            "children": {
+                "type": "object",
+                "properties": { 
+                    "firstName": {
+                        "type": "string",
+                        "description": "The person's first name."
+                      },
+                      "lastName": {
+                        "$ref": "#/definitions/naopessoa"
+                      },
+                      "age": {
+                        "description": "Age in years which must be equal to or greater than zero.",
+                        "type": "integer",
+                        "minimum": 0
+                    }
+                }
+            }
+        },
+        "required": ["name"]
+      }
+    }
+  }

@@ -1,0 +1,28 @@
+{
+    "definitions":{
+        "subschema_1":{
+            "type": "object",
+            "properties": {
+            "fruits": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                    }
+                },
+                "vegetables": {
+                    "type": "array"
+                }
+            }
+        }
+    },
+    "properties":{
+        "allOf":[
+            {"Nome":{"$ref":"#/$defs/subschema_1"}},
+            {"test":{ "type":"string",
+                "maxLength":5}},
+            {"anotherTest":{"type":"integer",
+                "minimum":15}}
+        ]
+    },
+    "required":["Nome","test"]
+}
