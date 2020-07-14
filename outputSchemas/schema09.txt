@@ -1,0 +1,74 @@
+ex:JS_id a sh:NodeShape;
+    sh:targetClass: JS_id;
+    sh:property [
+      sh:path $schema;
+      sh:datatype string;
+    ];
+    sh:property [
+      sh:path <ProxyName>;
+      sh:node proxy-schema_Shape;
+    ];
+
+ex:proxy-schema_Shape a sh:NodeShape;
+  sh:targetClass ex:proxy-schema;
+  sh:property [
+    sh:path matchCondition;
+    sh:node match-condition-schema_Shape;
+    sh:minCount 1;
+    sh:property [
+      sh:path backendUri;
+      sh:datatype string;
+    ];
+    sh:property [
+      sh:path requestOverrides;
+      sh:node requestOverrides-schema_Shape;
+    ];
+    sh:property [
+      sh:path responseOverrides;
+      sh:node responseOverrides-schema_Shape;
+    ];
+    sh:property [
+      sh:path debug;
+      sh:datatype boolean;
+    ];
+    sh:property [
+      sh:path disabled;
+      sh:datatype boolean;
+    ];
+
+ex:match-condition-schema_Shape a sh:NodeShape;
+    sh:targetClass ex:match-condition-schema;
+    sh:property [
+      sh:path route;
+      sh:datatype string;
+      sh:minCount 1;
+    ];
+
+ex:requestOverrides-schema_Shape a sh:NodeShape;
+    sh:targetClass ex:requestOverrides-schema;
+    sh:property [
+      sh:path backend.request.querystring.<ParameterName>;
+      sh:node request-overrides-value-expression-schema_Shape;
+    ];
+    sh:property [
+      sh:path backend.request.headers.<HeaderName>;
+      sh:node request-overrides-value-expression-schema_Shape;
+    ];
+
+ex:responseOverrides-schema_Shape a sh:NodeShape;
+    sh:targetClass ex:responseOverrides-schema;
+    sh:property [
+      sh:path response.statusCode;
+      sh:node response-overrides-value-expression-schema_Shape;
+    ];
+    sh:property [
+      sh:path response.statusReason;
+      sh:node response-overrides-value-expression-schema_Shape;
+    ];
+    sh:property [
+      sh:path response.headers.<HeaderName>;
+      sh:node response-overrides-value-expression-schema_Shape;
+    ];
+
+ex:http-method-schema_Shape a sh:NodeShape;
+    sh:targetClass ex:http-method-schema;

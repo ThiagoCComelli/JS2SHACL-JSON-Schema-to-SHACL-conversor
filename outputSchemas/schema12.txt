@@ -1,0 +1,180 @@
+ex:JS_id a sh:NodeShape;
+  sh:targetClass: JS_id;
+  sh:property [
+    sh:path name;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path description;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path type;
+    sh:datatype string;
+    sh:in static,server;
+  ];
+  sh:property [
+    sh:path profile;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path accelerate;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path warm;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path warm_rate;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path warm_count;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path memory;
+    sh:datatype decimal;
+    sh:in 128,192,256,320,384,448,512,576,640,704,768,832,896,960,1024,1088,1152,1216,1280,1344,1408,1472,1536,1600,1664,1728,1792,1856,1920,1984,2048,2112,2176,2240,2304,2368,2432,2496,2560,2624,2688,2752,2816,2880,2944,3008;
+  ];
+  sh:property [
+    sh:path production;
+    sh:node production_Shape;
+  ];
+  sh:property [
+    sh:path staging;
+    sh:node staging_Shape;
+  ];
+  sh:property [
+    sh:path development;
+    sh:node development_Shape;
+  ];
+
+ex:production_Shape a sh:NodeShape;
+  sh:targetClass ex:production;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:staging_Shape a sh:NodeShape;
+  sh:targetClass ex:staging;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:development_Shape a sh:NodeShape;
+  sh:targetClass ex:development;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path build;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path clean;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path prebuild;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path postbuild;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path predeploy;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path postdeploy;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path dir;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path prefix;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path command;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path timeout;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path listen_timeout;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path shutdown_timeout;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path backoff;
+    sh:node backoff_Shape;
+  ];
+
+ex:backoff_Shape a sh:NodeShape;
+  sh:targetClass ex:backoff;
+  sh:property [
+    sh:path min;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path max;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path attempts;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path jitter;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path disable;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path dir;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path variables;
+    sh:node variables_Shape;
+  ];
+
+ex:variables_Shape a sh:NodeShape;
+  sh:targetClass ex:variables;
+  sh:property [
+    sh:path support_email;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path color;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path enable;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path max_age;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path allowed_credentials;
+    sh:datatype boolean;
+  ];

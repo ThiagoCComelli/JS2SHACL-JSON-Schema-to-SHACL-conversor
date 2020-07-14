@@ -112,7 +112,7 @@ function readRepository(){
         t00 = performance.now()
 
         // START CONVERSION - WRITE FILE
-        writeFile(filename,conversor.setup(cont))
+        writeFile(filename,conversor.start(cont))
       })
     })
   })
