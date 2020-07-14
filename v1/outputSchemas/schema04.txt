@@ -13,13 +13,18 @@ ex:JS_id a sh:NodeShape;
     sh:datatype string;
   ];
   sh:property [
-    sh:path readModels;
-    sh:node resourceTypeImplementationConfiguration_Shape;
+    sh:path core;
+    sh:node coreConfiguration_Shape;
   ];
+===========
   sh:property [
-    sh:path eventStore;
-    sh:node resourceTypeImplementationConfiguration_Shape;
-    sh:minCount 1;
+    sh:path ex:lista;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+    ];
+  ];
+===========
 
 ex:coreConfiguration_Shape a sh:NodeShape;
   sh:targetClass ex:coreConfiguration;
@@ -33,6 +38,7 @@ ex:coreConfiguration_Shape a sh:NodeShape;
     sh:path entryPoint;
     sh:datatype string;
   ];
+===========
 
 ex:interactionLayerConfiguration_Shape a sh:NodeShape;
   sh:targetClass ex:interactionLayerConfiguration;
@@ -55,6 +61,7 @@ ex:interactionLayerConfiguration_Shape a sh:NodeShape;
     sh:datatype string;
     sh:in react,aurelia;
   ];
+===========
 
 ex:resourceTypeImplementationConfiguration_Shape a sh:NodeShape;
   sh:targetClass ex:resourceTypeImplementationConfiguration;
@@ -67,3 +74,25 @@ ex:resourceTypeImplementationConfiguration_Shape a sh:NodeShape;
     sh:datatype string;
     sh:minCount 1;
   ];
+===========
+
+ex:resources_Shape a sh:NodeShape;
+  sh:targetClass ex:resources;
+  sh:property [
+    sh:path readModels;
+    sh:node resourceTypeImplementationConfiguration_Shape;
+  ];
+  sh:property [
+    sh:path eventStore;
+    sh:node resourceTypeImplementationConfiguration_Shape;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ola;
+    sh:node ola_Shape;
+  ];
+===========
+
+ex:ola_Shape a sh:NodeShape;
+  sh:targetClass ex:ola;
+===========

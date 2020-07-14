@@ -20,10 +20,8 @@
         "core": {
             "$ref": "#/definitions/coreConfiguration"
         },
-        "interaction": {
-            "description": "A list of configurations for the interaction layers that this bounded context exposes",
-            "type": "array",
-            "items": { "$ref": "#/definitions/interactionLayerConfiguration"}
+        "lista": {
+            "type":"array"
         },
         "resources": {
             "description": "A map of describing the resource type implementation mapping of resource types",
@@ -34,6 +32,9 @@
                 },
                 "eventStore": {
                     "$ref": "#/definitions/resourceTypeImplementationConfiguration"
+                },
+                "ola": {
+                    "type":"object"
                 }
             },
             "required": ["readModels", "eventStore"]

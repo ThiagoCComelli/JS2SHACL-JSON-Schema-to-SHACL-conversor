@@ -9,6 +9,7 @@ ex:JS_id a sh:NodeShape;
     sh:path children;
     sh:node children_Shape;
   ];
+===========
 
 ex:children_Shape a sh:NodeShape;
   sh:targetClass ex:children;
@@ -25,6 +26,7 @@ ex:children_Shape a sh:NodeShape;
     sh:datatype decimal;
     sh:minInclusive 0;
   ];
+===========
 
 ex:persona_Shape a sh:NodeShape;
   sh:targetClass ex:persona;
@@ -40,6 +42,7 @@ ex:persona_Shape a sh:NodeShape;
     sh:path asdasdasd000;
     sh:datatype string;
   ];
+===========
 
 ex:naopessoa_Shape a sh:NodeShape;
   sh:targetClass ex:naopessoa;
@@ -51,6 +54,7 @@ ex:naopessoa_Shape a sh:NodeShape;
     sh:path children111;
     sh:datatype string;
   ];
+===========
 
 ex:alo_Shape a sh:NodeShape;
   sh:targetClass ex:alo;
@@ -62,3 +66,4 @@ ex:alo_Shape a sh:NodeShape;
     sh:path children222;
     sh:datatype string;
   ];
+===========

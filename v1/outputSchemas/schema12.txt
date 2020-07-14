@@ -19,6 +19,15 @@ ex:JS_id a sh:NodeShape;
     sh:datatype string;
   ];
   sh:property [
+    sh:path ex:regions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+===========
+  sh:property [
     sh:path accelerate;
     sh:datatype boolean;
   ];
@@ -39,6 +48,7 @@ ex:JS_id a sh:NodeShape;
     sh:datatype decimal;
     sh:in 128,192,256,320,384,448,512,576,640,704,768,832,896,960,1024,1088,1152,1216,1280,1344,1408,1472,1536,1600,1664,1728,1792,1856,1920,1984,2048,2112,2176,2240,2304,2368,2432,2496,2560,2624,2688,2752,2816,2880,2944,3008;
   ];
+===========
   sh:property [
     sh:path production;
     sh:node production_Shape;
@@ -51,6 +61,7 @@ ex:JS_id a sh:NodeShape;
     sh:path development;
     sh:node development_Shape;
   ];
+===========
 
 ex:production_Shape a sh:NodeShape;
   sh:targetClass ex:production;
@@ -58,6 +69,7 @@ ex:production_Shape a sh:NodeShape;
     sh:path domain;
     sh:datatype string;
   ];
+===========
 
 ex:staging_Shape a sh:NodeShape;
   sh:targetClass ex:staging;
@@ -65,6 +77,7 @@ ex:staging_Shape a sh:NodeShape;
     sh:path domain;
     sh:datatype string;
   ];
+===========
 
 ex:development_Shape a sh:NodeShape;
   sh:targetClass ex:development;
@@ -72,6 +85,7 @@ ex:development_Shape a sh:NodeShape;
     sh:path domain;
     sh:datatype string;
   ];
+===========
   sh:property [
     sh:path build;
     sh:datatype string;
@@ -96,6 +110,7 @@ ex:development_Shape a sh:NodeShape;
     sh:path postdeploy;
     sh:datatype string;
   ];
+===========
   sh:property [
     sh:path dir;
     sh:datatype string;
@@ -104,6 +119,7 @@ ex:development_Shape a sh:NodeShape;
     sh:path prefix;
     sh:datatype string;
   ];
+===========
   sh:property [
     sh:path command;
     sh:datatype string;
@@ -124,6 +140,7 @@ ex:development_Shape a sh:NodeShape;
     sh:path backoff;
     sh:node backoff_Shape;
   ];
+===========
 
 ex:backoff_Shape a sh:NodeShape;
   sh:targetClass ex:backoff;
@@ -143,6 +160,10 @@ ex:backoff_Shape a sh:NodeShape;
     sh:path jitter;
     sh:datatype boolean;
   ];
+===========
+===========
+===========
+===========
   sh:property [
     sh:path disable;
     sh:datatype boolean;
@@ -155,6 +176,7 @@ ex:backoff_Shape a sh:NodeShape;
     sh:path variables;
     sh:node variables_Shape;
   ];
+===========
 
 ex:variables_Shape a sh:NodeShape;
   sh:targetClass ex:variables;
@@ -166,6 +188,7 @@ ex:variables_Shape a sh:NodeShape;
     sh:path color;
     sh:datatype string;
   ];
+===========
   sh:property [
     sh:path enable;
     sh:datatype boolean;
@@ -178,3 +201,24 @@ ex:variables_Shape a sh:NodeShape;
     sh:path allowed_credentials;
     sh:datatype boolean;
   ];
+===========
+===========
+===========
+  sh:property [
+    sh:path ex:actions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype object;
+    ];
+  ];
+===========
+  sh:property [
+    sh:path ex:alerts;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype object;
+    ];
+  ];
+===========

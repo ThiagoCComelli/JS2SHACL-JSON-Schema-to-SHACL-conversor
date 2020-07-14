@@ -13,3 +13,4 @@ ex:JS_id a sh:NodeShape;
     sh:datatype string;
     sh:in patch,feature,minor,major,latestPatch,latestFeature,latestMinor,latestMajor,disable;
   ];
+===========

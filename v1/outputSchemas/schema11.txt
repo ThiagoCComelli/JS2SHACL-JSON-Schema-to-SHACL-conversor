@@ -63,6 +63,8 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:path vueIndentScriptAndStyle;
     sh:datatype boolean;
   ];
+===========
 
 ex:overridesDefinition_Shape a sh:NodeShape;
   sh:targetClass ex:overridesDefinition;
+===========

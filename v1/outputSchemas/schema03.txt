@@ -9,6 +9,15 @@ ex:JS_id a sh:NodeShape;
     sh:datatype string;
   ];
   sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+===========
+  sh:property [
     sh:path home;
     sh:datatype string;
   ];
@@ -29,6 +38,7 @@ ex:JS_id a sh:NodeShape;
     sh:path chat;
     sh:node chat_Shape;
   ];
+===========
 
 ex:chat_Shape a sh:NodeShape;
   sh:targetClass ex:chat;
@@ -37,6 +47,7 @@ ex:chat_Shape a sh:NodeShape;
     sh:datatype string;
     sh:minCount 1;
   ];
+===========
   sh:property [
     sh:path type;
     sh:datatype string;
@@ -58,6 +69,7 @@ ex:chat_Shape a sh:NodeShape;
     sh:path clone;
     sh:datatype string;
   ];
+===========
   sh:property [
     sh:path list;
     sh:datatype string;
@@ -70,6 +82,7 @@ ex:chat_Shape a sh:NodeShape;
     sh:path mentored;
     sh:datatype string;
   ];
+===========
   sh:property [
     sh:path prod;
     sh:datatype string;
@@ -82,3 +95,4 @@ ex:chat_Shape a sh:NodeShape;
     sh:path dev;
     sh:datatype string;
   ];
+===========

@@ -5,15 +5,25 @@
     "type": "object",
     "properties": {
         "fruits": {
-        "type": "array",
-        "items": {
-            "type": "string"
-        }
+            "type": "array"
         },
         "vegetables": {
-        "type": "array",
-        "items": { "$ref": "#/definitions/veggie" }
-        }
+            "type": "array",
+            "items": { "type": "string" }
+        },
+        "another": {
+            "type": "array",
+            "items": [
+                { "type":"string"},
+                { 
+                    "type":"object",
+                    "properties": {
+                        "ola":{"type":"string"},
+                        "aqui":{"type":"number"}
+                    }
+                }
+                ]
+            }
     }
     ,
     "definitions": {

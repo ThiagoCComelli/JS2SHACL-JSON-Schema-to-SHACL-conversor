@@ -1,8 +1,7 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
+===========
 
 ex:subschema_1_Shape a sh:NodeShape;
   sh:targetClass ex:subschema_1;
-
-ex:subschema_2_Shape a sh:NodeShape;
-  sh:targetClass ex:subschema_2;
+===========
