@@ -1,0 +1,73 @@
+{
+    "definitions":{
+        "subschema_1":{
+            "type": "object",
+            "properties": {
+            "fruits": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                    }
+                },
+                "vegetables": {
+                    "type": "array"
+                },
+                "aloooou":{
+                    "type":"array",
+                    "items":[
+                        {
+                            "type":"string"
+                        },
+                        {
+                            "type":"object",
+                            "properties":{
+                                "nombre":{"type":"string"},
+                                "naosei":{"type":"integer"}
+                            }
+
+                        }
+                    ]
+
+                },
+                "allOf":[
+                    {"Nome":{"$ref":"#/$defs/subschema_1"}},
+                    {"test":{ "type":"string",
+                        "maxLength":5}},
+                    {"anotherTest":{"type":"integer",
+                        "minimum":15}},
+                    {"aqui":{"type":"string"}},
+                    {"allOf":[
+                        {"$ref":"#/$defs/subschema_1"},
+                        {"test":{ "type":"string",
+                            "maxLength":5}},
+                        {"anotherTest":{"type":"integer",
+                            "minimum":15}},
+                        {"aqui":{"type":"string"}}
+                    ]}
+                ],
+                "oneOf":[
+                    {"Nome":{"$ref":"#/$defs/subschema_1"}},
+                    {"test":{ "type":"string",
+                        "maxLength":5}},
+                    {"anotherTest":{"type":"integer",
+                        "minimum":15}}
+                ],
+                "anyOf":[
+                    {"Nome":{"$ref":"#/$defs/subschema_1"}},
+                    {"$ref":"#/$defs/subschema_2"}
+                ]
+
+            }
+        }
+    },
+    "properties":{
+        "allOf":[
+            {"Nome":{"$ref":"#/$defs/subschema_1"}},
+            {"test":{ "type":"string",
+                "maxLength":5}},
+            {"anotherTest":{"type":"integer",
+                "minimum":15}}
+        ]
+    },
+    "required":["Nome","test"]
+}

@@ -1,0 +1,20 @@
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;
+
+ex:subschema_1_Shape a sh:NodeShape;
+  sh:targetClass :subschema_1;
+  sh:property [
+    sh:path ex:fruits;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:vegetables;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+    ];
+  ];

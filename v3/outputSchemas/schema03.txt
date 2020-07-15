@@ -1,0 +1,2 @@
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;

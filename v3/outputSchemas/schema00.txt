@@ -1,0 +1,15 @@
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;
+
+ex:veggie_Shape a sh:NodeShape;
+  sh:targetClass :veggie;
+  sh:property [
+    sh:path veggieName;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path veggieLike;
+    sh:datatype boolean;
+    sh:minCount 1;
+  ];
