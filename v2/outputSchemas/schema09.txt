@@ -1,14 +1,6 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
-  sh:property [
-    sh:path $schema;
-    sh:datatype string;
-  ];
-  sh:property [
-    sh:path proxies;
-    sh:node proxies_Shape;
-  ];
-========
+
 ex:proxy-schema_Shape a sh:NodeShape;
   sh:targetClass ex:proxy-schema;
   sh:property [
@@ -89,10 +81,3 @@ ex:responseOverrides-schema_Shape a sh:NodeShape;
 
 ex:http-method-schema_Shape a sh:NodeShape;
   sh:targetClass ex:http-method-schema;
-
-ex:proxies_Shape a sh:NodeShape;
-  sh:targetClass ex:proxies;
-  sh:property [
-    sh:path <ProxyName>;
-    sh:node proxy-schema_Shape;
-  ];

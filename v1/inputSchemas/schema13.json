@@ -21,7 +21,14 @@
         "type": "object",
         "properties": {
             "name222": { "type": "string" },
-            "children222": { "type": "string"}
+            "children222": { "type": "string"},
+            "alods": {
+              "type": "object",
+              "properties": {
+                  "name222": { "type": "string" },
+                  "children222": { "type": "string"}
+              }
+            }
         }
     }
       

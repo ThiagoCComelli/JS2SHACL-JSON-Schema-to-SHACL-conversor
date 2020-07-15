@@ -3,6 +3,279 @@ ex:JS_id a sh:NodeShape;
 
 ex:optionsDefinition_Shape a sh:NodeShape;
   sh:targetClass ex:optionsDefinition;
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (always)
+        ]
+        [
+        ]
+        [
+          sh:enum (avoid)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (lf)
+        ]
+        [
+        ]
+        [
+          sh:enum (crlf)
+        ]
+        [
+        ]
+        [
+          sh:enum (cr)
+        ]
+        [
+        ]
+        [
+          sh:enum (auto)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (css)
+        ]
+        [
+        ]
+        [
+          sh:enum (strict)
+        ]
+        [
+        ]
+        [
+          sh:enum (ignore)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (flow)
+        ]
+        [
+        ]
+        [
+          sh:enum (babel)
+        ]
+        [
+        ]
+        [
+          sh:enum (babel-flow)
+        ]
+        [
+        ]
+        [
+          sh:enum (babel-ts)
+        ]
+        [
+        ]
+        [
+          sh:enum (typescript)
+        ]
+        [
+        ]
+        [
+          sh:enum (css)
+        ]
+        [
+        ]
+        [
+          sh:enum (less)
+        ]
+        [
+        ]
+        [
+          sh:enum (scss)
+        ]
+        [
+        ]
+        [
+          sh:enum (json)
+        ]
+        [
+        ]
+        [
+          sh:enum (json5)
+        ]
+        [
+        ]
+        [
+          sh:enum (json-stringify)
+        ]
+        [
+        ]
+        [
+          sh:enum (graphql)
+        ]
+        [
+        ]
+        [
+          sh:enum (markdown)
+        ]
+        [
+        ]
+        [
+          sh:enum (mdx)
+        ]
+        [
+        ]
+        [
+          sh:enum (vue)
+        ]
+        [
+        ]
+        [
+          sh:enum (yaml)
+        ]
+        [
+        ]
+        [
+          sh:enum (html)
+        ]
+        [
+        ]
+        [
+          sh:enum (angular)
+        ]
+        [
+        ]
+        [
+          sh:enum (lwc)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (always)
+        ]
+        [
+        ]
+        [
+          sh:enum (never)
+        ]
+        [
+        ]
+        [
+          sh:enum (preserve)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (as-needed)
+        ]
+        [
+        ]
+        [
+          sh:enum (consistent)
+        ]
+        [
+        ]
+        [
+          sh:enum (preserve)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (es5)
+        ]
+        [
+        ]
+        [
+          sh:enum (none)
+        ]
+        [
+        ]
+        [
+          sh:enum (all)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (always)
+        ]
+        [
+        ]
+        [
+          sh:enum (avoid)
+        ]
+        [
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path bracketSpacing;
     sh:datatype boolean;
@@ -11,10 +284,65 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:path cursorOffset;
     sh:datatype decimal;
   ];
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (lf)
+        ]
+        [
+        ]
+        [
+          sh:enum (crlf)
+        ]
+        [
+        ]
+        [
+          sh:enum (cr)
+        ]
+        [
+        ]
+        [
+          sh:enum (auto)
+        ]
+        [
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path filepath;
     sh:datatype string;
   ];
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (css)
+        ]
+        [
+        ]
+        [
+          sh:enum (strict)
+        ]
+        [
+        ]
+        [
+          sh:enum (ignore)
+        ]
+        [
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path insertPragma;
     sh:datatype boolean;
@@ -27,10 +355,179 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:path jsxSingleQuote;
     sh:datatype boolean;
   ];
+  sh:xone (
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (flow)
+        ]
+        [
+        ]
+        [
+          sh:enum (babel)
+        ]
+        [
+        ]
+        [
+          sh:enum (babel-flow)
+        ]
+        [
+        ]
+        [
+          sh:enum (babel-ts)
+        ]
+        [
+        ]
+        [
+          sh:enum (typescript)
+        ]
+        [
+        ]
+        [
+          sh:enum (css)
+        ]
+        [
+        ]
+        [
+          sh:enum (less)
+        ]
+        [
+        ]
+        [
+          sh:enum (scss)
+        ]
+        [
+        ]
+        [
+          sh:enum (json)
+        ]
+        [
+        ]
+        [
+          sh:enum (json5)
+        ]
+        [
+        ]
+        [
+          sh:enum (json-stringify)
+        ]
+        [
+        ]
+        [
+          sh:enum (graphql)
+        ]
+        [
+        ]
+        [
+          sh:enum (markdown)
+        ]
+        [
+        ]
+        [
+          sh:enum (mdx)
+        ]
+        [
+        ]
+        [
+          sh:enum (vue)
+        ]
+        [
+        ]
+        [
+          sh:enum (yaml)
+        ]
+        [
+        ]
+        [
+          sh:enum (html)
+        ]
+        [
+        ]
+        [
+          sh:enum (angular)
+        ]
+        [
+        ]
+        [
+          sh:enum (lwc)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:property [
+    sh:path ex:pluginSearchDirs;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:plugins;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
   sh:property [
     sh:path printWidth;
     sh:datatype decimal;
   ];
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (always)
+        ]
+        [
+        ]
+        [
+          sh:enum (never)
+        ]
+        [
+        ]
+        [
+          sh:enum (preserve)
+        ]
+        [
+        ]
+      );
+    ]
+  );
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (as-needed)
+        ]
+        [
+        ]
+        [
+          sh:enum (consistent)
+        ]
+        [
+        ]
+        [
+          sh:enum (preserve)
+        ]
+        [
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path rangeEnd;
     sh:datatype decimal;
@@ -55,6 +552,31 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:path tabWidth;
     sh:datatype decimal;
   ];
+  sh:xone (
+    [
+    ]
+    [
+    ]
+    [
+      sh:xone (
+        [
+          sh:enum (es5)
+        ]
+        [
+        ]
+        [
+          sh:enum (none)
+        ]
+        [
+        ]
+        [
+          sh:enum (all)
+        ]
+        [
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path useTabs;
     sh:datatype boolean;
@@ -63,8 +585,14 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:path vueIndentScriptAndStyle;
     sh:datatype boolean;
   ];
-===========
 
 ex:overridesDefinition_Shape a sh:NodeShape;
   sh:targetClass ex:overridesDefinition;
-===========
+  sh:property [
+    sh:path ex:overrides;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype object;
+    ];
+  ];

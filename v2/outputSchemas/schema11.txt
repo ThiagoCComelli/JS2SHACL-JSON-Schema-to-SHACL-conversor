@@ -1,6 +1,6 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
-========
+
 ex:optionsDefinition_Shape a sh:NodeShape;
   sh:targetClass ex:optionsDefinition;
   sh:property [

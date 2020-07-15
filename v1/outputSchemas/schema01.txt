@@ -1,26 +1,2 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
-  sh:property [
-    sh:path ex:p_name;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path rdf:first;
-      sh:datatype string;
-    ];
-    sh:property [
-      sh:path rdf:first;
-      sh:node ex:p_name_Shape;
-    ];
-===========
-
-ex:p_name_Shape a sh:NodeShape;
-    sh:targetClass ex:p_name;
-    sh:property [
-      sh:path p_nameA;
-      sh:datatype string;
-    ];
-    sh:property [
-      sh:path p_nameB;
-      sh:datatype decimal;
-    ];
-===========

@@ -1,6 +1,6 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
-========
+
 ex:platform_Shape a sh:NodeShape;
   sh:targetClass ex:platform;
   sh:property [

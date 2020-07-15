@@ -61,21 +61,9 @@ module.exports = {
                 if(element.type in dataTypes){
                     setPrimitiveProperty(element,item,checkRequired(schema,item))
                 } else {
-                    create_Complex_Property_root(element,item,checkRequired(schema,item))
+                    create_Complex_Property(element,item,checkRequired(schema,item))
                 }
             }
-            setMainNodeShape()
-            for(var item in schemaSectionElements){
-                element = schemaSectionElements[item]
-                if(element.type in dataTypes){
-                    setPrimitiveProperty(element,item,checkRequired(schema,item))
-                } else if(element.type == 'object'){
-                    setComplexNodeShape(element,item)
-                } else if(element.type == 'array'){
-                    setArray(element,item)
-                }
-            }
-            shacl += '========'
         }
         
         function create_New_JS4Geon_NodeShape(schema){
@@ -87,8 +75,6 @@ module.exports = {
             
             node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name};\n`
             
-            console.log(schema)
-            console.log(name)
             newNodes[name] = node + create_Complex_Property(schema,name)
         }
         
@@ -173,26 +159,6 @@ module.exports = {
             newNodes[name] = create_Complex_Property(element,name)
         }
 
-        function create_Complex_Property_root(element,name){
-            var newShapes = []
-            var newShapesArray = []
-
-            if(element.type == 'object'){
-                setComplexNodeShape(element,name,checkRequired(element,name))
-                create_New_Complex_NodeShape(element,name)
-                // newShapes.push({schema:element,name:name})
-            } else if (element.type == 'array'){
-                newShapesArray =  setArray(element,name)
-            }
-
-            newShapes.forEach(element_ => {
-                create_New_NodeShape(element_.schema,element_.name)
-            })
-            newShapesArray.forEach(element_ => {
-                create_New_NodeShape(element_.schema,element_.name)
-            })
-        }
-
         function create_Complex_Property(element,name){
             var propertyElements = getPropertyElements(element)
             
@@ -274,7 +240,7 @@ module.exports = {
             // getPropertyElements(schema)
             createElementsDefSection(schema)
             setMainNodeShape(schema)
-            createPropertiesSection(schema)
+            // createPropertiesSection(schema)
         }
         
         setup(schema)

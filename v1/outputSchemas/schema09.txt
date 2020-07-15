@@ -1,17 +1,16 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
-  sh:property [
-    sh:path $schema;
-    sh:datatype string;
-  ];
-  sh:property [
-    sh:path <ProxyName>;
-    sh:node proxy-schema_Shape;
-  ];
-===========
 
 ex:proxy-schema_Shape a sh:NodeShape;
   sh:targetClass ex:proxy-schema;
+  sh:property [
+    sh:path ex:desc;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
   sh:property [
     sh:path matchCondition;
     sh:node match-condition-schema_Shape;
@@ -37,7 +36,6 @@ ex:proxy-schema_Shape a sh:NodeShape;
     sh:path disabled;
     sh:datatype boolean;
   ];
-===========
 
 ex:match-condition-schema_Shape a sh:NodeShape;
   sh:targetClass ex:match-condition-schema;
@@ -46,10 +44,45 @@ ex:match-condition-schema_Shape a sh:NodeShape;
     sh:datatype string;
     sh:minCount 1;
   ];
-===========
+  sh:property [
+    sh:path ex:methods;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype http-method-schema_Shape;
+    ];
+  ];
 
 ex:requestOverrides-schema_Shape a sh:NodeShape;
   sh:targetClass ex:requestOverrides-schema;
+  sh:or (
+    [
+    ]
+    [
+      sh:or (
+        [
+          ex:http-method-schema
+        ]
+        [
+          ex:request-overrides-value-expression-schema
+        ]
+      );
+    ]
+  );
+  sh:or (
+    [
+    ]
+    [
+      sh:or (
+        [
+          ex:http-method-schema
+        ]
+        [
+          ex:request-overrides-value-expression-schema
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path backend.request.querystring.<ParameterName>;
     sh:node request-overrides-value-expression-schema_Shape;
@@ -58,10 +91,21 @@ ex:requestOverrides-schema_Shape a sh:NodeShape;
     sh:path backend.request.headers.<HeaderName>;
     sh:node request-overrides-value-expression-schema_Shape;
   ];
-===========
 
 ex:responseOverrides-schema_Shape a sh:NodeShape;
   sh:targetClass ex:responseOverrides-schema;
+  sh:or (
+    [
+    ]
+    [
+      sh:or (
+        [
+        ]
+        [
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path response.statusCode;
     sh:node response-overrides-value-expression-schema_Shape;
@@ -70,12 +114,22 @@ ex:responseOverrides-schema_Shape a sh:NodeShape;
     sh:path response.statusReason;
     sh:node response-overrides-value-expression-schema_Shape;
   ];
+  sh:or (
+    [
+    ]
+    [
+      sh:or (
+        [
+        ]
+        [
+        ]
+      );
+    ]
+  );
   sh:property [
     sh:path response.headers.<HeaderName>;
     sh:node response-overrides-value-expression-schema_Shape;
   ];
-===========
 
 ex:http-method-schema_Shape a sh:NodeShape;
   sh:targetClass ex:http-method-schema;
-===========

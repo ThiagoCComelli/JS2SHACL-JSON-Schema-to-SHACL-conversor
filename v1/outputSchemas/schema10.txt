@@ -1,6 +1,5 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
-===========
 
 ex:platform_Shape a sh:NodeShape;
   sh:targetClass ex:platform;
@@ -22,7 +21,6 @@ ex:platform_Shape a sh:NodeShape;
     sh:path version;
     sh:datatype string;
   ];
-===========
 
 ex:commands_Shape a sh:NodeShape;
   sh:targetClass ex:commands;
@@ -34,11 +32,9 @@ ex:commands_Shape a sh:NodeShape;
       sh:datatype nonEmptyString_Shape;
     ];
   ];
-===========
 
 ex:environment_Shape a sh:NodeShape;
   sh:targetClass ex:environment;
-===========
 
 ex:condition_Shape a sh:NodeShape;
   sh:targetClass ex:condition;
@@ -50,11 +46,9 @@ ex:condition_Shape a sh:NodeShape;
       sh:datatype string;
     ];
   ];
-===========
 
 ex:conditions_Shape a sh:NodeShape;
   sh:targetClass ex:conditions;
-===========
 
 ex:allConditions_Shape a sh:NodeShape;
   sh:targetClass ex:allConditions;
@@ -82,7 +76,6 @@ ex:allConditions_Shape a sh:NodeShape;
     sh:path target;
     sh:node condition_Shape;
   ];
-===========
 
 ex:volumes_Shape a sh:NodeShape;
   sh:targetClass ex:volumes;
@@ -94,7 +87,6 @@ ex:volumes_Shape a sh:NodeShape;
       sh:datatype object;
     ];
   ];
-===========
 
 ex:services_Shape a sh:NodeShape;
   sh:targetClass ex:services;
@@ -106,7 +98,6 @@ ex:services_Shape a sh:NodeShape;
       sh:datatype object;
     ];
   ];
-===========
 
 ex:secret_Shape a sh:NodeShape;
   sh:targetClass ex:secret;
@@ -115,15 +106,12 @@ ex:secret_Shape a sh:NodeShape;
     sh:datatype string;
     sh:minCount 1;
   ];
-===========
 
 ex:stringOrSecret_Shape a sh:NodeShape;
   sh:targetClass ex:stringOrSecret;
-===========
 
 ex:node_Shape a sh:NodeShape;
   sh:targetClass ex:node;
-===========
 
 ex:kind_signature_Shape a sh:NodeShape;
   sh:targetClass ex:kind_signature;
@@ -134,7 +122,6 @@ ex:kind_signature_Shape a sh:NodeShape;
     sh:maxLength 40;
     sh:minCount 1;
   ];
-===========
 
 ex:kind_secret_Shape a sh:NodeShape;
   sh:targetClass ex:kind_secret;
@@ -151,7 +138,6 @@ ex:kind_secret_Shape a sh:NodeShape;
     sh:node get_Shape;
     sh:minCount 1;
   ];
-===========
 
 ex:get_Shape a sh:NodeShape;
   sh:targetClass ex:get;
@@ -164,7 +150,6 @@ ex:get_Shape a sh:NodeShape;
     sh:node nonEmptyString_Shape;
     sh:minCount 1;
   ];
-===========
 
 ex:kind_pipeline_Shape a sh:NodeShape;
   sh:targetClass ex:kind_pipeline;
@@ -185,10 +170,16 @@ ex:kind_pipeline_Shape a sh:NodeShape;
     sh:node clone_Shape;
   ];
   sh:property [
+    sh:path ex:steps;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+    ];
+  ];
+  sh:property [
     sh:path trigger;
     sh:node allConditions_Shape;
   ];
-===========
 
 ex:clone_Shape a sh:NodeShape;
   sh:targetClass ex:clone;
@@ -196,7 +187,6 @@ ex:clone_Shape a sh:NodeShape;
     sh:path depth;
     sh:datatype decimal;
   ];
-===========
 
 ex:pipeline_docker_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_docker;
@@ -209,16 +199,39 @@ ex:pipeline_docker_Shape a sh:NodeShape;
     sh:node services_Shape;
   ];
   sh:property [
+    sh:path ex:image_pull_secrets;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
     sh:path node;
     sh:node node_Shape;
   ];
-===========
 
 ex:pipeline_kubernetes_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_kubernetes;
   sh:property [
     sh:path metadata;
     sh:node kubernetesjsonschema.dev_Shape;
+  ];
+  sh:property [
+    sh:path ex:tolerations;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype kubernetesjsonschema.dev_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:node_selector;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype kubernetesjsonschema.dev_Shape;
+    ];
   ];
   sh:property [
     sh:path volumes;
@@ -228,7 +241,14 @@ ex:pipeline_kubernetes_Shape a sh:NodeShape;
     sh:path services;
     sh:node services_Shape;
   ];
-===========
+  sh:property [
+    sh:path ex:image_pull_secrets;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
 
 ex:pipeline_exec_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_exec;
@@ -236,11 +256,9 @@ ex:pipeline_exec_Shape a sh:NodeShape;
     sh:path node;
     sh:node node_Shape;
   ];
-===========
 
 ex:pipeline_ssh_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_ssh;
-===========
 
 ex:pipeline_digitalocean_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_digitalocean;
@@ -249,11 +267,9 @@ ex:pipeline_digitalocean_Shape a sh:NodeShape;
     sh:node stringOrSecret_Shape;
     sh:minCount 1;
   ];
-===========
 
 ex:pipeline_macstadium_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_macstadium;
-===========
 
 ex:step_Shape a sh:NodeShape;
   sh:targetClass ex:step;
@@ -283,31 +299,32 @@ ex:step_Shape a sh:NodeShape;
     sh:path when;
     sh:node allConditions_Shape;
   ];
-===========
+  sh:property [
+    sh:path ex:depends_on;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype nonEmptyString_Shape;
+    ];
+  ];
 
 ex:step_docker_Shape a sh:NodeShape;
   sh:targetClass ex:step_docker;
-===========
 
 ex:step_kubernetes_Shape a sh:NodeShape;
   sh:targetClass ex:step_kubernetes;
-===========
 
 ex:step_exec_Shape a sh:NodeShape;
   sh:targetClass ex:step_exec;
-===========
 
 ex:step_ssh_Shape a sh:NodeShape;
   sh:targetClass ex:step_ssh;
-===========
 
 ex:step_digitalocean_Shape a sh:NodeShape;
   sh:targetClass ex:step_digitalocean;
-===========
 
 ex:step_macstadium_Shape a sh:NodeShape;
   sh:targetClass ex:step_macstadium;
-===========
 
 ex:steps_volumes_Shape a sh:NodeShape;
   sh:targetClass ex:steps_volumes;
@@ -319,4 +336,3 @@ ex:steps_volumes_Shape a sh:NodeShape;
       sh:datatype object;
     ];
   ];
-===========

@@ -1,22 +1,2 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass: JS_id;
-  sh:property [
-    sh:path sdk;
-    sh:node sdk_Shape;
-  ];
-========
-ex:sdk_Shape a sh:NodeShape;
-  sh:targetClass ex:sdk;
-  sh:property [
-    sh:path version;
-    sh:datatype string;
-  ];
-  sh:property [
-    sh:path allowPrerelease;
-    sh:datatype boolean;
-  ];
-  sh:property [
-    sh:path rollForward;
-    sh:datatype string;
-    sh:in patch,feature,minor,major,latestPatch,latestFeature,latestMinor,latestMajor,disable;
-  ];
