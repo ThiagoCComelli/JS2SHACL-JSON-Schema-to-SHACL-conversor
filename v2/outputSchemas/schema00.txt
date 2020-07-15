@@ -1,0 +1,64 @@
+ex:JS_id a sh:NodeShape;
+  sh:targetClass: JS_id;
+  sh:property [
+    sh:path ex:fruits;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+    ];
+  ];
+  sh:property [
+    sh:path ex:vegetables;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:another;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path rdf:first;
+      sh:datatype string;
+    ];
+    sh:property [
+      sh:path rdf:first;
+      sh:node ex:another_Shape;
+    ];
+  ];
+========
+ex:veggie_Shape a sh:NodeShape;
+  sh:targetClass ex:veggie;
+  sh:property [
+    sh:path veggieName1;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path veggieLike1;
+    sh:datatype boolean;
+  ];
+
+ex:asdasd_Shape a sh:NodeShape;
+  sh:targetClass ex:asdasd;
+  sh:property [
+    sh:path veggieName;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path veggieLike;
+    sh:datatype boolean;
+    sh:minCount 1;
+  ];
+
+ex:another_Shape a sh:NodeShape;
+  sh:targetClass ex:another;
+  sh:property [
+    sh:path ola;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path aqui;
+    sh:datatype string;
+  ];

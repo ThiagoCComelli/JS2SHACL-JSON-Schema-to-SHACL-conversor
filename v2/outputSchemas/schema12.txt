@@ -1,0 +1,310 @@
+ex:JS_id a sh:NodeShape;
+  sh:targetClass: JS_id;
+  sh:property [
+    sh:path name;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path description;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path type;
+    sh:datatype string;
+    sh:in static,server;
+  ];
+  sh:property [
+    sh:path profile;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path ex:regions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path lambda;
+    sh:node lambda_Shape;
+  ];
+  sh:property [
+    sh:path stages;
+    sh:node stages_Shape;
+  ];
+  sh:property [
+    sh:path hooks;
+    sh:node hooks_Shape;
+  ];
+  sh:property [
+    sh:path static;
+    sh:node static_Shape;
+  ];
+  sh:property [
+    sh:path proxy;
+    sh:node proxy_Shape;
+  ];
+  sh:property [
+    sh:path dns;
+    sh:node dns_Shape;
+  ];
+  sh:property [
+    sh:path environment;
+    sh:node environment_Shape;
+  ];
+  sh:property [
+    sh:path headers;
+    sh:node headers_Shape;
+  ];
+  sh:property [
+    sh:path error_pages;
+    sh:node error_pages_Shape;
+  ];
+  sh:property [
+    sh:path cors;
+    sh:node cors_Shape;
+  ];
+  sh:property [
+    sh:path inject;
+    sh:node inject_Shape;
+  ];
+  sh:property [
+    sh:path redirects;
+    sh:node redirects_Shape;
+  ];
+  sh:property [
+    sh:path ex:actions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype object;
+    ];
+  ];
+  sh:property [
+    sh:path ex:alerts;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype object;
+    ];
+  ];
+========
+ex:lambda_Shape a sh:NodeShape;
+  sh:targetClass ex:lambda;
+  sh:property [
+    sh:path accelerate;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path warm;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path warm_rate;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path warm_count;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path memory;
+    sh:datatype decimal;
+    sh:in 128,192,256,320,384,448,512,576,640,704,768,832,896,960,1024,1088,1152,1216,1280,1344,1408,1472,1536,1600,1664,1728,1792,1856,1920,1984,2048,2112,2176,2240,2304,2368,2432,2496,2560,2624,2688,2752,2816,2880,2944,3008;
+  ];
+
+ex:production_Shape a sh:NodeShape;
+  sh:targetClass ex:production;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:staging_Shape a sh:NodeShape;
+  sh:targetClass ex:staging;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:development_Shape a sh:NodeShape;
+  sh:targetClass ex:development;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:stages_Shape a sh:NodeShape;
+  sh:targetClass ex:stages;
+ex:development_Shape a sh:NodeShape;
+  sh:targetClass ex:development;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:hooks_Shape a sh:NodeShape;
+  sh:targetClass ex:hooks;
+  sh:property [
+    sh:path build;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path clean;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path prebuild;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path postbuild;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path predeploy;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path postdeploy;
+    sh:datatype string;
+  ];
+
+ex:static_Shape a sh:NodeShape;
+  sh:targetClass ex:static;
+  sh:property [
+    sh:path dir;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path prefix;
+    sh:datatype string;
+  ];
+
+ex:backoff_Shape a sh:NodeShape;
+  sh:targetClass ex:backoff;
+  sh:property [
+    sh:path min;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path max;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path attempts;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path jitter;
+    sh:datatype boolean;
+  ];
+
+ex:proxy_Shape a sh:NodeShape;
+  sh:targetClass ex:proxy;
+ex:backoff_Shape a sh:NodeShape;
+  sh:targetClass ex:backoff;
+  sh:property [
+    sh:path min;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path max;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path attempts;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path jitter;
+    sh:datatype boolean;
+  ];
+
+ex:dns_Shape a sh:NodeShape;
+  sh:targetClass ex:dns;
+
+ex:environment_Shape a sh:NodeShape;
+  sh:targetClass ex:environment;
+
+ex:headers_Shape a sh:NodeShape;
+  sh:targetClass ex:headers;
+
+ex:variables_Shape a sh:NodeShape;
+  sh:targetClass ex:variables;
+  sh:property [
+    sh:path support_email;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path color;
+    sh:datatype string;
+  ];
+
+ex:error_pages_Shape a sh:NodeShape;
+  sh:targetClass ex:error_pages;
+ex:variables_Shape a sh:NodeShape;
+  sh:targetClass ex:variables;
+  sh:property [
+    sh:path support_email;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path color;
+    sh:datatype string;
+  ];
+
+ex:cors_Shape a sh:NodeShape;
+  sh:targetClass ex:cors;
+  sh:property [
+    sh:path enable;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path ex:allowed_origins;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:allowed_methods;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:allowed_headers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:exposed_headers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path max_age;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path allowed_credentials;
+    sh:datatype boolean;
+  ];
+
+ex:inject_Shape a sh:NodeShape;
+  sh:targetClass ex:inject;
+
+ex:redirects_Shape a sh:NodeShape;
+  sh:targetClass ex:redirects;

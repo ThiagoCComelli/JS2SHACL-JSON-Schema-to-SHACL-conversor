@@ -17,14 +17,31 @@
         "subschema_2":{
             "type": "object",
             "properties": {
-            "fruitas": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                    }
+                "fruitas0": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                        }
                 },
-                "vegetables": {
+                "vegetables0": {
                     "type": "array"
+                },
+                "uobjeto0":{
+                    "type":"object",
+                    "properties":{
+                        "fruits1": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                                }
+                            },
+                            "vegetables1": {
+                                "type": "array"
+                            },
+                            "zerzero":{
+                                "type":"string"
+                            }
+                    }
                 }
             }
         }

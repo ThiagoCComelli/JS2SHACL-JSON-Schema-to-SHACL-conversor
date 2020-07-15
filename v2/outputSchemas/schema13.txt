@@ -1,0 +1,77 @@
+ex:JS_id a sh:NodeShape;
+  sh:targetClass: JS_id;
+  sh:property [
+    sh:path person;
+    sh:node person_Shape;
+  ];
+========
+ex:persona_Shape a sh:NodeShape;
+  sh:targetClass ex:persona;
+  sh:property [
+    sh:path name000;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path children000;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path asdasdasd000;
+    sh:datatype string;
+  ];
+
+ex:naopessoa_Shape a sh:NodeShape;
+  sh:targetClass ex:naopessoa;
+  sh:property [
+    sh:path name111;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path children111;
+    sh:datatype string;
+  ];
+
+ex:alo_Shape a sh:NodeShape;
+  sh:targetClass ex:alo;
+  sh:property [
+    sh:path name222;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path children222;
+    sh:datatype string;
+  ];
+
+ex:children_Shape a sh:NodeShape;
+  sh:targetClass ex:children;
+  sh:property [
+    sh:path firstName;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path lastName;
+    sh:node naopessoa_Shape;
+  ];
+  sh:property [
+    sh:path age;
+    sh:datatype decimal;
+    sh:minInclusive 0;
+  ];
+
+ex:person_Shape a sh:NodeShape;
+  sh:targetClass ex:person;
+ex:children_Shape a sh:NodeShape;
+  sh:targetClass ex:children;
+  sh:property [
+    sh:path firstName;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path lastName;
+    sh:node naopessoa_Shape;
+  ];
+  sh:property [
+    sh:path age;
+    sh:datatype decimal;
+    sh:minInclusive 0;
+  ];

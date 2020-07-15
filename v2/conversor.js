@@ -61,12 +61,21 @@ module.exports = {
                 if(element.type in dataTypes){
                     setPrimitiveProperty(element,item,checkRequired(schema,item))
                 } else {
-                    // setComplexNodeShape(schema,item,checkRequired(schema,item))
-                    create_Complex_Property(element,item,root=true)
+                    create_Complex_Property_root(element,item,checkRequired(schema,item))
                 }
-
-                // create_Complex_Property(schema,item)
             }
+            setMainNodeShape()
+            for(var item in schemaSectionElements){
+                element = schemaSectionElements[item]
+                if(element.type in dataTypes){
+                    setPrimitiveProperty(element,item,checkRequired(schema,item))
+                } else if(element.type == 'object'){
+                    setComplexNodeShape(element,item)
+                } else if(element.type == 'array'){
+                    setArray(element,item)
+                }
+            }
+            shacl += '========'
         }
         
         function create_New_JS4Geon_NodeShape(schema){
@@ -75,8 +84,11 @@ module.exports = {
         
         function create_New_Complex_NodeShape(schema,name){
             shacl = ''
+            
             node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name};\n`
             
+            console.log(schema)
+            console.log(name)
             newNodes[name] = node + create_Complex_Property(schema,name)
         }
         
@@ -132,7 +144,7 @@ module.exports = {
                     shacl += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path rdf:first;\n` + addSpaces() + `sh:node ex:${name}_Shape;\n` + addSpaces(-1) + '];\n'
                     newShapes.push({name:name,schema:element_})
                 }
-                if(element_ == element.items[element.items.length]){
+                if(element_ == element.items[element.items.length-1]){
                     shacl += addSpaces(-1) + '];\n'
                 }
             })
@@ -142,13 +154,46 @@ module.exports = {
                 create_New_NodeShape(element_.schema,element_.name)
             })
         }
+
+        function setArray(element,name){
+            var newShapesArray = []
+            if('type' in element && 'items' in element && element['items'].length != undefined){
+                newShapesArray = setTupleArrayProperty(element,name)
+            } else if ('type' in element && 'items' in element){
+                setListValidationArrayProperty(element,name)
+            } else {
+                setGenericArrayProperty(element,name)
+            }
+            return newShapesArray
+        }
         
         function create_New_NodeShape(element,name){
-            shacl += `\nex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name};\n`
-            create_Complex_Property(element,name)
+            scope = 1
+            shacl = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name};\n`
+            newNodes[name] = create_Complex_Property(element,name)
         }
 
-        function create_Complex_Property(element,name,op,root){
+        function create_Complex_Property_root(element,name){
+            var newShapes = []
+            var newShapesArray = []
+
+            if(element.type == 'object'){
+                setComplexNodeShape(element,name,checkRequired(element,name))
+                create_New_Complex_NodeShape(element,name)
+                // newShapes.push({schema:element,name:name})
+            } else if (element.type == 'array'){
+                newShapesArray =  setArray(element,name)
+            }
+
+            newShapes.forEach(element_ => {
+                create_New_NodeShape(element_.schema,element_.name)
+            })
+            newShapesArray.forEach(element_ => {
+                create_New_NodeShape(element_.schema,element_.name)
+            })
+        }
+
+        function create_Complex_Property(element,name){
             var propertyElements = getPropertyElements(element)
             
             var newShapes = []
@@ -156,7 +201,7 @@ module.exports = {
 
             if(propertyElements != undefined){
                 for(var i in propertyElements){
-                    
+                    console.log(i)
                     // funcao criada para tratar esta excessao nao definida no algoritmo
                     if(propertyElements[i].$ref){
                         shape = propertyElements[i].$ref.split('/')[2]
@@ -171,39 +216,30 @@ module.exports = {
                             
                             newShapes.push({name:i,schema:propertyElements[i]})
                         }
-                        console.log(i)
                         setComplexNodeShape(propertyElements[i],i,checkRequired(element,i))
                     } 
                     else if (propertyElements[i].type == 'array'){
-                        // console.log(propertyElements[i])
+                        newShapesArray = setArray(propertyElements[i],i)
                     }
                 }
             } else {
                 // parte modificada para permitir a checagem das listas sem dar erro ao checar as propriedades
                 if(element.type == 'array'){
-                    if('type' in element && 'items' in element && element['items'].length != undefined){
-                        newShapesArray = setTupleArrayProperty(element,name)
-                    } else if ('type' in element && 'items' in element){
-                        setListValidationArrayProperty(element,name)
-                    } else {
-                        setGenericArrayProperty(element,name)
-                    }
+                    newShapesArray = setArray(element,name)
                 } else if('$ref' in element){
                     shape = element.$ref.split('/')[2]
                     setComplexNodeShape(element,name,checkRequired(element,name),shape)
                 }
                 
             }
-            shacl += '===========\n'
             newShapes.forEach(element_ => {
                 create_New_NodeShape(element_.schema,element_.name)
             })
             newShapesArray.forEach(element_ => {
                 create_New_NodeShape(element_.schema,element_.name)
             })
-            if(!op){
-                return shacl
-            }
+
+            return shacl
         }
         
         
@@ -215,17 +251,15 @@ module.exports = {
         }
         
         function checkRequired(schema,item){
-            var op
+            var op = false
             if(schema.required){
                 schema.required.forEach(itemRequired => {
                     if(item == itemRequired){
                         op = true
-                    } else {
-                        op = false
                     }
                 });
             } else {
-                op = false
+                
             }
             return op
         }
@@ -239,13 +273,14 @@ module.exports = {
             getDefSectionElements(schema)
             // getPropertyElements(schema)
             createElementsDefSection(schema)
-            op = 1
             setMainNodeShape(schema)
             createPropertiesSection(schema)
         }
         
         setup(schema)
 
+        // shacl = ''
+        
         for(var i in newNodes){
             shacl += `\n${newNodes[i]}`
         }
