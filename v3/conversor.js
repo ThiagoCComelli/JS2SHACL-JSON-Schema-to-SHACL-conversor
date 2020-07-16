@@ -12,6 +12,7 @@ module.exports = {
         var scope = 1
         var nodesReady = {}
         var newNodes = {}
+        var number = 0
 
         var shacl = ''
         var mappedDatatypes = []
@@ -48,7 +49,7 @@ module.exports = {
             local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n`
             element.items.forEach(element_ => {
                 if(element_.type in dataTypes){
-                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path rdf:first;\n`
+                    local += addSpaces() + `sh:property [\n`
                     if(index == 0){
                         local += addSpaces(1) + `sh:path rdf:first;\n`
                     } else {
@@ -87,7 +88,18 @@ module.exports = {
 
         function setPrimitiveProperty(element,name,required){
             var local = ''
-            local += addSpaces() + 'sh:property [\n' + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:datatype ${dataTypes[element.type]};\n`
+            local += addSpaces() + 'sh:property [\n'
+
+            if(name != null){
+                local += addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:datatype ${dataTypes[element.type]};\n`
+            } else {
+                if(dataTypes[element] != undefined){
+                    local += addSpaces(1) + `sh:datatype ${dataTypes[element]};\n`
+                } else {
+                    local += addSpaces(1) + `sh:datatype ${element};\n`
+                }
+                
+            }
             for(var item in element){
                 if(item in constraints){
                     if(item == 'const' || item == 'enum'){
@@ -107,24 +119,117 @@ module.exports = {
         
         function setComplexNodeShape(element,name,required,ref = null){
             var local = ''
-            if(ref != null){
-                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${ref}_Shape;\n`
+            if(name != null){
+                if(ref != null){
+                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${ref}_Shape;\n`
         
+                } else {
+                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${name}_Shape;\n`
+            
+                }
+                if(required){
+                    local += addSpaces() + `sh:minCount 1;\n` + addSpaces(-1) + '];\n'
+                } else {
+                    local += addSpaces(-1) + '];\n'
+                }
+                
             } else {
-                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${name}_Shape;\n`
-        
-            }
-            if(required){
-                local += addSpaces() + `sh:minCount 1;\n` + addSpaces(-1) + '];\n'
-            } else {
-                local += addSpaces(-1) + '];\n'
+                // console.log(element)
+                number++
+                newNodes[number] = element
+                // if(number == 4){
+                //     console.log(element)
+                //     console.log(newNodes[number])
+                // }
+                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:node ${number}_Shape;\n` + addSpaces(-1) + '];\n'
             }
             return local
         }
 
-        function setMainNodeShape(element){
-            shacl = 'ex:JS_id a sh:NodeShape;\n' + addSpaces() + 'sh:targetClass :JS_id;\n'
+        function setShInProperty(element,name){
+            var local = ''
+            local += addSpaces() + `sh:${name} (${element})\n`
+            return local
         }
+
+        //#region NAO TA FUNCIONANDO
+
+        function setOthersProperty(element,name){
+            var local = ''
+
+            if(name == 'allOf'){
+                local += addSpaces() + 'sh:and (\n'
+            } else if(name == 'oneOf'){
+                local += addSpaces() + 'sh:xone (\n'
+            } else {
+                local += addSpaces() + 'sh:or (\n'
+            }
+
+            var prop = element[name]
+
+            prop.forEach(element_ => {
+                for(var i in element_){
+                    
+                    if(i != 'description' && i != 'additionalProperties'){
+                        console.log(i)
+                        local += addSpaces(1) + '[\n'
+                        scope++
+                        if(i != '$ref'){
+                        
+                            if(element_[i].$ref){
+                                local += setComplexNodeShape(element_[i].$ref,i)
+                            }
+                            else if(element_[i].type in dataTypes){
+                                
+                                local += setPrimitiveProperty(element_[i],i,checkRequired(element,i))
+                                
+                            } else if(element_[i].type == 'array'){
+
+                                local += setArray(element_[i],i,checkRequired(element,i))
+
+                            } else if(element_[i].type == 'object'){
+
+                                local += setComplexNodeShape(element_[i],i,checkRequired(element,i))
+
+                            } else if (i in anotherConstraints){
+
+                                local += setOthersProperty(element_[i],i)
+                                
+                            } else if(i in constraints){
+                                if(i == 'enum' || i == 'const'){
+                                    local += setShInProperty(element_[i],i)
+                                }
+                            } else if(i == 'type'){
+                                if(element_[i] == 'object'){
+                                    local += setComplexNodeShape(element_,null)
+                                } else if(element_[i] == 'array'){
+                                    local += setArray(element_,name)
+                                } else if(element_[i] in dataTypes){
+                                    local += setPrimitiveProperty(element_[i],null)
+                                }
+                                
+                            }
+                            scope -= 2
+                            local += addSpaces(1) + ']\n'
+                        } else {
+                            
+                            local += addSpaces() + `ex:${element_[i].split('/')[2]}_shape\n`
+                            scope -= 2
+                            local += addSpaces(1) + ']\n'
+                        }
+                        scope--
+                    }
+                    
+                }
+            })
+            local += addSpaces() + ');\n'
+
+            return local
+        }
+
+        //#endregion
+
+        
 
         function getDefSectionElements(element){
             if(element.definitions){
@@ -153,11 +258,35 @@ module.exports = {
                 mappedDatatypes.push(item)
             }
         }
-        
+
+        function createSchemaSectionElementes(element){
+            // schemaSectionElements = getPropertyElements(element)
+            // if(schemaSectionElements != undefined){
+            //     for(var item in schemaSectionElements){
+            //         if(schemaSectionElements[item].type in dataTypes){
+            //             shacl += setPrimitiveProperty(schemaSectionElements[item],item,checkRequired(element,item))
+            //         } else{
+            //             shacl += create_Complex_Property(schemaSectionElements[item],item)
+            //         }
+            //     }
+            // }
+            nodesReady['JS_id'] = setMainNodeShape() + create_New_Complex_NodeShape_Structure(element,'JS_id')
+        }
+
+        function setMainNodeShape(element){
+            var local = 'ex:JS_id a sh:NodeShape;\n' + addSpaces() + 'sh:targetClass :JS_id;\n'
+            return local
+        }
+
         function create_New_Complex_NodeShape(element,name){
             var node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass :${name};\n`
 
             nodesReady[name] = node + create_New_Complex_NodeShape_Structure(element,name)
+        }
+
+        function create_Complex_Property(element,name){
+            var local = ''
+
         }
 
         function create_New_Complex_NodeShape_Structure(element,name){
@@ -175,6 +304,12 @@ module.exports = {
                         local += setArray(propertiesElements[item],item)
                     } else if(propertiesElements[item].$ref){
                         local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2])
+                    } else {
+                        for(var i in propertiesElements[item]){
+                            if(i in anotherConstraints){
+                                // local += setOthersProperty(propertiesElements[item],i)
+                            }
+                        }
                     }
                 }
             } else {
@@ -182,6 +317,16 @@ module.exports = {
                     local += setArray(element,name)
                 } else if(element.type in dataTypes){
                     local += setPrimitiveProperty(element,name,checkRequired(element,name))
+                } else if(element.type == 'object'){
+                    
+                } else {
+                    for(var i in element){
+                        if(i in anotherConstraints){
+                            // local += setOthersProperty(element,i)
+                        } else if(i in constraints){
+                            local += setShInProperty(element[i],i)
+                        }
+                    }
                 }
             }
 
@@ -214,8 +359,9 @@ module.exports = {
         //#region SETUP SECTION
         
         function setup(schema) {
-            setMainNodeShape()
+            setMainNodeShape(schema)
             createDefSectionElements(schema)
+            createSchemaSectionElementes(schema)
         }
         
         setup(schema)
@@ -226,6 +372,9 @@ module.exports = {
 
         while(Object.keys(nodesReady).length > 0 || Object.keys(newNodes).length > 0){
             for(var i in newNodes){
+                if(i == 4){
+                    console.log(newNodes[i])
+                }
                 create_New_Complex_NodeShape(newNodes[i],i)
                 delete newNodes[i]
             }

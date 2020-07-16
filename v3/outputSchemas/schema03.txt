@@ -1,2 +1,141 @@
+
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
+  sh:property [
+    sh:path name;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path description;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path participate;
+    sh:node participate_Shape;
+  ];
+  sh:property [
+    sh:path repository;
+    sh:node repository_Shape;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path bugs;
+    sh:node bugs_Shape;
+  ];
+  sh:property [
+    sh:path urls;
+    sh:node urls_Shape;
+  ];
+
+ex:participate_Shape a sh:NodeShape;
+  sh:targetClass :participate;
+  sh:property [
+    sh:path home;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path docs;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path mailing-list;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path irc;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path ex:irc-contacts;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path chat;
+    sh:node chat_Shape;
+  ];
+
+ex:repository_Shape a sh:NodeShape;
+  sh:targetClass :repository;
+  sh:property [
+    sh:path type;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path url;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path license;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path tests;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path clone;
+    sh:datatype string;
+  ];
+
+ex:bugs_Shape a sh:NodeShape;
+  sh:targetClass :bugs;
+  sh:property [
+    sh:path list;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path report;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path mentored;
+    sh:datatype string;
+  ];
+
+ex:urls_Shape a sh:NodeShape;
+  sh:targetClass :urls;
+  sh:property [
+    sh:path prod;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path stage;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path dev;
+    sh:datatype string;
+  ];
+
+ex:chat_Shape a sh:NodeShape;
+  sh:targetClass :chat;
+  sh:property [
+    sh:path url;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:contacts;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];

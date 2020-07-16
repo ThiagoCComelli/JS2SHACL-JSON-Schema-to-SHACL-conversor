@@ -19,7 +19,7 @@
                     "type":"object",
                     "properties": {
                         "ola":{"type":"string"},
-                        "aqui":{"type":"number"}
+                        "aqui":{"type":"string"}
                     }
                 }
                 ]
@@ -28,18 +28,18 @@
     ,
     "definitions": {
         "veggie": {
-        "type": "object",
-        "required": [ "veggieName", "veggieLike" ],
-        "properties": {
-            "veggieName": {
-            "type": "string",
-            "description": "The name of the vegetable."
-            },
-            "veggieLike": {
-            "type": "boolean",
-            "description": "Do I like this vegetable?"
+            "type": "object",
+            "required": [ "veggieName", "veggieLike" ],
+            "properties": {
+                "veggieName": {
+                "type": "string",
+                "description": "The name of the vegetable."
+                },
+                "veggieLike": {
+                "type": "boolean",
+                "description": "Do I like this vegetable?"
+                }
             }
-        }
         }
     }
 }

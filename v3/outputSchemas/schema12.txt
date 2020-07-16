@@ -1,2 +1,395 @@
+
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
+  sh:property [
+    sh:path name;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path description;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path type;
+    sh:datatype string;
+    sh:in (static,server);
+  ];
+  sh:property [
+    sh:path profile;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path ex:regions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path lambda;
+    sh:node lambda_Shape;
+  ];
+  sh:property [
+    sh:path stages;
+    sh:node stages_Shape;
+  ];
+  sh:property [
+    sh:path hooks;
+    sh:node hooks_Shape;
+  ];
+  sh:property [
+    sh:path static;
+    sh:node static_Shape;
+  ];
+  sh:property [
+    sh:path proxy;
+    sh:node proxy_Shape;
+  ];
+  sh:property [
+    sh:path dns;
+    sh:node dns_Shape;
+  ];
+  sh:property [
+    sh:path environment;
+    sh:node environment_Shape;
+  ];
+  sh:property [
+    sh:path headers;
+    sh:node headers_Shape;
+  ];
+  sh:property [
+    sh:path error_pages;
+    sh:node error_pages_Shape;
+  ];
+  sh:property [
+    sh:path cors;
+    sh:node cors_Shape;
+  ];
+  sh:property [
+    sh:path inject;
+    sh:node inject_Shape;
+  ];
+  sh:property [
+    sh:path redirects;
+    sh:node redirects_Shape;
+  ];
+  sh:property [
+    sh:path ex:actions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype actions1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:alerts;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype alerts1_Shape;
+    ];
+  ];
+
+ex:lambda_Shape a sh:NodeShape;
+  sh:targetClass :lambda;
+  sh:property [
+    sh:path accelerate;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path warm;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path warm_rate;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path warm_count;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path memory;
+    sh:datatype decimal;
+    sh:in (128,192,256,320,384,448,512,576,640,704,768,832,896,960,1024,1088,1152,1216,1280,1344,1408,1472,1536,1600,1664,1728,1792,1856,1920,1984,2048,2112,2176,2240,2304,2368,2432,2496,2560,2624,2688,2752,2816,2880,2944,3008);
+  ];
+
+ex:stages_Shape a sh:NodeShape;
+  sh:targetClass :stages;
+  sh:property [
+    sh:path production;
+    sh:node production_Shape;
+  ];
+  sh:property [
+    sh:path staging;
+    sh:node staging_Shape;
+  ];
+  sh:property [
+    sh:path development;
+    sh:node development_Shape;
+  ];
+
+ex:hooks_Shape a sh:NodeShape;
+  sh:targetClass :hooks;
+  sh:property [
+    sh:path build;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path clean;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path prebuild;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path postbuild;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path predeploy;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path postdeploy;
+    sh:datatype string;
+  ];
+
+ex:static_Shape a sh:NodeShape;
+  sh:targetClass :static;
+  sh:property [
+    sh:path dir;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path prefix;
+    sh:datatype string;
+  ];
+
+ex:proxy_Shape a sh:NodeShape;
+  sh:targetClass :proxy;
+  sh:property [
+    sh:path command;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path timeout;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path listen_timeout;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path shutdown_timeout;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path backoff;
+    sh:node backoff_Shape;
+  ];
+
+ex:dns_Shape a sh:NodeShape;
+  sh:targetClass :dns;
+
+ex:environment_Shape a sh:NodeShape;
+  sh:targetClass :environment;
+
+ex:headers_Shape a sh:NodeShape;
+  sh:targetClass :headers;
+
+ex:error_pages_Shape a sh:NodeShape;
+  sh:targetClass :error_pages;
+  sh:property [
+    sh:path disable;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path dir;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path variables;
+    sh:node variables_Shape;
+  ];
+
+ex:cors_Shape a sh:NodeShape;
+  sh:targetClass :cors;
+  sh:property [
+    sh:path enable;
+    sh:datatype boolean;
+  ];
+  sh:property [
+    sh:path ex:allowed_origins;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:allowed_methods;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:allowed_headers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:exposed_headers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path max_age;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path allowed_credentials;
+    sh:datatype boolean;
+  ];
+
+ex:inject_Shape a sh:NodeShape;
+  sh:targetClass :inject;
+
+ex:redirects_Shape a sh:NodeShape;
+  sh:targetClass :redirects;
+
+ex:actions1_Shape a sh:NodeShape;
+  sh:targetClass :actions1;
+  sh:property [
+    sh:path name;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path type;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:emails;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:numbers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype string;
+    ];
+  ];
+
+ex:alerts1_Shape a sh:NodeShape;
+  sh:targetClass :alerts1;
+  sh:property [
+    sh:path metric;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path statistic;
+    sh:datatype string;
+    sh:in (min,max,avg,sum,count);
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path threshold;
+    sh:datatype decimal;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path action;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path evaluation_periods;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path operator;
+    sh:datatype string;
+    sh:in (>,<,>=,<=);
+  ];
+  sh:property [
+    sh:path namespace;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path description;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path disable;
+    sh:datatype boolean;
+  ];
+
+ex:production_Shape a sh:NodeShape;
+  sh:targetClass :production;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:staging_Shape a sh:NodeShape;
+  sh:targetClass :staging;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:development_Shape a sh:NodeShape;
+  sh:targetClass :development;
+  sh:property [
+    sh:path domain;
+    sh:datatype string;
+  ];
+
+ex:backoff_Shape a sh:NodeShape;
+  sh:targetClass :backoff;
+  sh:property [
+    sh:path min;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path max;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path attempts;
+    sh:datatype decimal;
+  ];
+  sh:property [
+    sh:path jitter;
+    sh:datatype boolean;
+  ];
+
+ex:variables_Shape a sh:NodeShape;
+  sh:targetClass :variables;
+  sh:property [
+    sh:path support_email;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path color;
+    sh:datatype string;
+  ];

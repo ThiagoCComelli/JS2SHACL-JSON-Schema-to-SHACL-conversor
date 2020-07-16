@@ -25,6 +25,12 @@
                 },
                 "vegetables": {
                     "type": "array"
+                },
+                "alooou":{
+                    "type":"object",
+                    "properties":{
+                        "aqui":{"type":"string"}
+                    }
                 }
             }
         }

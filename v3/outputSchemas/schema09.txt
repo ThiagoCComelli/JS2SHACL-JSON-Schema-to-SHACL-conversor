@@ -1,5 +1,3 @@
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
 
 ex:proxy-schema_Shape a sh:NodeShape;
   sh:targetClass :proxy-schema;
@@ -95,3 +93,23 @@ ex:response-overrides-value-expression-schema_Shape a sh:NodeShape;
 
 ex:http-method-schema_Shape a sh:NodeShape;
   sh:targetClass :http-method-schema;
+  sh:enum (GET,POST,HEAD,OPTIONS,PUT,TRACE,DELETE,PATCH,CONNECT)
+
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;
+  sh:property [
+    sh:path $schema;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path proxies;
+    sh:node proxies_Shape;
+    sh:minCount 1;
+  ];
+
+ex:proxies_Shape a sh:NodeShape;
+  sh:targetClass :proxies;
+  sh:property [
+    sh:path <ProxyName>;
+    sh:node proxy-schema_Shape;
+  ];

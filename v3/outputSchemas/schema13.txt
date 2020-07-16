@@ -1,5 +1,3 @@
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
 
 ex:persona_Shape a sh:NodeShape;
   sh:targetClass :persona;
@@ -42,6 +40,13 @@ ex:alo_Shape a sh:NodeShape;
     sh:node alods_Shape;
   ];
 
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;
+  sh:property [
+    sh:path person;
+    sh:node person_Shape;
+  ];
+
 ex:alods_Shape a sh:NodeShape;
   sh:targetClass :alods;
   sh:property [
@@ -51,4 +56,32 @@ ex:alods_Shape a sh:NodeShape;
   sh:property [
     sh:path children222;
     sh:datatype string;
+  ];
+
+ex:person_Shape a sh:NodeShape;
+  sh:targetClass :person;
+  sh:property [
+    sh:path name;
+    sh:datatype string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path children;
+    sh:node children_Shape;
+  ];
+
+ex:children_Shape a sh:NodeShape;
+  sh:targetClass :children;
+  sh:property [
+    sh:path firstName;
+    sh:datatype string;
+  ];
+  sh:property [
+    sh:path lastName;
+    sh:node naopessoa_Shape;
+  ];
+  sh:property [
+    sh:path age;
+    sh:datatype decimal;
+    sh:minInclusive 0;
   ];
