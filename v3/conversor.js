@@ -2,6 +2,18 @@ var fs = require('fs')
 const { error } = require('console')
 
 module.exports = {
+    check: function(schema){
+        try{
+            schema = JSON.parse(schema)
+
+            return {text:'Valid JSON Schema',shacl:this.start(schema)}
+        } catch {
+            if(err == 'SyntaxError: Unexpected token o in JSON at position 1'){
+                return {text:"Valid JSON Schema!",shacl:this.start(schema)}
+            }
+            return {text:"Invalid JSON Schema!",shacl:''}
+        }
+    },
     start: function(schema){
         var JS4GeoDataTypes = {'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
         var dataTypes = {"string":"string","integer":"decimal","boolean":"boolean","null":"null",
