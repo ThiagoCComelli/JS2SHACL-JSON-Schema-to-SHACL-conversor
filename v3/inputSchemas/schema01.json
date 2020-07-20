@@ -11,7 +11,7 @@
                 {"type":"object",
                     "properties":{
                         "p_nameA":{"type":"string"},
-                        "p_nameB":{"type":"integer"}
+                        "p_nameB":{"type":"object"}
                     }
                 }
             ]

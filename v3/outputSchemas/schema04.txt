@@ -3,36 +3,36 @@ ex:coreConfiguration_Shape a sh:NodeShape;
   sh:targetClass :coreConfiguration;
   sh:property [
     sh:path language;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:in (csharp);
     sh:minCount 1;
   ];
   sh:property [
     sh:path entryPoint;
-    sh:datatype string;
+    sh:datatype xsd:string;
   ];
 
 ex:interactionLayerConfiguration_Shape a sh:NodeShape;
   sh:targetClass :interactionLayerConfiguration;
   sh:property [
     sh:path type;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:in (web);
     sh:minCount 1;
   ];
   sh:property [
     sh:path language;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
     sh:path entryPoint;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
     sh:path framework;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:in (react,aurelia);
   ];
 
@@ -40,12 +40,12 @@ ex:resourceTypeImplementationConfiguration_Shape a sh:NodeShape;
   sh:targetClass :resourceTypeImplementationConfiguration;
   sh:property [
     sh:path production;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
     sh:path development;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
 
@@ -53,22 +53,22 @@ ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
   sh:property [
     sh:path application;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
     sh:path boundedContext;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
     sh:path boundedContextName;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
     sh:path core;
-    sh:node coreConfiguration_Shape;
+    sh:node ex:coreConfiguration_Shape;
     sh:minCount 1;
   ];
   sh:property [
@@ -80,7 +80,7 @@ ex:JS_id a sh:NodeShape;
   ];
   sh:property [
     sh:path resources;
-    sh:node resources_Shape;
+    sh:node ex:resources_Shape;
     sh:minCount 1;
   ];
 
@@ -88,17 +88,17 @@ ex:resources_Shape a sh:NodeShape;
   sh:targetClass :resources;
   sh:property [
     sh:path readModels;
-    sh:node resourceTypeImplementationConfiguration_Shape;
+    sh:node ex:resourceTypeImplementationConfiguration_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path eventStore;
-    sh:node resourceTypeImplementationConfiguration_Shape;
+    sh:node ex:resourceTypeImplementationConfiguration_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path ola;
-    sh:node ola_Shape;
+    sh:node ex:ola_Shape;
   ];
 
 ex:ola_Shape a sh:NodeShape;

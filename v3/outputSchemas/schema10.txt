@@ -3,7 +3,7 @@ ex:nonEmptyString_Shape a sh:NodeShape;
   sh:targetClass :nonEmptyString;
   sh:property [
     sh:path nonEmptyString;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minLength 1;
   ];
 
@@ -11,21 +11,21 @@ ex:platform_Shape a sh:NodeShape;
   sh:targetClass :platform;
   sh:property [
     sh:path os;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:in (linux,windows,darwin,freebsd,netbsd,openbsd,dragonfly,solaris);
   ];
   sh:property [
     sh:path arсh;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:in (arm,arm64,amd64,386);
   ];
   sh:property [
     sh:path variant;
-    sh:datatype string;
+    sh:datatype xsd:string;
   ];
   sh:property [
     sh:path version;
-    sh:datatype string;
+    sh:datatype xsd:string;
   ];
 
 ex:commands_Shape a sh:NodeShape;
@@ -49,7 +49,7 @@ ex:condition_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype string;
+      sh:datatype xsd:string;
     ];
   ];
 
@@ -60,27 +60,27 @@ ex:allConditions_Shape a sh:NodeShape;
   sh:targetClass :allConditions;
   sh:property [
     sh:path branch;
-    sh:node conditions_Shape;
+    sh:node ex:conditions_Shape;
   ];
   sh:property [
     sh:path event;
-    sh:node conditions_Shape;
+    sh:node ex:conditions_Shape;
   ];
   sh:property [
     sh:path ref;
-    sh:node conditions_Shape;
+    sh:node ex:conditions_Shape;
   ];
   sh:property [
     sh:path repo;
-    sh:node conditions_Shape;
+    sh:node ex:conditions_Shape;
   ];
   sh:property [
     sh:path status;
-    sh:node condition_Shape;
+    sh:node ex:condition_Shape;
   ];
   sh:property [
     sh:path target;
-    sh:node condition_Shape;
+    sh:node ex:condition_Shape;
   ];
 
 ex:volumes_Shape a sh:NodeShape;
@@ -90,7 +90,7 @@ ex:volumes_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype volumes1_Shape;
+      sh:datatype ex:volumes1_Shape;
     ];
   ];
 
@@ -101,7 +101,7 @@ ex:services_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype services1_Shape;
+      sh:datatype ex:services1_Shape;
     ];
   ];
 
@@ -109,7 +109,7 @@ ex:secret_Shape a sh:NodeShape;
   sh:targetClass :secret;
   sh:property [
     sh:path from_secret;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minCount 1;
   ];
 
@@ -123,7 +123,7 @@ ex:kind_signature_Shape a sh:NodeShape;
   sh:targetClass :kind_signature;
   sh:property [
     sh:path hmac;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:minLength 40;
     sh:maxLength 40;
     sh:minCount 1;
@@ -133,16 +133,16 @@ ex:kind_secret_Shape a sh:NodeShape;
   sh:targetClass :kind_secret;
   sh:property [
     sh:path name;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path data;
-    sh:datatype string;
+    sh:datatype xsd:string;
   ];
   sh:property [
     sh:path get;
-    sh:node get_Shape;
+    sh:node ex:get_Shape;
     sh:minCount 1;
   ];
 
@@ -150,20 +150,20 @@ ex:kind_pipeline_Shape a sh:NodeShape;
   sh:targetClass :kind_pipeline;
   sh:property [
     sh:path name;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path platform;
-    sh:node platform_Shape;
+    sh:node ex:platform_Shape;
   ];
   sh:property [
     sh:path workspace;
-    sh:datatype string;
+    sh:datatype xsd:string;
   ];
   sh:property [
     sh:path clone;
-    sh:node clone_Shape;
+    sh:node ex:clone_Shape;
   ];
   sh:property [
     sh:path ex:steps;
@@ -174,37 +174,37 @@ ex:kind_pipeline_Shape a sh:NodeShape;
   ];
   sh:property [
     sh:path trigger;
-    sh:node allConditions_Shape;
+    sh:node ex:allConditions_Shape;
   ];
 
 ex:pipeline_docker_Shape a sh:NodeShape;
   sh:targetClass :pipeline_docker;
   sh:property [
     sh:path volumes;
-    sh:node volumes_Shape;
+    sh:node ex:volumes_Shape;
   ];
   sh:property [
     sh:path services;
-    sh:node services_Shape;
+    sh:node ex:services_Shape;
   ];
   sh:property [
     sh:path ex:image_pull_secrets;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype string;
+      sh:datatype xsd:string;
     ];
   ];
   sh:property [
     sh:path node;
-    sh:node node_Shape;
+    sh:node ex:node_Shape;
   ];
 
 ex:pipeline_kubernetes_Shape a sh:NodeShape;
   sh:targetClass :pipeline_kubernetes;
   sh:property [
     sh:path metadata;
-    sh:node kubernetesjsonschema.dev_Shape;
+    sh:node ex:kubernetesjsonschema.dev_Shape;
   ];
   sh:property [
     sh:path ex:tolerations;
@@ -224,18 +224,18 @@ ex:pipeline_kubernetes_Shape a sh:NodeShape;
   ];
   sh:property [
     sh:path volumes;
-    sh:node volumes_Shape;
+    sh:node ex:volumes_Shape;
   ];
   sh:property [
     sh:path services;
-    sh:node services_Shape;
+    sh:node ex:services_Shape;
   ];
   sh:property [
     sh:path ex:image_pull_secrets;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype string;
+      sh:datatype xsd:string;
     ];
   ];
 
@@ -243,7 +243,7 @@ ex:pipeline_exec_Shape a sh:NodeShape;
   sh:targetClass :pipeline_exec;
   sh:property [
     sh:path node;
-    sh:node node_Shape;
+    sh:node ex:node_Shape;
   ];
 
 ex:pipeline_ssh_Shape a sh:NodeShape;
@@ -253,7 +253,7 @@ ex:pipeline_digitalocean_Shape a sh:NodeShape;
   sh:targetClass :pipeline_digitalocean;
   sh:property [
     sh:path token;
-    sh:node stringOrSecret_Shape;
+    sh:node ex:stringOrSecret_Shape;
     sh:minCount 1;
   ];
 
@@ -264,29 +264,29 @@ ex:step_Shape a sh:NodeShape;
   sh:targetClass :step;
   sh:property [
     sh:path name;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path failure;
-    sh:datatype string;
+    sh:datatype xsd:string;
     sh:in (always,ignore);
   ];
   sh:property [
     sh:path commands;
-    sh:node commands_Shape;
+    sh:node ex:commands_Shape;
   ];
   sh:property [
     sh:path detach;
-    sh:datatype boolean;
+    sh:datatype xsd:boolean;
   ];
   sh:property [
     sh:path environment;
-    sh:node environment_Shape;
+    sh:node ex:environment_Shape;
   ];
   sh:property [
     sh:path when;
-    sh:node allConditions_Shape;
+    sh:node ex:allConditions_Shape;
   ];
   sh:property [
     sh:path ex:depends_on;
@@ -322,7 +322,7 @@ ex:steps_volumes_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype steps_volumes1_Shape;
+      sh:datatype ex:steps_volumes1_Shape;
     ];
   ];
 
@@ -333,64 +333,64 @@ ex:volumes1_Shape a sh:NodeShape;
   sh:targetClass :volumes1;
   sh:property [
     sh:path name;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
   ];
   sh:property [
     sh:path host;
-    sh:node host_Shape;
+    sh:node ex:host_Shape;
   ];
   sh:property [
     sh:path temp;
-    sh:node temp_Shape;
+    sh:node ex:temp_Shape;
   ];
 
 ex:services1_Shape a sh:NodeShape;
   sh:targetClass :services1;
   sh:property [
     sh:path name;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path image;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path command;
-    sh:node commands_Shape;
+    sh:node ex:commands_Shape;
   ];
   sh:property [
     sh:path entrypoint;
-    sh:node commands_Shape;
+    sh:node ex:commands_Shape;
   ];
   sh:property [
     sh:path environment;
-    sh:node environment_Shape;
+    sh:node ex:environment_Shape;
   ];
   sh:property [
     sh:path privileged;
-    sh:datatype boolean;
+    sh:datatype xsd:boolean;
   ];
   sh:property [
     sh:path volumes;
-    sh:node volumes_Shape;
+    sh:node ex:volumes_Shape;
   ];
   sh:property [
     sh:path working_dir;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
   ];
 
 ex:get_Shape a sh:NodeShape;
   sh:targetClass :get;
   sh:property [
     sh:path path;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path name;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
 
@@ -398,19 +398,19 @@ ex:clone_Shape a sh:NodeShape;
   sh:targetClass :clone;
   sh:property [
     sh:path depth;
-    sh:datatype decimal;
+    sh:datatype xsd:decimal;
   ];
 
 ex:steps_volumes1_Shape a sh:NodeShape;
   sh:targetClass :steps_volumes1;
   sh:property [
     sh:path name;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path path;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
 
@@ -418,7 +418,7 @@ ex:host_Shape a sh:NodeShape;
   sh:targetClass :host;
   sh:property [
     sh:path path;
-    sh:node nonEmptyString_Shape;
+    sh:node ex:nonEmptyString_Shape;
   ];
 
 ex:temp_Shape a sh:NodeShape;

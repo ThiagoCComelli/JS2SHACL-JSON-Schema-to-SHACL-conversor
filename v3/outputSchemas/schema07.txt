@@ -6,7 +6,7 @@ ex:subschema_1_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype string;
+      sh:datatype xsd:string;
     ];
   ];
   sh:property [

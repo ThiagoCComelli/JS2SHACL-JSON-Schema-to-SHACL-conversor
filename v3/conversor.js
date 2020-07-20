@@ -44,10 +44,10 @@ module.exports = {
                 local += addSpaces() + `sh:datatype ${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n' 
             } else {
                 if(element.items.type in dataTypes){
-                    local += addSpaces() + `sh:datatype ${element.items.type};\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n'
+                    local += addSpaces() + `sh:datatype xsd:${element.items.type};\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n'
                 } else {
                     name += 1
-                    local += addSpaces() + `sh:datatype ${name}_Shape;\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n'
+                    local += addSpaces() + `sh:datatype ex:${name}_Shape;\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n'
                     newNodes[name] = element.items
                 }
                 
@@ -67,7 +67,7 @@ module.exports = {
                     } else {
                         local += addSpaces(1) + `sh:path (ref:rest rdf:first);\n`
                     }
-                    local += addSpaces() + `sh:datatype ${dataTypes[element_.type]};\n` + addSpaces(-1) + '];\n'
+                    local += addSpaces() + `sh:datatype xsd:${dataTypes[element_.type]};\n` + addSpaces(-1) + '];\n'
                 } else {
                     local += addSpaces() + `sh:property [\n`
                     if(index == 0){
@@ -103,10 +103,10 @@ module.exports = {
             local += addSpaces() + 'sh:property [\n'
 
             if(name != null){
-                local += addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:datatype ${dataTypes[element.type]};\n`
+                local += addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:datatype xsd:${dataTypes[element.type]};\n`
             } else {
                 if(dataTypes[element] != undefined){
-                    local += addSpaces(1) + `sh:datatype ${dataTypes[element]};\n`
+                    local += addSpaces(1) + `sh:datatype xsd:${dataTypes[element]};\n`
                 } else {
                     local += addSpaces(1) + `sh:datatype ${element};\n`
                 }
@@ -133,10 +133,10 @@ module.exports = {
             var local = ''
             if(name != null){
                 if(ref != null){
-                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${ref}_Shape;\n`
+                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ex:${ref}_Shape;\n`
         
                 } else {
-                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ${name}_Shape;\n`
+                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ex:${name}_Shape;\n`
             
                 }
                 if(required){
@@ -146,13 +146,10 @@ module.exports = {
                 }
                 
             } else {
-                // console.log(element)
+                // Excecao para tratar nodes em allOf, anyOf e oneOf.
                 number++
                 newNodes[number] = element
-                // if(number == 4){
-                //     console.log(element)
-                //     console.log(newNodes[number])
-                // }
+
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:node ${number}_Shape;\n` + addSpaces(-1) + '];\n'
             }
             return local

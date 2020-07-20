@@ -6,7 +6,7 @@ ex:subschema_1_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype string;
+      sh:datatype xsd:string;
     ];
   ];
   sh:property [
@@ -24,7 +24,7 @@ ex:subschema_2_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype string;
+      sh:datatype xsd:string;
     ];
   ];
   sh:property [
@@ -36,7 +36,7 @@ ex:subschema_2_Shape a sh:NodeShape;
   ];
   sh:property [
     sh:path alooou;
-    sh:node alooou_Shape;
+    sh:node ex:alooou_Shape;
   ];
 
 ex:JS_id a sh:NodeShape;
@@ -46,5 +46,5 @@ ex:alooou_Shape a sh:NodeShape;
   sh:targetClass :alooou;
   sh:property [
     sh:path aqui;
-    sh:datatype string;
+    sh:datatype xsd:string;
   ];

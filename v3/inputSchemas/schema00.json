@@ -19,7 +19,7 @@
                     "type":"object",
                     "properties": {
                         "ola":{"type":"string"},
-                        "aqui":{"type":"string"}
+                        "aqui":{"type":"object"}
                     }
                 }
                 ]
