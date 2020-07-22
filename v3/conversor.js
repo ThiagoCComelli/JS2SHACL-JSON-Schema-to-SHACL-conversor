@@ -16,7 +16,7 @@ module.exports = {
     },
     start: function(schema){
         var JS4GeoDataTypes = {'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
-        var dataTypes = {"string":"string","integer":"decimal","boolean":"boolean","null":"null",
+        var dataTypes = {"string":"string","integer":"decimal","boolean":"boolean","null":"null","number":"number",
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
@@ -88,6 +88,7 @@ module.exports = {
 
         function setArray(element,name){
             var local
+            console.log(element)
             if('type' in element && 'items' in element && element['items'].length != undefined){
                 local = setTupleArrayProperty(element,name)
             } else if ('type' in element && 'items' in element){
@@ -302,6 +303,8 @@ module.exports = {
             var local = ''
             var propertiesElements = getPropertyElements(element)
 
+            console.log(element)
+
             if(propertiesElements != undefined){
                 for(var item in propertiesElements){
                     if(propertiesElements[item].type in dataTypes){
@@ -317,6 +320,8 @@ module.exports = {
                         for(var i in propertiesElements[item]){
                             if(i in anotherConstraints){
                                 // local += setOthersProperty(propertiesElements[item],i)
+                            } else if (i in constraints){
+                                local += setShInProperty(item,i)
                             }
                         }
                     }
