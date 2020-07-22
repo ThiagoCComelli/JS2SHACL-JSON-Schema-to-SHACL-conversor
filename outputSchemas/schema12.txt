@@ -376,7 +376,7 @@ ex:backoff_Shape a sh:NodeShape;
   ];
   sh:property [
     sh:path factor;
-    sh:datatype xsd:number;
+    sh:datatype xsd:decimal;
   ];
   sh:property [
     sh:path attempts;

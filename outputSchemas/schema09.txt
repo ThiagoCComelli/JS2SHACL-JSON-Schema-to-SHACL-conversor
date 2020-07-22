@@ -93,7 +93,10 @@ ex:response-overrides-value-expression-schema_Shape a sh:NodeShape;
 
 ex:http-method-schema_Shape a sh:NodeShape;
   sh:targetClass :http-method-schema;
-  sh:enum (GET,POST,HEAD,OPTIONS,PUT,TRACE,DELETE,PATCH,CONNECT)
+  sh:property [
+    sh:path ex:false;
+    sh:in (undefined)
+  ];
 
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;

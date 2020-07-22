@@ -6,7 +6,7 @@ ex:directPosition_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype xsd:number;
+      sh:datatype xsd:decimal;
     ];
   ];
 
@@ -15,6 +15,7 @@ ex:point_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (Point)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path coordinates;
@@ -27,6 +28,7 @@ ex:lineString_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (LineString)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
@@ -35,6 +37,7 @@ ex:lineString_Shape a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype directPosition_Shape;
     ];
+    sh:minCount 1;
   ];
 
 ex:polygon_Shape a sh:NodeShape;
@@ -42,6 +45,7 @@ ex:polygon_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (Polygon)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
@@ -50,6 +54,7 @@ ex:polygon_Shape a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype ex:coordinates1_Shape;
     ];
+    sh:minCount 1;
   ];
 
 ex:multiPoint_Shape a sh:NodeShape;
@@ -57,6 +62,7 @@ ex:multiPoint_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (MultiPoint)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
@@ -65,6 +71,7 @@ ex:multiPoint_Shape a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype directPosition_Shape;
     ];
+    sh:minCount 1;
   ];
 
 ex:multiLineString_Shape a sh:NodeShape;
@@ -72,6 +79,7 @@ ex:multiLineString_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (MultiLineString)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
@@ -80,6 +88,7 @@ ex:multiLineString_Shape a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype lineString_Shape;
     ];
+    sh:minCount 1;
   ];
 
 ex:multiPolygon_Shape a sh:NodeShape;
@@ -87,6 +96,7 @@ ex:multiPolygon_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (MultiPolygon)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
@@ -95,6 +105,7 @@ ex:multiPolygon_Shape a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype polygon_Shape;
     ];
+    sh:minCount 1;
   ];
 
 ex:geometryCollection_Shape a sh:NodeShape;
@@ -102,6 +113,7 @@ ex:geometryCollection_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (GeometryCollection)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:geometries;
@@ -110,6 +122,7 @@ ex:geometryCollection_Shape a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype ex:geometries1_Shape;
     ];
+    sh:minCount 1;
   ];
 
 ex:feature_Shape a sh:NodeShape;
@@ -117,6 +130,7 @@ ex:feature_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (Feature)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path geometry;
@@ -129,6 +143,7 @@ ex:featureCollection_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:in (FeatureCollection)
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:features;
@@ -137,6 +152,7 @@ ex:featureCollection_Shape a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype feature_Shape;
     ];
+    sh:minCount 1;
   ];
 
 ex:hsProperties_Shape a sh:NodeShape;
@@ -241,6 +257,7 @@ ex:JS_id a sh:NodeShape;
       sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
       sh:datatype feature_Shape;
     ];
+    sh:minCount 1;
   ];
   sh:property [
     sh:path ex:neighbourhoods;

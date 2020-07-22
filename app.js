@@ -8,8 +8,11 @@ var totalFilesAnalized = 0
 var totalFilesInRepository = 0
 var totalTime = 0
 var totalTimeOnlyConversion = 0
+var finalTime = 0
+var finalTimeConversion = 0
 var totalFiles = 0
 var file
+var STOP = 20000
 var session = 0
 var option
 var t0
@@ -39,6 +42,10 @@ function writeFile(_name,cont){
     t11 = performance.now()
 
     totalTimeOnlyConversion += t11-t00
+
+    if(session > 0){
+      finalTimeConversion += totalTimeOnlyConversion
+    }
   } catch {
 
   }
@@ -61,7 +68,7 @@ function stats(){
   
   totalTime = t1-t0
 
-  console.log(`Session: ${session}\nAll files converted: ${totalFilesAnalized}\nExecution total time (read and write file): ${totalTime} ms\nExecution total time only conversion: ${totalTimeOnlyConversion} ms\n`)
+  console.log(`Session: ${session}/${STOP+1}\nAll files converted: ${totalFilesAnalized}\nExecution total time (read and write file): ${totalTime} ms\nExecution total time only conversion: ${totalTimeOnlyConversion} ms\n`)
 
   totalFilesAnalized = 0
   totalFilesInRepository = 0
@@ -69,7 +76,7 @@ function stats(){
 
   totalFiles++
 
-  if (totalFiles < 11){
+  if (totalFiles < STOP + 1){
     
     if(option){
       readSingleFile(file)
@@ -77,6 +84,8 @@ function stats(){
       readRepository()
     }
     
+  } else {
+    console.log(`Average time conversion: ${finalTimeConversion/(session-1)} ms\nTotal sessions analized: ${session-1}\n`)
   }
 
   // readFiles()

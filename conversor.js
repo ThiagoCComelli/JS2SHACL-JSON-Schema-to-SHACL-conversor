@@ -31,27 +31,36 @@ module.exports = {
         var defSectionElements
         var schemaSectionElements
 
-        function setGenericArrayProperty(element,name){
+        function setGenericArrayProperty(element,name,required){
             var local = ''
-            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath redf:rest] ref:first);\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n'
+            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath redf:rest] ref:first);\n` + addSpaces(-1) + '];\n'
+            if(required){
+                local += addSpaces() + 'sh:minCount 1;\n'
+            }
+            local += addSpaces(-1) + '];\n'
             return local
         }
 
-        function setListValidationArrayProperty(element,name){
+        function setListValidationArrayProperty(element,name,required){
             var local = ''
             local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath redf:rest] ref:first);\n`
             if('$ref' in element.items){
-                local += addSpaces() + `sh:datatype ${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n' 
+                local += addSpaces() + `sh:datatype ${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n'
             } else {
                 if(element.items.type in dataTypes){
-                    local += addSpaces() + `sh:datatype xsd:${element.items.type};\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n'
+                    local += addSpaces() + `sh:datatype xsd:${dataTypes[element.items.type]};\n` + addSpaces(-1) + '];\n'
                 } else {
                     name += 1
-                    local += addSpaces() + `sh:datatype ex:${name}_Shape;\n` + addSpaces(-1) + '];\n' + addSpaces(-1) + '];\n'
+                    local += addSpaces() + `sh:datatype ex:${name}_Shape;\n` + addSpaces(-1) + '];\n'
                     newNodes[name] = element.items
                 }
                 
             }
+            if(required){
+                local += addSpaces() + 'sh:minCount 1;\n'
+            }
+            local += addSpaces(-1) + '];\n'
+
             return local
         }
 
@@ -83,17 +92,18 @@ module.exports = {
                 }
                 index++
             })
+
             return local
         }
 
-        function setArray(element,name){
+        function setArray(element,name,required){
             var local
             if('type' in element && 'items' in element && element['items'].length != undefined){
-                local = setTupleArrayProperty(element,name)
+                local = setTupleArrayProperty(element,name,required)
             } else if ('type' in element && 'items' in element){
-                local = setListValidationArrayProperty(element,name)
+                local = setListValidationArrayProperty(element,name,required)
             } else {
-                local = setGenericArrayProperty(element,name)
+                local = setGenericArrayProperty(element,name,required)
             }
             return local
         }
@@ -155,9 +165,13 @@ module.exports = {
             return local
         }
 
-        function setShInProperty(element,name,item){
+        function setShInProperty(element,name,item,required){
             var local = ''
-            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${item};\n` + addSpaces() + `sh:in (${element[name]})\n` + addSpaces(-1) + `];\n`
+            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${item};\n` + addSpaces() + `sh:in (${element[name]})\n`
+            if(required){
+                local += addSpaces() + `sh:minCount 1;\n`
+            }
+            local += addSpaces(-1) + `];\n`
             return local
         }
 
@@ -312,7 +326,7 @@ module.exports = {
                         newNodes[item] = propertiesElements[item]
                         local += setComplexNodeShape(propertiesElements[item],item,checkRequired(element,item))
                     } else if(propertiesElements[item].type == 'array'){
-                        local += setArray(propertiesElements[item],item)
+                        local += setArray(propertiesElements[item],item,checkRequired(element,item))
                     } else if(propertiesElements[item].$ref){
                         local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2])
                     } else {
@@ -320,14 +334,14 @@ module.exports = {
                             if(i in anotherConstraints){
                                 // local += setOthersProperty(propertiesElements[item],i)
                             } else if (i in constraints){
-                                local += setShInProperty(propertiesElements[item],i,item)
+                                local += setShInProperty(propertiesElements[item],i,item,checkRequired(element,item))
                             }
                         }
                     }
                 }
             } else {
                 if(element.type == 'array'){
-                    local += setArray(element,name)
+                    local += setArray(element,name,checkRequired(element,name))
                 } else if(element.type in dataTypes){
                     local += setPrimitiveProperty(element,name,checkRequired(element,name))
                 } else if(element.type == 'object'){
@@ -337,7 +351,7 @@ module.exports = {
                         if(i in anotherConstraints){
                             // local += setOthersProperty(element,i)
                         } else if(i in constraints){
-                            local += setShInProperty(element[i],i)
+                            local += setShInProperty(element[i],i,required=checkRequired(element,i))
                         }
                     }
                 }
