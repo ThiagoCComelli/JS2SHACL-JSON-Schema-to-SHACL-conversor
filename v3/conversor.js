@@ -16,7 +16,7 @@ module.exports = {
     },
     start: function(schema){
         var JS4GeoDataTypes = {'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
-        var dataTypes = {"string":"string","integer":"decimal","boolean":"boolean","null":"null","number":"number",
+        var dataTypes = {"string":"string","integer":"decimal","boolean":"boolean","null":"null","number":"decimal",
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
@@ -88,7 +88,6 @@ module.exports = {
 
         function setArray(element,name){
             var local
-            console.log(element)
             if('type' in element && 'items' in element && element['items'].length != undefined){
                 local = setTupleArrayProperty(element,name)
             } else if ('type' in element && 'items' in element){
@@ -156,9 +155,9 @@ module.exports = {
             return local
         }
 
-        function setShInProperty(element,name){
+        function setShInProperty(element,name,item){
             var local = ''
-            local += addSpaces() + `sh:${name} (${element})\n`
+            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${item};\n` + addSpaces() + `sh:in (${element[name]})\n` + addSpaces(-1) + `];\n`
             return local
         }
 
@@ -303,7 +302,7 @@ module.exports = {
             var local = ''
             var propertiesElements = getPropertyElements(element)
 
-            console.log(element)
+            // console.log(element)
 
             if(propertiesElements != undefined){
                 for(var item in propertiesElements){
@@ -321,7 +320,7 @@ module.exports = {
                             if(i in anotherConstraints){
                                 // local += setOthersProperty(propertiesElements[item],i)
                             } else if (i in constraints){
-                                local += setShInProperty(item,i)
+                                local += setShInProperty(propertiesElements[item],i,item)
                             }
                         }
                     }

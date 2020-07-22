@@ -1,0 +1,348 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Public services from Porto Alegre, RS, Brazil.",
+
+    "definitions": {
+        "directPosition": {
+            "$id": "#directPosition",
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "type": "number"
+            }
+        },
+        "point": {
+            "$id": "#point",
+            "required": ["type", "coordinates"],
+            "properties": {
+                "type": {
+                    "const": "Point"
+                },
+                "coordinates": {
+                    "$ref": "#/definitions/directPosition"
+                }
+            }
+        },
+        "lineString": {
+            "$id": "#lineString",
+            "required": ["type", "coordinates"],
+            "properties": {
+                "type": {
+                    "const": "LineString"
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/directPosition"
+                    },
+                    "minItems": 2
+                }
+            }
+        },
+        "polygon": {
+            "$id": "#polygon",
+            "required": ["type", "coordinates"],
+            "properties": {
+                "type": {
+                    "const": "Polygon"
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/directPosition"
+                        },
+                        "minItems": 4
+                    }
+                }
+            }
+        },
+        "multiPoint": {
+            "$id": "#multiPoint",
+            "required": ["type", "coordinates"],
+            "properties": {
+                "type": {
+                    "const": "MultiPoint"
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/directPosition"
+                    }
+                }
+            }
+        },
+        "multiLineString": {
+            "$id": "#multiLineString",
+            "required": ["type", "coordinates"],
+            "properties": {
+                "type": {
+                    "const": "MultiLineString"
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/lineString/properties/coordinates"
+                    }
+                }
+            }
+        },
+        "multiPolygon": {
+            "$id": "#multiPolygon",
+            "required": ["type", "coordinates"],
+            "properties": {
+                "type": {
+                    "const": "MultiPolygon"
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/polygon/properties/coordinates"
+                    }
+                }
+            }
+        },
+        "geometryCollection": {
+            "id": "#geometryCollection",
+            "required": ["type", "geometries"],
+
+            "properties": {
+                "type": {
+                    "const": "GeometryCollection"
+                },
+                "geometries": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [{
+                                "$ref": "#/definitions/point"
+                            },
+                            {
+                                "$ref": "#/definitions/lineString"
+                            },
+                            {
+                                "$ref": "#/definitions/polygon"
+                            },
+                            {
+                                "$ref": "#/definitions/multiPoint"
+                            },
+                            {
+                                "$ref": "#/definitions/multiLineString"
+                            },
+                            {
+                                "$ref": "#/definitions/multiPolygon"
+                            }
+                        ],
+                        "additionalItems": false
+                    }
+                }
+            }
+        },
+        "feature": {
+            "id": "#feature",
+            "required": ["type", "geometry", "properties"],
+            "properties": {
+                "type": {
+                    "const": "Feature"
+                },
+                "geometry": {
+                    "type": "object",
+                    "anyOf": [{
+                            "$ref": "#/definitions/point"
+                        },
+                        {
+                            "$ref": "#/definitions/lineString"
+                        },
+                        {
+                            "$ref": "#/definitions/polygon"
+                        },
+                        {
+                            "$ref": "#/definitions/multiPoint"
+                        },
+                        {
+                            "$ref": "#/definitions/multiLineString"
+                        },
+                        {
+                            "$ref": "#/definitions/multiPolygon"
+                        },
+                        {
+                            "$ref": "#/definitions/geometryCollection"
+                        }
+                    ]
+                },
+                "properties": {
+                    "anyOf": [{
+                            "$ref": "#/definitions/hsProperties"
+                        },
+                        {
+                            "$ref": "#/definitions/nbProperties"
+                        },
+                        {
+                            "$ref": "#/definitions/stProperties"
+                        },
+                        {
+                            "$ref": "#/definitions/psProperties"
+                        },
+                        {
+                            "$ref": "#/definitions/scProperties"
+                        }
+                    ]
+                }
+            }
+        },
+        "featureCollection": {
+            "required": ["type", "features"],
+            "properties": {
+                "type": {
+                    "const": "FeatureCollection"
+                },
+                "features": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/feature"
+                    }
+                }
+            }
+        },
+        "hsProperties": {
+            "type": "object",
+            "required": ["ADDRESS", "CITY", "NAME", "STATE", "addrtype", "addrlocat"],
+            "properties": {
+                "ADDRESS": {
+                    "type": "string"
+                },
+                "CATEGORIA": {
+                    "type": "string"
+                },
+                "CDL": {
+                    "type": "integer"
+                },
+                "CLASSIFICA": {
+                    "type": "string"
+                },
+                "CNES": {
+                    "type": "integer"
+                },
+                "CITY": {
+                    "type": "string"
+                },
+                "COUNTRY": {
+                    "type": "string"
+                },
+
+                "DESCRIPTION": {
+                    "type": "string"
+                },
+                "DISTRITO": {
+                    "type": "string"
+                },
+                "FINAL": {
+                    "anyOf": [{
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "GERENCIA": {
+                    "type": "string"
+                },
+                "INICIAL": {
+                    "anyOf": [{
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "NAME": {
+                    "type": "string"
+                },
+                "PREPOSI": {
+                    "type": "null"
+                },
+                "SERVICES": {
+                    "type": "string"
+                },
+                "STATE": {
+                    "type": "string"
+                },
+                "TIPO": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "null"
+                },
+                "addrtype": {
+                    "type": "string"
+                },
+                "addrlocat": {
+                    "type": "string"
+                }
+            }
+        },
+        "nbProperties": {
+            "type": "object",
+            "properties": {
+
+            }
+        },
+        "stProperties": {
+            "type": "object",
+            "properties": {
+
+            }
+        },
+        "psProperties": {
+            "type": "object",
+            "properties": {
+
+            }
+        },
+        "scProperties": {
+            "type": "object",
+            "properties": {
+
+            }
+        }
+    },
+
+    "type": "object",
+
+    "required": ["healthServices"],
+
+    "properties": {
+        "healthServices": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/feature"
+            }
+        },
+        "neighbourhoods": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/feature"
+            }
+        },
+        "streets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/feature"
+            }
+        },
+        "policeStations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/feature"
+            }
+        },
+        "schools": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/feature"
+            }
+        }
+    }
+}
