@@ -209,7 +209,8 @@
             "required": ["ADDRESS", "CITY", "NAME", "STATE", "addrtype", "addrlocat"],
             "properties": {
                 "ADDRESS": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "teste aqui para tentar"
                 },
                 "CATEGORIA": {
                     "type": "string"

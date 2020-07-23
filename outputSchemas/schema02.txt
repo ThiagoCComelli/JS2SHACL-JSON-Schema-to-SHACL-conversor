@@ -2,16 +2,16 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
   sh:property [
-    sh:path firstName;
+    sh:path :firstName;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path lastName;
+    sh:path :lastName;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path age;
+    sh:path :age;
     sh:datatype xsd:decimal;
     sh:minInclusive 0;
   ];

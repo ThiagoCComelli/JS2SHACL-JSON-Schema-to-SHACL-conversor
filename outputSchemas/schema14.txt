@@ -35,21 +35,21 @@ ex:subschema_1_Shape a sh:NodeShape;
     ]
     [
       sh:property [
-        sh:path test;
+        sh:path :test;
         sh:datatype xsd:string;
         sh:maxLength 5;
       ];
     ]
     [
       sh:property [
-        sh:path anotherTest;
+        sh:path :anotherTest;
         sh:datatype xsd:decimal;
         sh:minInclusive 15;
       ];
     ]
     [
       sh:property [
-        sh:path aqui;
+        sh:path :aqui;
         sh:datatype xsd:string;
       ];
     ]
@@ -58,21 +58,21 @@ ex:subschema_1_Shape a sh:NodeShape;
         ex:subschema_1_shape
         [
           sh:property [
-            sh:path test;
+            sh:path :test;
             sh:datatype xsd:string;
             sh:maxLength 5;
           ];
         ]
         [
           sh:property [
-            sh:path anotherTest;
+            sh:path :anotherTest;
             sh:datatype xsd:decimal;
             sh:minInclusive 15;
           ];
         ]
         [
           sh:property [
-            sh:path aqui;
+            sh:path :aqui;
             sh:datatype xsd:string;
           ];
         ]
@@ -86,14 +86,14 @@ ex:subschema_1_Shape a sh:NodeShape;
     ]
     [
       sh:property [
-        sh:path test;
+        sh:path :test;
         sh:datatype xsd:string;
         sh:maxLength 5;
       ];
     ]
     [
       sh:property [
-        sh:path anotherTest;
+        sh:path :anotherTest;
         sh:datatype xsd:decimal;
         sh:minInclusive 15;
       ];
@@ -116,14 +116,14 @@ ex:JS_id a sh:NodeShape;
     ]
     [
       sh:property [
-        sh:path test;
+        sh:path :test;
         sh:datatype xsd:string;
         sh:maxLength 5;
       ];
     ]
     [
       sh:property [
-        sh:path anotherTest;
+        sh:path :anotherTest;
         sh:datatype xsd:decimal;
         sh:minInclusive 15;
       ];
@@ -133,10 +133,10 @@ ex:JS_id a sh:NodeShape;
 ex:aloooou_Shape a sh:NodeShape;
   sh:targetClass :aloooou;
   sh:property [
-    sh:path nombre;
+    sh:path :nombre;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path naosei;
+    sh:path :naosei;
     sh:datatype xsd:decimal;
   ];

@@ -52,6 +52,6 @@ ex:JS_id a sh:NodeShape;
 ex:alooou_Shape a sh:NodeShape;
   sh:targetClass :alooou;
   sh:property [
-    sh:path aqui;
+    sh:path :aqui;
     sh:datatype xsd:string;
   ];

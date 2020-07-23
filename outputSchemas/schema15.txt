@@ -168,41 +168,41 @@ ex:featureCollection_Shape a sh:NodeShape;
 ex:hsProperties_Shape a sh:NodeShape;
   sh:targetClass :hsProperties;
   sh:property [
-    sh:path ADDRESS;
+    sh:path :ADDRESS;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path CATEGORIA;
+    sh:path :CATEGORIA;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path CDL;
+    sh:path :CDL;
     sh:datatype xsd:decimal;
   ];
   sh:property [
-    sh:path CLASSIFICA;
+    sh:path :CLASSIFICA;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path CNES;
+    sh:path :CNES;
     sh:datatype xsd:decimal;
   ];
   sh:property [
-    sh:path CITY;
+    sh:path :CITY;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path COUNTRY;
+    sh:path :COUNTRY;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path DESCRIPTION;
+    sh:path :DESCRIPTION;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path DISTRITO;
+    sh:path :DISTRITO;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -221,7 +221,7 @@ ex:hsProperties_Shape a sh:NodeShape;
     );
   ];
   sh:property [
-    sh:path GERENCIA;
+    sh:path :GERENCIA;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -240,38 +240,38 @@ ex:hsProperties_Shape a sh:NodeShape;
     );
   ];
   sh:property [
-    sh:path NAME;
+    sh:path :NAME;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path PREPOSI;
+    sh:path :PREPOSI;
     sh:datatype xsd:null;
   ];
   sh:property [
-    sh:path SERVICES;
+    sh:path :SERVICES;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path STATE;
+    sh:path :STATE;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path TIPO;
+    sh:path :TIPO;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path timestamp;
+    sh:path :timestamp;
     sh:datatype xsd:null;
   ];
   sh:property [
-    sh:path addrtype;
+    sh:path :addrtype;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path addrlocat;
+    sh:path :addrlocat;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];

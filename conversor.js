@@ -17,19 +17,69 @@ module.exports = {
     start: function(schema){
         var JS4GeoDataTypes = {'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
         var dataTypes = {"string":"string","integer":"decimal","boolean":"boolean","null":"null","number":"decimal",
-        "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
+        "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean",
+        'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
+        var jsonReservedWords = {"properties":true,"definitions":true,"items":true,"required":true,"$ref":true,"type":true}
         
         var scope = 1
         var nodesReady = {}
         var newNodes = {}
         var number = 0
+        var elementsUndefined = []
 
         var shacl = ''
         var mappedDatatypes = []
         var defSectionElements
         var schemaSectionElements
+
+        function getDefSectionElements(element){
+            if(element.definitions){
+                return element.definitions
+            }
+        }
+        
+        function getPropertyElements(element){
+            if(element.properties){
+                return element.properties
+            }
+        }
+
+        function createDefSectionElements(element){
+            defSectionElements = getDefSectionElements(element)
+            if(defSectionElements != undefined){
+                for(var item in defSectionElements){
+                    if(!(item.type in dataTypes)){
+                        if(item.type in JS4GeoDataTypes){
+
+                        } else {
+                            create_New_Complex_NodeShape(defSectionElements[item],item)
+                        }
+                    }
+                }
+                mappedDatatypes.push(item)
+            }
+        }
+
+        function createSchemaSectionElementes(element){
+            // schemaSectionElements = getPropertyElements(element)
+            // if(schemaSectionElements != undefined){
+            //     for(var item in schemaSectionElements){
+            //         if(schemaSectionElements[item].type in dataTypes){
+            //             shacl += setPrimitiveProperty(schemaSectionElements[item],item,checkRequired(element,item))
+            //         } else{
+            //             shacl += create_Complex_Property(schemaSectionElements[item],item)
+            //         }
+            //     }
+            // }
+            nodesReady['JS_id'] = setMainNodeShape() + create_New_Complex_NodeShape_Structure(element,'JS_id')
+        }
+
+        function setMainNodeShape(element){
+            var local = 'ex:JS_id a sh:NodeShape;\n' + addSpaces() + 'sh:targetClass :JS_id;\n'
+            return local
+        }
 
         function setGenericArrayProperty(element,name,required){
             var local = ''
@@ -69,6 +119,9 @@ module.exports = {
             var index = 0
             local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n`
             element.items.forEach(element_ => {
+
+                checkUndefined(element_)
+
                 if(element_.type in dataTypes){
                     local += addSpaces() + `sh:property [\n`
                     if(index == 0){
@@ -98,6 +151,9 @@ module.exports = {
 
         function setArray(element,name,required){
             var local
+
+            checkUndefined(element)
+
             if('type' in element && 'items' in element && element['items'].length != undefined){
                 local = setTupleArrayProperty(element,name,required)
             } else if ('type' in element && 'items' in element){
@@ -112,8 +168,10 @@ module.exports = {
             var local = ''
             local += addSpaces() + 'sh:property [\n'
 
+            checkUndefined(element,true)
+
             if(name != null){
-                local += addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:datatype xsd:${dataTypes[element.type]};\n`
+                local += addSpaces(1) + `sh:path :${name};\n` + addSpaces() + `sh:datatype xsd:${dataTypes[element.type]};\n`
             } else {
                 if(dataTypes[element] != undefined){
                     local += addSpaces(1) + `sh:datatype xsd:${dataTypes[element]};\n`
@@ -141,6 +199,9 @@ module.exports = {
         
         function setComplexNodeShape(element,name,required,ref = null){
             var local = ''
+
+            checkUndefined(element)
+
             if(name != null){
                 if(ref != null){
                     local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ${name};\n` + addSpaces() + `sh:node ex:${ref}_Shape;\n`
@@ -259,55 +320,6 @@ module.exports = {
 
         //#endregion
 
-        
-
-        function getDefSectionElements(element){
-            if(element.definitions){
-                return element.definitions
-            }
-        }
-        
-        function getPropertyElements(element){
-            if(element.properties){
-                return element.properties
-            }
-        }
-
-        function createDefSectionElements(element){
-            defSectionElements = getDefSectionElements(element)
-            if(defSectionElements != undefined){
-                for(var item in defSectionElements){
-                    if(!(item.type in dataTypes)){
-                        if(item.type in JS4GeoDataTypes){
-
-                        } else {
-                            create_New_Complex_NodeShape(defSectionElements[item],item)
-                        }
-                    }
-                }
-                mappedDatatypes.push(item)
-            }
-        }
-
-        function createSchemaSectionElementes(element){
-            // schemaSectionElements = getPropertyElements(element)
-            // if(schemaSectionElements != undefined){
-            //     for(var item in schemaSectionElements){
-            //         if(schemaSectionElements[item].type in dataTypes){
-            //             shacl += setPrimitiveProperty(schemaSectionElements[item],item,checkRequired(element,item))
-            //         } else{
-            //             shacl += create_Complex_Property(schemaSectionElements[item],item)
-            //         }
-            //     }
-            // }
-            nodesReady['JS_id'] = setMainNodeShape() + create_New_Complex_NodeShape_Structure(element,'JS_id')
-        }
-
-        function setMainNodeShape(element){
-            var local = 'ex:JS_id a sh:NodeShape;\n' + addSpaces() + 'sh:targetClass :JS_id;\n'
-            return local
-        }
-
         function create_New_Complex_NodeShape(element,name){
             var node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass :${name};\n`
 
@@ -323,7 +335,7 @@ module.exports = {
             var local = ''
             var propertiesElements = getPropertyElements(element)
 
-            // console.log(element)
+            checkUndefined(element)
 
             if(propertiesElements != undefined){
                 for(var item in propertiesElements){
@@ -341,17 +353,10 @@ module.exports = {
                     } else {
                         
                         for(var i in propertiesElements[item]){
-                            // console.log(i)
-                            // console.log(item)
-                            // console.log(propertiesElements[item])
                             if (i in constraints){
                                 local += setShInProperty(propertiesElements[item],i,item,checkRequired(element,item))
                             }
                             else if(i in anotherConstraints){
-                                // console.log(0)
-                                // console.log(item)
-                                // console.log(propertiesElements[item])
-                                // console.log(1)
                                 local += setOthersProperty(propertiesElements[item][i],i,true,item)
                             }
                         }
@@ -372,7 +377,7 @@ module.exports = {
                             local += setOthersProperty(element[i],i)
                         } else if(i in constraints){
                             local += setShInProperty(element[i],i,required=checkRequired(element,i))
-                        }
+                        } 
                     }
                 }
             }
@@ -381,6 +386,14 @@ module.exports = {
         }
         
         //#region FUNCTIONS TO HELP
+
+        function checkUndefined(element,primitive){
+            for(var i in element){
+                if(!(i in constraints || i in anotherConstraints || i in jsonReservedWords)){
+                    elementsUndefined.push({schema:element,element:i,primitive:primitive})
+                }
+            }
+        }
         
         function addSpaces(quant = 0){
             scope += quant
@@ -428,6 +441,15 @@ module.exports = {
             }
         }
         
+        for(var i in elementsUndefined){
+            if(elementsUndefined[i].primitive){
+                console.log('ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!')
+            }
+            console.log('Element: '+elementsUndefined[i].element)
+            console.log('Schema:')
+            console.log(elementsUndefined[i].schema)
+            console.log()
+        }
 
         return shacl
     }

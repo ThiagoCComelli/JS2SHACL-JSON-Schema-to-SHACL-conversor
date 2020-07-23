@@ -2,7 +2,7 @@
 ex:nonEmptyString_Shape a sh:NodeShape;
   sh:targetClass :nonEmptyString;
   sh:property [
-    sh:path nonEmptyString;
+    sh:path :nonEmptyString;
     sh:datatype xsd:string;
     sh:minLength 1;
   ];
@@ -10,21 +10,21 @@ ex:nonEmptyString_Shape a sh:NodeShape;
 ex:platform_Shape a sh:NodeShape;
   sh:targetClass :platform;
   sh:property [
-    sh:path os;
+    sh:path :os;
     sh:datatype xsd:string;
     sh:in (linux,windows,darwin,freebsd,netbsd,openbsd,dragonfly,solaris);
   ];
   sh:property [
-    sh:path arсh;
+    sh:path :arсh;
     sh:datatype xsd:string;
     sh:in (arm,arm64,amd64,386);
   ];
   sh:property [
-    sh:path variant;
+    sh:path :variant;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path version;
+    sh:path :version;
     sh:datatype xsd:string;
   ];
 
@@ -125,7 +125,7 @@ ex:services_Shape a sh:NodeShape;
 ex:secret_Shape a sh:NodeShape;
   sh:targetClass :secret;
   sh:property [
-    sh:path from_secret;
+    sh:path :from_secret;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -147,7 +147,7 @@ ex:kind_signature_Shape a sh:NodeShape;
     sh:in (signature)
   ];
   sh:property [
-    sh:path hmac;
+    sh:path :hmac;
     sh:datatype xsd:string;
     sh:minLength 40;
     sh:maxLength 40;
@@ -166,7 +166,7 @@ ex:kind_secret_Shape a sh:NodeShape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path data;
+    sh:path :data;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -196,7 +196,7 @@ ex:kind_pipeline_Shape a sh:NodeShape;
     sh:node ex:platform_Shape;
   ];
   sh:property [
-    sh:path workspace;
+    sh:path :workspace;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -331,7 +331,7 @@ ex:step_Shape a sh:NodeShape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path failure;
+    sh:path :failure;
     sh:datatype xsd:string;
     sh:in (always,ignore);
   ];
@@ -340,7 +340,7 @@ ex:step_Shape a sh:NodeShape;
     sh:node ex:commands_Shape;
   ];
   sh:property [
-    sh:path detach;
+    sh:path :detach;
     sh:datatype xsd:boolean;
   ];
   sh:property [
@@ -515,7 +515,7 @@ ex:services1_Shape a sh:NodeShape;
     sh:node ex:environment_Shape;
   ];
   sh:property [
-    sh:path privileged;
+    sh:path :privileged;
     sh:datatype xsd:boolean;
   ];
   sh:property [
@@ -547,7 +547,7 @@ ex:get_Shape a sh:NodeShape;
 ex:clone_Shape a sh:NodeShape;
   sh:targetClass :clone;
   sh:property [
-    sh:path depth;
+    sh:path :depth;
     sh:datatype xsd:decimal;
   ];
   sh:property [
@@ -563,11 +563,11 @@ ex:obj3_Shape a sh:NodeShape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path privileged;
+    sh:path :privileged;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path pull;
+    sh:path :pull;
     sh:datatype xsd:string;
     sh:in (always,never,if-not-exists);
   ];
@@ -588,11 +588,11 @@ ex:obj4_Shape a sh:NodeShape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path privileged;
+    sh:path :privileged;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path pull;
+    sh:path :pull;
     sh:datatype xsd:string;
     sh:in (always,never,if-not-exists);
   ];

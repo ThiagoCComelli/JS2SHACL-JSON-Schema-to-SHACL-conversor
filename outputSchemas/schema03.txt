@@ -2,12 +2,12 @@
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
   sh:property [
-    sh:path name;
+    sh:path :name;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path description;
+    sh:path :description;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -40,20 +40,20 @@ ex:JS_id a sh:NodeShape;
 ex:participate_Shape a sh:NodeShape;
   sh:targetClass :participate;
   sh:property [
-    sh:path home;
+    sh:path :home;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path docs;
+    sh:path :docs;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path mailing-list;
+    sh:path :mailing-list;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path irc;
+    sh:path :irc;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -72,62 +72,62 @@ ex:participate_Shape a sh:NodeShape;
 ex:repository_Shape a sh:NodeShape;
   sh:targetClass :repository;
   sh:property [
-    sh:path type;
+    sh:path :type;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path url;
-    sh:datatype xsd:string;
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path license;
+    sh:path :url;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path tests;
+    sh:path :license;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path :tests;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path clone;
+    sh:path :clone;
     sh:datatype xsd:string;
   ];
 
 ex:bugs_Shape a sh:NodeShape;
   sh:targetClass :bugs;
   sh:property [
-    sh:path list;
+    sh:path :list;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path report;
+    sh:path :report;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path mentored;
+    sh:path :mentored;
     sh:datatype xsd:string;
   ];
 
 ex:urls_Shape a sh:NodeShape;
   sh:targetClass :urls;
   sh:property [
-    sh:path prod;
+    sh:path :prod;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path stage;
+    sh:path :stage;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path dev;
+    sh:path :dev;
     sh:datatype xsd:string;
   ];
 
 ex:chat_Shape a sh:NodeShape;
   sh:targetClass :chat;
   sh:property [
-    sh:path url;
+    sh:path :url;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];

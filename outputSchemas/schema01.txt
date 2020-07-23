@@ -17,7 +17,7 @@ ex:JS_id a sh:NodeShape;
 ex:p_name_Shape a sh:NodeShape;
   sh:targetClass :p_name;
   sh:property [
-    sh:path p_nameA;
+    sh:path :p_nameA;
     sh:datatype xsd:string;
   ];
   sh:property [

@@ -2,12 +2,12 @@
 ex:veggie_Shape a sh:NodeShape;
   sh:targetClass :veggie;
   sh:property [
-    sh:path veggieName;
+    sh:path :veggieName;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path veggieLike;
+    sh:path :veggieLike;
     sh:datatype xsd:boolean;
     sh:minCount 1;
   ];
@@ -45,7 +45,7 @@ ex:JS_id a sh:NodeShape;
 ex:another_Shape a sh:NodeShape;
   sh:targetClass :another;
   sh:property [
-    sh:path ola;
+    sh:path :ola;
     sh:datatype xsd:string;
   ];
   sh:property [

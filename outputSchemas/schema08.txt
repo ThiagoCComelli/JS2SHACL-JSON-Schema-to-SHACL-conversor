@@ -9,15 +9,15 @@ ex:JS_id a sh:NodeShape;
 ex:sdk_Shape a sh:NodeShape;
   sh:targetClass :sdk;
   sh:property [
-    sh:path version;
+    sh:path :version;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path allowPrerelease;
+    sh:path :allowPrerelease;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path rollForward;
+    sh:path :rollForward;
     sh:datatype xsd:string;
     sh:in (patch,feature,minor,major,latestPatch,latestFeature,latestMinor,latestMajor,disable);
   ];

@@ -2,36 +2,36 @@
 ex:coreConfiguration_Shape a sh:NodeShape;
   sh:targetClass :coreConfiguration;
   sh:property [
-    sh:path language;
+    sh:path :language;
     sh:datatype xsd:string;
     sh:in (csharp);
     sh:minCount 1;
   ];
   sh:property [
-    sh:path entryPoint;
+    sh:path :entryPoint;
     sh:datatype xsd:string;
   ];
 
 ex:interactionLayerConfiguration_Shape a sh:NodeShape;
   sh:targetClass :interactionLayerConfiguration;
   sh:property [
-    sh:path type;
+    sh:path :type;
     sh:datatype xsd:string;
     sh:in (web);
     sh:minCount 1;
   ];
   sh:property [
-    sh:path language;
+    sh:path :language;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path entryPoint;
+    sh:path :entryPoint;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path framework;
+    sh:path :framework;
     sh:datatype xsd:string;
     sh:in (react,aurelia);
   ];
@@ -39,12 +39,12 @@ ex:interactionLayerConfiguration_Shape a sh:NodeShape;
 ex:resourceTypeImplementationConfiguration_Shape a sh:NodeShape;
   sh:targetClass :resourceTypeImplementationConfiguration;
   sh:property [
-    sh:path production;
+    sh:path :production;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path development;
+    sh:path :development;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -52,17 +52,17 @@ ex:resourceTypeImplementationConfiguration_Shape a sh:NodeShape;
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
   sh:property [
-    sh:path application;
+    sh:path :application;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path boundedContext;
+    sh:path :boundedContext;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path boundedContextName;
+    sh:path :boundedContextName;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];

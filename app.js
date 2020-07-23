@@ -12,7 +12,7 @@ var finalTime = 0
 var finalTimeConversion = 0
 var totalFiles = 0
 var file
-var STOP = 10
+var STOP = 1
 var session = 0
 var option
 var t0

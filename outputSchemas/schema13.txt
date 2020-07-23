@@ -2,37 +2,37 @@
 ex:persona_Shape a sh:NodeShape;
   sh:targetClass :persona;
   sh:property [
-    sh:path name000;
+    sh:path :name000;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path children000;
+    sh:path :children000;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path asdasdasd000;
+    sh:path :asdasdasd000;
     sh:datatype xsd:string;
   ];
 
 ex:naopessoa_Shape a sh:NodeShape;
   sh:targetClass :naopessoa;
   sh:property [
-    sh:path name111;
+    sh:path :name111;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path children111;
+    sh:path :children111;
     sh:datatype xsd:string;
   ];
 
 ex:alo_Shape a sh:NodeShape;
   sh:targetClass :alo;
   sh:property [
-    sh:path name222;
+    sh:path :name222;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path children222;
+    sh:path :children222;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -50,18 +50,18 @@ ex:JS_id a sh:NodeShape;
 ex:alods_Shape a sh:NodeShape;
   sh:targetClass :alods;
   sh:property [
-    sh:path name222;
+    sh:path :name222;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path children222;
+    sh:path :children222;
     sh:datatype xsd:string;
   ];
 
 ex:person_Shape a sh:NodeShape;
   sh:targetClass :person;
   sh:property [
-    sh:path name;
+    sh:path :name;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -73,7 +73,7 @@ ex:person_Shape a sh:NodeShape;
 ex:children_Shape a sh:NodeShape;
   sh:targetClass :children;
   sh:property [
-    sh:path firstName;
+    sh:path :firstName;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -81,7 +81,7 @@ ex:children_Shape a sh:NodeShape;
     sh:node ex:naopessoa_Shape;
   ];
   sh:property [
-    sh:path age;
+    sh:path :age;
     sh:datatype xsd:decimal;
     sh:minInclusive 0;
   ];

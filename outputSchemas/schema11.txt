@@ -19,11 +19,11 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     );
   ];
   sh:property [
-    sh:path bracketSpacing;
+    sh:path :bracketSpacing;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path cursorOffset;
+    sh:path :cursorOffset;
     sh:datatype xsd:decimal;
   ];
   sh:property [
@@ -56,7 +56,7 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     );
   ];
   sh:property [
-    sh:path filepath;
+    sh:path :filepath;
     sh:datatype xsd:string;
   ];
   sh:property [
@@ -83,15 +83,15 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     );
   ];
   sh:property [
-    sh:path insertPragma;
+    sh:path :insertPragma;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path jsxBracketSameLine;
+    sh:path :jsxBracketSameLine;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path jsxSingleQuote;
+    sh:path :jsxSingleQuote;
     sh:datatype xsd:boolean;
   ];
   sh:property [
@@ -230,7 +230,7 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     ];
   ];
   sh:property [
-    sh:path printWidth;
+    sh:path :printWidth;
     sh:datatype xsd:decimal;
   ];
   sh:property [
@@ -280,27 +280,27 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     );
   ];
   sh:property [
-    sh:path rangeEnd;
+    sh:path :rangeEnd;
     sh:datatype xsd:decimal;
   ];
   sh:property [
-    sh:path rangeStart;
+    sh:path :rangeStart;
     sh:datatype xsd:decimal;
   ];
   sh:property [
-    sh:path requirePragma;
+    sh:path :requirePragma;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path semi;
+    sh:path :semi;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path singleQuote;
+    sh:path :singleQuote;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path tabWidth;
+    sh:path :tabWidth;
     sh:datatype xsd:decimal;
   ];
   sh:property [
@@ -327,11 +327,11 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     );
   ];
   sh:property [
-    sh:path useTabs;
+    sh:path :useTabs;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path vueIndentScriptAndStyle;
+    sh:path :vueIndentScriptAndStyle;
     sh:datatype xsd:boolean;
   ];
 
@@ -389,7 +389,7 @@ ex:overrides1_Shape a sh:NodeShape;
       ]
       [
         sh:property [
-          sh:path items;
+          sh:path :items;
           sh:datatype xsd:string;
         ];
       ]
@@ -415,7 +415,7 @@ ex:overrides1_Shape a sh:NodeShape;
       ]
       [
         sh:property [
-          sh:path items;
+          sh:path :items;
           sh:datatype xsd:string;
         ];
       ]
