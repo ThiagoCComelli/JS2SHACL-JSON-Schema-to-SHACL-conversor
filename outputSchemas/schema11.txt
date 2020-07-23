@@ -2,6 +2,23 @@
 ex:optionsDefinition_Shape a sh:NodeShape;
   sh:targetClass :optionsDefinition;
   sh:property [
+    sh:path :arrowParens;
+    sh:xone (
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+    );
+  ];
+  sh:property [
     sh:path bracketSpacing;
     sh:datatype xsd:boolean;
   ];
@@ -10,8 +27,60 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:datatype xsd:decimal;
   ];
   sh:property [
+    sh:path :endOfLine;
+    sh:xone (
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+    );
+  ];
+  sh:property [
     sh:path filepath;
     sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :htmlWhitespaceSensitivity;
+    sh:xone (
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+    );
   ];
   sh:property [
     sh:path insertPragma;
@@ -24,6 +93,125 @@ ex:optionsDefinition_Shape a sh:NodeShape;
   sh:property [
     sh:path jsxSingleQuote;
     sh:datatype xsd:boolean;
+  ];
+  sh:property [
+    sh:path :parser;
+    sh:xone (
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+    );
   ];
   sh:property [
     sh:path ex:pluginSearchDirs;
@@ -44,6 +232,52 @@ ex:optionsDefinition_Shape a sh:NodeShape;
   sh:property [
     sh:path printWidth;
     sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path :proseWrap;
+    sh:xone (
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+    );
+  ];
+  sh:property [
+    sh:path :quoteProps;
+    sh:xone (
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+    );
   ];
   sh:property [
     sh:path rangeEnd;
@@ -70,6 +304,29 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:datatype xsd:decimal;
   ];
   sh:property [
+    sh:path :trailingComma;
+    sh:xone (
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:undefined;
+          sh:in (undefined)
+        ];
+      ]
+    );
+  ];
+  sh:property [
     sh:path useTabs;
     sh:datatype xsd:boolean;
   ];
@@ -91,13 +348,90 @@ ex:overridesDefinition_Shape a sh:NodeShape;
 
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
+  sh:xone (
+    [
+      sh:property [
+        sh:node ex:obj1_Shape;
+      ];
+    ]
+    [
+      sh:and (
+        ex:optionsDefinition_shape
+        ex:overridesDefinition_shape
+      );
+    ]
+    [
+      sh:property [
+        sh:datatype xsd:string;
+      ];
+    ]
+  );
 
 ex:overrides1_Shape a sh:NodeShape;
   sh:targetClass :overrides1;
   sh:property [
+    sh:path :files;
+    sh:xone (
+      [
+        sh:property [
+          sh:datatype xsd:string;
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:oneOf;
+          sh:node dash:ListShape;
+          sh:property [
+            sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+            sh:datatype xsd:string;
+          ];
+        ];
+      ]
+      [
+        sh:property [
+          sh:path items;
+          sh:datatype xsd:string;
+        ];
+      ]
+    );
+  ];
+  sh:property [
+    sh:path :excludeFiles;
+    sh:xone (
+      [
+        sh:property [
+          sh:datatype xsd:string;
+        ];
+      ]
+      [
+        sh:property [
+          sh:path ex:oneOf;
+          sh:node dash:ListShape;
+          sh:property [
+            sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+            sh:datatype xsd:string;
+          ];
+        ];
+      ]
+      [
+        sh:property [
+          sh:path items;
+          sh:datatype xsd:string;
+        ];
+      ]
+    );
+  ];
+  sh:property [
     sh:path options;
     sh:node ex:options_Shape;
   ];
+
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass :obj1;
+  sh:and (
+    ex:optionsDefinition_shape
+    ex:overridesDefinition_shape
+  );
 
 ex:options_Shape a sh:NodeShape;
   sh:targetClass :options;

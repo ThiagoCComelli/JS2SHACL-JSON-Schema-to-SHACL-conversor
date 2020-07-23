@@ -54,6 +54,13 @@ ex:match-condition-schema_Shape a sh:NodeShape;
 ex:requestOverrides-schema_Shape a sh:NodeShape;
   sh:targetClass :requestOverrides-schema;
   sh:property [
+    sh:path :backend.request.method;
+    sh:or (
+      ex:http-method-schema_shape
+      ex:request-overrides-value-expression-schema_shape
+    );
+  ];
+  sh:property [
     sh:path backend.request.querystring.<ParameterName>;
     sh:node ex:request-overrides-value-expression-schema_Shape;
   ];
@@ -71,6 +78,21 @@ ex:responseOverrides-schema_Shape a sh:NodeShape;
   sh:property [
     sh:path response.statusReason;
     sh:node ex:response-overrides-value-expression-schema_Shape;
+  ];
+  sh:property [
+    sh:path :response.body;
+    sh:or (
+      [
+        sh:property [
+          sh:datatype xsd:string;
+        ];
+      ]
+      [
+        sh:property [
+          sh:node ex:obj1_Shape;
+        ];
+      ]
+    );
   ];
   sh:property [
     sh:path response.headers.<HeaderName>;
@@ -109,6 +131,9 @@ ex:JS_id a sh:NodeShape;
     sh:node ex:proxies_Shape;
     sh:minCount 1;
   ];
+
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass :obj1;
 
 ex:proxies_Shape a sh:NodeShape;
   sh:targetClass :proxies;

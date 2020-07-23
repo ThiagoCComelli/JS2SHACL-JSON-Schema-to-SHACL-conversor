@@ -21,7 +21,16 @@
             {"test":{ "type":"string",
                 "maxLength":5}},
             {"anotherTest":{"type":"integer",
-                "minimum":15}}
+                "minimum":15}},
+            {"$ref":"#/$defs/subschema_1"},
+            {"anotherTest":{"type":"integer",
+                "minimum":15}},
+            {"anotherTest":{"type":"integer",
+                "minimum":15}},
+            {"anotherTest":{"type":"integer",
+                "minimum":15}},
+            {"$ref":"#/$defs/subschema_1"},
+            {"$ref":"#/$defs/subschema_1"}
         ]
     }
 }

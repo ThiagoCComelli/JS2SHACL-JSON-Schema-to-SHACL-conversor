@@ -158,9 +158,9 @@ module.exports = {
             } else {
                 // Excecao para tratar nodes em allOf, anyOf e oneOf.
                 number++
-                newNodes[number] = element
+                newNodes['obj'+number] = element
 
-                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:node ${number}_Shape;\n` + addSpaces(-1) + '];\n'
+                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:node ex:obj${number}_Shape;\n` + addSpaces(-1) + '];\n'
             }
             return local
         }
@@ -177,8 +177,12 @@ module.exports = {
 
         //#region NAO TA FUNCIONANDO
 
-        function setOthersProperty(element,name){
+        function setOthersProperty(element,name,especialCase,path){
             var local = ''
+
+            if(especialCase){
+                local += addSpaces() + 'sh:property [\n' + addSpaces(1) + `sh:path :${path};\n`
+            }
 
             if(name == 'allOf'){
                 local += addSpaces() + 'sh:and (\n'
@@ -188,19 +192,17 @@ module.exports = {
                 local += addSpaces() + 'sh:or (\n'
             }
 
-            var prop = element[name]
-
-            prop.forEach(element_ => {
+            element.forEach(element_ => {
                 for(var i in element_){
                     
                     if(i != 'description' && i != 'additionalProperties'){
-                        console.log(i)
-                        local += addSpaces(1) + '[\n'
-                        scope++
-                        if(i != '$ref'){
                         
+                        if(i != '$ref'){
+                            local += addSpaces(1) + '[\n'
+                            scope++
                             if(element_[i].$ref){
-                                local += setComplexNodeShape(element_[i].$ref,i)
+                                // local += setComplexNodeShape(element_[i].$ref,i)
+                                local +=  addSpaces() + `sh:path :${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape;\n`
                             }
                             else if(element_[i].type in dataTypes){
                                 
@@ -235,10 +237,11 @@ module.exports = {
                             scope -= 2
                             local += addSpaces(1) + ']\n'
                         } else {
-                            
+                            // local += addSpaces(1) + '[\n'
+                            scope += 1
                             local += addSpaces() + `ex:${element_[i].split('/')[2]}_shape\n`
-                            scope -= 2
-                            local += addSpaces(1) + ']\n'
+                            // scope -= 1
+                            // local += addSpaces(1) + ']\n'
                         }
                         scope--
                     }
@@ -246,6 +249,10 @@ module.exports = {
                 }
             })
             local += addSpaces() + ');\n'
+
+            if(especialCase){
+                local += addSpaces(-1) + '];\n'
+            }
 
             return local
         }
@@ -329,12 +336,23 @@ module.exports = {
                         local += setArray(propertiesElements[item],item,checkRequired(element,item))
                     } else if(propertiesElements[item].$ref){
                         local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2])
+                    } else if(item in anotherConstraints){
+                        local += setOthersProperty(propertiesElements[item],item)
                     } else {
+                        
                         for(var i in propertiesElements[item]){
-                            if(i in anotherConstraints){
-                                // local += setOthersProperty(propertiesElements[item],i)
-                            } else if (i in constraints){
+                            // console.log(i)
+                            // console.log(item)
+                            // console.log(propertiesElements[item])
+                            if (i in constraints){
                                 local += setShInProperty(propertiesElements[item],i,item,checkRequired(element,item))
+                            }
+                            else if(i in anotherConstraints){
+                                // console.log(0)
+                                // console.log(item)
+                                // console.log(propertiesElements[item])
+                                // console.log(1)
+                                local += setOthersProperty(propertiesElements[item][i],i,true,item)
                             }
                         }
                     }
@@ -344,12 +362,14 @@ module.exports = {
                     local += setArray(element,name,checkRequired(element,name))
                 } else if(element.type in dataTypes){
                     local += setPrimitiveProperty(element,name,checkRequired(element,name))
-                } else if(element.type == 'object'){
+                } 
+                // else if(element.type == 'object'){
                     
-                } else {
+                // } 
+                else {
                     for(var i in element){
                         if(i in anotherConstraints){
-                            // local += setOthersProperty(element,i)
+                            local += setOthersProperty(element[i],i)
                         } else if(i in constraints){
                             local += setShInProperty(element[i],i,required=checkRequired(element,i))
                         }
@@ -399,9 +419,6 @@ module.exports = {
 
         while(Object.keys(nodesReady).length > 0 || Object.keys(newNodes).length > 0){
             for(var i in newNodes){
-                if(i == 4){
-                    console.log(newNodes[i])
-                }
                 create_New_Complex_NodeShape(newNodes[i],i)
                 delete newNodes[i]
             }

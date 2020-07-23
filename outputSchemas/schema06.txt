@@ -19,3 +19,47 @@ ex:subschema_1_Shape a sh:NodeShape;
 
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
+  sh:xone (
+    [
+      sh:path :Nome;
+      sh:node ex:subschema_1_shape;
+    ]
+    [
+      sh:property [
+        sh:path test;
+        sh:datatype xsd:string;
+        sh:maxLength 5;
+      ];
+    ]
+    [
+      sh:property [
+        sh:path anotherTest;
+        sh:datatype xsd:decimal;
+        sh:minInclusive 15;
+      ];
+    ]
+    ex:subschema_1_shape
+    [
+      sh:property [
+        sh:path anotherTest;
+        sh:datatype xsd:decimal;
+        sh:minInclusive 15;
+      ];
+    ]
+    [
+      sh:property [
+        sh:path anotherTest;
+        sh:datatype xsd:decimal;
+        sh:minInclusive 15;
+      ];
+    ]
+    [
+      sh:property [
+        sh:path anotherTest;
+        sh:datatype xsd:decimal;
+        sh:minInclusive 15;
+      ];
+    ]
+    ex:subschema_1_shape
+    ex:subschema_1_shape
+  );

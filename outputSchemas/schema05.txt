@@ -41,6 +41,13 @@ ex:subschema_2_Shape a sh:NodeShape;
 
 ex:JS_id a sh:NodeShape;
   sh:targetClass :JS_id;
+  sh:or (
+    [
+      sh:path :Nome;
+      sh:node ex:subschema_1_shape;
+    ]
+    ex:subschema_2_shape
+  );
 
 ex:alooou_Shape a sh:NodeShape;
   sh:targetClass :alooou;
