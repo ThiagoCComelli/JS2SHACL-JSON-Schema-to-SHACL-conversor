@@ -451,6 +451,6 @@ module.exports = {
             console.log()
         }
 
-        return shacl
+        return {shacl:shacl,elements:elementsUndefined}
     }
 }

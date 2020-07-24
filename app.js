@@ -51,9 +51,25 @@ function writeFile(_name,cont){
   }
 
   var name = _name.split('.')
-  fs.writeFile(`${dirOutputName}/${name[0]}.txt`,cont,(err,contents)=>{
+  fs.writeFile(`${dirOutputName}/${name[0]}.txt`,cont.shacl,(err,contents)=>{
     
   })
+
+  var log = 'Elements ignored!\n\n'
+
+  for(var i in cont.elements){
+    log += 'Element: ' + cont.elements[i].element
+    if(cont.elements[i].primitive){
+      log += ' => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!'
+    }
+    log += '\n'
+    
+  }
+
+  fs.writeFile(`${dirOutputName}/${name[0]}_log.txt`,log,(err,contents)=>{
+    
+  })
+
   if(totalFilesAnalized == totalFilesInRepository){
     t1 = performance.now()
     console.timeEnd('exec')
@@ -121,7 +137,8 @@ function readRepository(){
         t00 = performance.now()
 
         // START CONVERSION - WRITE FILE
-        writeFile(filename,conversor.start(cont))
+        var result = conversor.start(cont)
+        writeFile(filename,result)
       })
     })
   })
@@ -143,7 +160,8 @@ function readSingleFile(name){
     console.time('exec')
 
     // START CONVERSION - WRITE FILE
-    writeFile(name,conversor.start(cont))
+    var result = conversor.start(cont)
+    writeFile(name,result)
   })
 }
 

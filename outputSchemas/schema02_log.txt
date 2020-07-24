@@ -1,0 +1,8 @@
+Elements ignored!
+
+Element: $id
+Element: $schema
+Element: title
+Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
