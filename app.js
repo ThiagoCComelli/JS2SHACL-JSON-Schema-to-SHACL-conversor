@@ -62,7 +62,7 @@ function writeFile(_name,cont){
     if(cont.elements[i].primitive){
       log += ' => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!'
     }
-    log += '\n'
+    log += `\nSchema: ${cont.elements[i].schema}\n\n`
     
   }
 

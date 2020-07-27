@@ -6,14 +6,12 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:xone (
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (always)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (avoid)
         ];
       ]
     );
@@ -31,26 +29,22 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:xone (
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (lf)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (crlf)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (cr)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (auto)
         ];
       ]
     );
@@ -64,20 +58,17 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:xone (
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (css)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (strict)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (ignore)
         ];
       ]
     );
@@ -99,116 +90,97 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:xone (
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (flow)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (babel)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (babel-flow)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (babel-ts)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (typescript)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (css)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (less)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (scss)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (json)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (json5)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (json-stringify)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (graphql)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (markdown)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (mdx)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (vue)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (yaml)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (html)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (angular)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (lwc)
         ];
       ]
     );
@@ -238,20 +210,17 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:xone (
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (always)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (never)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (preserve)
         ];
       ]
     );
@@ -261,20 +230,17 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:xone (
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (as-needed)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (consistent)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (preserve)
         ];
       ]
     );
@@ -308,20 +274,17 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:xone (
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (es5)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (none)
         ];
       ]
       [
         sh:property [
-          sh:path ex:undefined;
-          sh:in (undefined)
+          sh:in (all)
         ];
       ]
     );

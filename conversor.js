@@ -228,7 +228,15 @@ module.exports = {
 
         function setShInProperty(element,name,item,required){
             var local = ''
-            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${item};\n` + addSpaces() + `sh:in (${element[name]})\n`
+            local += addSpaces() + `sh:property [\n` 
+            scope++
+
+            if(item != undefined){
+                local += addSpaces() + `sh:path ex:${item};\n`
+            }
+
+            local += addSpaces() + `sh:in (${element[name]})\n`
+
             if(required){
                 local += addSpaces() + `sh:minCount 1;\n`
             }
@@ -283,7 +291,7 @@ module.exports = {
                                 
                             } else if(i in constraints){
                                 if(i == 'enum' || i == 'const'){
-                                    local += setShInProperty(element_[i],i)
+                                    local += setShInProperty(element_,i)
                                 }
                             } else if(i == 'type'){
                                 if(element_[i] == 'object'){
@@ -390,7 +398,7 @@ module.exports = {
         function checkUndefined(element,primitive){
             for(var i in element){
                 if(!(i in constraints || i in anotherConstraints || i in jsonReservedWords)){
-                    elementsUndefined.push({schema:element,element:i,primitive:primitive})
+                    elementsUndefined.push({schema:JSON.stringify(element),element:i,primitive:primitive})
                 }
             }
         }
@@ -441,15 +449,15 @@ module.exports = {
             }
         }
         
-        for(var i in elementsUndefined){
-            if(elementsUndefined[i].primitive){
-                console.log('ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!')
-            }
-            console.log('Element: '+elementsUndefined[i].element)
-            console.log('Schema:')
-            console.log(elementsUndefined[i].schema)
-            console.log()
-        }
+        // for(var i in elementsUndefined){
+        //     if(elementsUndefined[i].primitive){
+        //         console.log('ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!')
+        //     }
+        //     console.log('Element: '+elementsUndefined[i].element)
+        //     console.log('Schema:')
+        //     console.log(elementsUndefined[i].schema)
+        //     console.log()
+        // }
 
         return {shacl:shacl,elements:elementsUndefined}
     }

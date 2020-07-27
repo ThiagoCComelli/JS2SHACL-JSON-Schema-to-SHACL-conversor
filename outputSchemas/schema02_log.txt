@@ -1,8 +1,20 @@
 Elements ignored!
 
 Element: $id
+Schema: {"$id":"https://example.com/person.schema.json","$schema":"http://json-schema.org/draft-07/schema#","title":"Person","type":"object","properties":{"firstName":{"type":"string","description":"The person's first name."},"lastName":{"type":"string","description":"The person's last name."},"age":{"description":"Age in years which must be equal to or greater than zero.","type":"integer","minimum":0}},"required":["lastName"]}
+
 Element: $schema
+Schema: {"$id":"https://example.com/person.schema.json","$schema":"http://json-schema.org/draft-07/schema#","title":"Person","type":"object","properties":{"firstName":{"type":"string","description":"The person's first name."},"lastName":{"type":"string","description":"The person's last name."},"age":{"description":"Age in years which must be equal to or greater than zero.","type":"integer","minimum":0}},"required":["lastName"]}
+
 Element: title
+Schema: {"$id":"https://example.com/person.schema.json","$schema":"http://json-schema.org/draft-07/schema#","title":"Person","type":"object","properties":{"firstName":{"type":"string","description":"The person's first name."},"lastName":{"type":"string","description":"The person's last name."},"age":{"description":"Age in years which must be equal to or greater than zero.","type":"integer","minimum":0}},"required":["lastName"]}
+
 Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Schema: {"type":"string","description":"The person's first name."}
+
 Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Schema: {"type":"string","description":"The person's last name."}
+
 Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Schema: {"description":"Age in years which must be equal to or greater than zero.","type":"integer","minimum":0}
+
