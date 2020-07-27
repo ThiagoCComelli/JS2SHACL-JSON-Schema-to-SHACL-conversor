@@ -1,0 +1,469 @@
+
+ex:iso8601_Shape a sh:NodeShape;
+  sh:targetClass :iso8601;
+  sh:property [
+    sh:path :iso8601;
+    sh:datatype xsd:string;
+    sh:pattern ^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$;
+  ];
+
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;
+  sh:property [
+    sh:path :$schema;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path basics;
+    sh:node ex:basics_Shape;
+  ];
+  sh:property [
+    sh:path ex:work;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:work1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:volunteer;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:volunteer1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:education;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:education1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:awards;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:awards1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:publications;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:publications1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:skills;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:skills1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:languages;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:languages1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:interests;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:interests1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:references;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:references1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:projects;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:projects1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path meta;
+    sh:node ex:meta_Shape;
+  ];
+
+ex:basics_Shape a sh:NodeShape;
+  sh:targetClass :basics;
+  sh:property [
+    sh:path :name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :label;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :image;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :email;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :phone;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :url;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :summary;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path location;
+    sh:node ex:location_Shape;
+  ];
+  sh:property [
+    sh:path ex:profiles;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype ex:profiles1_Shape;
+    ];
+  ];
+
+ex:work1_Shape a sh:NodeShape;
+  sh:targetClass :work1;
+  sh:property [
+    sh:path :name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :location;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :description;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :position;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :url;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path :summary;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:highlights;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+
+ex:volunteer1_Shape a sh:NodeShape;
+  sh:targetClass :volunteer1;
+  sh:property [
+    sh:path :organization;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :position;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :url;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path :summary;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:highlights;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+
+ex:education1_Shape a sh:NodeShape;
+  sh:targetClass :education1;
+  sh:property [
+    sh:path :institution;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :url;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :area;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :studyType;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path :gpa;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:courses;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+
+ex:awards1_Shape a sh:NodeShape;
+  sh:targetClass :awards1;
+  sh:property [
+    sh:path :title;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path date;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path :awarder;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :summary;
+    sh:datatype xsd:string;
+  ];
+
+ex:publications1_Shape a sh:NodeShape;
+  sh:targetClass :publications1;
+  sh:property [
+    sh:path :name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :publisher;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path releaseDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path :url;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :summary;
+    sh:datatype xsd:string;
+  ];
+
+ex:skills1_Shape a sh:NodeShape;
+  sh:targetClass :skills1;
+  sh:property [
+    sh:path :name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :level;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+
+ex:languages1_Shape a sh:NodeShape;
+  sh:targetClass :languages1;
+  sh:property [
+    sh:path :language;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :fluency;
+    sh:datatype xsd:string;
+  ];
+
+ex:interests1_Shape a sh:NodeShape;
+  sh:targetClass :interests1;
+  sh:property [
+    sh:path :name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+
+ex:references1_Shape a sh:NodeShape;
+  sh:targetClass :references1;
+  sh:property [
+    sh:path :name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :reference;
+    sh:datatype xsd:string;
+  ];
+
+ex:projects1_Shape a sh:NodeShape;
+  sh:targetClass :projects1;
+  sh:property [
+    sh:path :name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :description;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:highlights;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path :url;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:roles;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path :entity;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :type;
+    sh:datatype xsd:string;
+  ];
+
+ex:meta_Shape a sh:NodeShape;
+  sh:targetClass :meta;
+  sh:property [
+    sh:path :canonical;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :version;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :lastModified;
+    sh:datatype xsd:string;
+  ];
+
+ex:location_Shape a sh:NodeShape;
+  sh:targetClass :location;
+  sh:property [
+    sh:path :address;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :postalCode;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :city;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :countryCode;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :region;
+    sh:datatype xsd:string;
+  ];
+
+ex:profiles1_Shape a sh:NodeShape;
+  sh:targetClass :profiles1;
+  sh:property [
+    sh:path :network;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :username;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :url;
+    sh:datatype xsd:string;
+  ];

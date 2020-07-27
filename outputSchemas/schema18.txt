@@ -1,0 +1,268 @@
+
+ex:schemaArray_Shape a sh:NodeShape;
+  sh:targetClass :schemaArray;
+  sh:property [
+    sh:path ex:schemaArray;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype undefined_Shape;
+    ];
+  ];
+
+ex:nonNegativeInteger_Shape a sh:NodeShape;
+  sh:targetClass :nonNegativeInteger;
+  sh:property [
+    sh:path :nonNegativeInteger;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+  ];
+
+ex:nonNegativeIntegerDefault0_Shape a sh:NodeShape;
+  sh:targetClass :nonNegativeIntegerDefault0;
+  sh:and (
+    ex:nonNegativeInteger_shape
+    [
+    ]
+  );
+
+ex:simpleTypes_Shape a sh:NodeShape;
+  sh:targetClass :simpleTypes;
+  sh:property [
+    sh:path ex:false;
+    sh:in (undefined)
+  ];
+
+ex:stringArray_Shape a sh:NodeShape;
+  sh:targetClass :stringArray;
+  sh:property [
+    sh:path ex:stringArray;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;
+  sh:property [
+    sh:path :$id;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :$schema;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :$ref;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :$comment;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :title;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :description;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :readOnly;
+    sh:datatype xsd:boolean;
+  ];
+  sh:property [
+    sh:path :writeOnly;
+    sh:datatype xsd:boolean;
+  ];
+  sh:property [
+    sh:path ex:examples;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path :multipleOf;
+    sh:datatype xsd:decimal;
+    sh:minExclusive 0;
+  ];
+  sh:property [
+    sh:path :maximum;
+    sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path :exclusiveMaximum;
+    sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path :minimum;
+    sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path :exclusiveMinimum;
+    sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path maxLength;
+    sh:node ex:nonNegativeInteger_Shape;
+  ];
+  sh:property [
+    sh:path minLength;
+    sh:node ex:nonNegativeIntegerDefault0_Shape;
+  ];
+  sh:property [
+    sh:path :pattern;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path additionalItems;
+    sh:node ex:additionalItems_Shape;
+  ];
+  sh:property [
+    sh:path :items;
+    sh:or (
+      ex:undefined_shape
+      ex:schemaArray_shape
+    );
+  ];
+  sh:property [
+    sh:path maxItems;
+    sh:node ex:nonNegativeInteger_Shape;
+  ];
+  sh:property [
+    sh:path minItems;
+    sh:node ex:nonNegativeIntegerDefault0_Shape;
+  ];
+  sh:property [
+    sh:path :uniqueItems;
+    sh:datatype xsd:boolean;
+  ];
+  sh:property [
+    sh:path contains;
+    sh:node ex:contains_Shape;
+  ];
+  sh:property [
+    sh:path maxProperties;
+    sh:node ex:nonNegativeInteger_Shape;
+  ];
+  sh:property [
+    sh:path minProperties;
+    sh:node ex:nonNegativeIntegerDefault0_Shape;
+  ];
+  sh:property [
+    sh:path required;
+    sh:node ex:stringArray_Shape;
+  ];
+  sh:property [
+    sh:path additionalProperties;
+    sh:node ex:additionalProperties_Shape;
+  ];
+  sh:property [
+    sh:path definitions;
+    sh:node ex:definitions_Shape;
+  ];
+  sh:property [
+    sh:path properties;
+    sh:node ex:properties_Shape;
+  ];
+  sh:property [
+    sh:path patternProperties;
+    sh:node ex:patternProperties_Shape;
+  ];
+  sh:property [
+    sh:path dependencies;
+    sh:node ex:dependencies_Shape;
+  ];
+  sh:property [
+    sh:path propertyNames;
+    sh:node ex:propertyNames_Shape;
+  ];
+  sh:property [
+    sh:path ex:enum;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path :type;
+    sh:or (
+      ex:simpleTypes_shape
+      [
+        sh:property [
+          sh:path ex:anyOf;
+          sh:node dash:ListShape;
+          sh:property [
+            sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+            sh:datatype simpleTypes_Shape;
+          ];
+        ];
+      ]
+      [
+        sh:path :items;
+        sh:node ex:simpleTypes_shape;
+      ]
+      [
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path :format;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :contentMediaType;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :contentEncoding;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path if;
+    sh:node ex:if_Shape;
+  ];
+  sh:property [
+    sh:path then;
+    sh:node ex:then_Shape;
+  ];
+  sh:property [
+    sh:path else;
+    sh:node ex:else_Shape;
+  ];
+  sh:property [
+    sh:path allOf;
+    sh:node ex:schemaArray_Shape;
+  ];
+  sh:property [
+    sh:path anyOf;
+    sh:node ex:schemaArray_Shape;
+  ];
+  sh:property [
+    sh:path oneOf;
+    sh:node ex:schemaArray_Shape;
+  ];
+  sh:property [
+    sh:path not;
+    sh:node ex:not_Shape;
+  ];
+
+ex:definitions_Shape a sh:NodeShape;
+  sh:targetClass :definitions;
+
+ex:properties_Shape a sh:NodeShape;
+  sh:targetClass :properties;
+
+ex:patternProperties_Shape a sh:NodeShape;
+  sh:targetClass :patternProperties;
+
+ex:dependencies_Shape a sh:NodeShape;
+  sh:targetClass :dependencies;

@@ -94,6 +94,8 @@ module.exports = {
         function setListValidationArrayProperty(element,name,required){
             var local = ''
             local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath redf:rest] ref:first);\n`
+            console.log(name)
+            console.log(element)
             if('$ref' in element.items){
                 local += addSpaces() + `sh:datatype ${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n'
             } else {

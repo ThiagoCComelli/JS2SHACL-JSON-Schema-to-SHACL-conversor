@@ -1,0 +1,113 @@
+
+ex:JS_id a sh:NodeShape;
+  sh:targetClass :JS_id;
+  sh:property [
+    sh:path :version;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path :npmClient;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:npmClientArgs;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path :useWorkspaces;
+    sh:datatype xsd:boolean;
+  ];
+  sh:property [
+    sh:path ex:workspaces;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:packages;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:ignoreChanges;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path command;
+    sh:node ex:command_Shape;
+  ];
+
+ex:command_Shape a sh:NodeShape;
+  sh:targetClass :command;
+  sh:property [
+    sh:path publish;
+    sh:node ex:publish_Shape;
+  ];
+  sh:property [
+    sh:path bootstrap;
+    sh:node ex:bootstrap_Shape;
+  ];
+  sh:property [
+    sh:path init;
+    sh:node ex:init_Shape;
+  ];
+  sh:property [
+    sh:path run;
+    sh:node ex:run_Shape;
+  ];
+  sh:property [
+    sh:path version;
+    sh:node ex:version_Shape;
+  ];
+
+ex:publish_Shape a sh:NodeShape;
+  sh:targetClass :publish;
+  sh:property [
+    sh:path :message;
+    sh:datatype xsd:string;
+  ];
+
+ex:bootstrap_Shape a sh:NodeShape;
+  sh:targetClass :bootstrap;
+  sh:property [
+    sh:path ex:npmClientArgs;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+
+ex:init_Shape a sh:NodeShape;
+  sh:targetClass :init;
+  sh:property [
+    sh:path :exact;
+    sh:datatype xsd:boolean;
+  ];
+
+ex:run_Shape a sh:NodeShape;
+  sh:targetClass :run;
+  sh:property [
+    sh:path :npmClient;
+    sh:datatype xsd:string;
+  ];
+
+ex:version_Shape a sh:NodeShape;
+  sh:targetClass :version;
+  sh:property [
+    sh:path :message;
+    sh:datatype xsd:string;
+  ];
