@@ -1,5 +1,6 @@
 var fs = require('fs')
 const { error } = require('console')
+const {performance} = require('perf_hooks')
 
 module.exports = {
     check: function(schema){
@@ -28,6 +29,9 @@ module.exports = {
         var newNodes = {}
         var number = 0
         var elementsUndefined = []
+        var log = ''
+        var t0
+        var t1
 
         var shacl = ''
         var mappedDatatypes = []
@@ -94,8 +98,7 @@ module.exports = {
         function setListValidationArrayProperty(element,name,required){
             var local = ''
             local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath redf:rest] ref:first);\n`
-            console.log(name)
-            console.log(element)
+            
             if('$ref' in element.items){
                 local += addSpaces() + `sh:datatype ${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n'
             } else {
@@ -429,6 +432,7 @@ module.exports = {
         //#region SETUP SECTION
         
         function setup(schema) {
+            t0 = performance.now()
             setMainNodeShape(schema)
             createDefSectionElements(schema)
             createSchemaSectionElementes(schema)
@@ -450,17 +454,18 @@ module.exports = {
                 delete nodesReady[i]
             }
         }
-        
-        // for(var i in elementsUndefined){
-        //     if(elementsUndefined[i].primitive){
-        //         console.log('ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!')
-        //     }
-        //     console.log('Element: '+elementsUndefined[i].element)
-        //     console.log('Schema:')
-        //     console.log(elementsUndefined[i].schema)
-        //     console.log()
-        // }
 
-        return {shacl:shacl,elements:elementsUndefined}
+        for(var i in elementsUndefined){
+            log += 'Element: ' + elementsUndefined[i].element
+            if(elementsUndefined[i].primitive){
+              log += ' => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!'
+            }
+            log += `\nSchema: ${elementsUndefined[i].schema}\n\n`
+            
+        }
+
+        t1 = performance.now()
+
+        return {shacl:shacl,log:log,elements:elementsUndefined,time:t1-t0}
     }
 }
