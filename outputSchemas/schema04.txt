@@ -1,73 +1,78 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:coreConfiguration_Shape a sh:NodeShape;
-  sh:targetClass :coreConfiguration;
+  sh:targetClass ex:coreConfiguration;
   sh:property [
-    sh:path :language;
+    sh:path ex:language;
     sh:datatype xsd:string;
-    sh:in (csharp);
+    sh:in (ex:ex:0 );
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :entryPoint;
+    sh:path ex:entryPoint;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:interactionLayerConfiguration_Shape a sh:NodeShape;
-  sh:targetClass :interactionLayerConfiguration;
+  sh:targetClass ex:interactionLayerConfiguration;
   sh:property [
-    sh:path :type;
+    sh:path ex:type;
     sh:datatype xsd:string;
-    sh:in (web);
+    sh:in (ex:ex:0 );
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :language;
-    sh:datatype xsd:string;
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path :entryPoint;
+    sh:path ex:language;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :framework;
+    sh:path ex:entryPoint;
     sh:datatype xsd:string;
-    sh:in (react,aurelia);
+    sh:minCount 1;
   ];
+  sh:property [
+    sh:path ex:framework;
+    sh:datatype xsd:string;
+    sh:in (ex:ex:0 ex:1 );
+  ].
 
 ex:resourceTypeImplementationConfiguration_Shape a sh:NodeShape;
-  sh:targetClass :resourceTypeImplementationConfiguration;
+  sh:targetClass ex:resourceTypeImplementationConfiguration;
   sh:property [
-    sh:path :production;
+    sh:path ex:production;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :development;
+    sh:path ex:development;
     sh:datatype xsd:string;
     sh:minCount 1;
-  ];
+  ].
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
-    sh:path :application;
+    sh:path ex:application;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :boundedContext;
+    sh:path ex:boundedContext;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :boundedContextName;
+    sh:path ex:boundedContextName;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path core;
+    sh:path ex:core;
     sh:node ex:coreConfiguration_Shape;
     sh:minCount 1;
   ];
@@ -75,31 +80,31 @@ ex:JS_id a sh:NodeShape;
     sh:path ex:lista;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
     ];
   ];
   sh:property [
-    sh:path resources;
+    sh:path ex:resources;
     sh:node ex:resources_Shape;
     sh:minCount 1;
-  ];
+  ].
 
 ex:resources_Shape a sh:NodeShape;
-  sh:targetClass :resources;
+  sh:targetClass ex:resources;
   sh:property [
-    sh:path readModels;
+    sh:path ex:readModels;
     sh:node ex:resourceTypeImplementationConfiguration_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path eventStore;
+    sh:path ex:eventStore;
     sh:node ex:resourceTypeImplementationConfiguration_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path ola;
+    sh:path ex:ola;
     sh:node ex:ola_Shape;
-  ];
+  ].
 
 ex:ola_Shape a sh:NodeShape;
-  sh:targetClass :ola;
+  sh:targetClass ex:ola.

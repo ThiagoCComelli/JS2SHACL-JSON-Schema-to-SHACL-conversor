@@ -1,6 +1,11 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
     sh:path ex:p_name;
     sh:node dash:ListShape;
@@ -9,21 +14,21 @@ ex:JS_id a sh:NodeShape;
       sh:datatype xsd:string;
     ];
     sh:property [
-      sh:path (ref:rest rdf:first);
+      sh:path (rdf:rest rdf:first);
       sh:node ex:p_name_Shape;
     ];
-  ];
+  ].
 
 ex:p_name_Shape a sh:NodeShape;
-  sh:targetClass :p_name;
+  sh:targetClass ex:p_name;
   sh:property [
-    sh:path :p_nameA;
+    sh:path ex:p_nameA;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path p_nameB;
+    sh:path ex:p_nameB;
     sh:node ex:p_nameB_Shape;
-  ];
+  ].
 
 ex:p_nameB_Shape a sh:NodeShape;
-  sh:targetClass :p_nameB;
+  sh:targetClass ex:p_nameB.

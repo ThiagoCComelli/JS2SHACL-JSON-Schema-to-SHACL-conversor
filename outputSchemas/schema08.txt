@@ -1,23 +1,26 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
-    sh:path sdk;
+    sh:path ex:sdk;
     sh:node ex:sdk_Shape;
-  ];
+  ].
 
 ex:sdk_Shape a sh:NodeShape;
-  sh:targetClass :sdk;
+  sh:targetClass ex:sdk;
   sh:property [
-    sh:path :version;
+    sh:path ex:version;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :allowPrerelease;
+    sh:path ex:allowPrerelease;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :rollForward;
+    sh:path ex:rollForward;
     sh:datatype xsd:string;
-    sh:in (patch,feature,minor,major,latestPatch,latestFeature,latestMinor,latestMajor,disable);
-  ];
+    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 ex:5 ex:6 ex:7 ex:8 );
+  ].

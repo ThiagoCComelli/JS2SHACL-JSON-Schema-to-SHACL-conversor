@@ -285,10 +285,7 @@
             }
         },
         "nbProperties": {
-            "type": "object",
-            "properties": {
-
-            }
+            "type": "object"
         },
         "stProperties": {
             "type": "object",

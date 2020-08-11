@@ -1,44 +1,49 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:proxy-schema_Shape a sh:NodeShape;
-  sh:targetClass :proxy-schema;
+  sh:targetClass ex:proxy-schema;
   sh:property [
     sh:path ex:desc;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path matchCondition;
+    sh:path ex:matchCondition;
     sh:node ex:match-condition-schema_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :backendUri;
+    sh:path ex:backendUri;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path requestOverrides;
+    sh:path ex:requestOverrides;
     sh:node ex:requestOverrides-schema_Shape;
   ];
   sh:property [
-    sh:path responseOverrides;
+    sh:path ex:responseOverrides;
     sh:node ex:responseOverrides-schema_Shape;
   ];
   sh:property [
-    sh:path :debug;
+    sh:path ex:debug;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :disabled;
+    sh:path ex:disabled;
     sh:datatype xsd:boolean;
-  ];
+  ].
 
 ex:match-condition-schema_Shape a sh:NodeShape;
-  sh:targetClass :match-condition-schema;
+  sh:targetClass ex:match-condition-schema;
   sh:property [
-    sh:path :route;
+    sh:path ex:route;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -46,41 +51,40 @@ ex:match-condition-schema_Shape a sh:NodeShape;
     sh:path ex:methods;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype http-method-schema_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:http-method-schema_Shape;
     ];
-  ];
+  ].
 
 ex:requestOverrides-schema_Shape a sh:NodeShape;
-  sh:targetClass :requestOverrides-schema;
+  sh:targetClass ex:requestOverrides-schema;
   sh:property [
-    sh:path :backend.request.method;
+    sh:path ex:backend.request.method;
     sh:or (
       ex:http-method-schema_shape
       ex:request-overrides-value-expression-schema_shape
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path backend.request.querystring.<ParameterName>;
+    sh:path ex:backend.request.querystring.<ParameterName>;
     sh:node ex:request-overrides-value-expression-schema_Shape;
   ];
   sh:property [
-    sh:path backend.request.headers.<HeaderName>;
+    sh:path ex:backend.request.headers.<HeaderName>;
     sh:node ex:request-overrides-value-expression-schema_Shape;
-  ];
+  ].
 
 ex:responseOverrides-schema_Shape a sh:NodeShape;
-  sh:targetClass :responseOverrides-schema;
+  sh:targetClass ex:responseOverrides-schema;
   sh:property [
-    sh:path response.statusCode;
+    sh:path ex:response.statusCode;
     sh:node ex:response-overrides-value-expression-schema_Shape;
   ];
   sh:property [
-    sh:path response.statusReason;
+    sh:path ex:response.statusReason;
     sh:node ex:response-overrides-value-expression-schema_Shape;
   ];
   sh:property [
-    sh:path :response.body;
+    sh:path ex:response.body;
     sh:or (
       [
         sh:property [
@@ -92,52 +96,51 @@ ex:responseOverrides-schema_Shape a sh:NodeShape;
           sh:node ex:obj1_Shape;
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path response.headers.<HeaderName>;
+    sh:path ex:response.headers.<HeaderName>;
     sh:node ex:response-overrides-value-expression-schema_Shape;
-  ];
+  ].
 
 ex:request-overrides-value-expression-schema_Shape a sh:NodeShape;
-  sh:targetClass :request-overrides-value-expression-schema;
+  sh:targetClass ex:request-overrides-value-expression-schema;
   sh:property [
-    sh:path :request-overrides-value-expression-schema;
+    sh:path ex:request-overrides-value-expression-schema;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:response-overrides-value-expression-schema_Shape a sh:NodeShape;
-  sh:targetClass :response-overrides-value-expression-schema;
+  sh:targetClass ex:response-overrides-value-expression-schema;
   sh:property [
-    sh:path :response-overrides-value-expression-schema;
+    sh:path ex:response-overrides-value-expression-schema;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:http-method-schema_Shape a sh:NodeShape;
-  sh:targetClass :http-method-schema;
+  sh:targetClass ex:http-method-schema;
   sh:property [
     sh:path ex:false;
-    sh:in (undefined)
+    sh:in (ex:undefined);
   ];
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
-    sh:path :$schema;
+    sh:path ex:$schema;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path proxies;
+    sh:path ex:proxies;
     sh:node ex:proxies_Shape;
     sh:minCount 1;
-  ];
+  ].
 
 ex:obj1_Shape a sh:NodeShape;
-  sh:targetClass :obj1;
+  sh:targetClass ex:obj1.
 
 ex:proxies_Shape a sh:NodeShape;
-  sh:targetClass :proxies;
+  sh:targetClass ex:proxies;
   sh:property [
-    sh:path <ProxyName>;
+    sh:path ex:<ProxyName>;
     sh:node ex:proxy-schema_Shape;
-  ];
+  ].

@@ -1,31 +1,36 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:veggie_Shape a sh:NodeShape;
-  sh:targetClass :veggie;
+  sh:targetClass ex:veggie;
   sh:property [
-    sh:path :veggieName;
+    sh:path ex:veggieName;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :veggieLike;
+    sh:path ex:veggieLike;
     sh:datatype xsd:boolean;
     sh:minCount 1;
-  ];
+  ].
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
     sh:path ex:fruits;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
     ];
   ];
   sh:property [
     sh:path ex:vegetables;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -37,21 +42,21 @@ ex:JS_id a sh:NodeShape;
       sh:datatype xsd:string;
     ];
     sh:property [
-      sh:path (ref:rest rdf:first);
+      sh:path (rdf:rest rdf:first);
       sh:node ex:another_Shape;
     ];
-  ];
+  ].
 
 ex:another_Shape a sh:NodeShape;
-  sh:targetClass :another;
+  sh:targetClass ex:another;
   sh:property [
-    sh:path :ola;
+    sh:path ex:ola;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path aqui;
+    sh:path ex:aqui;
     sh:node ex:aqui_Shape;
-  ];
+  ].
 
 ex:aqui_Shape a sh:NodeShape;
-  sh:targetClass :aqui;
+  sh:targetClass ex:aqui.

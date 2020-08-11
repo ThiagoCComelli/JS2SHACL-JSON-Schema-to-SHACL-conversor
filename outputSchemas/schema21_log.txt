@@ -1,0 +1,83 @@
+27 Warnings (Elements ignored!)
+
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-07/schema"}
+
+Key: $id
+Element: {"$id": "http://example.com/example.json"}
+
+Key: title
+Element: {"title": "The root schema"}
+
+Key: description
+Element: {"description": "The root schema comprises the entire JSON document."}
+
+Key: default
+Element: {"default": {}}
+
+Key: examples
+Element: {"examples": [{"genericArray":["elem1",12,"elem3"]}]}
+
+Key: additionalProperties
+Element: {"additionalProperties": true}
+
+Key: $id
+Element: {"$id": "#/properties/genericArray"}
+
+Key: title
+Element: {"title": "The genericArray schema"}
+
+Key: description
+Element: {"description": "An explanation about the purpose of this instance."}
+
+Key: default
+Element: {"default": []}
+
+Key: examples
+Element: {"examples": [["elem1",12]]}
+
+Key: additionalItems
+Element: {"additionalItems": true}
+
+Key: $id
+Element: {"$id": "#/properties/genericArray/items"}
+
+Key: 0 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"0": "s"}
+
+Key: 1 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"1": "t"}
+
+Key: 2 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"2": "r"}
+
+Key: 3 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"3": "i"}
+
+Key: 4 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"4": "n"}
+
+Key: 5 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"5": "g"}
+
+Key: 0 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"0": "i"}
+
+Key: 1 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"1": "n"}
+
+Key: 2 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"2": "t"}
+
+Key: 3 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"3": "e"}
+
+Key: 4 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"4": "g"}
+
+Key: 5 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"5": "e"}
+
+Key: 6 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"6": "r"}
+

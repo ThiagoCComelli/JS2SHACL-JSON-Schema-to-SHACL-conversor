@@ -1,11 +1,16 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:subschema_1_Shape a sh:NodeShape;
-  sh:targetClass :subschema_1;
+  sh:targetClass ex:subschema_1;
   sh:property [
     sh:path ex:fruits;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -13,17 +18,17 @@ ex:subschema_1_Shape a sh:NodeShape;
     sh:path ex:vegetables;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
     ];
-  ];
+  ].
 
 ex:subschema_2_Shape a sh:NodeShape;
-  sh:targetClass :subschema_2;
+  sh:targetClass ex:subschema_2;
   sh:property [
     sh:path ex:fruitas;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -31,27 +36,26 @@ ex:subschema_2_Shape a sh:NodeShape;
     sh:path ex:vegetables;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
     ];
   ];
   sh:property [
-    sh:path alooou;
+    sh:path ex:alooou;
     sh:node ex:alooou_Shape;
-  ];
+  ].
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:or (
     [
-      sh:path :Nome;
+      sh:path ex:Nome;
       sh:node ex:subschema_1_shape;
     ]
     ex:subschema_2_shape
   );
-
 ex:alooou_Shape a sh:NodeShape;
-  sh:targetClass :alooou;
+  sh:targetClass ex:alooou;
   sh:property [
-    sh:path :aqui;
+    sh:path ex:aqui;
     sh:datatype xsd:string;
-  ];
+  ].

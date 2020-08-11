@@ -1,13 +1,18 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
-    sh:path :name;
+    sh:path ex:name;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :description;
+    sh:path ex:description;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -15,119 +20,119 @@ ex:JS_id a sh:NodeShape;
     sh:path ex:keywords;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path participate;
+    sh:path ex:participate;
     sh:node ex:participate_Shape;
   ];
   sh:property [
-    sh:path repository;
+    sh:path ex:repository;
     sh:node ex:repository_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path bugs;
+    sh:path ex:bugs;
     sh:node ex:bugs_Shape;
   ];
   sh:property [
-    sh:path urls;
+    sh:path ex:urls;
     sh:node ex:urls_Shape;
-  ];
+  ].
 
 ex:participate_Shape a sh:NodeShape;
-  sh:targetClass :participate;
+  sh:targetClass ex:participate;
   sh:property [
-    sh:path :home;
+    sh:path ex:home;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :docs;
+    sh:path ex:docs;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :mailing-list;
+    sh:path ex:mailing-list;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :irc;
+    sh:path ex:irc;
     sh:datatype xsd:string;
   ];
   sh:property [
     sh:path ex:irc-contacts;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path chat;
+    sh:path ex:chat;
     sh:node ex:chat_Shape;
-  ];
+  ].
 
 ex:repository_Shape a sh:NodeShape;
-  sh:targetClass :repository;
+  sh:targetClass ex:repository;
   sh:property [
-    sh:path :type;
+    sh:path ex:type;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :url;
-    sh:datatype xsd:string;
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path :license;
+    sh:path ex:url;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :tests;
+    sh:path ex:license;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:tests;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :clone;
+    sh:path ex:clone;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:bugs_Shape a sh:NodeShape;
-  sh:targetClass :bugs;
+  sh:targetClass ex:bugs;
   sh:property [
-    sh:path :list;
+    sh:path ex:list;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :report;
+    sh:path ex:report;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :mentored;
+    sh:path ex:mentored;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:urls_Shape a sh:NodeShape;
-  sh:targetClass :urls;
+  sh:targetClass ex:urls;
   sh:property [
-    sh:path :prod;
+    sh:path ex:prod;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :stage;
+    sh:path ex:stage;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :dev;
+    sh:path ex:dev;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:chat_Shape a sh:NodeShape;
-  sh:targetClass :chat;
+  sh:targetClass ex:chat;
   sh:property [
-    sh:path :url;
+    sh:path ex:url;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -135,7 +140,7 @@ ex:chat_Shape a sh:NodeShape;
     sh:path ex:contacts;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
-  ];
+  ].

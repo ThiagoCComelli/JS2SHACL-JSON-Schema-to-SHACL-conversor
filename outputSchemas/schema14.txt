@@ -1,11 +1,16 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:subschema_1_Shape a sh:NodeShape;
-  sh:targetClass :subschema_1;
+  sh:targetClass ex:subschema_1;
   sh:property [
     sh:path ex:fruits;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -13,7 +18,7 @@ ex:subschema_1_Shape a sh:NodeShape;
     sh:path ex:vegetables;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
     ];
   ];
   sh:property [
@@ -24,32 +29,32 @@ ex:subschema_1_Shape a sh:NodeShape;
       sh:datatype xsd:string;
     ];
     sh:property [
-      sh:path (ref:rest rdf:first);
+      sh:path (rdf:rest rdf:first);
       sh:node ex:aloooou_Shape;
     ];
-  ];
+  ].
   sh:and (
     [
-      sh:path :Nome;
+      sh:path ex:Nome;
       sh:node ex:subschema_1_shape;
     ]
     [
       sh:property [
-        sh:path :test;
+        sh:path ex:test;
         sh:datatype xsd:string;
         sh:maxLength 5;
       ];
     ]
     [
       sh:property [
-        sh:path :anotherTest;
-        sh:datatype xsd:decimal;
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
         sh:minInclusive 15;
       ];
     ]
     [
       sh:property [
-        sh:path :aqui;
+        sh:path ex:aqui;
         sh:datatype xsd:string;
       ];
     ]
@@ -58,85 +63,80 @@ ex:subschema_1_Shape a sh:NodeShape;
         ex:subschema_1_shape
         [
           sh:property [
-            sh:path :test;
+            sh:path ex:test;
             sh:datatype xsd:string;
             sh:maxLength 5;
           ];
         ]
         [
           sh:property [
-            sh:path :anotherTest;
-            sh:datatype xsd:decimal;
+            sh:path ex:anotherTest;
+            sh:datatype xsd:integer;
             sh:minInclusive 15;
           ];
         ]
         [
           sh:property [
-            sh:path :aqui;
+            sh:path ex:aqui;
             sh:datatype xsd:string;
           ];
         ]
-      );
-    ]
-  );
-  sh:xone (
+      );    ]
+  );  sh:xone (
     [
-      sh:path :Nome;
+      sh:path ex:Nome;
       sh:node ex:subschema_1_shape;
     ]
     [
       sh:property [
-        sh:path :test;
+        sh:path ex:test;
         sh:datatype xsd:string;
         sh:maxLength 5;
       ];
     ]
     [
       sh:property [
-        sh:path :anotherTest;
-        sh:datatype xsd:decimal;
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
         sh:minInclusive 15;
       ];
     ]
-  );
-  sh:or (
+  );  sh:or (
     [
-      sh:path :Nome;
+      sh:path ex:Nome;
       sh:node ex:subschema_1_shape;
     ]
     ex:subschema_2_shape
   );
-
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:and (
     [
-      sh:path :Nome;
+      sh:path ex:Nome;
       sh:node ex:subschema_1_shape;
     ]
     [
       sh:property [
-        sh:path :test;
+        sh:path ex:test;
         sh:datatype xsd:string;
         sh:maxLength 5;
       ];
     ]
     [
       sh:property [
-        sh:path :anotherTest;
-        sh:datatype xsd:decimal;
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
         sh:minInclusive 15;
       ];
     ]
   );
-
 ex:aloooou_Shape a sh:NodeShape;
-  sh:targetClass :aloooou;
+  sh:targetClass ex:aloooou;
   sh:property [
-    sh:path :nombre;
+    sh:path ex:nombre;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :naosei;
-    sh:datatype xsd:decimal;
-  ];
+    sh:path ex:naosei;
+    sh:datatype xsd:integer;
+  ].

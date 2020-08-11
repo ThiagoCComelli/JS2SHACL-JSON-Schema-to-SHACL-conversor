@@ -5,16 +5,20 @@
 ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id;
   sh:property [
-    sh:path ex:firstName;
-    sh:datatype xsd:string;
-  ];
+    sh:path ex:nmProp;
+    sh:node ex:nmProp_Shape;
+    sh:minCount 1;
+  ].
+
+ex:nmProp_Shape a sh:NodeShape;
+  sh:targetClass ex:nmProp;
   sh:property [
-    sh:path ex:lastName;
+    sh:path ex:nmPropA;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path ex:age;
+    sh:path ex:nmPropB;
     sh:datatype xsd:integer;
-    sh:minInclusive 0;
+    sh:minCount 1;
   ].

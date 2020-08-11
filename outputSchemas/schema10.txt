@@ -1,60 +1,65 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:nonEmptyString_Shape a sh:NodeShape;
-  sh:targetClass :nonEmptyString;
+  sh:targetClass ex:nonEmptyString;
   sh:property [
-    sh:path :nonEmptyString;
+    sh:path ex:nonEmptyString;
     sh:datatype xsd:string;
     sh:minLength 1;
-  ];
+  ].
 
 ex:platform_Shape a sh:NodeShape;
-  sh:targetClass :platform;
+  sh:targetClass ex:platform;
   sh:property [
-    sh:path :os;
+    sh:path ex:os;
     sh:datatype xsd:string;
-    sh:in (linux,windows,darwin,freebsd,netbsd,openbsd,dragonfly,solaris);
+    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 ex:5 ex:6 ex:7 );
   ];
   sh:property [
-    sh:path :arсh;
+    sh:path ex:arсh;
     sh:datatype xsd:string;
-    sh:in (arm,arm64,amd64,386);
+    sh:in (ex:ex:0 ex:1 ex:2 ex:3 );
   ];
   sh:property [
-    sh:path :variant;
+    sh:path ex:variant;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :version;
+    sh:path ex:version;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:commands_Shape a sh:NodeShape;
-  sh:targetClass :commands;
+  sh:targetClass ex:commands;
   sh:property [
     sh:path ex:commands;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype nonEmptyString_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:nonEmptyString_Shape;
     ];
-  ];
+  ].
 
 ex:environment_Shape a sh:NodeShape;
-  sh:targetClass :environment;
+  sh:targetClass ex:environment.
 
 ex:condition_Shape a sh:NodeShape;
-  sh:targetClass :condition;
+  sh:targetClass ex:condition;
   sh:property [
     sh:path ex:condition;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
-  ];
+  ].
 
 ex:conditions_Shape a sh:NodeShape;
-  sh:targetClass :conditions;
+  sh:targetClass ex:conditions;
   sh:or (
     ex:condition_shape
     [
@@ -72,296 +77,294 @@ ex:conditions_Shape a sh:NodeShape;
     [
     ]
   );
-
 ex:allConditions_Shape a sh:NodeShape;
-  sh:targetClass :allConditions;
+  sh:targetClass ex:allConditions;
   sh:property [
-    sh:path branch;
+    sh:path ex:branch;
     sh:node ex:conditions_Shape;
   ];
   sh:property [
-    sh:path event;
+    sh:path ex:event;
     sh:node ex:conditions_Shape;
   ];
   sh:property [
-    sh:path ref;
+    sh:path ex:ref;
     sh:node ex:conditions_Shape;
   ];
   sh:property [
-    sh:path repo;
+    sh:path ex:repo;
     sh:node ex:conditions_Shape;
   ];
   sh:property [
-    sh:path status;
+    sh:path ex:status;
     sh:node ex:condition_Shape;
   ];
   sh:property [
-    sh:path target;
+    sh:path ex:target;
     sh:node ex:condition_Shape;
-  ];
+  ].
 
 ex:volumes_Shape a sh:NodeShape;
-  sh:targetClass :volumes;
+  sh:targetClass ex:volumes;
   sh:property [
     sh:path ex:volumes;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:volumes1_Shape;
     ];
-  ];
+  ].
 
 ex:services_Shape a sh:NodeShape;
-  sh:targetClass :services;
+  sh:targetClass ex:services;
   sh:property [
     sh:path ex:services;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:services1_Shape;
     ];
-  ];
+  ].
 
 ex:secret_Shape a sh:NodeShape;
-  sh:targetClass :secret;
+  sh:targetClass ex:secret;
   sh:property [
-    sh:path :from_secret;
+    sh:path ex:from_secret;
     sh:datatype xsd:string;
     sh:minCount 1;
-  ];
+  ].
 
 ex:stringOrSecret_Shape a sh:NodeShape;
-  sh:targetClass :stringOrSecret;
+  sh:targetClass ex:stringOrSecret;
   sh:xone (
     ex:nonEmptyString_shape
     ex:secret_shape
   );
-
 ex:node_Shape a sh:NodeShape;
-  sh:targetClass :node;
+  sh:targetClass ex:node.
 
 ex:kind_signature_Shape a sh:NodeShape;
-  sh:targetClass :kind_signature;
+  sh:targetClass ex:kind_signature;
   sh:property [
     sh:path ex:kind;
-    sh:in (signature)
+    sh:in (ex:signature);
   ];
   sh:property [
-    sh:path :hmac;
+    sh:path ex:hmac;
     sh:datatype xsd:string;
     sh:minLength 40;
     sh:maxLength 40;
     sh:minCount 1;
-  ];
+  ].
 
 ex:kind_secret_Shape a sh:NodeShape;
-  sh:targetClass :kind_secret;
+  sh:targetClass ex:kind_secret;
   sh:property [
     sh:path ex:kind;
-    sh:in (secret)
+    sh:in (ex:secret);
   ];
   sh:property [
-    sh:path name;
+    sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :data;
+    sh:path ex:data;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path get;
+    sh:path ex:get;
     sh:node ex:get_Shape;
     sh:minCount 1;
-  ];
+  ].
 
 ex:kind_pipeline_Shape a sh:NodeShape;
-  sh:targetClass :kind_pipeline;
+  sh:targetClass ex:kind_pipeline;
   sh:property [
     sh:path ex:kind;
-    sh:in (pipeline)
+    sh:in (ex:pipeline);
   ];
   sh:property [
-    sh:path name;
+    sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:type;
-    sh:in (docker,kubernetes,ssh,exec,digitalocean,macstadium)
+    sh:in (ex:docker,kubernetes,ssh,exec,digitalocean,macstadium);
     sh:minCount 1;
   ];
   sh:property [
-    sh:path platform;
+    sh:path ex:platform;
     sh:node ex:platform_Shape;
   ];
   sh:property [
-    sh:path :workspace;
+    sh:path ex:workspace;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path clone;
+    sh:path ex:clone;
     sh:node ex:clone_Shape;
   ];
   sh:property [
     sh:path ex:steps;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
     ];
     sh:minCount 1;
   ];
   sh:property [
-    sh:path trigger;
+    sh:path ex:trigger;
     sh:node ex:allConditions_Shape;
-  ];
+  ].
 
 ex:pipeline_docker_Shape a sh:NodeShape;
-  sh:targetClass :pipeline_docker;
+  sh:targetClass ex:pipeline_docker;
   sh:property [
     sh:path ex:type;
-    sh:in (docker)
+    sh:in (ex:docker);
   ];
   sh:property [
-    sh:path volumes;
+    sh:path ex:volumes;
     sh:node ex:volumes_Shape;
   ];
   sh:property [
-    sh:path services;
+    sh:path ex:services;
     sh:node ex:services_Shape;
   ];
   sh:property [
     sh:path ex:image_pull_secrets;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path node;
+    sh:path ex:node;
     sh:node ex:node_Shape;
   ];
 
 ex:pipeline_kubernetes_Shape a sh:NodeShape;
-  sh:targetClass :pipeline_kubernetes;
+  sh:targetClass ex:pipeline_kubernetes;
   sh:property [
     sh:path ex:type;
-    sh:in (kubernetes)
+    sh:in (ex:kubernetes);
   ];
   sh:property [
-    sh:path metadata;
+    sh:path ex:metadata;
     sh:node ex:kubernetesjsonschema.dev_Shape;
   ];
   sh:property [
     sh:path ex:tolerations;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype kubernetesjsonschema.dev_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:kubernetesjsonschema.dev_Shape;
     ];
   ];
   sh:property [
     sh:path ex:node_selector;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype kubernetesjsonschema.dev_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:kubernetesjsonschema.dev_Shape;
     ];
   ];
   sh:property [
-    sh:path volumes;
+    sh:path ex:volumes;
     sh:node ex:volumes_Shape;
   ];
   sh:property [
-    sh:path services;
+    sh:path ex:services;
     sh:node ex:services_Shape;
   ];
   sh:property [
     sh:path ex:image_pull_secrets;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
 
 ex:pipeline_exec_Shape a sh:NodeShape;
-  sh:targetClass :pipeline_exec;
+  sh:targetClass ex:pipeline_exec;
   sh:property [
     sh:path ex:type;
-    sh:in (exec)
+    sh:in (ex:exec);
   ];
   sh:property [
-    sh:path node;
+    sh:path ex:node;
     sh:node ex:node_Shape;
   ];
 
 ex:pipeline_ssh_Shape a sh:NodeShape;
-  sh:targetClass :pipeline_ssh;
+  sh:targetClass ex:pipeline_ssh;
   sh:property [
     sh:path ex:type;
-    sh:in (ssh)
+    sh:in (ex:ssh);
   ];
 
 ex:pipeline_digitalocean_Shape a sh:NodeShape;
-  sh:targetClass :pipeline_digitalocean;
+  sh:targetClass ex:pipeline_digitalocean;
   sh:property [
     sh:path ex:type;
-    sh:in (digitalocean)
+    sh:in (ex:digitalocean);
   ];
   sh:property [
-    sh:path token;
+    sh:path ex:token;
     sh:node ex:stringOrSecret_Shape;
     sh:minCount 1;
   ];
 
 ex:pipeline_macstadium_Shape a sh:NodeShape;
-  sh:targetClass :pipeline_macstadium;
+  sh:targetClass ex:pipeline_macstadium;
   sh:property [
     sh:path ex:type;
-    sh:in (macstadium)
+    sh:in (ex:macstadium);
   ];
 
 ex:step_Shape a sh:NodeShape;
-  sh:targetClass :step;
+  sh:targetClass ex:step;
   sh:property [
-    sh:path name;
+    sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :failure;
+    sh:path ex:failure;
     sh:datatype xsd:string;
-    sh:in (always,ignore);
+    sh:in (ex:ex:0 ex:1 );
   ];
   sh:property [
-    sh:path commands;
+    sh:path ex:commands;
     sh:node ex:commands_Shape;
   ];
   sh:property [
-    sh:path :detach;
+    sh:path ex:detach;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path environment;
+    sh:path ex:environment;
     sh:node ex:environment_Shape;
   ];
   sh:property [
-    sh:path when;
+    sh:path ex:when;
     sh:node ex:allConditions_Shape;
   ];
   sh:property [
     sh:path ex:depends_on;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype nonEmptyString_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:nonEmptyString_Shape;
     ];
-  ];
+  ].
 
 ex:step_docker_Shape a sh:NodeShape;
-  sh:targetClass :step_docker;
+  sh:targetClass ex:step_docker;
   sh:and (
     ex:step_shape
     [
@@ -374,9 +377,8 @@ ex:step_docker_Shape a sh:NodeShape;
     [
     ]
   );
-
 ex:step_kubernetes_Shape a sh:NodeShape;
-  sh:targetClass :step_kubernetes;
+  sh:targetClass ex:step_kubernetes;
   sh:and (
     ex:step_shape
     [
@@ -389,9 +391,8 @@ ex:step_kubernetes_Shape a sh:NodeShape;
     [
     ]
   );
-
 ex:step_exec_Shape a sh:NodeShape;
-  sh:targetClass :step_exec;
+  sh:targetClass ex:step_exec;
   sh:and (
     ex:step_shape
     [
@@ -402,9 +403,8 @@ ex:step_exec_Shape a sh:NodeShape;
     [
     ]
   );
-
 ex:step_ssh_Shape a sh:NodeShape;
-  sh:targetClass :step_ssh;
+  sh:targetClass ex:step_ssh;
   sh:and (
     ex:step_shape
     [
@@ -415,9 +415,8 @@ ex:step_ssh_Shape a sh:NodeShape;
     [
     ]
   );
-
 ex:step_digitalocean_Shape a sh:NodeShape;
-  sh:targetClass :step_digitalocean;
+  sh:targetClass ex:step_digitalocean;
   sh:and (
     ex:step_shape
     [
@@ -428,9 +427,8 @@ ex:step_digitalocean_Shape a sh:NodeShape;
     [
     ]
   );
-
 ex:step_macstadium_Shape a sh:NodeShape;
-  sh:targetClass :step_macstadium;
+  sh:targetClass ex:step_macstadium;
   sh:and (
     ex:step_shape
     [
@@ -441,208 +439,207 @@ ex:step_macstadium_Shape a sh:NodeShape;
     [
     ]
   );
-
 ex:steps_volumes_Shape a sh:NodeShape;
-  sh:targetClass :steps_volumes;
+  sh:targetClass ex:steps_volumes;
   sh:property [
     sh:path ex:steps_volumes;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:steps_volumes1_Shape;
     ];
-  ];
+  ].
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
     sh:path ex:kind;
-    sh:in (signature,secret,pipeline)
+    sh:in (ex:signature,secret,pipeline);
     sh:minCount 1;
   ];
 
 ex:obj1_Shape a sh:NodeShape;
-  sh:targetClass :obj1;
+  sh:targetClass ex:obj1;
   sh:property [
-    sh:path include;
+    sh:path ex:include;
     sh:node ex:condition_Shape;
-  ];
+  ].
 
 ex:obj2_Shape a sh:NodeShape;
-  sh:targetClass :obj2;
+  sh:targetClass ex:obj2;
   sh:property [
-    sh:path exclude;
+    sh:path ex:exclude;
     sh:node ex:condition_Shape;
-  ];
+  ].
 
 ex:volumes1_Shape a sh:NodeShape;
-  sh:targetClass :volumes1;
+  sh:targetClass ex:volumes1;
   sh:property [
-    sh:path name;
+    sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
   ];
   sh:property [
-    sh:path host;
+    sh:path ex:host;
     sh:node ex:host_Shape;
   ];
   sh:property [
-    sh:path temp;
+    sh:path ex:temp;
     sh:node ex:temp_Shape;
-  ];
+  ].
 
 ex:services1_Shape a sh:NodeShape;
-  sh:targetClass :services1;
+  sh:targetClass ex:services1;
   sh:property [
-    sh:path name;
+    sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path image;
+    sh:path ex:image;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path command;
+    sh:path ex:command;
     sh:node ex:commands_Shape;
   ];
   sh:property [
-    sh:path entrypoint;
+    sh:path ex:entrypoint;
     sh:node ex:commands_Shape;
   ];
   sh:property [
-    sh:path environment;
+    sh:path ex:environment;
     sh:node ex:environment_Shape;
   ];
   sh:property [
-    sh:path :privileged;
+    sh:path ex:privileged;
     sh:datatype xsd:boolean;
   ];
   sh:property [
     sh:path ex:pull;
-    sh:in (always)
+    sh:in (ex:always);
   ];
   sh:property [
-    sh:path volumes;
+    sh:path ex:volumes;
     sh:node ex:volumes_Shape;
   ];
   sh:property [
-    sh:path working_dir;
+    sh:path ex:working_dir;
     sh:node ex:nonEmptyString_Shape;
-  ];
+  ].
 
 ex:get_Shape a sh:NodeShape;
-  sh:targetClass :get;
+  sh:targetClass ex:get;
   sh:property [
-    sh:path path;
+    sh:path ex:path;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path name;
+    sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
-  ];
+  ].
 
 ex:clone_Shape a sh:NodeShape;
-  sh:targetClass :clone;
+  sh:targetClass ex:clone;
   sh:property [
-    sh:path :depth;
-    sh:datatype xsd:decimal;
+    sh:path ex:depth;
+    sh:datatype xsd:integer;
   ];
   sh:property [
     sh:path ex:disable;
-    sh:in (true)
+    sh:in (ex:true);
   ];
 
 ex:obj3_Shape a sh:NodeShape;
-  sh:targetClass :obj3;
+  sh:targetClass ex:obj3;
   sh:property [
-    sh:path image;
+    sh:path ex:image;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :privileged;
+    sh:path ex:privileged;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :pull;
+    sh:path ex:pull;
     sh:datatype xsd:string;
-    sh:in (always,never,if-not-exists);
+    sh:in (ex:ex:0 ex:1 ex:2 );
   ];
   sh:property [
-    sh:path volumes;
+    sh:path ex:volumes;
     sh:node ex:steps_volumes_Shape;
   ];
   sh:property [
-    sh:path settings;
+    sh:path ex:settings;
     sh:node ex:settings_Shape;
   ];
 
 ex:obj4_Shape a sh:NodeShape;
-  sh:targetClass :obj4;
+  sh:targetClass ex:obj4;
   sh:property [
-    sh:path image;
+    sh:path ex:image;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :privileged;
+    sh:path ex:privileged;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :pull;
+    sh:path ex:pull;
     sh:datatype xsd:string;
-    sh:in (always,never,if-not-exists);
+    sh:in (ex:ex:0 ex:1 ex:2 );
   ];
   sh:property [
-    sh:path resources;
+    sh:path ex:resources;
     sh:node ex:kubernetesjsonschema.dev_Shape;
   ];
   sh:property [
-    sh:path volumes;
+    sh:path ex:volumes;
     sh:node ex:steps_volumes_Shape;
   ];
   sh:property [
-    sh:path settings;
+    sh:path ex:settings;
     sh:node ex:settings_Shape;
   ];
 
 ex:obj5_Shape a sh:NodeShape;
-  sh:targetClass :obj5;
+  sh:targetClass ex:obj5;
 
 ex:obj6_Shape a sh:NodeShape;
-  sh:targetClass :obj6;
+  sh:targetClass ex:obj6;
 
 ex:obj7_Shape a sh:NodeShape;
-  sh:targetClass :obj7;
+  sh:targetClass ex:obj7;
 
 ex:obj8_Shape a sh:NodeShape;
-  sh:targetClass :obj8;
+  sh:targetClass ex:obj8;
 
 ex:steps_volumes1_Shape a sh:NodeShape;
-  sh:targetClass :steps_volumes1;
+  sh:targetClass ex:steps_volumes1;
   sh:property [
-    sh:path name;
+    sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path path;
+    sh:path ex:path;
     sh:node ex:nonEmptyString_Shape;
     sh:minCount 1;
-  ];
+  ].
 
 ex:host_Shape a sh:NodeShape;
-  sh:targetClass :host;
+  sh:targetClass ex:host;
   sh:property [
-    sh:path path;
+    sh:path ex:path;
     sh:node ex:nonEmptyString_Shape;
-  ];
+  ].
 
 ex:temp_Shape a sh:NodeShape;
-  sh:targetClass :temp;
+  sh:targetClass ex:temp.
 
 ex:settings_Shape a sh:NodeShape;
-  sh:targetClass :settings;
+  sh:targetClass ex:settings.

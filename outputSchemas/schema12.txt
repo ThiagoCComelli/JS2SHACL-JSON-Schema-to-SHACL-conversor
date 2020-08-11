@@ -1,85 +1,90 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
-    sh:path :name;
+    sh:path ex:name;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :description;
+    sh:path ex:description;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :type;
+    sh:path ex:type;
     sh:datatype xsd:string;
-    sh:in (static,server);
+    sh:in (ex:ex:0 ex:1 );
   ];
   sh:property [
-    sh:path :profile;
+    sh:path ex:profile;
     sh:datatype xsd:string;
   ];
   sh:property [
     sh:path ex:regions;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path lambda;
+    sh:path ex:lambda;
     sh:node ex:lambda_Shape;
   ];
   sh:property [
-    sh:path stages;
+    sh:path ex:stages;
     sh:node ex:stages_Shape;
   ];
   sh:property [
-    sh:path hooks;
+    sh:path ex:hooks;
     sh:node ex:hooks_Shape;
   ];
   sh:property [
-    sh:path static;
+    sh:path ex:static;
     sh:node ex:static_Shape;
   ];
   sh:property [
-    sh:path proxy;
+    sh:path ex:proxy;
     sh:node ex:proxy_Shape;
   ];
   sh:property [
-    sh:path dns;
+    sh:path ex:dns;
     sh:node ex:dns_Shape;
   ];
   sh:property [
-    sh:path environment;
+    sh:path ex:environment;
     sh:node ex:environment_Shape;
   ];
   sh:property [
-    sh:path headers;
+    sh:path ex:headers;
     sh:node ex:headers_Shape;
   ];
   sh:property [
-    sh:path error_pages;
+    sh:path ex:error_pages;
     sh:node ex:error_pages_Shape;
   ];
   sh:property [
-    sh:path cors;
+    sh:path ex:cors;
     sh:node ex:cors_Shape;
   ];
   sh:property [
-    sh:path inject;
+    sh:path ex:inject;
     sh:node ex:inject_Shape;
   ];
   sh:property [
-    sh:path redirects;
+    sh:path ex:redirects;
     sh:node ex:redirects_Shape;
   ];
   sh:property [
     sh:path ex:actions;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:actions1_Shape;
     ];
   ];
@@ -87,146 +92,146 @@ ex:JS_id a sh:NodeShape;
     sh:path ex:alerts;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:alerts1_Shape;
     ];
-  ];
+  ].
 
 ex:lambda_Shape a sh:NodeShape;
-  sh:targetClass :lambda;
+  sh:targetClass ex:lambda;
   sh:property [
-    sh:path :accelerate;
+    sh:path ex:accelerate;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :warm;
+    sh:path ex:warm;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :warm_rate;
+    sh:path ex:warm_rate;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :warm_count;
-    sh:datatype xsd:decimal;
+    sh:path ex:warm_count;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :memory;
-    sh:datatype xsd:decimal;
-    sh:in (128,192,256,320,384,448,512,576,640,704,768,832,896,960,1024,1088,1152,1216,1280,1344,1408,1472,1536,1600,1664,1728,1792,1856,1920,1984,2048,2112,2176,2240,2304,2368,2432,2496,2560,2624,2688,2752,2816,2880,2944,3008);
-  ];
+    sh:path ex:memory;
+    sh:datatype xsd:integer;
+    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 ex:5 ex:6 ex:7 ex:8 ex:9 ex:10 ex:11 ex:12 ex:13 ex:14 ex:15 ex:16 ex:17 ex:18 ex:19 ex:20 ex:21 ex:22 ex:23 ex:24 ex:25 ex:26 ex:27 ex:28 ex:29 ex:30 ex:31 ex:32 ex:33 ex:34 ex:35 ex:36 ex:37 ex:38 ex:39 ex:40 ex:41 ex:42 ex:43 ex:44 ex:45 );
+  ].
 
 ex:stages_Shape a sh:NodeShape;
-  sh:targetClass :stages;
+  sh:targetClass ex:stages;
   sh:property [
-    sh:path production;
+    sh:path ex:production;
     sh:node ex:production_Shape;
   ];
   sh:property [
-    sh:path staging;
+    sh:path ex:staging;
     sh:node ex:staging_Shape;
   ];
   sh:property [
-    sh:path development;
+    sh:path ex:development;
     sh:node ex:development_Shape;
-  ];
+  ].
 
 ex:hooks_Shape a sh:NodeShape;
-  sh:targetClass :hooks;
+  sh:targetClass ex:hooks;
   sh:property [
-    sh:path :build;
+    sh:path ex:build;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :clean;
+    sh:path ex:clean;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :prebuild;
+    sh:path ex:prebuild;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :postbuild;
+    sh:path ex:postbuild;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :predeploy;
+    sh:path ex:predeploy;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :postdeploy;
+    sh:path ex:postdeploy;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:static_Shape a sh:NodeShape;
-  sh:targetClass :static;
+  sh:targetClass ex:static;
   sh:property [
-    sh:path :dir;
+    sh:path ex:dir;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :prefix;
+    sh:path ex:prefix;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:proxy_Shape a sh:NodeShape;
-  sh:targetClass :proxy;
+  sh:targetClass ex:proxy;
   sh:property [
-    sh:path :command;
+    sh:path ex:command;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :timeout;
-    sh:datatype xsd:decimal;
+    sh:path ex:timeout;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :listen_timeout;
-    sh:datatype xsd:decimal;
+    sh:path ex:listen_timeout;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :shutdown_timeout;
-    sh:datatype xsd:decimal;
+    sh:path ex:shutdown_timeout;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path backoff;
+    sh:path ex:backoff;
     sh:node ex:backoff_Shape;
-  ];
+  ].
 
 ex:dns_Shape a sh:NodeShape;
-  sh:targetClass :dns;
+  sh:targetClass ex:dns.
 
 ex:environment_Shape a sh:NodeShape;
-  sh:targetClass :environment;
+  sh:targetClass ex:environment.
 
 ex:headers_Shape a sh:NodeShape;
-  sh:targetClass :headers;
+  sh:targetClass ex:headers.
 
 ex:error_pages_Shape a sh:NodeShape;
-  sh:targetClass :error_pages;
+  sh:targetClass ex:error_pages;
   sh:property [
-    sh:path :disable;
+    sh:path ex:disable;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :dir;
+    sh:path ex:dir;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path variables;
+    sh:path ex:variables;
     sh:node ex:variables_Shape;
-  ];
+  ].
 
 ex:cors_Shape a sh:NodeShape;
-  sh:targetClass :cors;
+  sh:targetClass ex:cors;
   sh:property [
-    sh:path :enable;
+    sh:path ex:enable;
     sh:datatype xsd:boolean;
   ];
   sh:property [
     sh:path ex:allowed_origins;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -234,7 +239,7 @@ ex:cors_Shape a sh:NodeShape;
     sh:path ex:allowed_methods;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -242,7 +247,7 @@ ex:cors_Shape a sh:NodeShape;
     sh:path ex:allowed_headers;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -250,34 +255,34 @@ ex:cors_Shape a sh:NodeShape;
     sh:path ex:exposed_headers;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path :max_age;
-    sh:datatype xsd:decimal;
+    sh:path ex:max_age;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :allowed_credentials;
+    sh:path ex:allowed_credentials;
     sh:datatype xsd:boolean;
-  ];
+  ].
 
 ex:inject_Shape a sh:NodeShape;
-  sh:targetClass :inject;
+  sh:targetClass ex:inject.
 
 ex:redirects_Shape a sh:NodeShape;
-  sh:targetClass :redirects;
+  sh:targetClass ex:redirects.
 
 ex:actions1_Shape a sh:NodeShape;
-  sh:targetClass :actions1;
+  sh:targetClass ex:actions1;
   sh:property [
-    sh:path :name;
+    sh:path ex:name;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :type;
+    sh:path ex:type;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
@@ -285,7 +290,7 @@ ex:actions1_Shape a sh:NodeShape;
     sh:path ex:emails;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -293,107 +298,107 @@ ex:actions1_Shape a sh:NodeShape;
     sh:path ex:numbers;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
-  ];
+  ].
 
 ex:alerts1_Shape a sh:NodeShape;
-  sh:targetClass :alerts1;
+  sh:targetClass ex:alerts1;
   sh:property [
-    sh:path :metric;
+    sh:path ex:metric;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :statistic;
+    sh:path ex:statistic;
     sh:datatype xsd:string;
-    sh:in (min,max,avg,sum,count);
+    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 );
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :threshold;
-    sh:datatype xsd:decimal;
+    sh:path ex:threshold;
+    sh:datatype xsd:integer;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :action;
+    sh:path ex:action;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :evaluation_periods;
-    sh:datatype xsd:decimal;
+    sh:path ex:evaluation_periods;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :operator;
+    sh:path ex:operator;
     sh:datatype xsd:string;
-    sh:in (>,<,>=,<=);
+    sh:in (ex:ex:0 ex:1 ex:2 ex:3 );
   ];
   sh:property [
-    sh:path :namespace;
-    sh:datatype xsd:string;
-  ];
-  sh:property [
-    sh:path :description;
+    sh:path ex:namespace;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :disable;
+    sh:path ex:description;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:disable;
     sh:datatype xsd:boolean;
-  ];
+  ].
 
 ex:production_Shape a sh:NodeShape;
-  sh:targetClass :production;
+  sh:targetClass ex:production;
   sh:property [
-    sh:path :domain;
+    sh:path ex:domain;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:staging_Shape a sh:NodeShape;
-  sh:targetClass :staging;
+  sh:targetClass ex:staging;
   sh:property [
-    sh:path :domain;
+    sh:path ex:domain;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:development_Shape a sh:NodeShape;
-  sh:targetClass :development;
+  sh:targetClass ex:development;
   sh:property [
-    sh:path :domain;
+    sh:path ex:domain;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:backoff_Shape a sh:NodeShape;
-  sh:targetClass :backoff;
+  sh:targetClass ex:backoff;
   sh:property [
-    sh:path :min;
+    sh:path ex:min;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:max;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:factor;
     sh:datatype xsd:decimal;
   ];
   sh:property [
-    sh:path :max;
-    sh:datatype xsd:decimal;
+    sh:path ex:attempts;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :factor;
-    sh:datatype xsd:decimal;
-  ];
-  sh:property [
-    sh:path :attempts;
-    sh:datatype xsd:decimal;
-  ];
-  sh:property [
-    sh:path :jitter;
+    sh:path ex:jitter;
     sh:datatype xsd:boolean;
-  ];
+  ].
 
 ex:variables_Shape a sh:NodeShape;
-  sh:targetClass :variables;
+  sh:targetClass ex:variables;
   sh:property [
-    sh:path :support_email;
+    sh:path ex:support_email;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :color;
+    sh:path ex:color;
     sh:datatype xsd:string;
-  ];
+  ].

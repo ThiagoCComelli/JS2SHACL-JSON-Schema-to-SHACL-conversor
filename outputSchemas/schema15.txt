@@ -1,216 +1,220 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:directPosition_Shape a sh:NodeShape;
-  sh:targetClass :directPosition;
+  sh:targetClass ex:directPosition;
   sh:property [
     sh:path ex:directPosition;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:decimal;
     ];
-  ];
+  ].
 
 ex:point_Shape a sh:NodeShape;
-  sh:targetClass :point;
+  sh:targetClass ex:point;
   sh:property [
     sh:path ex:type;
-    sh:in (Point)
+    sh:in (ex:Point);
     sh:minCount 1;
   ];
   sh:property [
-    sh:path coordinates;
+    sh:path ex:coordinates;
     sh:node ex:directPosition_Shape;
     sh:minCount 1;
-  ];
+  ].
 
 ex:lineString_Shape a sh:NodeShape;
-  sh:targetClass :lineString;
+  sh:targetClass ex:lineString;
   sh:property [
     sh:path ex:type;
-    sh:in (LineString)
+    sh:in (ex:LineString);
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype directPosition_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:directPosition_Shape;
     ];
     sh:minCount 1;
-  ];
+  ].
 
 ex:polygon_Shape a sh:NodeShape;
-  sh:targetClass :polygon;
+  sh:targetClass ex:polygon;
   sh:property [
     sh:path ex:type;
-    sh:in (Polygon)
+    sh:in (ex:Polygon);
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:coordinates1_Shape;
     ];
     sh:minCount 1;
-  ];
+  ].
 
 ex:multiPoint_Shape a sh:NodeShape;
-  sh:targetClass :multiPoint;
+  sh:targetClass ex:multiPoint;
   sh:property [
     sh:path ex:type;
-    sh:in (MultiPoint)
+    sh:in (ex:MultiPoint);
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype directPosition_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:directPosition_Shape;
     ];
     sh:minCount 1;
-  ];
+  ].
 
 ex:multiLineString_Shape a sh:NodeShape;
-  sh:targetClass :multiLineString;
+  sh:targetClass ex:multiLineString;
   sh:property [
     sh:path ex:type;
-    sh:in (MultiLineString)
+    sh:in (ex:MultiLineString);
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype lineString_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:lineString_Shape;
     ];
     sh:minCount 1;
-  ];
+  ].
 
 ex:multiPolygon_Shape a sh:NodeShape;
-  sh:targetClass :multiPolygon;
+  sh:targetClass ex:multiPolygon;
   sh:property [
     sh:path ex:type;
-    sh:in (MultiPolygon)
+    sh:in (ex:MultiPolygon);
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:coordinates;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype polygon_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:polygon_Shape;
     ];
     sh:minCount 1;
-  ];
+  ].
 
 ex:geometryCollection_Shape a sh:NodeShape;
-  sh:targetClass :geometryCollection;
+  sh:targetClass ex:geometryCollection;
   sh:property [
     sh:path ex:type;
-    sh:in (GeometryCollection)
+    sh:in (ex:GeometryCollection);
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:geometries;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:geometries1_Shape;
     ];
     sh:minCount 1;
-  ];
+  ].
 
 ex:feature_Shape a sh:NodeShape;
-  sh:targetClass :feature;
+  sh:targetClass ex:feature;
   sh:property [
     sh:path ex:type;
-    sh:in (Feature)
+    sh:in (ex:Feature);
     sh:minCount 1;
   ];
   sh:property [
-    sh:path geometry;
+    sh:path ex:geometry;
     sh:node ex:geometry_Shape;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :properties;
+    sh:path ex:properties;
     sh:or (
       ex:hsProperties_shape
       ex:nbProperties_shape
       ex:stProperties_shape
       ex:psProperties_shape
       ex:scProperties_shape
-    );
-  ];
+    );  ];
 
 ex:featureCollection_Shape a sh:NodeShape;
-  sh:targetClass :featureCollection;
+  sh:targetClass ex:featureCollection;
   sh:property [
     sh:path ex:type;
-    sh:in (FeatureCollection)
+    sh:in (ex:FeatureCollection);
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:features;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype feature_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:feature_Shape;
     ];
     sh:minCount 1;
-  ];
+  ].
 
 ex:hsProperties_Shape a sh:NodeShape;
-  sh:targetClass :hsProperties;
+  sh:targetClass ex:hsProperties;
   sh:property [
-    sh:path :ADDRESS;
+    sh:path ex:ADDRESS;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :CATEGORIA;
+    sh:path ex:CATEGORIA;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :CDL;
-    sh:datatype xsd:decimal;
+    sh:path ex:CDL;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :CLASSIFICA;
+    sh:path ex:CLASSIFICA;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :CNES;
-    sh:datatype xsd:decimal;
+    sh:path ex:CNES;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :CITY;
+    sh:path ex:CITY;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :COUNTRY;
+    sh:path ex:COUNTRY;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :DESCRIPTION;
+    sh:path ex:DESCRIPTION;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :DISTRITO;
+    sh:path ex:DISTRITO;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :FINAL;
+    sh:path ex:FINAL;
     sh:or (
       [
         sh:property [
-          sh:datatype xsd:decimal;
+          sh:datatype xsd:integer;
         ];
       ]
       [
@@ -218,18 +222,17 @@ ex:hsProperties_Shape a sh:NodeShape;
           sh:datatype xsd:null;
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :GERENCIA;
+    sh:path ex:GERENCIA;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :INICIAL;
+    sh:path ex:INICIAL;
     sh:or (
       [
         sh:property [
-          sh:datatype xsd:decimal;
+          sh:datatype xsd:integer;
         ];
       ]
       [
@@ -237,65 +240,64 @@ ex:hsProperties_Shape a sh:NodeShape;
           sh:datatype xsd:null;
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :NAME;
+    sh:path ex:NAME;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :PREPOSI;
+    sh:path ex:PREPOSI;
     sh:datatype xsd:null;
   ];
   sh:property [
-    sh:path :SERVICES;
+    sh:path ex:SERVICES;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :STATE;
+    sh:path ex:STATE;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :TIPO;
+    sh:path ex:TIPO;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :timestamp;
+    sh:path ex:timestamp;
     sh:datatype xsd:null;
   ];
   sh:property [
-    sh:path :addrtype;
+    sh:path ex:addrtype;
     sh:datatype xsd:string;
     sh:minCount 1;
   ];
   sh:property [
-    sh:path :addrlocat;
+    sh:path ex:addrlocat;
     sh:datatype xsd:string;
     sh:minCount 1;
-  ];
+  ].
 
 ex:nbProperties_Shape a sh:NodeShape;
-  sh:targetClass :nbProperties;
+  sh:targetClass ex:nbProperties.
 
 ex:stProperties_Shape a sh:NodeShape;
-  sh:targetClass :stProperties;
+  sh:targetClass ex:stProperties.
 
 ex:psProperties_Shape a sh:NodeShape;
-  sh:targetClass :psProperties;
+  sh:targetClass ex:psProperties.
 
 ex:scProperties_Shape a sh:NodeShape;
-  sh:targetClass :scProperties;
+  sh:targetClass ex:scProperties.
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
     sh:path ex:healthServices;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype feature_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:feature_Shape;
     ];
     sh:minCount 1;
   ];
@@ -303,48 +305,48 @@ ex:JS_id a sh:NodeShape;
     sh:path ex:neighbourhoods;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype feature_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:feature_Shape;
     ];
   ];
   sh:property [
     sh:path ex:streets;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype feature_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:feature_Shape;
     ];
   ];
   sh:property [
     sh:path ex:policeStations;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype feature_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:feature_Shape;
     ];
   ];
   sh:property [
     sh:path ex:schools;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype feature_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:feature_Shape;
     ];
-  ];
+  ].
 
 ex:coordinates1_Shape a sh:NodeShape;
-  sh:targetClass :coordinates1;
+  sh:targetClass ex:coordinates1;
   sh:property [
     sh:path ex:coordinates1;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
-      sh:datatype directPosition_Shape;
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:directPosition_Shape;
     ];
-  ];
+  ].
 
 ex:geometries1_Shape a sh:NodeShape;
-  sh:targetClass :geometries1;
+  sh:targetClass ex:geometries1;
   sh:or (
     ex:point_shape
     ex:lineString_shape
@@ -353,15 +355,5 @@ ex:geometries1_Shape a sh:NodeShape;
     ex:multiLineString_shape
     ex:multiPolygon_shape
   );
-
 ex:geometry_Shape a sh:NodeShape;
-  sh:targetClass :geometry;
-  sh:or (
-    ex:point_shape
-    ex:lineString_shape
-    ex:polygon_shape
-    ex:multiPoint_shape
-    ex:multiLineString_shape
-    ex:multiPolygon_shape
-    ex:geometryCollection_shape
-  );
+  sh:targetClass ex:geometry.

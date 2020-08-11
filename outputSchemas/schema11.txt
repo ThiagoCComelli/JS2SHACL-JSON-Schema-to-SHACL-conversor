@@ -1,195 +1,196 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
 ex:optionsDefinition_Shape a sh:NodeShape;
-  sh:targetClass :optionsDefinition;
+  sh:targetClass ex:optionsDefinition;
   sh:property [
-    sh:path :arrowParens;
+    sh:path ex:arrowParens;
     sh:xone (
       [
         sh:property [
-          sh:in (always)
+          sh:in (ex:always);
         ];
       ]
       [
         sh:property [
-          sh:in (avoid)
+          sh:in (ex:avoid);
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :bracketSpacing;
+    sh:path ex:bracketSpacing;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :cursorOffset;
-    sh:datatype xsd:decimal;
+    sh:path ex:cursorOffset;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :endOfLine;
+    sh:path ex:endOfLine;
     sh:xone (
       [
         sh:property [
-          sh:in (lf)
+          sh:in (ex:lf);
         ];
       ]
       [
         sh:property [
-          sh:in (crlf)
+          sh:in (ex:crlf);
         ];
       ]
       [
         sh:property [
-          sh:in (cr)
+          sh:in (ex:cr);
         ];
       ]
       [
         sh:property [
-          sh:in (auto)
+          sh:in (ex:auto);
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :filepath;
+    sh:path ex:filepath;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :htmlWhitespaceSensitivity;
+    sh:path ex:htmlWhitespaceSensitivity;
     sh:xone (
       [
         sh:property [
-          sh:in (css)
+          sh:in (ex:css);
         ];
       ]
       [
         sh:property [
-          sh:in (strict)
+          sh:in (ex:strict);
         ];
       ]
       [
         sh:property [
-          sh:in (ignore)
+          sh:in (ex:ignore);
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :insertPragma;
+    sh:path ex:insertPragma;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :jsxBracketSameLine;
+    sh:path ex:jsxBracketSameLine;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :jsxSingleQuote;
+    sh:path ex:jsxSingleQuote;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :parser;
+    sh:path ex:parser;
     sh:xone (
       [
         sh:property [
-          sh:in (flow)
+          sh:in (ex:flow);
         ];
       ]
       [
         sh:property [
-          sh:in (babel)
+          sh:in (ex:babel);
         ];
       ]
       [
         sh:property [
-          sh:in (babel-flow)
+          sh:in (ex:babel-flow);
         ];
       ]
       [
         sh:property [
-          sh:in (babel-ts)
+          sh:in (ex:babel-ts);
         ];
       ]
       [
         sh:property [
-          sh:in (typescript)
+          sh:in (ex:typescript);
         ];
       ]
       [
         sh:property [
-          sh:in (css)
+          sh:in (ex:css);
         ];
       ]
       [
         sh:property [
-          sh:in (less)
+          sh:in (ex:less);
         ];
       ]
       [
         sh:property [
-          sh:in (scss)
+          sh:in (ex:scss);
         ];
       ]
       [
         sh:property [
-          sh:in (json)
+          sh:in (ex:json);
         ];
       ]
       [
         sh:property [
-          sh:in (json5)
+          sh:in (ex:json5);
         ];
       ]
       [
         sh:property [
-          sh:in (json-stringify)
+          sh:in (ex:json-stringify);
         ];
       ]
       [
         sh:property [
-          sh:in (graphql)
+          sh:in (ex:graphql);
         ];
       ]
       [
         sh:property [
-          sh:in (markdown)
+          sh:in (ex:markdown);
         ];
       ]
       [
         sh:property [
-          sh:in (mdx)
+          sh:in (ex:mdx);
         ];
       ]
       [
         sh:property [
-          sh:in (vue)
+          sh:in (ex:vue);
         ];
       ]
       [
         sh:property [
-          sh:in (yaml)
+          sh:in (ex:yaml);
         ];
       ]
       [
         sh:property [
-          sh:in (html)
+          sh:in (ex:html);
         ];
       ]
       [
         sh:property [
-          sh:in (angular)
+          sh:in (ex:angular);
         ];
       ]
       [
         sh:property [
-          sh:in (lwc)
+          sh:in (ex:lwc);
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
     sh:path ex:pluginSearchDirs;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -197,120 +198,117 @@ ex:optionsDefinition_Shape a sh:NodeShape;
     sh:path ex:plugins;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path :printWidth;
-    sh:datatype xsd:decimal;
+    sh:path ex:printWidth;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :proseWrap;
+    sh:path ex:proseWrap;
     sh:xone (
       [
         sh:property [
-          sh:in (always)
+          sh:in (ex:always);
         ];
       ]
       [
         sh:property [
-          sh:in (never)
+          sh:in (ex:never);
         ];
       ]
       [
         sh:property [
-          sh:in (preserve)
+          sh:in (ex:preserve);
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :quoteProps;
+    sh:path ex:quoteProps;
     sh:xone (
       [
         sh:property [
-          sh:in (as-needed)
+          sh:in (ex:as-needed);
         ];
       ]
       [
         sh:property [
-          sh:in (consistent)
+          sh:in (ex:consistent);
         ];
       ]
       [
         sh:property [
-          sh:in (preserve)
+          sh:in (ex:preserve);
         ];
       ]
-    );
+    );  ];
+  sh:property [
+    sh:path ex:rangeEnd;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :rangeEnd;
-    sh:datatype xsd:decimal;
+    sh:path ex:rangeStart;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :rangeStart;
-    sh:datatype xsd:decimal;
-  ];
-  sh:property [
-    sh:path :requirePragma;
+    sh:path ex:requirePragma;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :semi;
+    sh:path ex:semi;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :singleQuote;
+    sh:path ex:singleQuote;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :tabWidth;
-    sh:datatype xsd:decimal;
+    sh:path ex:tabWidth;
+    sh:datatype xsd:integer;
   ];
   sh:property [
-    sh:path :trailingComma;
+    sh:path ex:trailingComma;
     sh:xone (
       [
         sh:property [
-          sh:in (es5)
+          sh:in (ex:es5);
         ];
       ]
       [
         sh:property [
-          sh:in (none)
+          sh:in (ex:none);
         ];
       ]
       [
         sh:property [
-          sh:in (all)
+          sh:in (ex:all);
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :useTabs;
+    sh:path ex:useTabs;
     sh:datatype xsd:boolean;
   ];
   sh:property [
-    sh:path :vueIndentScriptAndStyle;
+    sh:path ex:vueIndentScriptAndStyle;
     sh:datatype xsd:boolean;
-  ];
+  ].
 
 ex:overridesDefinition_Shape a sh:NodeShape;
-  sh:targetClass :overridesDefinition;
+  sh:targetClass ex:overridesDefinition;
   sh:property [
     sh:path ex:overrides;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype ex:overrides1_Shape;
     ];
-  ];
+  ].
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:xone (
     [
       sh:property [
@@ -321,19 +319,17 @@ ex:JS_id a sh:NodeShape;
       sh:and (
         ex:optionsDefinition_shape
         ex:overridesDefinition_shape
-      );
-    ]
+      );    ]
     [
       sh:property [
         sh:datatype xsd:string;
       ];
     ]
   );
-
 ex:overrides1_Shape a sh:NodeShape;
-  sh:targetClass :overrides1;
+  sh:targetClass ex:overrides1;
   sh:property [
-    sh:path :files;
+    sh:path ex:files;
     sh:xone (
       [
         sh:property [
@@ -345,21 +341,20 @@ ex:overrides1_Shape a sh:NodeShape;
           sh:path ex:oneOf;
           sh:node dash:ListShape;
           sh:property [
-            sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+            sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
             sh:datatype xsd:string;
           ];
         ];
       ]
       [
         sh:property [
-          sh:path :items;
+          sh:path ex:items;
           sh:datatype xsd:string;
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path :excludeFiles;
+    sh:path ex:excludeFiles;
     sh:xone (
       [
         sh:property [
@@ -371,30 +366,25 @@ ex:overrides1_Shape a sh:NodeShape;
           sh:path ex:oneOf;
           sh:node dash:ListShape;
           sh:property [
-            sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+            sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
             sh:datatype xsd:string;
           ];
         ];
       ]
       [
         sh:property [
-          sh:path :items;
+          sh:path ex:items;
           sh:datatype xsd:string;
         ];
       ]
-    );
-  ];
+    );  ];
   sh:property [
-    sh:path options;
+    sh:path ex:options;
     sh:node ex:options_Shape;
-  ];
+  ].
 
 ex:obj1_Shape a sh:NodeShape;
-  sh:targetClass :obj1;
-  sh:and (
-    ex:optionsDefinition_shape
-    ex:overridesDefinition_shape
-  );
+  sh:targetClass ex:obj1.
 
 ex:options_Shape a sh:NodeShape;
-  sh:targetClass :options;
+  sh:targetClass ex:options.

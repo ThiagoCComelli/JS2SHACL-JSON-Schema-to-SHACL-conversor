@@ -1,31 +1,36 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
 
-ex:JS_id a sh:NodeShape;
-  sh:targetClass :JS_id;
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
   sh:property [
-    sh:path :version;
+    sh:path ex:version;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path :npmClient;
+    sh:path ex:npmClient;
     sh:datatype xsd:string;
   ];
   sh:property [
     sh:path ex:npmClientArgs;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path :useWorkspaces;
+    sh:path ex:useWorkspaces;
     sh:datatype xsd:boolean;
   ];
   sh:property [
     sh:path ex:workspaces;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -33,7 +38,7 @@ ex:JS_id a sh:NodeShape;
     sh:path ex:packages;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
@@ -41,73 +46,73 @@ ex:JS_id a sh:NodeShape;
     sh:path ex:ignoreChanges;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
   ];
   sh:property [
-    sh:path command;
+    sh:path ex:command;
     sh:node ex:command_Shape;
-  ];
+  ].
 
 ex:command_Shape a sh:NodeShape;
-  sh:targetClass :command;
+  sh:targetClass ex:command;
   sh:property [
-    sh:path publish;
+    sh:path ex:publish;
     sh:node ex:publish_Shape;
   ];
   sh:property [
-    sh:path bootstrap;
+    sh:path ex:bootstrap;
     sh:node ex:bootstrap_Shape;
   ];
   sh:property [
-    sh:path init;
+    sh:path ex:init;
     sh:node ex:init_Shape;
   ];
   sh:property [
-    sh:path run;
+    sh:path ex:run;
     sh:node ex:run_Shape;
   ];
   sh:property [
-    sh:path version;
+    sh:path ex:version;
     sh:node ex:version_Shape;
-  ];
+  ].
 
 ex:publish_Shape a sh:NodeShape;
-  sh:targetClass :publish;
+  sh:targetClass ex:publish;
   sh:property [
-    sh:path :message;
+    sh:path ex:message;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:bootstrap_Shape a sh:NodeShape;
-  sh:targetClass :bootstrap;
+  sh:targetClass ex:bootstrap;
   sh:property [
     sh:path ex:npmClientArgs;
     sh:node dash:ListShape;
     sh:property [
-      sh:path ([sh:zeroOrMorePath redf:rest] ref:first);
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
       sh:datatype xsd:string;
     ];
-  ];
+  ].
 
 ex:init_Shape a sh:NodeShape;
-  sh:targetClass :init;
+  sh:targetClass ex:init;
   sh:property [
-    sh:path :exact;
+    sh:path ex:exact;
     sh:datatype xsd:boolean;
-  ];
+  ].
 
 ex:run_Shape a sh:NodeShape;
-  sh:targetClass :run;
+  sh:targetClass ex:run;
   sh:property [
-    sh:path :npmClient;
+    sh:path ex:npmClient;
     sh:datatype xsd:string;
-  ];
+  ].
 
 ex:version_Shape a sh:NodeShape;
-  sh:targetClass :version;
+  sh:targetClass ex:version;
   sh:property [
-    sh:path :message;
+    sh:path ex:message;
     sh:datatype xsd:string;
-  ];
+  ].

@@ -55,14 +55,14 @@ function writeFile(_name,cont){
     
   })
 
-  var log = 'Elements ignored!\n\n'
-
+  var log = `${cont.elements.length} Warnings (Elements ignored!)\n\n`
+  
   for(var i in cont.elements){
-    log += 'Element: ' + cont.elements[i].element
+    log += 'Key: ' + cont.elements[i].element
     if(cont.elements[i].primitive){
       log += ' => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!'
     }
-    log += `\nSchema: ${cont.elements[i].schema}\n\n`
+    log += `\nElement: ${cont.elements[i].schema}\n\n`
     
   }
 
@@ -146,8 +146,8 @@ function readRepository(){
 
 function readSingleFile(name){
   t0 = performance.now()
-  
-  fs.readFile(dirInputName['location'] + '/' + name,'utf8',(err,contents)=>{
+  console.log(dirInputName['location'])
+  fs.readFile("/home/thiago/Documents/SHACL-Conversor/inputSchemas" + '/' + name,'utf8',(err,contents)=>{
     try{
       var cont = JSON.parse(contents)
     } catch {

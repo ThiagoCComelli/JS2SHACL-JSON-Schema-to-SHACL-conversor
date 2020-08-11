@@ -1,17 +1,17 @@
-Elements ignored!
+5 Warnings (Elements ignored!)
 
-Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Schema: {"type":"string","description":"The name of the vegetable."}
+Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"description": "The name of the vegetable."}
 
-Element: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Schema: {"type":"boolean","description":"Do I like this vegetable?"}
+Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"description": "Do I like this vegetable?"}
 
-Element: $id
-Schema: {"$id":"https://example.com/arrays.schema.json","$schema":"http://json-schema.org/draft-07/schema#","description":"A representation of a person, company, organization, or place","type":"object","properties":{"fruits":{"type":"array"},"vegetables":{"type":"array","items":{"type":"string"}},"another":{"type":"array","items":[{"type":"string"},{"type":"object","properties":{"ola":{"type":"string"},"aqui":{"type":"object"}}}]}},"definitions":{"veggie":{"type":"object","required":["veggieName","veggieLike"],"properties":{"veggieName":{"type":"string","description":"The name of the vegetable."},"veggieLike":{"type":"boolean","description":"Do I like this vegetable?"}}}}}
+Key: $id
+Element: {"$id": "https://example.com/arrays.schema.json"}
 
-Element: $schema
-Schema: {"$id":"https://example.com/arrays.schema.json","$schema":"http://json-schema.org/draft-07/schema#","description":"A representation of a person, company, organization, or place","type":"object","properties":{"fruits":{"type":"array"},"vegetables":{"type":"array","items":{"type":"string"}},"another":{"type":"array","items":[{"type":"string"},{"type":"object","properties":{"ola":{"type":"string"},"aqui":{"type":"object"}}}]}},"definitions":{"veggie":{"type":"object","required":["veggieName","veggieLike"],"properties":{"veggieName":{"type":"string","description":"The name of the vegetable."},"veggieLike":{"type":"boolean","description":"Do I like this vegetable?"}}}}}
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
 
-Element: description
-Schema: {"$id":"https://example.com/arrays.schema.json","$schema":"http://json-schema.org/draft-07/schema#","description":"A representation of a person, company, organization, or place","type":"object","properties":{"fruits":{"type":"array"},"vegetables":{"type":"array","items":{"type":"string"}},"another":{"type":"array","items":[{"type":"string"},{"type":"object","properties":{"ola":{"type":"string"},"aqui":{"type":"object"}}}]}},"definitions":{"veggie":{"type":"object","required":["veggieName","veggieLike"],"properties":{"veggieName":{"type":"string","description":"The name of the vegetable."},"veggieLike":{"type":"boolean","description":"Do I like this vegetable?"}}}}}
+Key: description
+Element: {"description": "A representation of a person, company, organization, or place"}
 
