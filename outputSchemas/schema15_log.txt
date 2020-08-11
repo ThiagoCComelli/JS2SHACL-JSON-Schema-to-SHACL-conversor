@@ -1,4 +1,4 @@
-41 Warnings (Elements ignored!)
+39 Warnings (Elements ignored!)
 
 Key: $id
 Element: {"$id": "#directPosition"}
@@ -38,9 +38,6 @@ Element: {"id": "#geometryCollection"}
 
 Key: id
 Element: {"id": "#feature"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "teste aqui para tentar"}
 
 Key: 0 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"0": "i"}
@@ -110,9 +107,6 @@ Element: {"3": "l"}
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
-
-Key: title
-Element: {"title": "Public services from Porto Alegre, RS, Brazil."}
 
 Key: minItems
 Element: {"minItems": 4}
