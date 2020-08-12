@@ -78,6 +78,7 @@ ex:children_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:firstName;
     sh:datatype xsd:string;
+    sh:description "The person's first name.";
   ];
   sh:property [
     sh:path ex:lastName;
@@ -86,5 +87,6 @@ ex:children_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:age;
     sh:datatype xsd:integer;
+    sh:description "Age in years which must be equal to or greater than zero.";
     sh:minInclusive 0;
   ].

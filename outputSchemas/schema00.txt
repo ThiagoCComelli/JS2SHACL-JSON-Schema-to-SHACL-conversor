@@ -9,11 +9,13 @@ ex:veggie_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:veggieName;
     sh:datatype xsd:string;
+    sh:description "The name of the vegetable.";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:veggieLike;
     sh:datatype xsd:boolean;
+    sh:description "Do I like this vegetable?";
     sh:minCount 1;
   ].
 

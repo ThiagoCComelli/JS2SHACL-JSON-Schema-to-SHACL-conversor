@@ -14,6 +14,7 @@ ex:sdk_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:version;
     sh:datatype xsd:string;
+    sh:description "The version of the SDK to use.";
   ];
   sh:property [
     sh:path ex:allowPrerelease;
@@ -22,5 +23,7 @@ ex:sdk_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:rollForward;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 ex:5 ex:6 ex:7 ex:8 );
+    sh:in (""0" "1" "2" "3" "4" "5" "6" "7" "8" ");
+    sh:defaultValue disable;
+    sh:description "The roll-forward policy when selecting an SDK version, either as a fallback to accommodate missing a specific SDK version or as a directive to use a later version.";
   ].

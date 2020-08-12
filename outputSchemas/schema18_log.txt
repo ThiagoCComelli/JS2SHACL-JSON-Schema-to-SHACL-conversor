@@ -1,4 +1,4 @@
-37 Warnings (Elements ignored!)
+24 Warnings (Elements ignored!)
 
 Key: minItems
 Element: {"minItems": 1}
@@ -9,26 +9,14 @@ Element: {"minItems": 1}
 Key: uniqueItems
 Element: {"uniqueItems": true}
 
-Key: default
-Element: {"default": []}
-
 Key: uniqueItems
 Element: {"uniqueItems": true}
-
-Key: default
-Element: {"default": []}
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
 
 Key: $id
 Element: {"$id": "http://json-schema.org/draft-07/schema#"}
-
-Key: title
-Element: {"title": "Core schema meta-schema"}
-
-Key: default
-Element: {"default": true}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri-reference"}
@@ -39,38 +27,20 @@ Element: {"format": "uri"}
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri-reference"}
 
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "regex"}
 
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
 Key: additionalProperties
 Element: {"additionalProperties": {"$ref":"#"}}
 
-Key: default
-Element: {"default": {}}
-
 Key: additionalProperties
 Element: {"additionalProperties": {"$ref":"#"}}
-
-Key: default
-Element: {"default": {}}
 
 Key: additionalProperties
 Element: {"additionalProperties": {"$ref":"#"}}
 
 Key: propertyNames
 Element: {"propertyNames": {"format":"regex"}}
-
-Key: default
-Element: {"default": {}}
 
 Key: additionalProperties
 Element: {"additionalProperties": {"anyOf":[{"$ref":"#"},{"$ref":"#/definitions/stringArray"}]}}
@@ -90,23 +60,14 @@ Element: {"uniqueItems": true}
 Key: additionalProperties
 Element: {"additionalProperties": {"$ref":"#"}}
 
-Key: default
-Element: {"default": {}}
-
 Key: additionalProperties
 Element: {"additionalProperties": {"$ref":"#"}}
-
-Key: default
-Element: {"default": {}}
 
 Key: additionalProperties
 Element: {"additionalProperties": {"$ref":"#"}}
 
 Key: propertyNames
 Element: {"propertyNames": {"format":"regex"}}
-
-Key: default
-Element: {"default": {}}
 
 Key: additionalProperties
 Element: {"additionalProperties": {"anyOf":[{"$ref":"#"},{"$ref":"#/definitions/stringArray"}]}}

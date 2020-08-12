@@ -9,10 +9,12 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:version;
     sh:datatype xsd:string;
+    sh:description "The current version of the repository (or independent).";
   ];
   sh:property [
     sh:path ex:npmClient;
     sh:datatype xsd:string;
+    sh:description "Specify which client to run commands with (change to "yarn" to run commands with yarn. Defaults to "npm".";
   ];
   sh:property [
     sh:path ex:npmClientArgs;
@@ -25,6 +27,7 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:useWorkspaces;
     sh:datatype xsd:boolean;
+    sh:description "Enable workspaces integration when using Yarn.";
   ];
   sh:property [
     sh:path ex:workspaces;
@@ -81,12 +84,21 @@ ex:command_Shape a sh:NodeShape;
 ex:publish_Shape a sh:NodeShape;
   sh:targetClass ex:publish;
   sh:property [
+    sh:path ex:ignoreChanges;
+    sh:in ("An array of globs that won't be included in "lerna changed/publish". Use this to prevent publishing of a new version unnecessarily for changes, such as fixing a README.md typo.");
+  ];
+  sh:property [
     sh:path ex:message;
     sh:datatype xsd:string;
+    sh:description "A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information.";
   ].
 
 ex:bootstrap_Shape a sh:NodeShape;
   sh:targetClass ex:bootstrap;
+  sh:property [
+    sh:path ex:ignore;
+    sh:in ("An array of globs that won't be bootstrapped when running "lerna bootstrap" command.");
+  ];
   sh:property [
     sh:path ex:npmClientArgs;
     sh:node dash:ListShape;
@@ -101,6 +113,7 @@ ex:init_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:exact;
     sh:datatype xsd:boolean;
+    sh:description "Use lerna 1.x behavior of "exact" comparison. It will enforce the exact match for all subsequent executions.";
   ].
 
 ex:run_Shape a sh:NodeShape;
@@ -108,11 +121,17 @@ ex:run_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:npmClient;
     sh:datatype xsd:string;
+    sh:description "Which npm client should be used when running package scripts.";
   ].
 
 ex:version_Shape a sh:NodeShape;
   sh:targetClass ex:version;
   sh:property [
+    sh:path ex:allowBranch;
+    sh:in ("A whitelist of globs that match git branches where "lerna version" is enabled.");
+  ];
+  sh:property [
     sh:path ex:message;
     sh:datatype xsd:string;
+    sh:description "A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information.";
   ].

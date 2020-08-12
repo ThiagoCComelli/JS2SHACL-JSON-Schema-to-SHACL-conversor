@@ -1,17 +1,8 @@
-5 Warnings (Elements ignored!)
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The name of the vegetable."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Do I like this vegetable?"}
+2 Warnings (Elements ignored!)
 
 Key: $id
 Element: {"$id": "https://example.com/arrays.schema.json"}
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
-
-Key: description
-Element: {"description": "A representation of a person, company, organization, or place"}
 

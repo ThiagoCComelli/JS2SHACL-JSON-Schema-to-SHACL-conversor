@@ -228,7 +228,7 @@ module.exports = {
                         }
 
                         local += addSpaces() + `sh:${constraints[item]} ("${str}");\n`
-                    } else if(item == 'pattern' || item == "description" || item == "title"){
+                    } else if(item == 'pattern' || item == "description" || item == "title" || (item == "default" && element.type == "string")){
                         local += addSpaces() + `sh:${constraints[item]} "${element[item]}";\n`
                     } else {
                         local += addSpaces() + `sh:${constraints[item]} ${element[item]};\n`

@@ -9,12 +9,14 @@ ex:coreConfiguration_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:language;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 );
+    sh:description "Describes which programming language the Core is written in";
+    sh:in (""0" ");
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:entryPoint;
     sh:datatype xsd:string;
+    sh:description "The entry point of the bounded context's Core.  A relative path to the folder";
   ].
 
 ex:interactionLayerConfiguration_Shape a sh:NodeShape;
@@ -22,23 +24,27 @@ ex:interactionLayerConfiguration_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:type;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 );
+    sh:description "The type of the interaction layer";
+    sh:in (""0" ");
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:language;
     sh:datatype xsd:string;
+    sh:description "The programming language of the interaction layer";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:entryPoint;
     sh:datatype xsd:string;
+    sh:description "The entry point of the interaction layer. A relative path to the folder";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:framework;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 );
+    sh:description "The framework of the interaction layer";
+    sh:in (""0" "1" ");
   ].
 
 ex:resourceTypeImplementationConfiguration_Shape a sh:NodeShape;
@@ -59,16 +65,19 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:application;
     sh:datatype xsd:string;
+    sh:description "The application id that represents the application that this bounded context is a part of";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:boundedContext;
     sh:datatype xsd:string;
+    sh:description "The bounded context id that represents this bounded context";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:boundedContextName;
     sh:datatype xsd:string;
+    sh:description "The bounded context name that represents the name of this bounded context";
     sh:minCount 1;
   ];
   sh:property [

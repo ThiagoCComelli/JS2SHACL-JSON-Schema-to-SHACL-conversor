@@ -34,7 +34,7 @@ ex:simpleTypes_Shape a sh:NodeShape;
   sh:targetClass ex:simpleTypes;
   sh:property [
     sh:path ex:false;
-    sh:in (ex:undefined);
+    sh:in ("undefined");
   ];
 
 ex:stringArray_Shape a sh:NodeShape;
@@ -77,10 +77,12 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:readOnly;
     sh:datatype xsd:boolean;
+    sh:defaultValue false;
   ];
   sh:property [
     sh:path ex:writeOnly;
     sh:datatype xsd:boolean;
+    sh:defaultValue false;
   ];
   sh:property [
     sh:path ex:examples;
@@ -134,6 +136,10 @@ ex:JS_id_Shape a sh:NodeShape;
       ex:schemaArray_shape
     );  ];
   sh:property [
+    sh:path ex:items;
+    sh:in ("true");
+  ];
+  sh:property [
     sh:path ex:maxItems;
     sh:node ex:nonNegativeInteger_Shape;
   ];
@@ -144,6 +150,7 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:uniqueItems;
     sh:datatype xsd:boolean;
+    sh:defaultValue false;
   ];
   sh:property [
     sh:path ex:contains;

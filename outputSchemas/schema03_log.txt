@@ -1,8 +1,5 @@
-2 Warnings (Elements ignored!)
+1 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-04/schema#"}
-
-Key: title
-Element: {"title": "Mozilla's contribute.json"}
 

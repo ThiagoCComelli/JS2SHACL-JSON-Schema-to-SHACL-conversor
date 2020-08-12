@@ -17,12 +17,12 @@ ex:platform_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:os;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 ex:5 ex:6 ex:7 );
+    sh:in (""0" "1" "2" "3" "4" "5" "6" "7" ");
   ];
   sh:property [
     sh:path ex:arсh;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 ex:2 ex:3 );
+    sh:in (""0" "1" "2" "3" ");
   ];
   sh:property [
     sh:path ex:variant;
@@ -147,7 +147,7 @@ ex:kind_signature_Shape a sh:NodeShape;
   sh:targetClass ex:kind_signature;
   sh:property [
     sh:path ex:kind;
-    sh:in (ex:signature);
+    sh:in ("signature");
   ];
   sh:property [
     sh:path ex:hmac;
@@ -161,7 +161,7 @@ ex:kind_secret_Shape a sh:NodeShape;
   sh:targetClass ex:kind_secret;
   sh:property [
     sh:path ex:kind;
-    sh:in (ex:secret);
+    sh:in ("secret");
   ];
   sh:property [
     sh:path ex:name;
@@ -182,7 +182,7 @@ ex:kind_pipeline_Shape a sh:NodeShape;
   sh:targetClass ex:kind_pipeline;
   sh:property [
     sh:path ex:kind;
-    sh:in (ex:pipeline);
+    sh:in ("pipeline");
   ];
   sh:property [
     sh:path ex:name;
@@ -191,7 +191,7 @@ ex:kind_pipeline_Shape a sh:NodeShape;
   ];
   sh:property [
     sh:path ex:type;
-    sh:in (ex:docker,kubernetes,ssh,exec,digitalocean,macstadium);
+    sh:in ("docker,kubernetes,ssh,exec,digitalocean,macstadium");
     sh:minCount 1;
   ];
   sh:property [
@@ -223,7 +223,7 @@ ex:pipeline_docker_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_docker;
   sh:property [
     sh:path ex:type;
-    sh:in (ex:docker);
+    sh:in ("docker");
   ];
   sh:property [
     sh:path ex:volumes;
@@ -250,7 +250,7 @@ ex:pipeline_kubernetes_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_kubernetes;
   sh:property [
     sh:path ex:type;
-    sh:in (ex:kubernetes);
+    sh:in ("kubernetes");
   ];
   sh:property [
     sh:path ex:metadata;
@@ -293,7 +293,7 @@ ex:pipeline_exec_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_exec;
   sh:property [
     sh:path ex:type;
-    sh:in (ex:exec);
+    sh:in ("exec");
   ];
   sh:property [
     sh:path ex:node;
@@ -304,14 +304,14 @@ ex:pipeline_ssh_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_ssh;
   sh:property [
     sh:path ex:type;
-    sh:in (ex:ssh);
+    sh:in ("ssh");
   ];
 
 ex:pipeline_digitalocean_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_digitalocean;
   sh:property [
     sh:path ex:type;
-    sh:in (ex:digitalocean);
+    sh:in ("digitalocean");
   ];
   sh:property [
     sh:path ex:token;
@@ -323,7 +323,7 @@ ex:pipeline_macstadium_Shape a sh:NodeShape;
   sh:targetClass ex:pipeline_macstadium;
   sh:property [
     sh:path ex:type;
-    sh:in (ex:macstadium);
+    sh:in ("macstadium");
   ];
 
 ex:step_Shape a sh:NodeShape;
@@ -336,7 +336,7 @@ ex:step_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:failure;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 );
+    sh:in (""0" "1" ");
   ];
   sh:property [
     sh:path ex:commands;
@@ -454,7 +454,7 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id;
   sh:property [
     sh:path ex:kind;
-    sh:in (ex:signature,secret,pipeline);
+    sh:in ("signature,secret,pipeline");
     sh:minCount 1;
   ];
 
@@ -517,7 +517,7 @@ ex:services1_Shape a sh:NodeShape;
   ];
   sh:property [
     sh:path ex:pull;
-    sh:in (ex:always);
+    sh:in ("always");
   ];
   sh:property [
     sh:path ex:volumes;
@@ -549,7 +549,7 @@ ex:clone_Shape a sh:NodeShape;
   ];
   sh:property [
     sh:path ex:disable;
-    sh:in (ex:true);
+    sh:in ("true");
   ];
 
 ex:obj3_Shape a sh:NodeShape;
@@ -566,7 +566,7 @@ ex:obj3_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:pull;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 ex:2 );
+    sh:in (""0" "1" "2" ");
   ];
   sh:property [
     sh:path ex:volumes;
@@ -591,7 +591,7 @@ ex:obj4_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:pull;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 ex:2 );
+    sh:in (""0" "1" "2" ");
   ];
   sh:property [
     sh:path ex:resources;

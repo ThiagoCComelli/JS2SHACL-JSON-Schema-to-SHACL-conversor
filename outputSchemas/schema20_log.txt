@@ -1,19 +1,10 @@
-29 Warnings (Elements ignored!)
+14 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema"}
 
 Key: $id
 Element: {"$id": "http://example.com/example.json"}
-
-Key: title
-Element: {"title": "The root schema"}
-
-Key: description
-Element: {"description": "The root schema comprises the entire JSON document."}
-
-Key: default
-Element: {"default": {}}
 
 Key: examples
 Element: {"examples": [{"nmProp":{"nmPropA":"JSON to SHACL","nmPropB":10}}]}
@@ -24,15 +15,6 @@ Element: {"additionalProperties": true}
 Key: $id
 Element: {"$id": "#/properties/nmProp"}
 
-Key: title
-Element: {"title": "The nmProp schema"}
-
-Key: description
-Element: {"description": "An explanation about the purpose of this instance."}
-
-Key: default
-Element: {"default": {}}
-
 Key: examples
 Element: {"examples": [{"nmPropA":"JSON to SHACL","nmPropB":10}]}
 
@@ -41,15 +23,6 @@ Element: {"additionalProperties": true}
 
 Key: $id
 Element: {"$id": "#/properties/nmProp"}
-
-Key: title
-Element: {"title": "The nmProp schema"}
-
-Key: description
-Element: {"description": "An explanation about the purpose of this instance."}
-
-Key: default
-Element: {"default": {}}
 
 Key: examples
 Element: {"examples": [{"nmPropA":"JSON to SHACL","nmPropB":10}]}
@@ -60,29 +33,11 @@ Element: {"additionalProperties": true}
 Key: $id => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"$id": "#/properties/nmProp/properties/nmPropA"}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "The nmPropA schema"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "An explanation about the purpose of this instance."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": ""}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["JSON to SHACL"]}
 
 Key: $id => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"$id": "#/properties/nmProp/properties/nmPropB"}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "The nmPropB schema"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "An explanation about the purpose of this instance."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 0}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": [10]}

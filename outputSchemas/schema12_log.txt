@@ -1,442 +1,70 @@
-147 Warnings (Elements ignored!)
-
-Key: title
-Element: {"title": "JSON schema for Apex Up configuration files"}
+23 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-06/schema#"}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Name of the project."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "A machine-friendly project name."}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["apex-site","apex-api","ping-app"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Description of the project."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "An optional project description."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["Marketing site","Public API"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Type of project."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The type of project."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": "server"}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["static"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "AWS profile."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "AWS credentials profile name, these are stored in ~/.aws/credentials."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["apex-prod","apex-dev","personal"]}
 
-Key: description
-Element: {"description": "List of target AWS regions for deployment."}
-
 Key: minItems
 Element: {"minItems": 1}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Enables S3 acceleration."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Enable S3 acceleration for faster uploads via the CloudFront CDN."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Enables active warming."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Active warming mitigates cold starts when enabled."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Active warming rate."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Active warming sends requests to your application at this interval."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": "15m"}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["5m","30m"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Active warming container count."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Number of concurrent containers to warm."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": "15"}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Memory."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Lambda memory size."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 512}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Build hook."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Hook command(s) to run."}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Clean hook."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Hook command(s) to run."}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Prebuild hook."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Hook command(s) to run."}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Postbuild hook."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Hook command(s) to run."}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Predeploy hook."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Hook command(s) to run."}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Postdeploy hook."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Hook command(s) to run."}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Directory path."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Path to directory from which assets are served."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": "."}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["public","./dist"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "URL prefix."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Optional URL path prefix."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["/public/","/static/"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Command."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Command run to start your application."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": "./server"}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["node app.js"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Request timeout."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Timeout in seconds per request."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 15}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Listen timeout."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Timeout in seconds Up will wait for your app to boot and listen on `PORT`."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 15}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Shutdown timeout."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Timeout in seconds Up will wait after sending a SIGINT to your server, before sending a SIGKILL."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 15}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Disable error pages."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Disable default error pages."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Directory path."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Path to directory from which error pages are served."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": "."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["public","./dist"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Enable CORS."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Enable Cross-Origin Resource Sharing."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Max Age."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "A number indicating how long (in seconds) the results of a preflight request can be cached."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 0}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Allow Credentials."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "A boolean indicating whether the request can include user credentials such as cookies, HTTP authentication or client side SSL certificates. Defaults to true."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": true}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Action Name."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Name of the action for reference from alert definitions."}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["slack","email.backend","text.frontend","text_frontend","email.tj","email tj","Text backend team"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Action Type."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Type of action to perform."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["email","sms"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Metric name."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Name of the metric."}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["http.count","http.latency","http.4xx","http.5xx"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Statistics name."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Name of statistic to perform."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["avg","sum"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Value Threshold."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Threshold which is compared to the operator."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 0}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Action Name."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Name of the action to perform."}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["email.backend","sms backend team"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Evaluation Periods."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Number of periods to evaluate over."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 1}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Operator."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Operator is the comparison operator."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": ">"}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Namespace."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Metric namespace."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["AWS/ApiGateway"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Description."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Informative alert description, displayed in the email, sms, or slack."}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["Huge traffic spike"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Disable."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Disable the alert."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Domain name."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Domain hostname for the stage."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": ""}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["gh-polls.com","api.gh-polls.com"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Domain name."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Domain hostname for the stage."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": ""}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["stage.gh-polls.com","gh-polls-staging.com"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Domain name."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Domain hostname for the stage."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": ""}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["dev.gh-polls.com"]}
 
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Minimum delay."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Minimum time in milliseconds before retrying."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 500}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Max delay."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Maximum time in milliseconds before retrying."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 1500}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Factor."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Factor applied to each attempt."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 1.5}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Retry attempts."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Attempts made before failing."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 5}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Jitter."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Apply jitter."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Support email."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Support email for contact link."}
-
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["support@apex.sh"]}
-
-Key: title => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"title": "Color."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Theme color."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["#228ae6"]}

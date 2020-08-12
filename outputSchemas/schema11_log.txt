@@ -1,112 +1,7 @@
-57 Warnings (Elements ignored!)
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Print spaces between brackets."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Print (to stderr) where a cursor at the given position would move to after formatting.\nThis option cannot be used with --range-start and --range-end."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": -1}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Specify the input filepath. This will be used to do parser inference."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Insert @format pragma into file's first docblock comment."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Put > on the last line instead of at a new line."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Use single quotes in JSX."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: description
-Element: {"description": "Custom directory that contains prettier plugins in node_modules subdirectory.\nOverrides default behavior when plugins are searched relatively to the location of Prettier.\nMultiple values are accepted."}
-
-Key: default
-Element: {"default": []}
-
-Key: description
-Element: {"description": "Add a plugin. Multiple plugins can be passed as separate `--plugin`s."}
-
-Key: default
-Element: {"default": []}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The line length where Prettier will try wrap."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 80}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Format code ending at a given character offset (exclusive).\nThe range will extend forwards to the end of the selected statement.\nThis option cannot be used with --cursor-offset."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": null}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Format code starting at a given character offset.\nThe range will extend backwards to the start of the first line containing the selected statement.\nThis option cannot be used with --cursor-offset."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 0}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Require either '@prettier' or '@format' to be present in the file's first docblock comment\nin order for it to be formatted."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Print semicolons."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Use single quotes instead of double quotes."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Number of spaces per indentation level."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": 2}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Indent with tabs instead of spaces."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Indent script and style tags in Vue files."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": false}
-
-Key: description
-Element: {"description": "Provide a list of patterns to override prettier configuration."}
+20 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-04/schema#"}
-
-Key: title
-Element: {"title": "Schema for .prettierrc"}
 
 Key: 0 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"0": "s"}
@@ -164,10 +59,4 @@ Element: {"4": "n"}
 
 Key: 5 => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"5": "g"}
-
-Key: description
-Element: {"description": "The options to apply for this override."}
-
-Key: description
-Element: {"description": "The options to apply for this override."}
 

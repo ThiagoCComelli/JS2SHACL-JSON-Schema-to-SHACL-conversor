@@ -1,10 +1,4 @@
-117 Warnings (Elements ignored!)
-
-Key: description
-Element: {"description": "e.g. 2014-06-29"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. 2014-06-29"}
+48 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-04/schema#"}
@@ -12,12 +6,6 @@ Element: {"$schema": "http://json-schema.org/draft-04/schema#"}
 Key: additionalProperties
 Element: {"additionalProperties": false}
 
-Key: title
-Element: {"title": "Resume Schema"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "link to the version of the schema that can validate the resume"}
-
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}
 
@@ -33,26 +21,11 @@ Element: {"additionalItems": false}
 Key: additionalItems
 Element: {"additionalItems": false}
 
-Key: description
-Element: {"description": "Specify any awards you have received throughout your professional career"}
-
 Key: additionalItems
 Element: {"additionalItems": false}
 
-Key: description
-Element: {"description": "Specify your publications through your career"}
-
 Key: additionalItems
 Element: {"additionalItems": false}
-
-Key: description
-Element: {"description": "List out your professional skill-set"}
-
-Key: additionalItems
-Element: {"additionalItems": false}
-
-Key: description
-Element: {"description": "List any other languages you speak"}
 
 Key: additionalItems
 Element: {"additionalItems": false}
@@ -60,137 +33,71 @@ Element: {"additionalItems": false}
 Key: additionalItems
 Element: {"additionalItems": false}
 
-Key: description
-Element: {"description": "List references you have received"}
+Key: additionalItems
+Element: {"additionalItems": false}
 
 Key: additionalItems
 Element: {"additionalItems": false}
 
-Key: description
-Element: {"description": "Specify career projects"}
-
 Key: additionalItems
 Element: {"additionalItems": false}
-
-Key: description
-Element: {"description": "The schema version and any other tooling configuration lives here"}
 
 Key: additionalProperties
 Element: {"additionalProperties": true}
 
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Web Developer"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "URL (as per RFC 3986) to a image in JPEG or PNG format"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. thomas@gmail.com"}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "email"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Phone numbers are stored as strings so use any format you like, e.g. 712-117-2923"}
+Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"format": "uri"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "URL (as per RFC 3986) to your website, e.g. personal homepage"}
+Key: additionalProperties
+Element: {"additionalProperties": true}
+
+Key: additionalItems
+Element: {"additionalItems": false}
+
+Key: additionalProperties
+Element: {"additionalProperties": true}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Write a short 2-3 sentence biography about yourself"}
-
-Key: additionalProperties
-Element: {"additionalProperties": true}
-
-Key: description
-Element: {"description": "Specify any number of social networks that you participate in"}
-
 Key: additionalItems
 Element: {"additionalItems": false}
 
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Facebook"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Menlo Park, CA"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Social Media Company"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Software Engineer"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. http://facebook.example.com"}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Give an overview of your responsibilities at the company"}
-
-Key: description
-Element: {"description": "Specify multiple accomplishments"}
-
 Key: additionalItems
 Element: {"additionalItems": false}
 
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Facebook"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Software Engineer"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. http://facebook.example.com"}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Give an overview of your responsibilities at the company"}
-
-Key: description
-Element: {"description": "Specify accomplishments and achievements"}
-
 Key: additionalItems
 Element: {"additionalItems": false}
 
 Key: additionalProperties
 Element: {"additionalProperties": true}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Massachusetts Institute of Technology"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. http://facebook.example.com"}
+Key: additionalProperties
+Element: {"additionalProperties": true}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Arts"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Bachelor"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "grade point average, e.g. 3.67/4.0"}
-
-Key: description
-Element: {"description": "List notable courses/subjects"}
+Key: additionalProperties
+Element: {"additionalProperties": true}
 
 Key: additionalItems
 Element: {"additionalItems": false}
@@ -198,44 +105,8 @@ Element: {"additionalItems": false}
 Key: additionalProperties
 Element: {"additionalProperties": true}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. One of the 100 greatest minds of the century"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Time Magazine"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Received for my work with Quantum Physics"}
-
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. The World Wide Web"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. IEEE, Computer Magazine"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html"}
-
-Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"format": "uri"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Short summary of publication. e.g. Discussion of the World Wide Web, HTTP, HTML."}
-
-Key: additionalProperties
-Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Web Development"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Master"}
-
-Key: description
-Element: {"description": "List some keywords pertaining to this skill"}
 
 Key: additionalItems
 Element: {"additionalItems": false}
@@ -243,47 +114,11 @@ Element: {"additionalItems": false}
 Key: additionalProperties
 Element: {"additionalProperties": true}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. English, Spanish"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Fluent, Beginner"}
-
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Philosophy"}
 
 Key: additionalItems
 Element: {"additionalItems": false}
-
-Key: additionalProperties
-Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Timothy Cook"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Joe blogs was a great employee, who turned up to work at least once a week. He exceeded my expectations when it came to doing nothing."}
-
-Key: additionalProperties
-Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. The World Wide Web"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Short summary of project. e.g. Collated works of 2017."}
-
-Key: description
-Element: {"description": "Specify multiple features"}
-
-Key: additionalItems
-Element: {"additionalItems": false}
-
-Key: description
-Element: {"description": "Specify special elements involved"}
 
 Key: additionalItems
 Element: {"additionalItems": false}
@@ -291,62 +126,20 @@ Element: {"additionalItems": false}
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html"}
-
-Key: description
-Element: {"description": "Specify your role on this project or in company"}
-
 Key: additionalItems
 Element: {"additionalItems": false}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Specify the relevant company/entity affiliations e.g. 'greenpeace', 'corporationXYZ'"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": " e.g. 'volunteering', 'presentation', 'talk', 'application', 'conference'"}
-
-Key: description
-Element: {"description": "The schema version and any other tooling configuration lives here"}
-
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "URL (as per RFC 3986) to latest version of this document"}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "A version field which follows semver - e.g. v1.0.0"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Using ISO 8601 with YYYY-MM-DDThh:mm:ss"}
-
 Key: additionalProperties
 Element: {"additionalProperties": true}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "To add multiple address lines, use \n. For example, 1234 Glücklichkeit Straße\nHinterhaus 5. Etage li."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "code as per ISO-3166-1 ALPHA-2, e.g. US, AU, IN"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The general region where you live. Can be a US state, or a province, for instance."}
-
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. Facebook or Twitter"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. neutralthoughts"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "e.g. http://twitter.example.com/neutralthoughts"}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri"}

@@ -1,26 +1,8 @@
-8 Warnings (Elements ignored!)
-
-Key: title
-Element: {"title": "JSON schema for the ASP.NET global configuration files"}
+2 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-04/schema#"}
 
 Key: additionalProperties
 Element: {"additionalProperties": true}
-
-Key: description
-Element: {"description": "Specify information about the SDK."}
-
-Key: description
-Element: {"description": "Specify information about the SDK."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The version of the SDK to use."}
-
-Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"default": "disable"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The roll-forward policy when selecting an SDK version, either as a fallback to accommodate missing a specific SDK version or as a directive to use a later version."}
 

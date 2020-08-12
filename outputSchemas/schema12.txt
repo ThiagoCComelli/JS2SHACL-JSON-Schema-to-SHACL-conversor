@@ -9,20 +9,29 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
+    sh:name "Name of the project.";
+    sh:description "A machine-friendly project name.";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:description;
     sh:datatype xsd:string;
+    sh:name "Description of the project.";
+    sh:description "An optional project description.";
   ];
   sh:property [
     sh:path ex:type;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 );
+    sh:name "Type of project.";
+    sh:description "The type of project.";
+    sh:defaultValue server;
+    sh:in (""0" "1" ");
   ];
   sh:property [
     sh:path ex:profile;
     sh:datatype xsd:string;
+    sh:name "AWS profile.";
+    sh:description "AWS credentials profile name, these are stored in ~/.aws/credentials.";
   ];
   sh:property [
     sh:path ex:regions;
@@ -102,23 +111,38 @@ ex:lambda_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:accelerate;
     sh:datatype xsd:boolean;
+    sh:name "Enables S3 acceleration.";
+    sh:description "Enable S3 acceleration for faster uploads via the CloudFront CDN.";
+    sh:defaultValue false;
   ];
   sh:property [
     sh:path ex:warm;
     sh:datatype xsd:boolean;
+    sh:name "Enables active warming.";
+    sh:description "Active warming mitigates cold starts when enabled.";
+    sh:defaultValue false;
   ];
   sh:property [
     sh:path ex:warm_rate;
     sh:datatype xsd:string;
+    sh:name "Active warming rate.";
+    sh:description "Active warming sends requests to your application at this interval.";
+    sh:defaultValue 15m;
   ];
   sh:property [
     sh:path ex:warm_count;
     sh:datatype xsd:integer;
+    sh:name "Active warming container count.";
+    sh:description "Number of concurrent containers to warm.";
+    sh:defaultValue 15;
   ];
   sh:property [
     sh:path ex:memory;
     sh:datatype xsd:integer;
-    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 ex:5 ex:6 ex:7 ex:8 ex:9 ex:10 ex:11 ex:12 ex:13 ex:14 ex:15 ex:16 ex:17 ex:18 ex:19 ex:20 ex:21 ex:22 ex:23 ex:24 ex:25 ex:26 ex:27 ex:28 ex:29 ex:30 ex:31 ex:32 ex:33 ex:34 ex:35 ex:36 ex:37 ex:38 ex:39 ex:40 ex:41 ex:42 ex:43 ex:44 ex:45 );
+    sh:name "Memory.";
+    sh:description "Lambda memory size.";
+    sh:defaultValue 512;
+    sh:in (""0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31" "32" "33" "34" "35" "36" "37" "38" "39" "40" "41" "42" "43" "44" "45" ");
   ].
 
 ex:stages_Shape a sh:NodeShape;
@@ -141,26 +165,38 @@ ex:hooks_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:build;
     sh:datatype xsd:string;
+    sh:name "Build hook.";
+    sh:description "Hook command(s) to run.";
   ];
   sh:property [
     sh:path ex:clean;
     sh:datatype xsd:string;
+    sh:name "Clean hook.";
+    sh:description "Hook command(s) to run.";
   ];
   sh:property [
     sh:path ex:prebuild;
     sh:datatype xsd:string;
+    sh:name "Prebuild hook.";
+    sh:description "Hook command(s) to run.";
   ];
   sh:property [
     sh:path ex:postbuild;
     sh:datatype xsd:string;
+    sh:name "Postbuild hook.";
+    sh:description "Hook command(s) to run.";
   ];
   sh:property [
     sh:path ex:predeploy;
     sh:datatype xsd:string;
+    sh:name "Predeploy hook.";
+    sh:description "Hook command(s) to run.";
   ];
   sh:property [
     sh:path ex:postdeploy;
     sh:datatype xsd:string;
+    sh:name "Postdeploy hook.";
+    sh:description "Hook command(s) to run.";
   ].
 
 ex:static_Shape a sh:NodeShape;
@@ -168,10 +204,15 @@ ex:static_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:dir;
     sh:datatype xsd:string;
+    sh:name "Directory path.";
+    sh:description "Path to directory from which assets are served.";
+    sh:defaultValue .;
   ];
   sh:property [
     sh:path ex:prefix;
     sh:datatype xsd:string;
+    sh:name "URL prefix.";
+    sh:description "Optional URL path prefix.";
   ].
 
 ex:proxy_Shape a sh:NodeShape;
@@ -179,18 +220,30 @@ ex:proxy_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:command;
     sh:datatype xsd:string;
+    sh:name "Command.";
+    sh:description "Command run to start your application.";
+    sh:defaultValue ./server;
   ];
   sh:property [
     sh:path ex:timeout;
     sh:datatype xsd:integer;
+    sh:name "Request timeout.";
+    sh:description "Timeout in seconds per request.";
+    sh:defaultValue 15;
   ];
   sh:property [
     sh:path ex:listen_timeout;
     sh:datatype xsd:integer;
+    sh:name "Listen timeout.";
+    sh:description "Timeout in seconds Up will wait for your app to boot and listen on `PORT`.";
+    sh:defaultValue 15;
   ];
   sh:property [
     sh:path ex:shutdown_timeout;
     sh:datatype xsd:integer;
+    sh:name "Shutdown timeout.";
+    sh:description "Timeout in seconds Up will wait after sending a SIGINT to your server, before sending a SIGKILL.";
+    sh:defaultValue 15;
   ];
   sh:property [
     sh:path ex:backoff;
@@ -211,10 +264,16 @@ ex:error_pages_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:disable;
     sh:datatype xsd:boolean;
+    sh:name "Disable error pages.";
+    sh:description "Disable default error pages.";
+    sh:defaultValue false;
   ];
   sh:property [
     sh:path ex:dir;
     sh:datatype xsd:string;
+    sh:name "Directory path.";
+    sh:description "Path to directory from which error pages are served.";
+    sh:defaultValue .;
   ];
   sh:property [
     sh:path ex:variables;
@@ -226,6 +285,9 @@ ex:cors_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:enable;
     sh:datatype xsd:boolean;
+    sh:name "Enable CORS.";
+    sh:description "Enable Cross-Origin Resource Sharing.";
+    sh:defaultValue false;
   ];
   sh:property [
     sh:path ex:allowed_origins;
@@ -262,10 +324,16 @@ ex:cors_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:max_age;
     sh:datatype xsd:integer;
+    sh:name "Max Age.";
+    sh:description "A number indicating how long (in seconds) the results of a preflight request can be cached.";
+    sh:defaultValue 0;
   ];
   sh:property [
     sh:path ex:allowed_credentials;
     sh:datatype xsd:boolean;
+    sh:name "Allow Credentials.";
+    sh:description "A boolean indicating whether the request can include user credentials such as cookies, HTTP authentication or client side SSL certificates. Defaults to true.";
+    sh:defaultValue true;
   ].
 
 ex:inject_Shape a sh:NodeShape;
@@ -279,11 +347,15 @@ ex:actions1_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
+    sh:name "Action Name.";
+    sh:description "Name of the action for reference from alert definitions.";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:type;
     sh:datatype xsd:string;
+    sh:name "Action Type.";
+    sh:description "Type of action to perform.";
     sh:minCount 1;
   ];
   sh:property [
@@ -308,44 +380,78 @@ ex:alerts1_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:metric;
     sh:datatype xsd:string;
+    sh:name "Metric name.";
+    sh:description "Name of the metric.";
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:statistic;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 ex:2 ex:3 ex:4 );
+    sh:name "Statistics name.";
+    sh:description "Name of statistic to perform.";
+    sh:in (""0" "1" "2" "3" "4" ");
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:threshold;
     sh:datatype xsd:integer;
+    sh:name "Value Threshold.";
+    sh:description "Threshold which is compared to the operator.";
+    sh:defaultValue 0;
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:action;
     sh:datatype xsd:string;
+    sh:name "Action Name.";
+    sh:description "Name of the action to perform.";
     sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:period;
+    sh:in ("Period.");
+  ];
+  sh:property [
+    sh:path ex:period;
+    sh:in ("Period is the alert query time-span.");
+  ];
+  sh:property [
+    sh:path ex:period;
+    sh:in ("1m");
   ];
   sh:property [
     sh:path ex:evaluation_periods;
     sh:datatype xsd:integer;
+    sh:name "Evaluation Periods.";
+    sh:description "Number of periods to evaluate over.";
+    sh:defaultValue 1;
   ];
   sh:property [
     sh:path ex:operator;
     sh:datatype xsd:string;
-    sh:in (ex:ex:0 ex:1 ex:2 ex:3 );
+    sh:name "Operator.";
+    sh:description "Operator is the comparison operator.";
+    sh:defaultValue >;
+    sh:in (""0" "1" "2" "3" ");
   ];
   sh:property [
     sh:path ex:namespace;
     sh:datatype xsd:string;
+    sh:name "Namespace.";
+    sh:description "Metric namespace.";
   ];
   sh:property [
     sh:path ex:description;
     sh:datatype xsd:string;
+    sh:name "Description.";
+    sh:description "Informative alert description, displayed in the email, sms, or slack.";
   ];
   sh:property [
     sh:path ex:disable;
     sh:datatype xsd:boolean;
+    sh:name "Disable.";
+    sh:description "Disable the alert.";
+    sh:defaultValue false;
   ].
 
 ex:production_Shape a sh:NodeShape;
@@ -353,6 +459,9 @@ ex:production_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:domain;
     sh:datatype xsd:string;
+    sh:name "Domain name.";
+    sh:description "Domain hostname for the stage.";
+    sh:defaultValue ;
   ].
 
 ex:staging_Shape a sh:NodeShape;
@@ -360,6 +469,9 @@ ex:staging_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:domain;
     sh:datatype xsd:string;
+    sh:name "Domain name.";
+    sh:description "Domain hostname for the stage.";
+    sh:defaultValue ;
   ].
 
 ex:development_Shape a sh:NodeShape;
@@ -367,6 +479,9 @@ ex:development_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:domain;
     sh:datatype xsd:string;
+    sh:name "Domain name.";
+    sh:description "Domain hostname for the stage.";
+    sh:defaultValue ;
   ].
 
 ex:backoff_Shape a sh:NodeShape;
@@ -374,22 +489,37 @@ ex:backoff_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:min;
     sh:datatype xsd:integer;
+    sh:name "Minimum delay.";
+    sh:description "Minimum time in milliseconds before retrying.";
+    sh:defaultValue 500;
   ];
   sh:property [
     sh:path ex:max;
     sh:datatype xsd:integer;
+    sh:name "Max delay.";
+    sh:description "Maximum time in milliseconds before retrying.";
+    sh:defaultValue 1500;
   ];
   sh:property [
     sh:path ex:factor;
     sh:datatype xsd:decimal;
+    sh:name "Factor.";
+    sh:description "Factor applied to each attempt.";
+    sh:defaultValue 1.5;
   ];
   sh:property [
     sh:path ex:attempts;
     sh:datatype xsd:integer;
+    sh:name "Retry attempts.";
+    sh:description "Attempts made before failing.";
+    sh:defaultValue 5;
   ];
   sh:property [
     sh:path ex:jitter;
     sh:datatype xsd:boolean;
+    sh:name "Jitter.";
+    sh:description "Apply jitter.";
+    sh:defaultValue false;
   ].
 
 ex:variables_Shape a sh:NodeShape;
@@ -397,8 +527,12 @@ ex:variables_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:support_email;
     sh:datatype xsd:string;
+    sh:name "Support email.";
+    sh:description "Support email for contact link.";
   ];
   sh:property [
     sh:path ex:color;
     sh:datatype xsd:string;
+    sh:name "Color.";
+    sh:description "Theme color.";
   ].

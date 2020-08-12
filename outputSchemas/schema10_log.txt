@@ -1,4 +1,4 @@
-26 Warnings (Elements ignored!)
+23 Warnings (Elements ignored!)
 
 Key: additionalProperties
 Element: {"additionalProperties": {"oneOf":[{"type":"string"},{"$ref":"#/definitions/secret"}]}}
@@ -12,12 +12,6 @@ Element: {"additionalProperties": false}
 Key: additionalProperties
 Element: {"additionalProperties": false}
 
-Key: description
-Element: {"description": "If specified, the pod's tolerations."}
-
-Key: description
-Element: {"description": "A list of node selector terms."}
-
 Key: additionalProperties
 Element: {"additionalProperties": false}
 
@@ -47,9 +41,6 @@ Element: {"additionalProperties": false}
 
 Key: additionalProperties
 Element: {"additionalProperties": false}
-
-Key: title
-Element: {"title": "Drone CI configuration file"}
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema#"}

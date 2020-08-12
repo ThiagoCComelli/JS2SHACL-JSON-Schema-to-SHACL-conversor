@@ -1,37 +1,16 @@
-24 Warnings (Elements ignored!)
-
-Key: description
-Element: {"description": "A configuration describing the Core of this bounded context"}
+8 Warnings (Elements ignored!)
 
 Key: $comment => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"$comment": "This schema definition allows only a set of core languages by hard coding it here in the enum property. Can probably be done better"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Describes which programming language the Core is written in"}
-
 Key: $comment => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"$comment": "This property is optional. The default value is \"Core\""}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The entry point of the bounded context's Core.  A relative path to the folder"}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri-reference"}
 
-Key: description
-Element: {"description": "The configuration of an interaction layer"}
-
 Key: $comment => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"$comment": "This schema definition allows only a set of types by hard coding it here in the enum property. Can probably be done better"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The type of the interaction layer"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The programming language of the interaction layer"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The entry point of the interaction layer. A relative path to the folder"}
 
 Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"format": "uri-reference"}
@@ -39,36 +18,9 @@ Element: {"format": "uri-reference"}
 Key: $comment => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"$comment": "This schema definition allows only a set of frameworks by hard coding it here in the enum property. Can probably be done better"}
 
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The framework of the interaction layer"}
-
-Key: description
-Element: {"description": "Resource type implementation configuration"}
-
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
 
 Key: $id
 Element: {"$id": "dolittle.io/schemas/Runtime/Applications.Configuration/bounded-context.json"}
-
-Key: title
-Element: {"title": "Bounded Context Configuration"}
-
-Key: description
-Element: {"description": "The bounded context configuration"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The application id that represents the application that this bounded context is a part of"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The bounded context id that represents this bounded context"}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The bounded context name that represents the name of this bounded context"}
-
-Key: description
-Element: {"description": "A map of describing the resource type implementation mapping of resource types"}
-
-Key: description
-Element: {"description": "A map of describing the resource type implementation mapping of resource types"}
 

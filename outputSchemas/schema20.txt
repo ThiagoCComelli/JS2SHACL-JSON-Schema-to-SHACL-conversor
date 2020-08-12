@@ -15,10 +15,16 @@ ex:nmProp_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:nmPropA;
     sh:datatype xsd:string;
+    sh:name "The nmPropA schema";
+    sh:description "An explanation about the purpose of this instance.";
+    sh:defaultValue ;
     sh:minCount 1;
   ];
   sh:property [
     sh:path ex:nmPropB;
     sh:datatype xsd:integer;
+    sh:name "The nmPropB schema";
+    sh:description "An explanation about the purpose of this instance.";
+    sh:defaultValue 0;
     sh:minCount 1;
   ].

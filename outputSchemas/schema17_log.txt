@@ -1,86 +1,8 @@
-28 Warnings (Elements ignored!)
+2 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
 
 Key: $id
 Element: {"$id": "http://json.schemastore.org/lerna"}
-
-Key: title
-Element: {"title": "A JSON schema for lerna.json files"}
-
-Key: description
-Element: {"description": "Lerna is a tool used in JavaScript monorepo projects. The lerna.json file is\nused to configure lerna to to best fit your project."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "The current version of the repository (or independent)."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Specify which client to run commands with (change to \"yarn\" to run commands with yarn. Defaults to \"npm\"."}
-
-Key: description
-Element: {"description": "Array of strings that will be passed as arguments to the npmClient."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Enable workspaces integration when using Yarn."}
-
-Key: description
-Element: {"description": "Array of globs to use a workspace locations."}
-
-Key: description
-Element: {"description": "Array of globs to use a package locations."}
-
-Key: description
-Element: {"description": "Array of globs of files to ignore when detecting changed packages."}
-
-Key: description
-Element: {"description": "Options for the CLI commands."}
-
-Key: description
-Element: {"description": "Options for the CLI commands."}
-
-Key: description
-Element: {"description": "Options for the publish command."}
-
-Key: description
-Element: {"description": "Options for the bootstrap command."}
-
-Key: description
-Element: {"description": "Options for the init command."}
-
-Key: description
-Element: {"description": "Options for the run command."}
-
-Key: description
-Element: {"description": "Options for the version command."}
-
-Key: description
-Element: {"description": "Options for the publish command."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information."}
-
-Key: description
-Element: {"description": "Options for the bootstrap command."}
-
-Key: description
-Element: {"description": "Array of strings that will be passed as arguments directly to \"npm install\" during the \"lerna bootstrap\" command."}
-
-Key: description
-Element: {"description": "Options for the init command."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Use lerna 1.x behavior of \"exact\" comparison. It will enforce the exact match for all subsequent executions."}
-
-Key: description
-Element: {"description": "Options for the run command."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "Which npm client should be used when running package scripts."}
-
-Key: description
-Element: {"description": "Options for the version command."}
-
-Key: description => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
-Element: {"description": "A custom commit message when performing version updates for publication. See https://github.com/lerna/lerna/tree/master/commands/version#--message-msg for more information."}
 

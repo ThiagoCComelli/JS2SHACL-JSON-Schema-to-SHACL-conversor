@@ -5,10 +5,8 @@
 ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id;
   sh:property [
-    sh:path ex:coordinates;
+    sh:path ex:firstName;
     sh:datatype xsd:string;
-    sh:name "The coordinates schema";
-    sh:description "An explanation about the purpose of this instance.";
-    sh:defaultValue ;
-    sh:minCount 1;
+    sh:description "The person's first name.";
+    sh:defaultValue "teste teste";
   ].
