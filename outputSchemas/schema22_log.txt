@@ -1,0 +1,65 @@
+21 Warnings (Elements ignored!)
+
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-07/schema"}
+
+Key: $id
+Element: {"$id": "http://example.com/example.json"}
+
+Key: examples
+Element: {"examples": [{"tupleValidationArray":[1,"two",{"name":"one","surname":"two"},[3,4,5]]}]}
+
+Key: additionalProperties
+Element: {"additionalProperties": true}
+
+Key: $id
+Element: {"$id": "#/properties/tupleValidationArray"}
+
+Key: examples
+Element: {"examples": [[1,"two"]]}
+
+Key: additionalItems
+Element: {"additionalItems": true}
+
+Key: examples
+Element: {"examples": [{"name":"one","surname":"two"}]}
+
+Key: additionalProperties
+Element: {"additionalProperties": true}
+
+Key: examples
+Element: {"examples": [[3,4]]}
+
+Key: additionalItems
+Element: {"additionalItems": true}
+
+Key: examples
+Element: {"examples": [{"name":"one","surname":"two"}]}
+
+Key: additionalProperties
+Element: {"additionalProperties": true}
+
+Key: $id => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"$id": "#/properties/additionalItems/items/anyOf/2/properties/name"}
+
+Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"examples": ["one"]}
+
+Key: $id => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"$id": "#/properties/additionalItems/items/anyOf/2/properties/surname"}
+
+Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"examples": ["two"]}
+
+Key: examples
+Element: {"examples": [[3,4]]}
+
+Key: additionalItems
+Element: {"additionalItems": true}
+
+Key: examples
+Element: {"examples": [[3,4]]}
+
+Key: additionalItems
+Element: {"additionalItems": true}
+

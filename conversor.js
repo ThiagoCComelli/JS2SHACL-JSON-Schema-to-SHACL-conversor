@@ -153,7 +153,15 @@ module.exports = {
                     if(index == 0){
                         local += addSpaces(1) + `sh:path rdf:first;\n`
                     } else {
-                        local += addSpaces(1) + `sh:path (rdf:rest rdf:first);\n`
+                        var str = '('
+
+                        for(var i = 0 ; i < index ; i++){
+                            str += 'rdf:rest '
+                        }
+
+                        str += 'rdf:first)'
+
+                        local += addSpaces(1) + `sh:path ${str};\n`
                     }
                     local += addSpaces() + `sh:datatype xsd:${dataTypes[element_.type]};\n` + addSpaces(-1) + '];\n'
                 } else {
@@ -161,12 +169,22 @@ module.exports = {
                     if(index == 0){
                         local += addSpaces(1) + `sh:path rdf:first;\n`
                     } else {
-                        local += addSpaces(1) + `sh:path (rdf:rest rdf:first);\n`
+                        var str = '('
+
+                        for(var i = 0 ; i < index ; i++){
+                            str += 'rdf:rest '
+                        }
+
+                        str += 'rdf:first)'
+
+                        local += addSpaces(1) + `sh:path ${str};\n`
                     }
 
-                    local += addSpaces() + `sh:node ex:${name}_Shape;\n` + addSpaces(-1) + '];\n'
+                    number++
+                    newNodes['obj'+number] = element_
 
-                    newNodes[name] = element_
+                    local += addSpaces() + `sh:node ex:obj${number}_Shape;\n` + addSpaces(-1) + '];\n'
+
                 }
                 if(element_ == element.items[element.items.length-1]){
                     local += addSpaces(-1) + ']'
