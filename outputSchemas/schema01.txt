@@ -5,30 +5,30 @@
 @prefix ex: <http://example.org/> .
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:p_name;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path rdf:first;
-      sh:datatype xsd:string;
-    ];
-    sh:property [
-      sh:path (rdf:rest rdf:first);
-      sh:node ex:p_name_Shape;
-    ];
-  ].
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:p_name;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path rdf:first;
+      sh:datatype xsd:string;
+    ];
+    sh:property [
+      sh:path (rdf:rest rdf:first);
+      sh:node ex:obj1_Shape;
+    ];
+  ].
 
-ex:p_name_Shape a sh:NodeShape;
-  sh:targetClass ex:p_name;
-  sh:property [
-    sh:path ex:p_nameA;
-    sh:datatype xsd:string;
-  ];
-  sh:property [
-    sh:path ex:p_nameB;
-    sh:node ex:p_nameB_Shape;
-  ].
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
+  sh:property [
+    sh:path ex:p_nameA;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:p_nameB;
+    sh:node ex:p_nameB_Shape;
+  ].
 
 ex:p_nameB_Shape a sh:NodeShape;
-  sh:targetClass ex:p_nameB.
+  sh:targetClass ex:p_nameB.

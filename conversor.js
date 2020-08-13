@@ -21,7 +21,7 @@ module.exports = {
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean",
         'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in",
-        "default":"defaultValue","title":"name","description":"description"}
+        "default_":"defaultValue","title":"name","description":"description"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
         var jsonReservedWords = {"properties":true,"definitions":true,"items":true,"required":true,"$ref":true,"type":true}
         var prefix = {"dash":"@prefix dash: <http://datashapes.org/dash#> .","rdf":"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .","rdfs":"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .","ex":"@prefix ex: <http://example.org/> .","sh":"@prefix sh: <http://www.w3.org/ns/shacl#> .","xsd":"@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .","sf":"@prefix sf:   <http://www.opengis.net/ont/sf#> ."}
@@ -107,19 +107,38 @@ module.exports = {
             return local
         }
 
-        function setListValidationArrayProperty(element,name,required,last){
+        function setListValidationArrayProperty(element,name,required,last,specialCase=false){
             var local = ''
-            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
+
+            if(specialCase){
+                local += addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
+            } else {
+                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
+            }
             
             if('$ref' in element.items){
                 local += addSpaces() + `sh:datatype ex:${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n'
             } else {
                 if(element.items.type in dataTypes){
                     addPrefixes['xsd'] = true
-                    local += addSpaces() + `sh:datatype xsd:${dataTypes[element.items.type]};\n` + addSpaces(-1) + '];\n'
+                    local += addSpaces() + `sh:datatype xsd:${dataTypes[element.items.type]};\n`
+
+                    if(specialCase){
+                        local += addSpaces(-1) + '].\n'
+                    } else {
+                        local += addSpaces(-1) + '];\n'
+                    }
+
                 } else {
                     name += 1
-                    local += addSpaces() + `sh:datatype ex:${name}_Shape;\n` + addSpaces(-1) + '];\n'
+                    local += addSpaces() + `sh:datatype ex:${name}_Shape;\n` 
+
+                    if(specialCase){
+                        local += addSpaces(-1) + '].\n'
+                    } else {
+                        local += addSpaces(-1) + '];\n'
+                    }
+
                     newNodes[name] = element.items
                 }
                 
@@ -127,12 +146,19 @@ module.exports = {
             if(required){
                 local += addSpaces() + 'sh:minCount 1;\n'
             }
-            local += addSpaces(-1) + ']'
-            if(last){
-                local += '.\n'
-            } else {
-                local += ';\n'
+
+            if(!specialCase){
+                local += addSpaces(-1) + ']'
             }
+
+            if(!specialCase){
+                if(last){
+                    local += '.\n'
+                } else {
+                    local += ';\n'
+                }
+            }
+            
 
             return local
         }
@@ -200,7 +226,7 @@ module.exports = {
             return local
         }
 
-        function setArray(element,name,required,last){
+        function setArray(element,name,required,last,specialCase){
             var local
 
             addPrefixes['dash'] = true
@@ -211,7 +237,7 @@ module.exports = {
             if('type' in element && 'items' in element && element['items'].length != undefined){
                 local = setTupleArrayProperty(element,name,required,last=last)
             } else if ('type' in element && 'items' in element){
-                local = setListValidationArrayProperty(element,name,required,last=last)
+                local = setListValidationArrayProperty(element,name,required,last=last,specialCase)
             } else {
                 local = setGenericArrayProperty(element,name,required,last=last)
             }
@@ -240,12 +266,17 @@ module.exports = {
             for(var item in element){
                 if(item in constraints){
                     if(item == 'const' || item == 'enum'){
-                        var str = ''
-                        for(var i in element[item]){
-                            str += `"${i}" `
+                        try{
+                            var str = ''
+                            element.forEach(Element_ => {
+                                str += `"${Element_}" `
+                            })
+            
+                            local += addSpaces() + `sh:${constraints[item]} (${str});\n`
+                        } catch{
+                            local += addSpaces() + `sh:${constraints[item]} ("${element[item]}");\n`
                         }
 
-                        local += addSpaces() + `sh:${constraints[item]} ("${str}");\n`
                     } else if(item == 'pattern' || item == "description" || item == "title" || (item == "default" && element.type == "string")){
                         local += addSpaces() + `sh:${constraints[item]} "${element[item]}";\n`
                     } else {
@@ -315,7 +346,17 @@ module.exports = {
                 local += addSpaces() + `sh:path ex:${item};\n`
             }
 
-            local += addSpaces() + `sh:in ("${element[name]}");\n`
+            var str = ''
+            
+            try{
+                element.forEach(Element_ => {
+                    str += `"${Element_}" `
+                })
+
+                local += addSpaces() + `sh:in (${str});\n`
+            } catch{
+                local += addSpaces() + `sh:in (${element[name]});\n`
+            }
 
             if(required){
                 local += addSpaces() + `sh:minCount 1;\n`
@@ -340,20 +381,14 @@ module.exports = {
             } else {
                 local += addSpaces() + 'sh:or (\n'
             }
-
             element.forEach(element_ => {
                 for(var i in element_){
                     // i != 'description' && i != 'additionalProperties'
-                    if(i != 'description' && i != 'additionalProperties'){
-                        
+                    if(true){
                         if(i != '$ref'){
                             local += addSpaces(1) + '[\n'
                             scope++
-                            if(element_[i].$ref){
-                                // local += setComplexNodeShape(element_[i].$ref,i)
-                                local +=  addSpaces() + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape;\n`
-                            }
-                            else if(element_[i].type in dataTypes){
+                            if(element_[i].type in dataTypes){
                                 
                                 local += setPrimitiveProperty(element_[i],i,checkRequired(element,i))
                                 
@@ -377,12 +412,15 @@ module.exports = {
                                 if(element_[i] == 'object'){
                                     local += setComplexNodeShape(element_,null)
                                 } else if(element_[i] == 'array'){
-                                    local += setArray(element_,name)
+                                    local += setArray(element_,name,null,null,true)
                                 } else if(element_[i] in dataTypes){
                                     local += setPrimitiveProperty(element_[i],null)
                                 }
-                                
+                            } else if(element_[i].$ref){
+                                // local += setComplexNodeShape(element_[i].$ref,i)
+                                local +=  addSpaces() + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape;\n`
                             }
+
                             scope -= 2
                             local += addSpaces(1) + ']\n'
                         } else {
@@ -397,7 +435,7 @@ module.exports = {
                     
                 }
             })
-            local += addSpaces() + ');'
+            local += addSpaces() + ');\n'
 
             if(especialCase){
                 local += addSpaces(-1) + '];\n'
@@ -461,7 +499,7 @@ module.exports = {
             } else {
                 if(element.type == 'array'){
                     local += ';\n'
-                    local += setArray(element,name,checkRequired(element,name),last=true)
+                    local += setArray(element,name,checkRequired(element,name),last=true,specialCase=true)
                 } else if(element.type in dataTypes){
                     local += ';\n'
                     local += setPrimitiveProperty(element,name,checkRequired(element,name),last=true)

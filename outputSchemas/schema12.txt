@@ -5,534 +5,502 @@
 @prefix ex: <http://example.org/> .
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:name "Name of the project.";
-    sh:description "A machine-friendly project name.";
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:description;
-    sh:datatype xsd:string;
-    sh:name "Description of the project.";
-    sh:description "An optional project description.";
-  ];
-  sh:property [
-    sh:path ex:type;
-    sh:datatype xsd:string;
-    sh:name "Type of project.";
-    sh:description "The type of project.";
-    sh:defaultValue server;
-    sh:in (""0" "1" ");
-  ];
-  sh:property [
-    sh:path ex:profile;
-    sh:datatype xsd:string;
-    sh:name "AWS profile.";
-    sh:description "AWS credentials profile name, these are stored in ~/.aws/credentials.";
-  ];
-  sh:property [
-    sh:path ex:regions;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:lambda;
-    sh:node ex:lambda_Shape;
-  ];
-  sh:property [
-    sh:path ex:stages;
-    sh:node ex:stages_Shape;
-  ];
-  sh:property [
-    sh:path ex:hooks;
-    sh:node ex:hooks_Shape;
-  ];
-  sh:property [
-    sh:path ex:static;
-    sh:node ex:static_Shape;
-  ];
-  sh:property [
-    sh:path ex:proxy;
-    sh:node ex:proxy_Shape;
-  ];
-  sh:property [
-    sh:path ex:dns;
-    sh:node ex:dns_Shape;
-  ];
-  sh:property [
-    sh:path ex:environment;
-    sh:node ex:environment_Shape;
-  ];
-  sh:property [
-    sh:path ex:headers;
-    sh:node ex:headers_Shape;
-  ];
-  sh:property [
-    sh:path ex:error_pages;
-    sh:node ex:error_pages_Shape;
-  ];
-  sh:property [
-    sh:path ex:cors;
-    sh:node ex:cors_Shape;
-  ];
-  sh:property [
-    sh:path ex:inject;
-    sh:node ex:inject_Shape;
-  ];
-  sh:property [
-    sh:path ex:redirects;
-    sh:node ex:redirects_Shape;
-  ];
-  sh:property [
-    sh:path ex:actions;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:actions1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:alerts;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:alerts1_Shape;
-    ];
-  ].
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:name "Name of the project.";
+    sh:description "A machine-friendly project name.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:description;
+    sh:datatype xsd:string;
+    sh:name "Description of the project.";
+    sh:description "An optional project description.";
+  ];
+  sh:property [
+    sh:path ex:type;
+    sh:datatype xsd:string;
+    sh:name "Type of project.";
+    sh:description "The type of project.";
+    sh:in ("static,server");
+  ];
+  sh:property [
+    sh:path ex:profile;
+    sh:datatype xsd:string;
+    sh:name "AWS profile.";
+    sh:description "AWS credentials profile name, these are stored in ~/.aws/credentials.";
+  ];
+  sh:property [
+    sh:path ex:regions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:lambda;
+    sh:node ex:lambda_Shape;
+  ];
+  sh:property [
+    sh:path ex:stages;
+    sh:node ex:stages_Shape;
+  ];
+  sh:property [
+    sh:path ex:hooks;
+    sh:node ex:hooks_Shape;
+  ];
+  sh:property [
+    sh:path ex:static;
+    sh:node ex:static_Shape;
+  ];
+  sh:property [
+    sh:path ex:proxy;
+    sh:node ex:proxy_Shape;
+  ];
+  sh:property [
+    sh:path ex:dns;
+    sh:node ex:dns_Shape;
+  ];
+  sh:property [
+    sh:path ex:environment;
+    sh:node ex:environment_Shape;
+  ];
+  sh:property [
+    sh:path ex:headers;
+    sh:node ex:headers_Shape;
+  ];
+  sh:property [
+    sh:path ex:error_pages;
+    sh:node ex:error_pages_Shape;
+  ];
+  sh:property [
+    sh:path ex:cors;
+    sh:node ex:cors_Shape;
+  ];
+  sh:property [
+    sh:path ex:inject;
+    sh:node ex:inject_Shape;
+  ];
+  sh:property [
+    sh:path ex:redirects;
+    sh:node ex:redirects_Shape;
+  ];
+  sh:property [
+    sh:path ex:actions;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:actions1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:alerts;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:alerts1_Shape;
+    ];
+  ].
 
 ex:lambda_Shape a sh:NodeShape;
-  sh:targetClass ex:lambda;
-  sh:property [
-    sh:path ex:accelerate;
-    sh:datatype xsd:boolean;
-    sh:name "Enables S3 acceleration.";
-    sh:description "Enable S3 acceleration for faster uploads via the CloudFront CDN.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:warm;
-    sh:datatype xsd:boolean;
-    sh:name "Enables active warming.";
-    sh:description "Active warming mitigates cold starts when enabled.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:warm_rate;
-    sh:datatype xsd:string;
-    sh:name "Active warming rate.";
-    sh:description "Active warming sends requests to your application at this interval.";
-    sh:defaultValue 15m;
-  ];
-  sh:property [
-    sh:path ex:warm_count;
-    sh:datatype xsd:integer;
-    sh:name "Active warming container count.";
-    sh:description "Number of concurrent containers to warm.";
-    sh:defaultValue 15;
-  ];
-  sh:property [
-    sh:path ex:memory;
-    sh:datatype xsd:integer;
-    sh:name "Memory.";
-    sh:description "Lambda memory size.";
-    sh:defaultValue 512;
-    sh:in (""0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22" "23" "24" "25" "26" "27" "28" "29" "30" "31" "32" "33" "34" "35" "36" "37" "38" "39" "40" "41" "42" "43" "44" "45" ");
-  ].
+  sh:targetClass ex:lambda;
+  sh:property [
+    sh:path ex:accelerate;
+    sh:datatype xsd:boolean;
+    sh:name "Enables S3 acceleration.";
+    sh:description "Enable S3 acceleration for faster uploads via the CloudFront CDN.";
+  ];
+  sh:property [
+    sh:path ex:warm;
+    sh:datatype xsd:boolean;
+    sh:name "Enables active warming.";
+    sh:description "Active warming mitigates cold starts when enabled.";
+  ];
+  sh:property [
+    sh:path ex:warm_rate;
+    sh:datatype xsd:string;
+    sh:name "Active warming rate.";
+    sh:description "Active warming sends requests to your application at this interval.";
+  ];
+  sh:property [
+    sh:path ex:warm_count;
+    sh:datatype xsd:integer;
+    sh:name "Active warming container count.";
+    sh:description "Number of concurrent containers to warm.";
+  ];
+  sh:property [
+    sh:path ex:memory;
+    sh:datatype xsd:integer;
+    sh:name "Memory.";
+    sh:description "Lambda memory size.";
+    sh:in ("128,192,256,320,384,448,512,576,640,704,768,832,896,960,1024,1088,1152,1216,1280,1344,1408,1472,1536,1600,1664,1728,1792,1856,1920,1984,2048,2112,2176,2240,2304,2368,2432,2496,2560,2624,2688,2752,2816,2880,2944,3008");
+  ].
 
 ex:stages_Shape a sh:NodeShape;
-  sh:targetClass ex:stages;
-  sh:property [
-    sh:path ex:production;
-    sh:node ex:production_Shape;
-  ];
-  sh:property [
-    sh:path ex:staging;
-    sh:node ex:staging_Shape;
-  ];
-  sh:property [
-    sh:path ex:development;
-    sh:node ex:development_Shape;
-  ].
+  sh:targetClass ex:stages;
+  sh:property [
+    sh:path ex:production;
+    sh:node ex:production_Shape;
+  ];
+  sh:property [
+    sh:path ex:staging;
+    sh:node ex:staging_Shape;
+  ];
+  sh:property [
+    sh:path ex:development;
+    sh:node ex:development_Shape;
+  ].
 
 ex:hooks_Shape a sh:NodeShape;
-  sh:targetClass ex:hooks;
-  sh:property [
-    sh:path ex:build;
-    sh:datatype xsd:string;
-    sh:name "Build hook.";
-    sh:description "Hook command(s) to run.";
-  ];
-  sh:property [
-    sh:path ex:clean;
-    sh:datatype xsd:string;
-    sh:name "Clean hook.";
-    sh:description "Hook command(s) to run.";
-  ];
-  sh:property [
-    sh:path ex:prebuild;
-    sh:datatype xsd:string;
-    sh:name "Prebuild hook.";
-    sh:description "Hook command(s) to run.";
-  ];
-  sh:property [
-    sh:path ex:postbuild;
-    sh:datatype xsd:string;
-    sh:name "Postbuild hook.";
-    sh:description "Hook command(s) to run.";
-  ];
-  sh:property [
-    sh:path ex:predeploy;
-    sh:datatype xsd:string;
-    sh:name "Predeploy hook.";
-    sh:description "Hook command(s) to run.";
-  ];
-  sh:property [
-    sh:path ex:postdeploy;
-    sh:datatype xsd:string;
-    sh:name "Postdeploy hook.";
-    sh:description "Hook command(s) to run.";
-  ].
+  sh:targetClass ex:hooks;
+  sh:property [
+    sh:path ex:build;
+    sh:datatype xsd:string;
+    sh:name "Build hook.";
+    sh:description "Hook command(s) to run.";
+  ];
+  sh:property [
+    sh:path ex:clean;
+    sh:datatype xsd:string;
+    sh:name "Clean hook.";
+    sh:description "Hook command(s) to run.";
+  ];
+  sh:property [
+    sh:path ex:prebuild;
+    sh:datatype xsd:string;
+    sh:name "Prebuild hook.";
+    sh:description "Hook command(s) to run.";
+  ];
+  sh:property [
+    sh:path ex:postbuild;
+    sh:datatype xsd:string;
+    sh:name "Postbuild hook.";
+    sh:description "Hook command(s) to run.";
+  ];
+  sh:property [
+    sh:path ex:predeploy;
+    sh:datatype xsd:string;
+    sh:name "Predeploy hook.";
+    sh:description "Hook command(s) to run.";
+  ];
+  sh:property [
+    sh:path ex:postdeploy;
+    sh:datatype xsd:string;
+    sh:name "Postdeploy hook.";
+    sh:description "Hook command(s) to run.";
+  ].
 
 ex:static_Shape a sh:NodeShape;
-  sh:targetClass ex:static;
-  sh:property [
-    sh:path ex:dir;
-    sh:datatype xsd:string;
-    sh:name "Directory path.";
-    sh:description "Path to directory from which assets are served.";
-    sh:defaultValue .;
-  ];
-  sh:property [
-    sh:path ex:prefix;
-    sh:datatype xsd:string;
-    sh:name "URL prefix.";
-    sh:description "Optional URL path prefix.";
-  ].
+  sh:targetClass ex:static;
+  sh:property [
+    sh:path ex:dir;
+    sh:datatype xsd:string;
+    sh:name "Directory path.";
+    sh:description "Path to directory from which assets are served.";
+  ];
+  sh:property [
+    sh:path ex:prefix;
+    sh:datatype xsd:string;
+    sh:name "URL prefix.";
+    sh:description "Optional URL path prefix.";
+  ].
 
 ex:proxy_Shape a sh:NodeShape;
-  sh:targetClass ex:proxy;
-  sh:property [
-    sh:path ex:command;
-    sh:datatype xsd:string;
-    sh:name "Command.";
-    sh:description "Command run to start your application.";
-    sh:defaultValue ./server;
-  ];
-  sh:property [
-    sh:path ex:timeout;
-    sh:datatype xsd:integer;
-    sh:name "Request timeout.";
-    sh:description "Timeout in seconds per request.";
-    sh:defaultValue 15;
-  ];
-  sh:property [
-    sh:path ex:listen_timeout;
-    sh:datatype xsd:integer;
-    sh:name "Listen timeout.";
-    sh:description "Timeout in seconds Up will wait for your app to boot and listen on `PORT`.";
-    sh:defaultValue 15;
-  ];
-  sh:property [
-    sh:path ex:shutdown_timeout;
-    sh:datatype xsd:integer;
-    sh:name "Shutdown timeout.";
-    sh:description "Timeout in seconds Up will wait after sending a SIGINT to your server, before sending a SIGKILL.";
-    sh:defaultValue 15;
-  ];
-  sh:property [
-    sh:path ex:backoff;
-    sh:node ex:backoff_Shape;
-  ].
+  sh:targetClass ex:proxy;
+  sh:property [
+    sh:path ex:command;
+    sh:datatype xsd:string;
+    sh:name "Command.";
+    sh:description "Command run to start your application.";
+  ];
+  sh:property [
+    sh:path ex:timeout;
+    sh:datatype xsd:integer;
+    sh:name "Request timeout.";
+    sh:description "Timeout in seconds per request.";
+  ];
+  sh:property [
+    sh:path ex:listen_timeout;
+    sh:datatype xsd:integer;
+    sh:name "Listen timeout.";
+    sh:description "Timeout in seconds Up will wait for your app to boot and listen on `PORT`.";
+  ];
+  sh:property [
+    sh:path ex:shutdown_timeout;
+    sh:datatype xsd:integer;
+    sh:name "Shutdown timeout.";
+    sh:description "Timeout in seconds Up will wait after sending a SIGINT to your server, before sending a SIGKILL.";
+  ];
+  sh:property [
+    sh:path ex:backoff;
+    sh:node ex:backoff_Shape;
+  ].
 
 ex:dns_Shape a sh:NodeShape;
-  sh:targetClass ex:dns.
+  sh:targetClass ex:dns.
 
 ex:environment_Shape a sh:NodeShape;
-  sh:targetClass ex:environment.
+  sh:targetClass ex:environment.
 
 ex:headers_Shape a sh:NodeShape;
-  sh:targetClass ex:headers.
+  sh:targetClass ex:headers.
 
 ex:error_pages_Shape a sh:NodeShape;
-  sh:targetClass ex:error_pages;
-  sh:property [
-    sh:path ex:disable;
-    sh:datatype xsd:boolean;
-    sh:name "Disable error pages.";
-    sh:description "Disable default error pages.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:dir;
-    sh:datatype xsd:string;
-    sh:name "Directory path.";
-    sh:description "Path to directory from which error pages are served.";
-    sh:defaultValue .;
-  ];
-  sh:property [
-    sh:path ex:variables;
-    sh:node ex:variables_Shape;
-  ].
+  sh:targetClass ex:error_pages;
+  sh:property [
+    sh:path ex:disable;
+    sh:datatype xsd:boolean;
+    sh:name "Disable error pages.";
+    sh:description "Disable default error pages.";
+  ];
+  sh:property [
+    sh:path ex:dir;
+    sh:datatype xsd:string;
+    sh:name "Directory path.";
+    sh:description "Path to directory from which error pages are served.";
+  ];
+  sh:property [
+    sh:path ex:variables;
+    sh:node ex:variables_Shape;
+  ].
 
 ex:cors_Shape a sh:NodeShape;
-  sh:targetClass ex:cors;
-  sh:property [
-    sh:path ex:enable;
-    sh:datatype xsd:boolean;
-    sh:name "Enable CORS.";
-    sh:description "Enable Cross-Origin Resource Sharing.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:allowed_origins;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:allowed_methods;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:allowed_headers;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:exposed_headers;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:max_age;
-    sh:datatype xsd:integer;
-    sh:name "Max Age.";
-    sh:description "A number indicating how long (in seconds) the results of a preflight request can be cached.";
-    sh:defaultValue 0;
-  ];
-  sh:property [
-    sh:path ex:allowed_credentials;
-    sh:datatype xsd:boolean;
-    sh:name "Allow Credentials.";
-    sh:description "A boolean indicating whether the request can include user credentials such as cookies, HTTP authentication or client side SSL certificates. Defaults to true.";
-    sh:defaultValue true;
-  ].
+  sh:targetClass ex:cors;
+  sh:property [
+    sh:path ex:enable;
+    sh:datatype xsd:boolean;
+    sh:name "Enable CORS.";
+    sh:description "Enable Cross-Origin Resource Sharing.";
+  ];
+  sh:property [
+    sh:path ex:allowed_origins;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:allowed_methods;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:allowed_headers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:exposed_headers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:max_age;
+    sh:datatype xsd:integer;
+    sh:name "Max Age.";
+    sh:description "A number indicating how long (in seconds) the results of a preflight request can be cached.";
+  ];
+  sh:property [
+    sh:path ex:allowed_credentials;
+    sh:datatype xsd:boolean;
+    sh:name "Allow Credentials.";
+    sh:description "A boolean indicating whether the request can include user credentials such as cookies, HTTP authentication or client side SSL certificates. Defaults to true.";
+  ].
 
 ex:inject_Shape a sh:NodeShape;
-  sh:targetClass ex:inject.
+  sh:targetClass ex:inject.
 
 ex:redirects_Shape a sh:NodeShape;
-  sh:targetClass ex:redirects.
+  sh:targetClass ex:redirects.
 
 ex:actions1_Shape a sh:NodeShape;
-  sh:targetClass ex:actions1;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:name "Action Name.";
-    sh:description "Name of the action for reference from alert definitions.";
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:type;
-    sh:datatype xsd:string;
-    sh:name "Action Type.";
-    sh:description "Type of action to perform.";
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:emails;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:numbers;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ].
+  sh:targetClass ex:actions1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:name "Action Name.";
+    sh:description "Name of the action for reference from alert definitions.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:type;
+    sh:datatype xsd:string;
+    sh:name "Action Type.";
+    sh:description "Type of action to perform.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:emails;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:numbers;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ].
 
 ex:alerts1_Shape a sh:NodeShape;
-  sh:targetClass ex:alerts1;
-  sh:property [
-    sh:path ex:metric;
-    sh:datatype xsd:string;
-    sh:name "Metric name.";
-    sh:description "Name of the metric.";
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:statistic;
-    sh:datatype xsd:string;
-    sh:name "Statistics name.";
-    sh:description "Name of statistic to perform.";
-    sh:in (""0" "1" "2" "3" "4" ");
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:threshold;
-    sh:datatype xsd:integer;
-    sh:name "Value Threshold.";
-    sh:description "Threshold which is compared to the operator.";
-    sh:defaultValue 0;
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:action;
-    sh:datatype xsd:string;
-    sh:name "Action Name.";
-    sh:description "Name of the action to perform.";
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:period;
-    sh:in ("Period.");
-  ];
-  sh:property [
-    sh:path ex:period;
-    sh:in ("Period is the alert query time-span.");
-  ];
-  sh:property [
-    sh:path ex:period;
-    sh:in ("1m");
-  ];
-  sh:property [
-    sh:path ex:evaluation_periods;
-    sh:datatype xsd:integer;
-    sh:name "Evaluation Periods.";
-    sh:description "Number of periods to evaluate over.";
-    sh:defaultValue 1;
-  ];
-  sh:property [
-    sh:path ex:operator;
-    sh:datatype xsd:string;
-    sh:name "Operator.";
-    sh:description "Operator is the comparison operator.";
-    sh:defaultValue >;
-    sh:in (""0" "1" "2" "3" ");
-  ];
-  sh:property [
-    sh:path ex:namespace;
-    sh:datatype xsd:string;
-    sh:name "Namespace.";
-    sh:description "Metric namespace.";
-  ];
-  sh:property [
-    sh:path ex:description;
-    sh:datatype xsd:string;
-    sh:name "Description.";
-    sh:description "Informative alert description, displayed in the email, sms, or slack.";
-  ];
-  sh:property [
-    sh:path ex:disable;
-    sh:datatype xsd:boolean;
-    sh:name "Disable.";
-    sh:description "Disable the alert.";
-    sh:defaultValue false;
-  ].
+  sh:targetClass ex:alerts1;
+  sh:property [
+    sh:path ex:metric;
+    sh:datatype xsd:string;
+    sh:name "Metric name.";
+    sh:description "Name of the metric.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:statistic;
+    sh:datatype xsd:string;
+    sh:name "Statistics name.";
+    sh:description "Name of statistic to perform.";
+    sh:in ("min,max,avg,sum,count");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:threshold;
+    sh:datatype xsd:integer;
+    sh:name "Value Threshold.";
+    sh:description "Threshold which is compared to the operator.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:action;
+    sh:datatype xsd:string;
+    sh:name "Action Name.";
+    sh:description "Name of the action to perform.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:period;
+    sh:in (Period.);
+  ];
+  sh:property [
+    sh:path ex:period;
+    sh:in (Period is the alert query time-span.);
+  ];
+  sh:property [
+    sh:path ex:evaluation_periods;
+    sh:datatype xsd:integer;
+    sh:name "Evaluation Periods.";
+    sh:description "Number of periods to evaluate over.";
+  ];
+  sh:property [
+    sh:path ex:operator;
+    sh:datatype xsd:string;
+    sh:name "Operator.";
+    sh:description "Operator is the comparison operator.";
+    sh:in (">,<,>=,<=");
+  ];
+  sh:property [
+    sh:path ex:namespace;
+    sh:datatype xsd:string;
+    sh:name "Namespace.";
+    sh:description "Metric namespace.";
+  ];
+  sh:property [
+    sh:path ex:description;
+    sh:datatype xsd:string;
+    sh:name "Description.";
+    sh:description "Informative alert description, displayed in the email, sms, or slack.";
+  ];
+  sh:property [
+    sh:path ex:disable;
+    sh:datatype xsd:boolean;
+    sh:name "Disable.";
+    sh:description "Disable the alert.";
+  ].
 
 ex:production_Shape a sh:NodeShape;
-  sh:targetClass ex:production;
-  sh:property [
-    sh:path ex:domain;
-    sh:datatype xsd:string;
-    sh:name "Domain name.";
-    sh:description "Domain hostname for the stage.";
-    sh:defaultValue ;
-  ].
+  sh:targetClass ex:production;
+  sh:property [
+    sh:path ex:domain;
+    sh:datatype xsd:string;
+    sh:name "Domain name.";
+    sh:description "Domain hostname for the stage.";
+  ].
 
 ex:staging_Shape a sh:NodeShape;
-  sh:targetClass ex:staging;
-  sh:property [
-    sh:path ex:domain;
-    sh:datatype xsd:string;
-    sh:name "Domain name.";
-    sh:description "Domain hostname for the stage.";
-    sh:defaultValue ;
-  ].
+  sh:targetClass ex:staging;
+  sh:property [
+    sh:path ex:domain;
+    sh:datatype xsd:string;
+    sh:name "Domain name.";
+    sh:description "Domain hostname for the stage.";
+  ].
 
 ex:development_Shape a sh:NodeShape;
-  sh:targetClass ex:development;
-  sh:property [
-    sh:path ex:domain;
-    sh:datatype xsd:string;
-    sh:name "Domain name.";
-    sh:description "Domain hostname for the stage.";
-    sh:defaultValue ;
-  ].
+  sh:targetClass ex:development;
+  sh:property [
+    sh:path ex:domain;
+    sh:datatype xsd:string;
+    sh:name "Domain name.";
+    sh:description "Domain hostname for the stage.";
+  ].
 
 ex:backoff_Shape a sh:NodeShape;
-  sh:targetClass ex:backoff;
-  sh:property [
-    sh:path ex:min;
-    sh:datatype xsd:integer;
-    sh:name "Minimum delay.";
-    sh:description "Minimum time in milliseconds before retrying.";
-    sh:defaultValue 500;
-  ];
-  sh:property [
-    sh:path ex:max;
-    sh:datatype xsd:integer;
-    sh:name "Max delay.";
-    sh:description "Maximum time in milliseconds before retrying.";
-    sh:defaultValue 1500;
-  ];
-  sh:property [
-    sh:path ex:factor;
-    sh:datatype xsd:decimal;
-    sh:name "Factor.";
-    sh:description "Factor applied to each attempt.";
-    sh:defaultValue 1.5;
-  ];
-  sh:property [
-    sh:path ex:attempts;
-    sh:datatype xsd:integer;
-    sh:name "Retry attempts.";
-    sh:description "Attempts made before failing.";
-    sh:defaultValue 5;
-  ];
-  sh:property [
-    sh:path ex:jitter;
-    sh:datatype xsd:boolean;
-    sh:name "Jitter.";
-    sh:description "Apply jitter.";
-    sh:defaultValue false;
-  ].
+  sh:targetClass ex:backoff;
+  sh:property [
+    sh:path ex:min;
+    sh:datatype xsd:integer;
+    sh:name "Minimum delay.";
+    sh:description "Minimum time in milliseconds before retrying.";
+  ];
+  sh:property [
+    sh:path ex:max;
+    sh:datatype xsd:integer;
+    sh:name "Max delay.";
+    sh:description "Maximum time in milliseconds before retrying.";
+  ];
+  sh:property [
+    sh:path ex:factor;
+    sh:datatype xsd:decimal;
+    sh:name "Factor.";
+    sh:description "Factor applied to each attempt.";
+  ];
+  sh:property [
+    sh:path ex:attempts;
+    sh:datatype xsd:integer;
+    sh:name "Retry attempts.";
+    sh:description "Attempts made before failing.";
+  ];
+  sh:property [
+    sh:path ex:jitter;
+    sh:datatype xsd:boolean;
+    sh:name "Jitter.";
+    sh:description "Apply jitter.";
+  ].
 
 ex:variables_Shape a sh:NodeShape;
-  sh:targetClass ex:variables;
-  sh:property [
-    sh:path ex:support_email;
-    sh:datatype xsd:string;
-    sh:name "Support email.";
-    sh:description "Support email for contact link.";
-  ];
-  sh:property [
-    sh:path ex:color;
-    sh:datatype xsd:string;
-    sh:name "Color.";
-    sh:description "Theme color.";
-  ].
+  sh:targetClass ex:variables;
+  sh:property [
+    sh:path ex:support_email;
+    sh:datatype xsd:string;
+    sh:name "Support email.";
+    sh:description "Support email for contact link.";
+  ];
+  sh:property [
+    sh:path ex:color;
+    sh:datatype xsd:string;
+    sh:name "Color.";
+    sh:description "Theme color.";
+  ].

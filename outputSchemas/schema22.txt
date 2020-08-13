@@ -34,7 +34,6 @@ ex:obj1_Shape a sh:NodeShape;
     sh:datatype xsd:string;
     sh:name "The name schema";
     sh:description "An explanation about the purpose of this instance.";
-    sh:defaultValue "";
     sh:minCount 1;
   ];
   sh:property [
@@ -42,17 +41,13 @@ ex:obj1_Shape a sh:NodeShape;
     sh:datatype xsd:string;
     sh:name "The surname schema";
     sh:description "An explanation about the purpose of this instance.";
-    sh:defaultValue "";
     sh:minCount 1;
   ].
 
 ex:obj2_Shape a sh:NodeShape;
   sh:targetClass ex:obj2;
+  sh:node dash:ListShape;
   sh:property [
-    sh:path ex:obj2;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:integer;
-    ];
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
   ].

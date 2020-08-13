@@ -1,12 +1,12 @@
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix ex: <http://example.org/> .
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:firstName;
-    sh:datatype xsd:string;
-    sh:description "The person's first name.";
-    sh:defaultValue "teste teste";
-  ].
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:firstName;
+    sh:node ex:firstName_Shape;
+  ].
+
+ex:firstName_Shape a sh:NodeShape;
+  sh:targetClass ex:firstName.

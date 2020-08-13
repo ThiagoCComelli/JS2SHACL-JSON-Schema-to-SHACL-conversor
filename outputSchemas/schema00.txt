@@ -5,60 +5,60 @@
 @prefix ex: <http://example.org/> .
 
 ex:veggie_Shape a sh:NodeShape;
-  sh:targetClass ex:veggie;
-  sh:property [
-    sh:path ex:veggieName;
-    sh:datatype xsd:string;
-    sh:description "The name of the vegetable.";
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:veggieLike;
-    sh:datatype xsd:boolean;
-    sh:description "Do I like this vegetable?";
-    sh:minCount 1;
-  ].
+  sh:targetClass ex:veggie;
+  sh:property [
+    sh:path ex:veggieName;
+    sh:datatype xsd:string;
+    sh:description "The name of the vegetable.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:veggieLike;
+    sh:datatype xsd:boolean;
+    sh:description "Do I like this vegetable?";
+    sh:minCount 1;
+  ].
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:fruits;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    ];
-  ];
-  sh:property [
-    sh:path ex:vegetables;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:another;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path rdf:first;
-      sh:datatype xsd:string;
-    ];
-    sh:property [
-      sh:path (rdf:rest rdf:first);
-      sh:node ex:another_Shape;
-    ];
-  ].
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:fruits;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    ];
+  ];
+  sh:property [
+    sh:path ex:vegetables;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:another;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path rdf:first;
+      sh:datatype xsd:string;
+    ];
+    sh:property [
+      sh:path (rdf:rest rdf:first);
+      sh:node ex:obj1_Shape;
+    ];
+  ].
 
-ex:another_Shape a sh:NodeShape;
-  sh:targetClass ex:another;
-  sh:property [
-    sh:path ex:ola;
-    sh:datatype xsd:string;
-  ];
-  sh:property [
-    sh:path ex:aqui;
-    sh:node ex:aqui_Shape;
-  ].
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
+  sh:property [
+    sh:path ex:ola;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:aqui;
+    sh:node ex:aqui_Shape;
+  ].
 
 ex:aqui_Shape a sh:NodeShape;
-  sh:targetClass ex:aqui.
+  sh:targetClass ex:aqui.

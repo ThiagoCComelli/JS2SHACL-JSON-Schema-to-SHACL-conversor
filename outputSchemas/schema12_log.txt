@@ -1,4 +1,4 @@
-23 Warnings (Elements ignored!)
+51 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-06/schema#"}
@@ -9,6 +9,9 @@ Element: {"examples": ["apex-site","apex-api","ping-app"]}
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["Marketing site","Public API"]}
 
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": "server"}
+
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["static"]}
 
@@ -18,8 +21,26 @@ Element: {"examples": ["apex-prod","apex-dev","personal"]}
 Key: minItems
 Element: {"minItems": 1}
 
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": "15m"}
+
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["5m","30m"]}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": "15"}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 512}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": "."}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["public","./dist"]}
@@ -27,11 +48,38 @@ Element: {"examples": ["public","./dist"]}
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["/public/","/static/"]}
 
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": "./server"}
+
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["node app.js"]}
 
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 15}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 15}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 15}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": "."}
+
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["public","./dist"]}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 0}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": true}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["slack","email.backend","text.frontend","text_frontend","email.tj","email tj","Text backend team"]}
@@ -45,8 +93,17 @@ Element: {"examples": ["http.count","http.latency","http.4xx","http.5xx"]}
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["avg","sum"]}
 
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 0}
+
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["email.backend","sms backend team"]}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 1}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": ">"}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["AWS/ApiGateway"]}
@@ -54,14 +111,41 @@ Element: {"examples": ["AWS/ApiGateway"]}
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["Huge traffic spike"]}
 
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": ""}
+
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["gh-polls.com","api.gh-polls.com"]}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": ""}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["stage.gh-polls.com","gh-polls-staging.com"]}
 
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": ""}
+
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["dev.gh-polls.com"]}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 500}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 1500}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 1.5}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 5}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
 
 Key: examples => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
 Element: {"examples": ["support@apex.sh"]}

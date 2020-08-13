@@ -1,10 +1,13 @@
-21 Warnings (Elements ignored!)
+23 Warnings (Elements ignored!)
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-07/schema"}
 
 Key: $id
 Element: {"$id": "http://example.com/example.json"}
+
+Key: default
+Element: {"default": {}}
 
 Key: examples
 Element: {"examples": [{"genericArray":["elem1",12,"elem3"]}]}
@@ -14,6 +17,9 @@ Element: {"additionalProperties": true}
 
 Key: $id
 Element: {"$id": "#/properties/genericArray"}
+
+Key: default
+Element: {"default": []}
 
 Key: examples
 Element: {"examples": [["elem1",12]]}

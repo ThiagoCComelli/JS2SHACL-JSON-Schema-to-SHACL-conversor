@@ -1,4 +1,52 @@
-20 Warnings (Elements ignored!)
+36 Warnings (Elements ignored!)
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": true}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": -1}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default
+Element: {"default": []}
+
+Key: default
+Element: {"default": []}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 80}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": null}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 0}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": true}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": 2}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
+
+Key: default => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"default": false}
 
 Key: $schema
 Element: {"$schema": "http://json-schema.org/draft-04/schema#"}

@@ -5,66 +5,66 @@
 @prefix ex: <http://example.org/> .
 
 ex:subschema_1_Shape a sh:NodeShape;
-  sh:targetClass ex:subschema_1;
-  sh:property [
-    sh:path ex:fruits;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:vegetables;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    ];
-  ].
+  sh:targetClass ex:subschema_1;
+  sh:property [
+    sh:path ex:fruits;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:vegetables;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    ];
+  ].
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:xone (
-    [
-      sh:path ex:Nome;
-      sh:node ex:subschema_1_shape;
-    ]
-    [
-      sh:property [
-        sh:path ex:test;
-        sh:datatype xsd:string;
-        sh:maxLength 5;
-      ];
-    ]
-    [
-      sh:property [
-        sh:path ex:anotherTest;
-        sh:datatype xsd:integer;
-        sh:minInclusive 15;
-      ];
-    ]
-    ex:subschema_1_shape
-    [
-      sh:property [
-        sh:path ex:anotherTest;
-        sh:datatype xsd:integer;
-        sh:minInclusive 15;
-      ];
-    ]
-    [
-      sh:property [
-        sh:path ex:anotherTest;
-        sh:datatype xsd:integer;
-        sh:minInclusive 15;
-      ];
-    ]
-    [
-      sh:property [
-        sh:path ex:anotherTest;
-        sh:datatype xsd:integer;
-        sh:minInclusive 15;
-      ];
-    ]
-    ex:subschema_1_shape
-    ex:subschema_1_shape
-  );
+  sh:targetClass ex:JS_id;
+  sh:xone (
+    [
+      sh:path ex:Nome;
+      sh:node ex:subschema_1_shape;
+    ]
+    [
+      sh:property [
+        sh:path ex:test;
+        sh:datatype xsd:string;
+        sh:maxLength 5;
+      ];
+    ]
+    [
+      sh:property [
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
+        sh:minInclusive 15;
+      ];
+    ]
+    ex:subschema_1_shape
+    [
+      sh:property [
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
+        sh:minInclusive 15;
+      ];
+    ]
+    [
+      sh:property [
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
+        sh:minInclusive 15;
+      ];
+    ]
+    [
+      sh:property [
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
+        sh:minInclusive 15;
+      ];
+    ]
+    ex:subschema_1_shape
+    ex:subschema_1_shape
+  );

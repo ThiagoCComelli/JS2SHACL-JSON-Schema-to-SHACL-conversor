@@ -1,7 +1,10 @@
-22 Warnings (Elements ignored!)
+23 Warnings (Elements ignored!)
 
 Key: additionalProperties
 Element: {"additionalProperties": false}
+
+Key: default
+Element: {"default": {"matchCondition":{"route":""},"backendUri":""}}
 
 Key: additionalProperties
 Element: {"additionalProperties": false}

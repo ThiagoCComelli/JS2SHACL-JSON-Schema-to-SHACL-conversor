@@ -5,44 +5,48 @@
 @prefix ex: <http://example.org/> .
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:genericArray;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:genericArray1_Shape;
-    ];
-    sh:minCount 1;
-  ].
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:genericArray;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:genericArray1_Shape;
+    ];
+    sh:minCount 1;
+  ].
 
 ex:genericArray1_Shape a sh:NodeShape;
-  sh:targetClass ex:genericArray1;
-  sh:or (
-    [
-    ]
-    [
-      sh:property [
-        sh:datatype xsd:string;
-      ];
-    ]
-    [
-    ]
-    [
-    ]
-    [
-    ]
-    [
-    ]
-    [
-      sh:property [
-        sh:datatype xsd:integer;
-      ];
-    ]
-    [
-    ]
-    [
-    ]
-    [
-    ]
-  );
+  sh:targetClass ex:genericArray1;
+  sh:or (
+    [
+    ]
+    [
+      sh:property [
+        sh:datatype xsd:string;
+      ];
+    ]
+    [
+    ]
+    [
+    ]
+    [
+    ]
+    [
+    ]
+    [
+    ]
+    [
+      sh:property [
+        sh:datatype xsd:integer;
+      ];
+    ]
+    [
+    ]
+    [
+    ]
+    [
+    ]
+    [
+    ]
+  );

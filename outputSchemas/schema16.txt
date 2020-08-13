@@ -5,523 +5,523 @@
 @prefix ex: <http://example.org/> .
 
 ex:iso8601_Shape a sh:NodeShape;
-  sh:targetClass ex:iso8601;
-  sh:property [
-    sh:path ex:iso8601;
-    sh:datatype xsd:string;
-    sh:description "e.g. 2014-06-29";
-    sh:pattern "^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$";
-  ].
+  sh:targetClass ex:iso8601;
+  sh:property [
+    sh:path ex:iso8601;
+    sh:datatype xsd:string;
+    sh:description "e.g. 2014-06-29";
+    sh:pattern "^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$";
+  ].
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:$schema;
-    sh:datatype xsd:string;
-    sh:description "link to the version of the schema that can validate the resume";
-  ];
-  sh:property [
-    sh:path ex:basics;
-    sh:node ex:basics_Shape;
-  ];
-  sh:property [
-    sh:path ex:work;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:work1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:volunteer;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:volunteer1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:education;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:education1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:awards;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:awards1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:publications;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:publications1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:skills;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:skills1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:languages;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:languages1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:interests;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:interests1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:references;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:references1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:projects;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:projects1_Shape;
-    ];
-  ];
-  sh:property [
-    sh:path ex:meta;
-    sh:node ex:meta_Shape;
-  ].
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:$schema;
+    sh:datatype xsd:string;
+    sh:description "link to the version of the schema that can validate the resume";
+  ];
+  sh:property [
+    sh:path ex:basics;
+    sh:node ex:basics_Shape;
+  ];
+  sh:property [
+    sh:path ex:work;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:work1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:volunteer;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:volunteer1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:education;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:education1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:awards;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:awards1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:publications;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:publications1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:skills;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:skills1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:languages;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:languages1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:interests;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:interests1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:references;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:references1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:projects;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:projects1_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:meta;
+    sh:node ex:meta_Shape;
+  ].
 
 ex:basics_Shape a sh:NodeShape;
-  sh:targetClass ex:basics;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-  ];
-  sh:property [
-    sh:path ex:label;
-    sh:datatype xsd:string;
-    sh:description "e.g. Web Developer";
-  ];
-  sh:property [
-    sh:path ex:image;
-    sh:datatype xsd:string;
-    sh:description "URL (as per RFC 3986) to a image in JPEG or PNG format";
-  ];
-  sh:property [
-    sh:path ex:email;
-    sh:datatype xsd:string;
-    sh:description "e.g. thomas@gmail.com";
-  ];
-  sh:property [
-    sh:path ex:phone;
-    sh:datatype xsd:string;
-    sh:description "Phone numbers are stored as strings so use any format you like, e.g. 712-117-2923";
-  ];
-  sh:property [
-    sh:path ex:url;
-    sh:datatype xsd:string;
-    sh:description "URL (as per RFC 3986) to your website, e.g. personal homepage";
-  ];
-  sh:property [
-    sh:path ex:summary;
-    sh:datatype xsd:string;
-    sh:description "Write a short 2-3 sentence biography about yourself";
-  ];
-  sh:property [
-    sh:path ex:location;
-    sh:node ex:location_Shape;
-  ];
-  sh:property [
-    sh:path ex:profiles;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:profiles1_Shape;
-    ];
-  ].
+  sh:targetClass ex:basics;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:label;
+    sh:datatype xsd:string;
+    sh:description "e.g. Web Developer";
+  ];
+  sh:property [
+    sh:path ex:image;
+    sh:datatype xsd:string;
+    sh:description "URL (as per RFC 3986) to a image in JPEG or PNG format";
+  ];
+  sh:property [
+    sh:path ex:email;
+    sh:datatype xsd:string;
+    sh:description "e.g. thomas@gmail.com";
+  ];
+  sh:property [
+    sh:path ex:phone;
+    sh:datatype xsd:string;
+    sh:description "Phone numbers are stored as strings so use any format you like, e.g. 712-117-2923";
+  ];
+  sh:property [
+    sh:path ex:url;
+    sh:datatype xsd:string;
+    sh:description "URL (as per RFC 3986) to your website, e.g. personal homepage";
+  ];
+  sh:property [
+    sh:path ex:summary;
+    sh:datatype xsd:string;
+    sh:description "Write a short 2-3 sentence biography about yourself";
+  ];
+  sh:property [
+    sh:path ex:location;
+    sh:node ex:location_Shape;
+  ];
+  sh:property [
+    sh:path ex:profiles;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:profiles1_Shape;
+    ];
+  ].
 
 ex:work1_Shape a sh:NodeShape;
-  sh:targetClass ex:work1;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:description "e.g. Facebook";
-  ];
-  sh:property [
-    sh:path ex:location;
-    sh:datatype xsd:string;
-    sh:description "e.g. Menlo Park, CA";
-  ];
-  sh:property [
-    sh:path ex:description;
-    sh:datatype xsd:string;
-    sh:description "e.g. Social Media Company";
-  ];
-  sh:property [
-    sh:path ex:position;
-    sh:datatype xsd:string;
-    sh:description "e.g. Software Engineer";
-  ];
-  sh:property [
-    sh:path ex:url;
-    sh:datatype xsd:string;
-    sh:description "e.g. http://facebook.example.com";
-  ];
-  sh:property [
-    sh:path ex:startDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:endDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:summary;
-    sh:datatype xsd:string;
-    sh:description "Give an overview of your responsibilities at the company";
-  ];
-  sh:property [
-    sh:path ex:highlights;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ].
+  sh:targetClass ex:work1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:description "e.g. Facebook";
+  ];
+  sh:property [
+    sh:path ex:location;
+    sh:datatype xsd:string;
+    sh:description "e.g. Menlo Park, CA";
+  ];
+  sh:property [
+    sh:path ex:description;
+    sh:datatype xsd:string;
+    sh:description "e.g. Social Media Company";
+  ];
+  sh:property [
+    sh:path ex:position;
+    sh:datatype xsd:string;
+    sh:description "e.g. Software Engineer";
+  ];
+  sh:property [
+    sh:path ex:url;
+    sh:datatype xsd:string;
+    sh:description "e.g. http://facebook.example.com";
+  ];
+  sh:property [
+    sh:path ex:startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:summary;
+    sh:datatype xsd:string;
+    sh:description "Give an overview of your responsibilities at the company";
+  ];
+  sh:property [
+    sh:path ex:highlights;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ].
 
 ex:volunteer1_Shape a sh:NodeShape;
-  sh:targetClass ex:volunteer1;
-  sh:property [
-    sh:path ex:organization;
-    sh:datatype xsd:string;
-    sh:description "e.g. Facebook";
-  ];
-  sh:property [
-    sh:path ex:position;
-    sh:datatype xsd:string;
-    sh:description "e.g. Software Engineer";
-  ];
-  sh:property [
-    sh:path ex:url;
-    sh:datatype xsd:string;
-    sh:description "e.g. http://facebook.example.com";
-  ];
-  sh:property [
-    sh:path ex:startDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:endDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:summary;
-    sh:datatype xsd:string;
-    sh:description "Give an overview of your responsibilities at the company";
-  ];
-  sh:property [
-    sh:path ex:highlights;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ].
+  sh:targetClass ex:volunteer1;
+  sh:property [
+    sh:path ex:organization;
+    sh:datatype xsd:string;
+    sh:description "e.g. Facebook";
+  ];
+  sh:property [
+    sh:path ex:position;
+    sh:datatype xsd:string;
+    sh:description "e.g. Software Engineer";
+  ];
+  sh:property [
+    sh:path ex:url;
+    sh:datatype xsd:string;
+    sh:description "e.g. http://facebook.example.com";
+  ];
+  sh:property [
+    sh:path ex:startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:summary;
+    sh:datatype xsd:string;
+    sh:description "Give an overview of your responsibilities at the company";
+  ];
+  sh:property [
+    sh:path ex:highlights;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ].
 
 ex:education1_Shape a sh:NodeShape;
-  sh:targetClass ex:education1;
-  sh:property [
-    sh:path ex:institution;
-    sh:datatype xsd:string;
-    sh:description "e.g. Massachusetts Institute of Technology";
-  ];
-  sh:property [
-    sh:path ex:url;
-    sh:datatype xsd:string;
-    sh:description "e.g. http://facebook.example.com";
-  ];
-  sh:property [
-    sh:path ex:area;
-    sh:datatype xsd:string;
-    sh:description "e.g. Arts";
-  ];
-  sh:property [
-    sh:path ex:studyType;
-    sh:datatype xsd:string;
-    sh:description "e.g. Bachelor";
-  ];
-  sh:property [
-    sh:path ex:startDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:endDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:gpa;
-    sh:datatype xsd:string;
-    sh:description "grade point average, e.g. 3.67/4.0";
-  ];
-  sh:property [
-    sh:path ex:courses;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ].
+  sh:targetClass ex:education1;
+  sh:property [
+    sh:path ex:institution;
+    sh:datatype xsd:string;
+    sh:description "e.g. Massachusetts Institute of Technology";
+  ];
+  sh:property [
+    sh:path ex:url;
+    sh:datatype xsd:string;
+    sh:description "e.g. http://facebook.example.com";
+  ];
+  sh:property [
+    sh:path ex:area;
+    sh:datatype xsd:string;
+    sh:description "e.g. Arts";
+  ];
+  sh:property [
+    sh:path ex:studyType;
+    sh:datatype xsd:string;
+    sh:description "e.g. Bachelor";
+  ];
+  sh:property [
+    sh:path ex:startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:gpa;
+    sh:datatype xsd:string;
+    sh:description "grade point average, e.g. 3.67/4.0";
+  ];
+  sh:property [
+    sh:path ex:courses;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ].
 
 ex:awards1_Shape a sh:NodeShape;
-  sh:targetClass ex:awards1;
-  sh:property [
-    sh:path ex:title;
-    sh:datatype xsd:string;
-    sh:description "e.g. One of the 100 greatest minds of the century";
-  ];
-  sh:property [
-    sh:path ex:date;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:awarder;
-    sh:datatype xsd:string;
-    sh:description "e.g. Time Magazine";
-  ];
-  sh:property [
-    sh:path ex:summary;
-    sh:datatype xsd:string;
-    sh:description "e.g. Received for my work with Quantum Physics";
-  ].
+  sh:targetClass ex:awards1;
+  sh:property [
+    sh:path ex:title;
+    sh:datatype xsd:string;
+    sh:description "e.g. One of the 100 greatest minds of the century";
+  ];
+  sh:property [
+    sh:path ex:date;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:awarder;
+    sh:datatype xsd:string;
+    sh:description "e.g. Time Magazine";
+  ];
+  sh:property [
+    sh:path ex:summary;
+    sh:datatype xsd:string;
+    sh:description "e.g. Received for my work with Quantum Physics";
+  ].
 
 ex:publications1_Shape a sh:NodeShape;
-  sh:targetClass ex:publications1;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:description "e.g. The World Wide Web";
-  ];
-  sh:property [
-    sh:path ex:publisher;
-    sh:datatype xsd:string;
-    sh:description "e.g. IEEE, Computer Magazine";
-  ];
-  sh:property [
-    sh:path ex:releaseDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:url;
-    sh:datatype xsd:string;
-    sh:description "e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html";
-  ];
-  sh:property [
-    sh:path ex:summary;
-    sh:datatype xsd:string;
-    sh:description "Short summary of publication. e.g. Discussion of the World Wide Web, HTTP, HTML.";
-  ].
+  sh:targetClass ex:publications1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:description "e.g. The World Wide Web";
+  ];
+  sh:property [
+    sh:path ex:publisher;
+    sh:datatype xsd:string;
+    sh:description "e.g. IEEE, Computer Magazine";
+  ];
+  sh:property [
+    sh:path ex:releaseDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:url;
+    sh:datatype xsd:string;
+    sh:description "e.g. http://www.computer.org.example.com/csdl/mags/co/1996/10/rx069-abs.html";
+  ];
+  sh:property [
+    sh:path ex:summary;
+    sh:datatype xsd:string;
+    sh:description "Short summary of publication. e.g. Discussion of the World Wide Web, HTTP, HTML.";
+  ].
 
 ex:skills1_Shape a sh:NodeShape;
-  sh:targetClass ex:skills1;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:description "e.g. Web Development";
-  ];
-  sh:property [
-    sh:path ex:level;
-    sh:datatype xsd:string;
-    sh:description "e.g. Master";
-  ];
-  sh:property [
-    sh:path ex:keywords;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ].
+  sh:targetClass ex:skills1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:description "e.g. Web Development";
+  ];
+  sh:property [
+    sh:path ex:level;
+    sh:datatype xsd:string;
+    sh:description "e.g. Master";
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ].
 
 ex:languages1_Shape a sh:NodeShape;
-  sh:targetClass ex:languages1;
-  sh:property [
-    sh:path ex:language;
-    sh:datatype xsd:string;
-    sh:description "e.g. English, Spanish";
-  ];
-  sh:property [
-    sh:path ex:fluency;
-    sh:datatype xsd:string;
-    sh:description "e.g. Fluent, Beginner";
-  ].
+  sh:targetClass ex:languages1;
+  sh:property [
+    sh:path ex:language;
+    sh:datatype xsd:string;
+    sh:description "e.g. English, Spanish";
+  ];
+  sh:property [
+    sh:path ex:fluency;
+    sh:datatype xsd:string;
+    sh:description "e.g. Fluent, Beginner";
+  ].
 
 ex:interests1_Shape a sh:NodeShape;
-  sh:targetClass ex:interests1;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:description "e.g. Philosophy";
-  ];
-  sh:property [
-    sh:path ex:keywords;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ].
+  sh:targetClass ex:interests1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:description "e.g. Philosophy";
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ].
 
 ex:references1_Shape a sh:NodeShape;
-  sh:targetClass ex:references1;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:description "e.g. Timothy Cook";
-  ];
-  sh:property [
-    sh:path ex:reference;
-    sh:datatype xsd:string;
-    sh:description "e.g. Joe blogs was a great employee, who turned up to work at least once a week. He exceeded my expectations when it came to doing nothing.";
-  ].
+  sh:targetClass ex:references1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:description "e.g. Timothy Cook";
+  ];
+  sh:property [
+    sh:path ex:reference;
+    sh:datatype xsd:string;
+    sh:description "e.g. Joe blogs was a great employee, who turned up to work at least once a week. He exceeded my expectations when it came to doing nothing.";
+  ].
 
 ex:projects1_Shape a sh:NodeShape;
-  sh:targetClass ex:projects1;
-  sh:property [
-    sh:path ex:name;
-    sh:datatype xsd:string;
-    sh:description "e.g. The World Wide Web";
-  ];
-  sh:property [
-    sh:path ex:description;
-    sh:datatype xsd:string;
-    sh:description "Short summary of project. e.g. Collated works of 2017.";
-  ];
-  sh:property [
-    sh:path ex:highlights;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:keywords;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:startDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:endDate;
-    sh:node ex:iso8601_Shape;
-  ];
-  sh:property [
-    sh:path ex:url;
-    sh:datatype xsd:string;
-    sh:description "e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html";
-  ];
-  sh:property [
-    sh:path ex:roles;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:entity;
-    sh:datatype xsd:string;
-    sh:description "Specify the relevant company/entity affiliations e.g. 'greenpeace', 'corporationXYZ'";
-  ];
-  sh:property [
-    sh:path ex:type;
-    sh:datatype xsd:string;
-    sh:description " e.g. 'volunteering', 'presentation', 'talk', 'application', 'conference'";
-  ].
+  sh:targetClass ex:projects1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:description "e.g. The World Wide Web";
+  ];
+  sh:property [
+    sh:path ex:description;
+    sh:datatype xsd:string;
+    sh:description "Short summary of project. e.g. Collated works of 2017.";
+  ];
+  sh:property [
+    sh:path ex:highlights;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:startDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:endDate;
+    sh:node ex:iso8601_Shape;
+  ];
+  sh:property [
+    sh:path ex:url;
+    sh:datatype xsd:string;
+    sh:description "e.g. http://www.computer.org/csdl/mags/co/1996/10/rx069-abs.html";
+  ];
+  sh:property [
+    sh:path ex:roles;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:entity;
+    sh:datatype xsd:string;
+    sh:description "Specify the relevant company/entity affiliations e.g. 'greenpeace', 'corporationXYZ'";
+  ];
+  sh:property [
+    sh:path ex:type;
+    sh:datatype xsd:string;
+    sh:description " e.g. 'volunteering', 'presentation', 'talk', 'application', 'conference'";
+  ].
 
 ex:meta_Shape a sh:NodeShape;
-  sh:targetClass ex:meta;
-  sh:property [
-    sh:path ex:canonical;
-    sh:datatype xsd:string;
-    sh:description "URL (as per RFC 3986) to latest version of this document";
-  ];
-  sh:property [
-    sh:path ex:version;
-    sh:datatype xsd:string;
-    sh:description "A version field which follows semver - e.g. v1.0.0";
-  ];
-  sh:property [
-    sh:path ex:lastModified;
-    sh:datatype xsd:string;
-    sh:description "Using ISO 8601 with YYYY-MM-DDThh:mm:ss";
-  ].
+  sh:targetClass ex:meta;
+  sh:property [
+    sh:path ex:canonical;
+    sh:datatype xsd:string;
+    sh:description "URL (as per RFC 3986) to latest version of this document";
+  ];
+  sh:property [
+    sh:path ex:version;
+    sh:datatype xsd:string;
+    sh:description "A version field which follows semver - e.g. v1.0.0";
+  ];
+  sh:property [
+    sh:path ex:lastModified;
+    sh:datatype xsd:string;
+    sh:description "Using ISO 8601 with YYYY-MM-DDThh:mm:ss";
+  ].
 
 ex:location_Shape a sh:NodeShape;
-  sh:targetClass ex:location;
-  sh:property [
-    sh:path ex:address;
-    sh:datatype xsd:string;
-    sh:description "To add multiple address lines, use 
+  sh:targetClass ex:location;
+  sh:property [
+    sh:path ex:address;
+    sh:datatype xsd:string;
+    sh:description "To add multiple address lines, use 
 . For example, 1234 Glücklichkeit Straße
 Hinterhaus 5. Etage li.";
-  ];
-  sh:property [
-    sh:path ex:postalCode;
-    sh:datatype xsd:string;
-  ];
-  sh:property [
-    sh:path ex:city;
-    sh:datatype xsd:string;
-  ];
-  sh:property [
-    sh:path ex:countryCode;
-    sh:datatype xsd:string;
-    sh:description "code as per ISO-3166-1 ALPHA-2, e.g. US, AU, IN";
-  ];
-  sh:property [
-    sh:path ex:region;
-    sh:datatype xsd:string;
-    sh:description "The general region where you live. Can be a US state, or a province, for instance.";
-  ].
+  ];
+  sh:property [
+    sh:path ex:postalCode;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:city;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:countryCode;
+    sh:datatype xsd:string;
+    sh:description "code as per ISO-3166-1 ALPHA-2, e.g. US, AU, IN";
+  ];
+  sh:property [
+    sh:path ex:region;
+    sh:datatype xsd:string;
+    sh:description "The general region where you live. Can be a US state, or a province, for instance.";
+  ].
 
 ex:profiles1_Shape a sh:NodeShape;
-  sh:targetClass ex:profiles1;
-  sh:property [
-    sh:path ex:network;
-    sh:datatype xsd:string;
-    sh:description "e.g. Facebook or Twitter";
-  ];
-  sh:property [
-    sh:path ex:username;
-    sh:datatype xsd:string;
-    sh:description "e.g. neutralthoughts";
-  ];
-  sh:property [
-    sh:path ex:url;
-    sh:datatype xsd:string;
-    sh:description "e.g. http://twitter.example.com/neutralthoughts";
-  ].
+  sh:targetClass ex:profiles1;
+  sh:property [
+    sh:path ex:network;
+    sh:datatype xsd:string;
+    sh:description "e.g. Facebook or Twitter";
+  ];
+  sh:property [
+    sh:path ex:username;
+    sh:datatype xsd:string;
+    sh:description "e.g. neutralthoughts";
+  ];
+  sh:property [
+    sh:path ex:url;
+    sh:datatype xsd:string;
+    sh:description "e.g. http://twitter.example.com/neutralthoughts";
+  ].

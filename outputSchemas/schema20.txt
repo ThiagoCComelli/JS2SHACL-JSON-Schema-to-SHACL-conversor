@@ -3,28 +3,26 @@
 @prefix ex: <http://example.org/> .
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:nmProp;
-    sh:node ex:nmProp_Shape;
-    sh:minCount 1;
-  ].
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:nmProp;
+    sh:node ex:nmProp_Shape;
+    sh:minCount 1;
+  ].
 
 ex:nmProp_Shape a sh:NodeShape;
-  sh:targetClass ex:nmProp;
-  sh:property [
-    sh:path ex:nmPropA;
-    sh:datatype xsd:string;
-    sh:name "The nmPropA schema";
-    sh:description "An explanation about the purpose of this instance.";
-    sh:defaultValue ;
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:nmPropB;
-    sh:datatype xsd:integer;
-    sh:name "The nmPropB schema";
-    sh:description "An explanation about the purpose of this instance.";
-    sh:defaultValue 0;
-    sh:minCount 1;
-  ].
+  sh:targetClass ex:nmProp;
+  sh:property [
+    sh:path ex:nmPropA;
+    sh:datatype xsd:string;
+    sh:name "The nmPropA schema";
+    sh:description "An explanation about the purpose of this instance.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:nmPropB;
+    sh:datatype xsd:integer;
+    sh:name "The nmPropB schema";
+    sh:description "An explanation about the purpose of this instance.";
+    sh:minCount 1;
+  ].

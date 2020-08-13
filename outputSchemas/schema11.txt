@@ -5,487 +5,528 @@
 @prefix ex: <http://example.org/> .
 
 ex:optionsDefinition_Shape a sh:NodeShape;
-  sh:targetClass ex:optionsDefinition;
-  sh:property [
-    sh:path ex:arrowParens;
-    sh:in ("Include parentheses around a sole arrow function parameter.");
-  ];
-  sh:property [
-    sh:path ex:arrowParens;
-    sh:in ("always");
-  ];
-  sh:property [
-    sh:path ex:arrowParens;
-    sh:xone (
-      [
-        sh:property [
-          sh:in ("always");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("avoid");
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:bracketSpacing;
-    sh:datatype xsd:boolean;
-    sh:description "Print spaces between brackets.";
-    sh:defaultValue true;
-  ];
-  sh:property [
-    sh:path ex:cursorOffset;
-    sh:datatype xsd:integer;
-    sh:description "Print (to stderr) where a cursor at the given position would move to after formatting.
+  sh:targetClass ex:optionsDefinition;
+  sh:property [
+    sh:path ex:arrowParens;
+    sh:in (Include parentheses around a sole arrow function parameter.);
+  ];
+  sh:property [
+    sh:path ex:arrowParens;
+    sh:xone (
+      [
+        sh:property [
+          sh:in (always);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (avoid);
+        ];
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:bracketSpacing;
+    sh:datatype xsd:boolean;
+    sh:description "Print spaces between brackets.";
+  ];
+  sh:property [
+    sh:path ex:cursorOffset;
+    sh:datatype xsd:integer;
+    sh:description "Print (to stderr) where a cursor at the given position would move to after formatting.
 This option cannot be used with --range-start and --range-end.";
-    sh:defaultValue -1;
-  ];
-  sh:property [
-    sh:path ex:endOfLine;
-    sh:in ("Which end of line characters to apply.");
-  ];
-  sh:property [
-    sh:path ex:endOfLine;
-    sh:in ("lf");
-  ];
-  sh:property [
-    sh:path ex:endOfLine;
-    sh:xone (
-      [
-        sh:property [
-          sh:in ("lf");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("crlf");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("cr");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("auto");
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:filepath;
-    sh:datatype xsd:string;
-    sh:description "Specify the input filepath. This will be used to do parser inference.";
-  ];
-  sh:property [
-    sh:path ex:htmlWhitespaceSensitivity;
-    sh:in ("How to handle whitespaces in HTML.");
-  ];
-  sh:property [
-    sh:path ex:htmlWhitespaceSensitivity;
-    sh:in ("css");
-  ];
-  sh:property [
-    sh:path ex:htmlWhitespaceSensitivity;
-    sh:xone (
-      [
-        sh:property [
-          sh:in ("css");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("strict");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("ignore");
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:insertPragma;
-    sh:datatype xsd:boolean;
-    sh:description "Insert @format pragma into file's first docblock comment.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:jsxBracketSameLine;
-    sh:datatype xsd:boolean;
-    sh:description "Put > on the last line instead of at a new line.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:jsxSingleQuote;
-    sh:datatype xsd:boolean;
-    sh:description "Use single quotes in JSX.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:parser;
-    sh:in ("Which parser to use.");
-  ];
-  sh:property [
-    sh:path ex:parser;
-    sh:xone (
-      [
-        sh:property [
-          sh:in ("flow");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("babel");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("babel-flow");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("babel-ts");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("typescript");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("css");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("less");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("scss");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("json");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("json5");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("json-stringify");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("graphql");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("markdown");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("mdx");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("vue");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("yaml");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("html");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("angular");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("lwc");
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:pluginSearchDirs;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:plugins;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:string;
-    ];
-  ];
-  sh:property [
-    sh:path ex:printWidth;
-    sh:datatype xsd:integer;
-    sh:description "The line length where Prettier will try wrap.";
-    sh:defaultValue 80;
-  ];
-  sh:property [
-    sh:path ex:proseWrap;
-    sh:in ("How to wrap prose.");
-  ];
-  sh:property [
-    sh:path ex:proseWrap;
-    sh:in ("preserve");
-  ];
-  sh:property [
-    sh:path ex:proseWrap;
-    sh:xone (
-      [
-        sh:property [
-          sh:in ("always");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("never");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("preserve");
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:quoteProps;
-    sh:in ("Change when properties in objects are quoted.");
-  ];
-  sh:property [
-    sh:path ex:quoteProps;
-    sh:in ("as-needed");
-  ];
-  sh:property [
-    sh:path ex:quoteProps;
-    sh:xone (
-      [
-        sh:property [
-          sh:in ("as-needed");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("consistent");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("preserve");
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:rangeEnd;
-    sh:datatype xsd:integer;
-    sh:description "Format code ending at a given character offset (exclusive).
+  ];
+  sh:property [
+    sh:path ex:endOfLine;
+    sh:in (Which end of line characters to apply.);
+  ];
+  sh:property [
+    sh:path ex:endOfLine;
+    sh:xone (
+      [
+        sh:property [
+          sh:in (lf);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (crlf);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (cr);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (auto);
+        ];
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:filepath;
+    sh:datatype xsd:string;
+    sh:description "Specify the input filepath. This will be used to do parser inference.";
+  ];
+  sh:property [
+    sh:path ex:htmlWhitespaceSensitivity;
+    sh:in (How to handle whitespaces in HTML.);
+  ];
+  sh:property [
+    sh:path ex:htmlWhitespaceSensitivity;
+    sh:xone (
+      [
+        sh:property [
+          sh:in (css);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (strict);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (ignore);
+        ];
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:insertPragma;
+    sh:datatype xsd:boolean;
+    sh:description "Insert @format pragma into file's first docblock comment.";
+  ];
+  sh:property [
+    sh:path ex:jsxBracketSameLine;
+    sh:datatype xsd:boolean;
+    sh:description "Put > on the last line instead of at a new line.";
+  ];
+  sh:property [
+    sh:path ex:jsxSingleQuote;
+    sh:datatype xsd:boolean;
+    sh:description "Use single quotes in JSX.";
+  ];
+  sh:property [
+    sh:path ex:parser;
+    sh:in (Which parser to use.);
+  ];
+  sh:property [
+    sh:path ex:parser;
+    sh:xone (
+      [
+        sh:property [
+          sh:in (flow);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (babel);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (babel-flow);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (babel-ts);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (typescript);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (css);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (less);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (scss);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (json);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (json5);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (json-stringify);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (graphql);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (markdown);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (mdx);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (vue);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (yaml);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (html);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (angular);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (lwc);
+        ];
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:pluginSearchDirs;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:plugins;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:printWidth;
+    sh:datatype xsd:integer;
+    sh:description "The line length where Prettier will try wrap.";
+  ];
+  sh:property [
+    sh:path ex:proseWrap;
+    sh:in (How to wrap prose.);
+  ];
+  sh:property [
+    sh:path ex:proseWrap;
+    sh:xone (
+      [
+        sh:property [
+          sh:in (always);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (never);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (preserve);
+        ];
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:quoteProps;
+    sh:in (Change when properties in objects are quoted.);
+  ];
+  sh:property [
+    sh:path ex:quoteProps;
+    sh:xone (
+      [
+        sh:property [
+          sh:in (as-needed);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (consistent);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (preserve);
+        ];
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:rangeEnd;
+    sh:datatype xsd:integer;
+    sh:description "Format code ending at a given character offset (exclusive).
 The range will extend forwards to the end of the selected statement.
 This option cannot be used with --cursor-offset.";
-    sh:defaultValue null;
-  ];
-  sh:property [
-    sh:path ex:rangeStart;
-    sh:datatype xsd:integer;
-    sh:description "Format code starting at a given character offset.
+  ];
+  sh:property [
+    sh:path ex:rangeStart;
+    sh:datatype xsd:integer;
+    sh:description "Format code starting at a given character offset.
 The range will extend backwards to the start of the first line containing the selected statement.
 This option cannot be used with --cursor-offset.";
-    sh:defaultValue 0;
-  ];
-  sh:property [
-    sh:path ex:requirePragma;
-    sh:datatype xsd:boolean;
-    sh:description "Require either '@prettier' or '@format' to be present in the file's first docblock comment
+  ];
+  sh:property [
+    sh:path ex:requirePragma;
+    sh:datatype xsd:boolean;
+    sh:description "Require either '@prettier' or '@format' to be present in the file's first docblock comment
 in order for it to be formatted.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:semi;
-    sh:datatype xsd:boolean;
-    sh:description "Print semicolons.";
-    sh:defaultValue true;
-  ];
-  sh:property [
-    sh:path ex:singleQuote;
-    sh:datatype xsd:boolean;
-    sh:description "Use single quotes instead of double quotes.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:tabWidth;
-    sh:datatype xsd:integer;
-    sh:description "Number of spaces per indentation level.";
-    sh:defaultValue 2;
-  ];
-  sh:property [
-    sh:path ex:trailingComma;
-    sh:in ("Print trailing commas wherever possible when multi-line.");
-  ];
-  sh:property [
-    sh:path ex:trailingComma;
-    sh:in ("es5");
-  ];
-  sh:property [
-    sh:path ex:trailingComma;
-    sh:xone (
-      [
-        sh:property [
-          sh:in ("es5");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("none");
-        ];
-      ]
-      [
-        sh:property [
-          sh:in ("all");
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:useTabs;
-    sh:datatype xsd:boolean;
-    sh:description "Indent with tabs instead of spaces.";
-    sh:defaultValue false;
-  ];
-  sh:property [
-    sh:path ex:vueIndentScriptAndStyle;
-    sh:datatype xsd:boolean;
-    sh:description "Indent script and style tags in Vue files.";
-    sh:defaultValue false;
-  ].
+  ];
+  sh:property [
+    sh:path ex:semi;
+    sh:datatype xsd:boolean;
+    sh:description "Print semicolons.";
+  ];
+  sh:property [
+    sh:path ex:singleQuote;
+    sh:datatype xsd:boolean;
+    sh:description "Use single quotes instead of double quotes.";
+  ];
+  sh:property [
+    sh:path ex:tabWidth;
+    sh:datatype xsd:integer;
+    sh:description "Number of spaces per indentation level.";
+  ];
+  sh:property [
+    sh:path ex:trailingComma;
+    sh:in (Print trailing commas wherever possible when multi-line.);
+  ];
+  sh:property [
+    sh:path ex:trailingComma;
+    sh:xone (
+      [
+        sh:property [
+          sh:in (es5);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (none);
+        ];
+      ]
+      [
+      ]
+      [
+        sh:property [
+          sh:in (all);
+        ];
+      ]
+      [
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:useTabs;
+    sh:datatype xsd:boolean;
+    sh:description "Indent with tabs instead of spaces.";
+  ];
+  sh:property [
+    sh:path ex:vueIndentScriptAndStyle;
+    sh:datatype xsd:boolean;
+    sh:description "Indent script and style tags in Vue files.";
+  ].
 
 ex:overridesDefinition_Shape a sh:NodeShape;
-  sh:targetClass ex:overridesDefinition;
-  sh:property [
-    sh:path ex:overrides;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:overrides1_Shape;
-    ];
-  ].
+  sh:targetClass ex:overridesDefinition;
+  sh:property [
+    sh:path ex:overrides;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:overrides1_Shape;
+    ];
+  ].
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:false;
-    sh:in ("undefined");
-  ];
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:false;
+    sh:in (undefined);
+  ];
 ;
-  sh:xone (
-    [
-      sh:property [
-        sh:node ex:obj1_Shape;
-      ];
-    ]
-    [
-      sh:and (
-        ex:optionsDefinition_shape
-        ex:overridesDefinition_shape
-      );    ]
-    [
-      sh:property [
-        sh:datatype xsd:string;
-      ];
-    ]
-  );
+  sh:xone (
+    [
+      sh:property [
+        sh:node ex:obj1_Shape;
+      ];
+    ]
+    [
+      sh:and (
+        ex:optionsDefinition_shape
+        ex:overridesDefinition_shape
+      );
+    ]
+    [
+      sh:property [
+        sh:datatype xsd:string;
+      ];
+    ]
+  );
+
 ex:overrides1_Shape a sh:NodeShape;
-  sh:targetClass ex:overrides1;
-  sh:property [
-    sh:path ex:files;
-    sh:in ("Include these files in this override.");
-    sh:minCount 1;
-  ];
-  sh:property [
-    sh:path ex:files;
-    sh:xone (
-      [
-        sh:property [
-          sh:datatype xsd:string;
-        ];
-      ]
-      [
-        sh:property [
-          sh:path ex:oneOf;
-          sh:node dash:ListShape;
-          sh:property [
-            sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-            sh:datatype xsd:string;
-          ];
-        ];
-      ]
-      [
-        sh:property [
-          sh:path ex:items;
-          sh:datatype xsd:string;
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:excludeFiles;
-    sh:in ("Exclude these files from this override.");
-  ];
-  sh:property [
-    sh:path ex:excludeFiles;
-    sh:xone (
-      [
-        sh:property [
-          sh:datatype xsd:string;
-        ];
-      ]
-      [
-        sh:property [
-          sh:path ex:oneOf;
-          sh:node dash:ListShape;
-          sh:property [
-            sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-            sh:datatype xsd:string;
-          ];
-        ];
-      ]
-      [
-        sh:property [
-          sh:path ex:items;
-          sh:datatype xsd:string;
-        ];
-      ]
-    );  ];
-  sh:property [
-    sh:path ex:options;
-    sh:node ex:options_Shape;
-  ].
+  sh:targetClass ex:overrides1;
+  sh:property [
+    sh:path ex:files;
+    sh:in (Include these files in this override.);
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:files;
+    sh:xone (
+      [
+        sh:property [
+          sh:datatype xsd:string;
+        ];
+      ]
+      [
+        sh:node dash:ListShape;
+        sh:property [
+          sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+          sh:datatype xsd:string;
+        ].
+      ]
+      [
+        sh:property [
+          sh:path ex:items;
+          sh:datatype xsd:string;
+        ];
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:excludeFiles;
+    sh:in (Exclude these files from this override.);
+  ];
+  sh:property [
+    sh:path ex:excludeFiles;
+    sh:xone (
+      [
+        sh:property [
+          sh:datatype xsd:string;
+        ];
+      ]
+      [
+        sh:node dash:ListShape;
+        sh:property [
+          sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+          sh:datatype xsd:string;
+        ].
+      ]
+      [
+        sh:property [
+          sh:path ex:items;
+          sh:datatype xsd:string;
+        ];
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:options;
+    sh:node ex:options_Shape;
+  ].
 
 ex:obj1_Shape a sh:NodeShape;
-  sh:targetClass ex:obj1.
+  sh:targetClass ex:obj1.
 
 ex:options_Shape a sh:NodeShape;
-  sh:targetClass ex:options.
+  sh:targetClass ex:options.
