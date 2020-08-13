@@ -522,7 +522,7 @@ module.exports = {
         
         function addSpaces(quant = 0){
             scope += quant
-            return Array(scope*2).fill('\xa0').join('')
+            return Array(scope*2).fill(' ').join('')
         }
         
         function checkRequired(schema,item){
