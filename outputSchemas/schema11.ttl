@@ -241,7 +241,11 @@ ex:obj1_Shape a sh:NodeShape;
   ].
 
 ex:obj2_Shape a sh:NodeShape;
-  sh:targetClass ex:obj2.
+  sh:targetClass ex:obj2;
+  sh:and (
+    ex:optionsDefinition_shape
+    ex:overridesDefinition_shape
+  ).
 
 ex:options_Shape a sh:NodeShape;
   sh:targetClass ex:options.

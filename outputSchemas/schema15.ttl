@@ -347,4 +347,13 @@ ex:obj2_Shape a sh:NodeShape;
   ).
 
 ex:geometry_Shape a sh:NodeShape;
-  sh:targetClass ex:geometry.
+  sh:targetClass ex:geometry;
+  sh:or (
+    ex:point_shape
+    ex:lineString_shape
+    ex:polygon_shape
+    ex:multiPoint_shape
+    ex:multiLineString_shape
+    ex:multiPolygon_shape
+    ex:geometryCollection_shape
+  ).

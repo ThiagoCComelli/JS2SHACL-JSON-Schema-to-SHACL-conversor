@@ -573,7 +573,20 @@ module.exports = {
                     local += setPrimitiveProperty(element,name,checkRequired(element,name),last=true)
                 } 
                 else if(element.type == 'object'){
-                    local += '.\n'
+                    if('allOf' in element){
+                        local += ';\n'
+                        local += setOthersProperty(element.allOf,'allOf')
+                    } else if('anyOf' in element){
+                        local += ';\n'
+                        local += setOthersProperty(element.anyOf,'anyOf')
+                    } else if('oneOf' in element){
+                        local += ';\n'
+                        local += setOthersProperty(element.oneOf,'oneOf')
+                    }
+                    else{
+                        local += '.\n'
+                    }
+                    
                 } 
                 else {
                     for(var i in element){
