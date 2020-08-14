@@ -62,7 +62,7 @@ ex:conditions_Shape a sh:NodeShape;
     [
       sh:node ex:obj2_Shape;
     ]
-  );
+  ).
 
 ex:allConditions_Shape a sh:NodeShape;
   sh:targetClass ex:allConditions;
@@ -120,7 +120,7 @@ ex:stringOrSecret_Shape a sh:NodeShape;
   sh:xone (
     ex:nonEmptyString_shape
     ex:secret_shape
-  );
+  ).
 
 ex:node_Shape a sh:NodeShape;
   sh:targetClass ex:node.
@@ -352,7 +352,7 @@ ex:step_docker_Shape a sh:NodeShape;
     [
       sh:node ex:obj5_Shape;
     ]
-  );
+  ).
 
 ex:step_kubernetes_Shape a sh:NodeShape;
   sh:targetClass ex:step_kubernetes;
@@ -361,7 +361,7 @@ ex:step_kubernetes_Shape a sh:NodeShape;
     [
       sh:node ex:obj6_Shape;
     ]
-  );
+  ).
 
 ex:step_exec_Shape a sh:NodeShape;
   sh:targetClass ex:step_exec;
@@ -370,7 +370,7 @@ ex:step_exec_Shape a sh:NodeShape;
     [
       sh:node ex:obj7_Shape;
     ]
-  );
+  ).
 
 ex:step_ssh_Shape a sh:NodeShape;
   sh:targetClass ex:step_ssh;
@@ -379,7 +379,7 @@ ex:step_ssh_Shape a sh:NodeShape;
     [
       sh:node ex:obj8_Shape;
     ]
-  );
+  ).
 
 ex:step_digitalocean_Shape a sh:NodeShape;
   sh:targetClass ex:step_digitalocean;
@@ -388,7 +388,7 @@ ex:step_digitalocean_Shape a sh:NodeShape;
     [
       sh:node ex:obj9_Shape;
     ]
-  );
+  ).
 
 ex:step_macstadium_Shape a sh:NodeShape;
   sh:targetClass ex:step_macstadium;
@@ -397,7 +397,7 @@ ex:step_macstadium_Shape a sh:NodeShape;
     [
       sh:node ex:obj10_Shape;
     ]
-  );
+  ).
 
 ex:steps_volumes_Shape a sh:NodeShape;
   sh:targetClass ex:steps_volumes;

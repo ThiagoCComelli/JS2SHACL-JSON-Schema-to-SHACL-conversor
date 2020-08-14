@@ -69,7 +69,7 @@ ex:requestOverrides-schema_Shape a sh:NodeShape;
     sh:or (
       ex:http-method-schema_shape
       ex:request-overrides-value-expression-schema_shape
-    );
+    ).
   ];
   sh:property [
     sh:path ex:backend.request.querystring.<ParameterName>;
@@ -103,7 +103,7 @@ ex:responseOverrides-schema_Shape a sh:NodeShape;
       [
         sh:node ex:obj1_Shape;
       ]
-    );
+    ).
   ];
   sh:property [
     sh:path ex:response.headers.<HeaderName>;

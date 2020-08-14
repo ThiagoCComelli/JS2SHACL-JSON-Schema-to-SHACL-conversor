@@ -24,7 +24,7 @@ ex:nonNegativeIntegerDefault0_Shape a sh:NodeShape;
   sh:targetClass ex:nonNegativeIntegerDefault0;
   sh:and (
     ex:nonNegativeInteger_shape
-  );
+  ).
 
 ex:simpleTypes_Shape a sh:NodeShape;
   sh:targetClass ex:simpleTypes;
@@ -125,7 +125,7 @@ ex:JS_id_Shape a sh:NodeShape;
       sh:or (
         ex:undefined_shape
         ex:schemaArray_shape
-      );
+      ).
     ];
     sh:property [
       sh:path ex:maxItems;
@@ -198,7 +198,7 @@ ex:JS_id_Shape a sh:NodeShape;
             sh:datatype ex:simpleTypes_Shape;
           ];
         ]
-      );
+      ).
     ];
     sh:property [
       sh:path ex:format;

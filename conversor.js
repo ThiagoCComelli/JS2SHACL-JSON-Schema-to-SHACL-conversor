@@ -144,17 +144,23 @@ module.exports = {
                     addPrefixes['xsd'] = true
                     local += addSpaces() + `sh:datatype xsd:${dataTypes[element.items.type]};\n`
 
-                    if(specialCase){
-                        local += addSpaces(-1) + '].\n'
+                    
+                    if(last != null){
+                        if(specialCase){
+                            local += addSpaces(-1) + '].\n'
+                        } else {
+                            local += addSpaces(-1) + '];\n'
+                        }
                     } else {
                         local += addSpaces(-1) + '];\n'
                     }
+                    
 
                 } else {
                     number++
                     
                     local += addSpaces() + `sh:datatype ex:obj${number}_Shape;\n` 
-
+                    
                     if(specialCase){
                         local += addSpaces(-1) + '].\n'
                     } else {
@@ -280,7 +286,7 @@ module.exports = {
             if('type' in element && 'items' in element && element['items'].length != undefined){
                 local = setTupleArrayProperty(element,name,required,last=last)
             } else if ('type' in element && 'items' in element){
-                local = setListValidationArrayProperty(element,name,required,last=last,specialCase)
+                local = setListValidationArrayProperty(element,name,required,last,specialCase)
             } else {
                 local = setGenericArrayProperty(element,name,required,last=last)
             }
@@ -445,7 +451,7 @@ module.exports = {
                         if(element_.type in dataTypes){
                             local += addSpaces() + '[\n'
 
-                            local += setPrimitiveProperty(element_,null,checkRequired(element_,i),null)
+                            local += setPrimitiveProperty(element_,null,checkRequired(element_,i),false)
 
                             local += addSpaces(-1) + ']\n'
                         } else if(element_.type == 'array'){
@@ -457,7 +463,7 @@ module.exports = {
                         } else if(element_.type == 'object'){
                             local += addSpaces() + '[\n'
 
-                            local += setComplexNodeShape(element_,null,false,null,null)
+                            local += setComplexNodeShape(element_,null,false,null,false)
 
                             local += addSpaces(-1) + ']\n'
                         } 
@@ -466,7 +472,7 @@ module.exports = {
                             if(element_[i].$ref){
                                 local += addSpaces() + '[\n'
 
-                                local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape.\n`
+                                local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape;\n`
     
                                 local += addSpaces(-1) + ']\n'
                             } else {
@@ -474,20 +480,20 @@ module.exports = {
                                     local += addSpaces() + '[\n'
                                     
                                     scope++
-                                    local += setPrimitiveProperty(element_[i],i,checkRequired(element_,i),null)
+                                    local += setPrimitiveProperty(element_[i],i,checkRequired(element_,i),false)
         
                                     local += addSpaces(-1) + ']\n'
                                 } else if(element_[i].type == 'array'){
                                     local += addSpaces() + '[\n'
                                     
-                                    local += setArray(element_[i],i,false,last=null,specialCase=true)
+                                    local += setArray(element_[i],i,false,null,specialCase=true)
         
                                     local += addSpaces(-1) + ']\n'
                                 } else if(element_[i].type == 'object'){
                                     local += addSpaces() + '[\n'
 
                                     scope++
-                                    local += setComplexNodeShape(element_[i],i,false,null,null)
+                                    local += setComplexNodeShape(element_[i],i,false,null,false)
         
                                     local += addSpaces(-1) + ']\n'
                                 } 
@@ -497,7 +503,7 @@ module.exports = {
                 }
             })
 
-            local += addSpaces(-1) + ');\n'
+            local += addSpaces(-1) + ').\n'
 
             if(especialCase){
                 local += addSpaces(-1) + '];\n'

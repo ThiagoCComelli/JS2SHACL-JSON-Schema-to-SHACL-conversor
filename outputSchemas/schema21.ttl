@@ -29,4 +29,4 @@ ex:obj1_Shape a sh:NodeShape;
       sh:name "The second anyOf schema";
       sh:description "An explanation about the purpose of this instance.";
     ]
-  );
+  ).

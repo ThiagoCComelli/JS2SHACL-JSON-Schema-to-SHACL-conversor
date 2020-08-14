@@ -13,7 +13,7 @@ ex:optionsDefinition_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:arrowParens;
     sh:xone (
-    );
+    ).
   ];
   sh:property [
     sh:path ex:bracketSpacing;
@@ -33,7 +33,7 @@ This option cannot be used with --range-start and --range-end.";
   sh:property [
     sh:path ex:endOfLine;
     sh:xone (
-    );
+    ).
   ];
   sh:property [
     sh:path ex:filepath;
@@ -47,7 +47,7 @@ This option cannot be used with --range-start and --range-end.";
   sh:property [
     sh:path ex:htmlWhitespaceSensitivity;
     sh:xone (
-    );
+    ).
   ];
   sh:property [
     sh:path ex:insertPragma;
@@ -71,7 +71,7 @@ This option cannot be used with --range-start and --range-end.";
   sh:property [
     sh:path ex:parser;
     sh:xone (
-    );
+    ).
   ];
   sh:property [
     sh:path ex:pluginSearchDirs;
@@ -101,7 +101,7 @@ This option cannot be used with --range-start and --range-end.";
   sh:property [
     sh:path ex:proseWrap;
     sh:xone (
-    );
+    ).
   ];
   sh:property [
     sh:path ex:quoteProps;
@@ -110,7 +110,7 @@ This option cannot be used with --range-start and --range-end.";
   sh:property [
     sh:path ex:quoteProps;
     sh:xone (
-    );
+    ).
   ];
   sh:property [
     sh:path ex:rangeEnd;
@@ -154,7 +154,7 @@ in order for it to be formatted.";
   sh:property [
     sh:path ex:trailingComma;
     sh:xone (
-    );
+    ).
   ];
   sh:property [
     sh:path ex:useTabs;
@@ -192,7 +192,7 @@ ex:JS_id_Shape a sh:NodeShape;
     [
       sh:datatype xsd:string;
     ]
-  );
+  ).
 
 ex:obj1_Shape a sh:NodeShape;
   sh:targetClass ex:obj1;
@@ -212,9 +212,9 @@ ex:obj1_Shape a sh:NodeShape;
         sh:property [
           sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
           sh:datatype xsd:string;
-        ].
+        ];
       ]
-    );
+    ).
   ];
   sh:property [
     sh:path ex:excludeFiles;
@@ -231,9 +231,9 @@ ex:obj1_Shape a sh:NodeShape;
         sh:property [
           sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
           sh:datatype xsd:string;
-        ].
+        ];
       ]
-    );
+    ).
   ];
   sh:property [
     sh:path ex:options;

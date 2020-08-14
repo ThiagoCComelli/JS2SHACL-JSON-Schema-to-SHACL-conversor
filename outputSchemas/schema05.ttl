@@ -49,7 +49,7 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:or (
     [
       sh:path ex:Nome;
-      sh:node ex:subschema_1_shape.
+      sh:node ex:subschema_1_shape;
     ]
     ex:subschema_2_shape
     [
@@ -57,7 +57,7 @@ ex:JS_id_Shape a sh:NodeShape;
         sh:path ex:anotherTest;
         sh:datatype xsd:integer;
         sh:minInclusive 15;
-      ]
+      ];
     ]
     [
       sh:datatype xsd:string;
@@ -68,7 +68,7 @@ ex:JS_id_Shape a sh:NodeShape;
       sh:property [
         sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
         sh:datatype xsd:integer;
-      ].
+      ];
     ]
     [
       sh:node dash:ListShape;
@@ -103,25 +103,25 @@ ex:JS_id_Shape a sh:NodeShape;
       sh:property [
         sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
         sh:datatype xsd:integer;
-      ].
+      ];
     ]
     [
       sh:property [
         sh:path ex:nomes;
         sh:node ex:nomes_Shape;
-      ]
+      ];
     ]
     [
       sh:property [
         sh:path ex:nomess;
         sh:node ex:nomess_Shape;
-      ]
+      ];
     ]
     [
       sh:property [
         sh:path ex:teste;
         sh:datatype xsd:string;
-      ]
+      ];
     ]
     [
     sh:property [
@@ -137,7 +137,7 @@ ex:JS_id_Shape a sh:NodeShape;
       ];
     ]
   ]
-);
+).
 
 ex:alooou_Shape a sh:NodeShape;
   sh:targetClass ex:alooou;

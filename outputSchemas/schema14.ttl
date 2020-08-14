@@ -36,79 +36,79 @@ ex:subschema_1_Shape a sh:NodeShape;
   sh:and (
     [
       sh:path ex:Nome;
-      sh:node ex:subschema_1_shape.
+      sh:node ex:subschema_1_shape;
     ]
     [
       sh:property [
         sh:path ex:test;
         sh:datatype xsd:string;
         sh:maxLength 5;
-      ]
+      ];
     ]
     [
       sh:property [
         sh:path ex:anotherTest;
         sh:datatype xsd:integer;
         sh:minInclusive 15;
-      ]
+      ];
     ]
     [
       sh:property [
         sh:path ex:aqui;
         sh:datatype xsd:string;
-      ]
+      ];
     ]
-  );
+  ).
   sh:xone (
     [
       sh:path ex:Nome;
-      sh:node ex:subschema_1_shape.
+      sh:node ex:subschema_1_shape;
     ]
     [
       sh:property [
         sh:path ex:test;
         sh:datatype xsd:string;
         sh:maxLength 5;
-      ]
+      ];
     ]
     [
       sh:property [
         sh:path ex:anotherTest;
         sh:datatype xsd:integer;
         sh:minInclusive 15;
-      ]
+      ];
     ]
-  );
+  ).
   sh:or (
     [
       sh:path ex:Nome;
-      sh:node ex:subschema_1_shape.
+      sh:node ex:subschema_1_shape;
     ]
     ex:subschema_2_shape
-  );
+  ).
 
 ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id;
   sh:and (
     [
       sh:path ex:Nome;
-      sh:node ex:subschema_1_shape.
+      sh:node ex:subschema_1_shape;
     ]
     [
       sh:property [
         sh:path ex:test;
         sh:datatype xsd:string;
         sh:maxLength 5;
-      ]
+      ];
     ]
     [
       sh:property [
         sh:path ex:anotherTest;
         sh:datatype xsd:integer;
         sh:minInclusive 15;
-      ]
+      ];
     ]
-  );
+  ).
 
 ex:obj1_Shape a sh:NodeShape;
   sh:targetClass ex:obj1;

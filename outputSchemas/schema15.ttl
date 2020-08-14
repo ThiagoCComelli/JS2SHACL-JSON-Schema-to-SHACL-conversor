@@ -147,7 +147,7 @@ ex:feature_Shape a sh:NodeShape;
       ex:stProperties_shape
       ex:psProperties_shape
       ex:scProperties_shape
-    );
+    ).
   ];
 
 ex:featureCollection_Shape a sh:NodeShape;
@@ -217,7 +217,7 @@ ex:hsProperties_Shape a sh:NodeShape;
       [
         sh:datatype xsd:null;
       ]
-    );
+    ).
   ];
   sh:property [
     sh:path ex:GERENCIA;
@@ -232,7 +232,7 @@ ex:hsProperties_Shape a sh:NodeShape;
       [
         sh:datatype xsd:null;
       ]
-    );
+    ).
   ];
   sh:property [
     sh:path ex:NAME;
@@ -344,7 +344,7 @@ ex:obj2_Shape a sh:NodeShape;
     ex:multiPoint_shape
     ex:multiLineString_shape
     ex:multiPolygon_shape
-  );
+  ).
 
 ex:geometry_Shape a sh:NodeShape;
   sh:targetClass ex:geometry.
