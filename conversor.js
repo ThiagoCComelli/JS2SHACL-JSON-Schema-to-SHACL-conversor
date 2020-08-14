@@ -49,9 +49,14 @@ module.exports = {
         }
         
         function getPropertyElements(element){
-            if(element.properties){
-                return element.properties
+            if(element != null){
+                if(element.properties){
+                    return element.properties
+                }
+            } else {
+                return undefined
             }
+            
         }
 
         function createDefSectionElements(element){
@@ -94,16 +99,32 @@ module.exports = {
 
         function setGenericArrayProperty(element,name,required,last){
             var local = ''
-            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n` + addSpaces(-1) + '];\n'
+
+            if(name != null){
+                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n` + addSpaces(-1) + '];\n'
+            }else{
+                local += addSpaces(1) + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n` + addSpaces(-1) + '];\n'
+            }
+
+
             if(required){
                 local += addSpaces() + 'sh:minCount 1;\n'
             }
-            local += addSpaces(-1) + ']'
-            if(last){
-                local += '.\n'
-            } else {
-                local += ';\n'
+
+            if(name!=null){
+                local += addSpaces(-1) + ']'
+                if(last!=null){
+                   if(last){
+                        local += '.\n'
+                    } else {
+                        local += ';\n'
+                    } 
+                }else{
+                    local += '\n'
+                }
+                
             }
+            
             return local
         }
 
@@ -111,7 +132,7 @@ module.exports = {
             var local = ''
 
             if(specialCase){
-                local += addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
+                local += addSpaces(1) + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             } else {
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             }
@@ -130,8 +151,9 @@ module.exports = {
                     }
 
                 } else {
-                    name += 1
-                    local += addSpaces() + `sh:datatype ex:${name}_Shape;\n` 
+                    number++
+                    
+                    local += addSpaces() + `sh:datatype ex:obj${number}_Shape;\n` 
 
                     if(specialCase){
                         local += addSpaces(-1) + '].\n'
@@ -139,7 +161,7 @@ module.exports = {
                         local += addSpaces(-1) + '];\n'
                     }
 
-                    newNodes[name] = element.items
+                    newNodes['obj'+number] = element.items
                 }
                 
             }
@@ -152,11 +174,16 @@ module.exports = {
             }
 
             if(!specialCase){
-                if(last){
-                    local += '.\n'
-                } else {
-                    local += ';\n'
+                if(last != null){
+                    if(last){
+                        local += '.\n'
+                    } else {
+                        local += ';\n'
+                    }
+                }else{
+                    local += '\n'
                 }
+                
             }
             
 
@@ -166,7 +193,14 @@ module.exports = {
         function setTupleArrayProperty(element,name,required,last){
             var local = ''
             var index = 0
-            local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n`
+
+            if(name != null){
+                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n`
+            } else {
+                local += addSpaces(1) + `sh:node dash:ListShape;\n`
+            }
+
+
             element.items.forEach(element_ => {
 
                 checkUndefined(element_)
@@ -213,12 +247,21 @@ module.exports = {
 
                 }
                 if(element_ == element.items[element.items.length-1]){
-                    local += addSpaces(-1) + ']'
-                    if(last){
-                        local += '.\n'
-                    } else {
-                        local += ';\n'
+
+                    if(name != null){
+                        local += addSpaces(-1) + ']'
+                        if(last!=null){
+                            if(last){
+                                local += '.\n'
+                            } else {
+                                local += ';\n'
+                            }
+                        }else{
+                            local += '\n'
+                        }
+                        
                     }
+                    
                 }
                 index++
             })
@@ -249,18 +292,21 @@ module.exports = {
 
             addPrefixes['xsd'] = true
 
-            local += addSpaces() + 'sh:property [\n'
+            if(name != null){
+                local += addSpaces() + 'sh:property [\n'
+            }            
 
             checkUndefined(element,true)
 
             if(name != null){
                 local += addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:datatype xsd:${dataTypes[element.type]};\n`
             } else {
-                if(dataTypes[element] != undefined){
-                    local += addSpaces(1) + `sh:datatype xsd:${dataTypes[element]};\n`
-                } else {
-                    local += addSpaces(1) + `sh:datatype ex:${element};\n`
-                }
+                // if(dataTypes[element] != undefined){
+                //     local += addSpaces(1) + `sh:datatype xsd:${dataTypes[element]};\n`
+                // } else {
+                //     local += addSpaces(1) + `sh:datatype ex:${element};\n`
+                // }
+                local += addSpaces(1) + `sh:datatype xsd:${dataTypes[element.type]};\n`
                 
             }
             for(var item in element){
@@ -288,11 +334,19 @@ module.exports = {
             if(required){
                 local += addSpaces() + `sh:minCount 1;\n`
             }
-            local += addSpaces(-1) + ']'
-            if(last){
-                local += '.\n'
-            } else {
-                local += ';\n'
+
+            if(name != null){
+                local += addSpaces(-1) + ']'
+                if(last!=null){
+                    if(last){
+                        local += '.\n'
+                    } else {
+                        local += ';\n'
+                    }
+                }else{
+                    local += '\n'
+                }
+                
             }
 
             return local
@@ -307,6 +361,8 @@ module.exports = {
                 if(ref != null){
                     local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node ex:${ref}_Shape;\n`
                 } else {
+                    newNodes[name] = element
+
                     local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node ex:${name}_Shape;\n`
                 }
                 if(required){
@@ -315,24 +371,23 @@ module.exports = {
 
                 local += addSpaces(-1) + ']'
 
-                if(last){
-                    local += '.\n'
-                } else {
-                    local += ';\n'
+                if(last!=null){
+                    if(last){
+                        local += '.\n'
+                    } else {
+                        local += ';\n'
+                    }
+                }else{
+                    local += '\n'
                 }
+                
                 
             } else {
                 // Excecao para tratar nodes em allOf, anyOf e oneOf.
                 number++
                 newNodes['obj'+number] = element
 
-                local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:node ex:obj${number}_Shape;\n` + addSpaces(-1) + ']'
-
-                if(last){
-                    local += '.\n'
-                } else {
-                    local += ';\n'
-                }
+                local += addSpaces(1) + `sh:node ex:obj${number}_Shape;\n` 
             }
             return local
         }
@@ -381,72 +436,79 @@ module.exports = {
             } else {
                 local += addSpaces() + 'sh:or (\n'
             }
+            scope++
             element.forEach(element_ => {
-                for(var i in element_){
-                    // i != 'description' && i != 'additionalProperties'
-                    if(true){
-                        if(i != '$ref'){
-                            local += addSpaces(1) + '[\n'
-                            scope++
-                            if(element_[i].type in dataTypes){
-                                
-                                local += setPrimitiveProperty(element_[i],i,checkRequired(element,i))
-                                
-                            } else if(element_[i].type == 'array'){
+                if('$ref' in element_){
+                    local += addSpaces() + `ex:${element_.$ref.split('/')[2]}_shape\n`
+                } else {
+                    if(element_.type){
+                        if(element_.type in dataTypes){
+                            local += addSpaces() + '[\n'
 
-                                local += setArray(element_[i],i,checkRequired(element,i))
+                            local += setPrimitiveProperty(element_,null,checkRequired(element_,i),null)
 
-                            } else if(element_[i].type == 'object'){
+                            local += addSpaces(-1) + ']\n'
+                        } else if(element_.type == 'array'){
+                            local += addSpaces() + '[\n'
 
-                                local += setComplexNodeShape(element_[i],i,checkRequired(element,i))
+                            local += setArray(element_,null,false,last=null,specialCase=true)
 
-                            } else if (i in anotherConstraints){
+                            local += addSpaces(-1) + ']\n'
+                        } else if(element_.type == 'object'){
+                            local += addSpaces() + '[\n'
 
-                                local += setOthersProperty(element_[i],i)
-                                
-                            } else if(i in constraints){
-                                if(i == 'enum' || i == 'const'){
-                                    local += setShInProperty(element_,i)
-                                }
-                            } else if(i == 'type'){
-                                if(element_[i] == 'object'){
-                                    local += setComplexNodeShape(element_,null)
-                                } else if(element_[i] == 'array'){
-                                    local += setArray(element_,name,null,null,true)
-                                } else if(element_[i] in dataTypes){
-                                    local += setPrimitiveProperty(element_[i],null)
-                                }
-                            } else if(element_[i].$ref){
-                                // local += setComplexNodeShape(element_[i].$ref,i)
-                                local +=  addSpaces() + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape;\n`
+                            local += setComplexNodeShape(element_,null,false,null,null)
+
+                            local += addSpaces(-1) + ']\n'
+                        } 
+                    } else {
+                        for(var i in element_){
+                            if(element_[i].$ref){
+                                local += addSpaces() + '[\n'
+
+                                local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape.\n`
+    
+                                local += addSpaces(-1) + ']\n'
+                            } else {
+                                if(element_[i].type in dataTypes){
+                                    local += addSpaces() + '[\n'
+                                    
+                                    scope++
+                                    local += setPrimitiveProperty(element_[i],i,checkRequired(element_,i),null)
+        
+                                    local += addSpaces(-1) + ']\n'
+                                } else if(element_[i].type == 'array'){
+                                    local += addSpaces() + '[\n'
+                                    
+                                    local += setArray(element_[i],i,false,last=null,specialCase=true)
+        
+                                    local += addSpaces(-1) + ']\n'
+                                } else if(element_[i].type == 'object'){
+                                    local += addSpaces() + '[\n'
+
+                                    scope++
+                                    local += setComplexNodeShape(element_[i],i,false,null,null)
+        
+                                    local += addSpaces(-1) + ']\n'
+                                } 
                             }
-
-                            scope -= 2
-                            local += addSpaces(1) + ']\n'
-                        } else {
-                            // local += addSpaces(1) + '[\n'
-                            scope += 1
-                            local += addSpaces() + `ex:${element_[i].split('/')[2]}_shape\n`
-                            // scope -= 1
-                            // local += addSpaces(1) + ']\n'
                         }
-                        scope--
                     }
-                    
                 }
             })
-            local += addSpaces() + ');\n'
+
+            local += addSpaces(-1) + ');\n'
 
             if(especialCase){
                 local += addSpaces(-1) + '];\n'
             }
-
             return local
         }
 
         //#endregion
 
         function create_New_Complex_NodeShape(element,name){
+            scope = 1
             var node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name}`
 
             nodesReady[name] = node + create_New_Complex_NodeShape_Structure(element,name)
@@ -496,7 +558,7 @@ module.exports = {
                         }
                     }
                 }
-            } else {
+            } else if(element != null) {
                 if(element.type == 'array'){
                     local += ';\n'
                     local += setArray(element,name,checkRequired(element,name),last=true,specialCase=true)

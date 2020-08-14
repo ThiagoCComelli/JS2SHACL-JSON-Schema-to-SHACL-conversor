@@ -1,0 +1,208 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
+
+ex:subschema_1_Shape a sh:NodeShape;
+  sh:targetClass ex:subschema_1;
+  sh:property [
+    sh:path ex:fruits;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:vegetables;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    ];
+  ].
+
+ex:subschema_2_Shape a sh:NodeShape;
+  sh:targetClass ex:subschema_2;
+  sh:property [
+    sh:path ex:fruitas;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:vegetables;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    ];
+  ];
+  sh:property [
+    sh:path ex:alooou;
+    sh:node ex:alooou_Shape;
+  ].
+
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
+  sh:or (
+    [
+      sh:path ex:Nome;
+      sh:node ex:subschema_1_shape.
+    ]
+    ex:subschema_2_shape
+    [
+      sh:property [
+        sh:path ex:anotherTest;
+        sh:datatype xsd:integer;
+        sh:minInclusive 15;
+      ]
+    ]
+    [
+      sh:datatype xsd:string;
+      sh:maxLength 5;
+    ]
+    [
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+        sh:datatype xsd:integer;
+      ].
+    ]
+    [
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      ];
+    ]
+    [
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path rdf:first;
+        sh:datatype xsd:integer;
+      ];
+      sh:property [
+        sh:path (rdf:rest rdf:first);
+        sh:datatype xsd:string;
+      ];
+      sh:property [
+        sh:path (rdf:rest rdf:rest rdf:first);
+        sh:node ex:obj1_Shape;
+      ];
+      sh:property [
+        sh:path (rdf:rest rdf:rest rdf:rest rdf:first);
+        sh:node ex:obj2_Shape;
+      ];
+    ]
+    [
+      sh:node ex:obj3_Shape;
+    ]
+    [
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+        sh:datatype xsd:integer;
+      ].
+    ]
+    [
+      sh:property [
+        sh:path ex:nomes;
+        sh:node ex:nomes_Shape;
+      ]
+    ]
+    [
+      sh:property [
+        sh:path ex:nomess;
+        sh:node ex:nomess_Shape;
+      ]
+    ]
+    [
+      sh:property [
+        sh:path ex:teste;
+        sh:datatype xsd:string;
+      ]
+    ]
+    [
+    sh:property [
+      sh:path ex:another;
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path rdf:first;
+        sh:datatype xsd:string;
+      ];
+      sh:property [
+        sh:path (rdf:rest rdf:first);
+        sh:node ex:obj4_Shape;
+      ];
+    ]
+  ]
+);
+
+ex:alooou_Shape a sh:NodeShape;
+  sh:targetClass ex:alooou;
+  sh:property [
+    sh:path ex:aqui;
+    sh:datatype xsd:string;
+  ].
+
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:name "The name schema";
+    sh:description "An explanation about the purpose of this instance.";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:surname;
+    sh:datatype xsd:string;
+    sh:name "The surname schema";
+    sh:description "An explanation about the purpose of this instance.";
+    sh:minCount 1;
+  ].
+
+ex:obj2_Shape a sh:NodeShape;
+  sh:targetClass ex:obj2;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:integer;
+    ].
+
+ex:obj3_Shape a sh:NodeShape;
+  sh:targetClass ex:obj3;
+  sh:property [
+    sh:path ex:nmPropA;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:nmPropB;
+    sh:datatype xsd:integer;
+  ].
+
+ex:nomes_Shape a sh:NodeShape;
+  sh:targetClass ex:nomes;
+  sh:property [
+    sh:path ex:a;
+    sh:datatype xsd:string;
+  ].
+
+ex:nomess_Shape a sh:NodeShape;
+  sh:targetClass ex:nomess.
+
+ex:obj4_Shape a sh:NodeShape;
+  sh:targetClass ex:obj4;
+  sh:property [
+    sh:path ex:ola;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:aqui;
+    sh:node ex:aqui_Shape;
+  ].
+
+ex:aqui_Shape a sh:NodeShape;
+  sh:targetClass ex:aqui.

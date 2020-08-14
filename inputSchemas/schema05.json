@@ -38,7 +38,106 @@
     "properties":{
         "anyOf":[
             {"Nome":{"$ref":"#/$defs/subschema_1"}},
-            {"$ref":"#/$defs/subschema_2"}
+            {"$ref":"#/$defs/subschema_2"},
+            {"anotherTest":{"type":"integer",
+                "minimum":15}},
+            { "type":"string",
+                "maxLength":5},
+            {   "type": "array",
+                "items": { "type": "integer" }
+            },
+            {
+                "type": "array"
+            },
+            {
+                "type": "array",
+                "items": [  { "type": "integer" },
+                            { "type": "string" },
+                            { "type": "object",
+                            "title": "The third anyOf schema",
+                            "description": "An explanation about the purpose of this instance.",
+                            "default": {},
+                            "examples": [ { "name": "one", "surname": "two" } ],
+                            "required": [ "name", "surname" ],
+                            "properties": {
+                                    "name": {
+                                        "$id": "#/properties/additionalItems/items/anyOf/2/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [ "one" ]
+                                    },
+                                    "surname": {
+                                        "$id": "#/properties/additionalItems/items/anyOf/2/properties/surname",
+                                        "type": "string",
+                                        "title": "The surname schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [ "two" ]
+                                    }
+                                },
+                                "additionalProperties": true
+                            },
+                            {   "type": "array",
+                                "title": "The fourth anyOf schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": [],
+                                "examples": [ [ 3, 4 ] ],
+                                "additionalItems": true,
+                                "items": { "type": "integer" }
+                            }
+                        ]
+            },
+            {
+                "type": "object",
+                "required": [ "nmPropA" ],
+                "properties": {
+                    "nmPropA": {
+                        "type": "string"
+                    },
+                    "nmPropB": {
+                        "type": "integer"
+                    }
+                }
+            },
+            {
+                "nome":{
+                   "type": "array",
+                    "items": { "type": "integer" }
+                }
+            },
+            {
+                "nomes":{
+                   "type": "object",
+                    "properties": { "a": {"type":"string"} }
+                }
+            },
+            {
+                "nomess":{
+                   "type": "object"
+                }
+            },
+            {
+                "teste":{
+                   "type": "string"
+                }
+            },
+            {
+                "another": {
+                    "type": "array",
+                    "items": [
+                        { "type":"string"},
+                        { 
+                            "type":"object",
+                            "properties": {
+                                "ola":{"type":"string"},
+                                "aqui":{"type":"object"}
+                            }
+                        }
+                    ]
+                }
+            }
         ]
     }
 }

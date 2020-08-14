@@ -29,7 +29,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:work1_Shape;
+      sh:datatype ex:obj1_Shape;
     ];
   ];
   sh:property [
@@ -37,7 +37,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:volunteer1_Shape;
+      sh:datatype ex:obj2_Shape;
     ];
   ];
   sh:property [
@@ -45,7 +45,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:education1_Shape;
+      sh:datatype ex:obj3_Shape;
     ];
   ];
   sh:property [
@@ -53,7 +53,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:awards1_Shape;
+      sh:datatype ex:obj4_Shape;
     ];
   ];
   sh:property [
@@ -61,7 +61,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:publications1_Shape;
+      sh:datatype ex:obj5_Shape;
     ];
   ];
   sh:property [
@@ -69,7 +69,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:skills1_Shape;
+      sh:datatype ex:obj6_Shape;
     ];
   ];
   sh:property [
@@ -77,7 +77,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:languages1_Shape;
+      sh:datatype ex:obj7_Shape;
     ];
   ];
   sh:property [
@@ -85,7 +85,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:interests1_Shape;
+      sh:datatype ex:obj8_Shape;
     ];
   ];
   sh:property [
@@ -93,7 +93,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:references1_Shape;
+      sh:datatype ex:obj9_Shape;
     ];
   ];
   sh:property [
@@ -101,7 +101,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:projects1_Shape;
+      sh:datatype ex:obj10_Shape;
     ];
   ];
   sh:property [
@@ -154,12 +154,12 @@ ex:basics_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:profiles1_Shape;
+      sh:datatype ex:obj11_Shape;
     ];
   ].
 
-ex:work1_Shape a sh:NodeShape;
-  sh:targetClass ex:work1;
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
@@ -207,8 +207,8 @@ ex:work1_Shape a sh:NodeShape;
     ];
   ].
 
-ex:volunteer1_Shape a sh:NodeShape;
-  sh:targetClass ex:volunteer1;
+ex:obj2_Shape a sh:NodeShape;
+  sh:targetClass ex:obj2;
   sh:property [
     sh:path ex:organization;
     sh:datatype xsd:string;
@@ -246,8 +246,8 @@ ex:volunteer1_Shape a sh:NodeShape;
     ];
   ].
 
-ex:education1_Shape a sh:NodeShape;
-  sh:targetClass ex:education1;
+ex:obj3_Shape a sh:NodeShape;
+  sh:targetClass ex:obj3;
   sh:property [
     sh:path ex:institution;
     sh:datatype xsd:string;
@@ -290,8 +290,8 @@ ex:education1_Shape a sh:NodeShape;
     ];
   ].
 
-ex:awards1_Shape a sh:NodeShape;
-  sh:targetClass ex:awards1;
+ex:obj4_Shape a sh:NodeShape;
+  sh:targetClass ex:obj4;
   sh:property [
     sh:path ex:title;
     sh:datatype xsd:string;
@@ -312,8 +312,8 @@ ex:awards1_Shape a sh:NodeShape;
     sh:description "e.g. Received for my work with Quantum Physics";
   ].
 
-ex:publications1_Shape a sh:NodeShape;
-  sh:targetClass ex:publications1;
+ex:obj5_Shape a sh:NodeShape;
+  sh:targetClass ex:obj5;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
@@ -339,8 +339,8 @@ ex:publications1_Shape a sh:NodeShape;
     sh:description "Short summary of publication. e.g. Discussion of the World Wide Web, HTTP, HTML.";
   ].
 
-ex:skills1_Shape a sh:NodeShape;
-  sh:targetClass ex:skills1;
+ex:obj6_Shape a sh:NodeShape;
+  sh:targetClass ex:obj6;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
@@ -360,8 +360,8 @@ ex:skills1_Shape a sh:NodeShape;
     ];
   ].
 
-ex:languages1_Shape a sh:NodeShape;
-  sh:targetClass ex:languages1;
+ex:obj7_Shape a sh:NodeShape;
+  sh:targetClass ex:obj7;
   sh:property [
     sh:path ex:language;
     sh:datatype xsd:string;
@@ -373,8 +373,8 @@ ex:languages1_Shape a sh:NodeShape;
     sh:description "e.g. Fluent, Beginner";
   ].
 
-ex:interests1_Shape a sh:NodeShape;
-  sh:targetClass ex:interests1;
+ex:obj8_Shape a sh:NodeShape;
+  sh:targetClass ex:obj8;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
@@ -389,8 +389,8 @@ ex:interests1_Shape a sh:NodeShape;
     ];
   ].
 
-ex:references1_Shape a sh:NodeShape;
-  sh:targetClass ex:references1;
+ex:obj9_Shape a sh:NodeShape;
+  sh:targetClass ex:obj9;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
@@ -402,8 +402,8 @@ ex:references1_Shape a sh:NodeShape;
     sh:description "e.g. Joe blogs was a great employee, who turned up to work at least once a week. He exceeded my expectations when it came to doing nothing.";
   ].
 
-ex:projects1_Shape a sh:NodeShape;
-  sh:targetClass ex:projects1;
+ex:obj10_Shape a sh:NodeShape;
+  sh:targetClass ex:obj10;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
@@ -508,8 +508,8 @@ Hinterhaus 5. Etage li.";
     sh:description "The general region where you live. Can be a US state, or a province, for instance.";
   ].
 
-ex:profiles1_Shape a sh:NodeShape;
-  sh:targetClass ex:profiles1;
+ex:obj11_Shape a sh:NodeShape;
+  sh:targetClass ex:obj11;
   sh:property [
     sh:path ex:network;
     sh:datatype xsd:string;

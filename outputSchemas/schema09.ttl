@@ -98,14 +98,10 @@ ex:responseOverrides-schema_Shape a sh:NodeShape;
     sh:path ex:response.body;
     sh:or (
       [
-        sh:property [
-          sh:datatype xsd:string;
-        ];
+        sh:datatype xsd:string;
       ]
       [
-        sh:property [
-          sh:node ex:obj1_Shape;
-        ];
+        sh:node ex:obj1_Shape;
       ]
     );
   ];

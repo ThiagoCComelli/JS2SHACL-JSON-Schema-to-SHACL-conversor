@@ -35,40 +35,32 @@ ex:platform_Shape a sh:NodeShape;
 
 ex:commands_Shape a sh:NodeShape;
   sh:targetClass ex:commands;
-  sh:node dash:ListShape;
-  sh:property [
-    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype ex:nonEmptyString_Shape;
-  ];
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:nonEmptyString_Shape;
+    ];
 
 ex:environment_Shape a sh:NodeShape;
   sh:targetClass ex:environment.
 
 ex:condition_Shape a sh:NodeShape;
   sh:targetClass ex:condition;
-  sh:node dash:ListShape;
-  sh:property [
-    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype xsd:string;
-  ].
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ].
 
 ex:conditions_Shape a sh:NodeShape;
   sh:targetClass ex:conditions;
   sh:or (
     ex:condition_shape
     [
-      sh:property [
-        sh:node ex:obj1_Shape;
-      ];
+      sh:node ex:obj1_Shape;
     ]
     [
-    ]
-    [
-      sh:property [
-        sh:node ex:obj2_Shape;
-      ];
-    ]
-    [
+      sh:node ex:obj2_Shape;
     ]
   );
 
@@ -101,19 +93,19 @@ ex:allConditions_Shape a sh:NodeShape;
 
 ex:volumes_Shape a sh:NodeShape;
   sh:targetClass ex:volumes;
-  sh:node dash:ListShape;
-  sh:property [
-    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype ex:volumes1_Shape;
-  ].
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj3_Shape;
+    ].
 
 ex:services_Shape a sh:NodeShape;
   sh:targetClass ex:services;
-  sh:node dash:ListShape;
-  sh:property [
-    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype ex:services1_Shape;
-  ].
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj4_Shape;
+    ].
 
 ex:secret_Shape a sh:NodeShape;
   sh:targetClass ex:secret;
@@ -358,15 +350,7 @@ ex:step_docker_Shape a sh:NodeShape;
   sh:and (
     ex:step_shape
     [
-      sh:property [
-        sh:node ex:obj3_Shape;
-      ];
-    ]
-    [
-    ]
-    [
-    ]
-    [
+      sh:node ex:obj5_Shape;
     ]
   );
 
@@ -375,15 +359,7 @@ ex:step_kubernetes_Shape a sh:NodeShape;
   sh:and (
     ex:step_shape
     [
-      sh:property [
-        sh:node ex:obj4_Shape;
-      ];
-    ]
-    [
-    ]
-    [
-    ]
-    [
+      sh:node ex:obj6_Shape;
     ]
   );
 
@@ -392,13 +368,7 @@ ex:step_exec_Shape a sh:NodeShape;
   sh:and (
     ex:step_shape
     [
-      sh:property [
-        sh:node ex:obj5_Shape;
-      ];
-    ]
-    [
-    ]
-    [
+      sh:node ex:obj7_Shape;
     ]
   );
 
@@ -407,13 +377,7 @@ ex:step_ssh_Shape a sh:NodeShape;
   sh:and (
     ex:step_shape
     [
-      sh:property [
-        sh:node ex:obj6_Shape;
-      ];
-    ]
-    [
-    ]
-    [
+      sh:node ex:obj8_Shape;
     ]
   );
 
@@ -422,13 +386,7 @@ ex:step_digitalocean_Shape a sh:NodeShape;
   sh:and (
     ex:step_shape
     [
-      sh:property [
-        sh:node ex:obj7_Shape;
-      ];
-    ]
-    [
-    ]
-    [
+      sh:node ex:obj9_Shape;
     ]
   );
 
@@ -437,31 +395,25 @@ ex:step_macstadium_Shape a sh:NodeShape;
   sh:and (
     ex:step_shape
     [
-      sh:property [
-        sh:node ex:obj8_Shape;
-      ];
-    ]
-    [
-    ]
-    [
+      sh:node ex:obj10_Shape;
     ]
   );
 
 ex:steps_volumes_Shape a sh:NodeShape;
   sh:targetClass ex:steps_volumes;
-  sh:node dash:ListShape;
-  sh:property [
-    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype ex:steps_volumes1_Shape;
-  ].
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj11_Shape;
+    ].
 
 ex:JS_id_Shape a sh:NodeShape;
-  sh:targetClass ex:JS_id;
-  sh:property [
-    sh:path ex:kind;
-    sh:in (signature,secret,pipeline);
-    sh:minCount 1;
-  ];
+    sh:targetClass ex:JS_id;
+    sh:property [
+      sh:path ex:kind;
+      sh:in (signature,secret,pipeline);
+      sh:minCount 1;
+    ];
 
 ex:obj1_Shape a sh:NodeShape;
   sh:targetClass ex:obj1;
@@ -477,8 +429,8 @@ ex:obj2_Shape a sh:NodeShape;
     sh:node ex:condition_Shape;
   ].
 
-ex:volumes1_Shape a sh:NodeShape;
-  sh:targetClass ex:volumes1;
+ex:obj3_Shape a sh:NodeShape;
+  sh:targetClass ex:obj3;
   sh:property [
     sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
@@ -492,8 +444,8 @@ ex:volumes1_Shape a sh:NodeShape;
     sh:node ex:temp_Shape;
   ].
 
-ex:services1_Shape a sh:NodeShape;
-  sh:targetClass ex:services1;
+ex:obj4_Shape a sh:NodeShape;
+  sh:targetClass ex:obj4;
   sh:property [
     sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;
@@ -557,8 +509,8 @@ ex:clone_Shape a sh:NodeShape;
     sh:in (true);
   ];
 
-ex:obj3_Shape a sh:NodeShape;
-  sh:targetClass ex:obj3;
+ex:obj5_Shape a sh:NodeShape;
+  sh:targetClass ex:obj5;
   sh:property [
     sh:path ex:image;
     sh:node ex:nonEmptyString_Shape;
@@ -582,8 +534,8 @@ ex:obj3_Shape a sh:NodeShape;
     sh:node ex:settings_Shape;
   ];
 
-ex:obj4_Shape a sh:NodeShape;
-  sh:targetClass ex:obj4;
+ex:obj6_Shape a sh:NodeShape;
+  sh:targetClass ex:obj6;
   sh:property [
     sh:path ex:image;
     sh:node ex:nonEmptyString_Shape;
@@ -611,20 +563,20 @@ ex:obj4_Shape a sh:NodeShape;
     sh:node ex:settings_Shape;
   ];
 
-ex:obj5_Shape a sh:NodeShape;
-  sh:targetClass ex:obj5;
-
-ex:obj6_Shape a sh:NodeShape;
-  sh:targetClass ex:obj6;
-
 ex:obj7_Shape a sh:NodeShape;
   sh:targetClass ex:obj7;
 
 ex:obj8_Shape a sh:NodeShape;
   sh:targetClass ex:obj8;
 
-ex:steps_volumes1_Shape a sh:NodeShape;
-  sh:targetClass ex:steps_volumes1;
+ex:obj9_Shape a sh:NodeShape;
+  sh:targetClass ex:obj9;
+
+ex:obj10_Shape a sh:NodeShape;
+  sh:targetClass ex:obj10;
+
+ex:obj11_Shape a sh:NodeShape;
+  sh:targetClass ex:obj11;
   sh:property [
     sh:path ex:name;
     sh:node ex:nonEmptyString_Shape;

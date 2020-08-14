@@ -51,7 +51,8 @@ function writeFile(_name,cont){
   }
 
   var name = _name.split('.')
-  fs.writeFile(`${dirOutputName}/${name[0]}.txt`,cont.shacl,(err,contents)=>{
+
+  fs.writeFile(`${dirOutputName}/${name[0]}.ttl`,cont.shacl,(err,contents)=>{
     
   })
 
@@ -66,7 +67,7 @@ function writeFile(_name,cont){
     
   }
 
-  fs.writeFile(`${dirOutputName}/${name[0]}_log.txt`,log,(err,contents)=>{
+  fs.writeFile(`${dirOutputName}/outputLog/${name[0]}_log.txt`,log,(err,contents)=>{
     
   })
 
@@ -115,7 +116,7 @@ function readRepository(){
   
   // session++
 
-  fs.readdir(dirInputName['location'],(err,filenames)=>{
+  fs.readdir("/home/thiago/Documents/SHACL-Conversor/inputSchemas",(err,filenames)=>{
     if(err){
       return
     }
@@ -124,7 +125,7 @@ function readRepository(){
     totalFilesInRepository = filenames.length
 
     filenames.forEach((filename)=>{
-      fs.readFile(dirInputName['location'] + '/' + filename,'utf8',(err,contents)=>{
+      fs.readFile("/home/thiago/Documents/SHACL-Conversor/inputSchemas" + '/' + filename,'utf8',(err,contents)=>{
         try{
           var cont = JSON.parse(contents)
         } catch {
@@ -146,7 +147,7 @@ function readRepository(){
 
 function readSingleFile(name){
   t0 = performance.now()
-  console.log(dirInputName['location'])
+  // console.log(dirInputName['location'])
   fs.readFile("/home/thiago/Documents/SHACL-Conversor/inputSchemas" + '/' + name,'utf8',(err,contents)=>{
     try{
       var cont = JSON.parse(contents)

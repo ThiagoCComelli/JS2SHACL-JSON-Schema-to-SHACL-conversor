@@ -11,42 +11,22 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:genericArray1_Shape;
+      sh:datatype ex:obj1_Shape;
     ];
     sh:minCount 1;
   ].
 
-ex:genericArray1_Shape a sh:NodeShape;
-  sh:targetClass ex:genericArray1;
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
   sh:or (
     [
+      sh:datatype xsd:string;
+      sh:name "The first anyOf schema";
+      sh:description "An explanation about the purpose of this instance.";
     ]
     [
-      sh:property [
-        sh:datatype xsd:string;
-      ];
-    ]
-    [
-    ]
-    [
-    ]
-    [
-    ]
-    [
-    ]
-    [
-    ]
-    [
-      sh:property [
-        sh:datatype xsd:integer;
-      ];
-    ]
-    [
-    ]
-    [
-    ]
-    [
-    ]
-    [
+      sh:datatype xsd:integer;
+      sh:name "The second anyOf schema";
+      sh:description "An explanation about the purpose of this instance.";
     ]
   );

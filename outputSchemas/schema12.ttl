@@ -93,7 +93,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:actions1_Shape;
+      sh:datatype ex:obj1_Shape;
     ];
   ];
   sh:property [
@@ -101,7 +101,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:alerts1_Shape;
+      sh:datatype ex:obj2_Shape;
     ];
   ].
 
@@ -326,8 +326,8 @@ ex:inject_Shape a sh:NodeShape;
 ex:redirects_Shape a sh:NodeShape;
   sh:targetClass ex:redirects.
 
-ex:actions1_Shape a sh:NodeShape;
-  sh:targetClass ex:actions1;
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
   sh:property [
     sh:path ex:name;
     sh:datatype xsd:string;
@@ -359,8 +359,8 @@ ex:actions1_Shape a sh:NodeShape;
     ];
   ].
 
-ex:alerts1_Shape a sh:NodeShape;
-  sh:targetClass ex:alerts1;
+ex:obj2_Shape a sh:NodeShape;
+  sh:targetClass ex:obj2;
   sh:property [
     sh:path ex:metric;
     sh:datatype xsd:string;

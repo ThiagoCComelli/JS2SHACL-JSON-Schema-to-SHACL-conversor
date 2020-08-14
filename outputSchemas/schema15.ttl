@@ -6,11 +6,11 @@
 
 ex:directPosition_Shape a sh:NodeShape;
   sh:targetClass ex:directPosition;
-  sh:node dash:ListShape;
-  sh:property [
-    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype xsd:decimal;
-  ].
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ].
 
 ex:point_Shape a sh:NodeShape;
   sh:targetClass ex:point;
@@ -54,7 +54,7 @@ ex:polygon_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:coordinates1_Shape;
+      sh:datatype ex:obj1_Shape;
     ];
     sh:minCount 1;
   ].
@@ -122,7 +122,7 @@ ex:geometryCollection_Shape a sh:NodeShape;
     sh:node dash:ListShape;
     sh:property [
       sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype ex:geometries1_Shape;
+      sh:datatype ex:obj2_Shape;
     ];
     sh:minCount 1;
   ].
@@ -212,14 +212,10 @@ ex:hsProperties_Shape a sh:NodeShape;
     sh:path ex:FINAL;
     sh:or (
       [
-        sh:property [
-          sh:datatype xsd:integer;
-        ];
+        sh:datatype xsd:integer;
       ]
       [
-        sh:property [
-          sh:datatype xsd:null;
-        ];
+        sh:datatype xsd:null;
       ]
     );
   ];
@@ -231,14 +227,10 @@ ex:hsProperties_Shape a sh:NodeShape;
     sh:path ex:INICIAL;
     sh:or (
       [
-        sh:property [
-          sh:datatype xsd:integer;
-        ];
+        sh:datatype xsd:integer;
       ]
       [
-        sh:property [
-          sh:datatype xsd:null;
-        ];
+        sh:datatype xsd:null;
       ]
     );
   ];
@@ -335,16 +327,16 @@ ex:JS_id_Shape a sh:NodeShape;
     ];
   ].
 
-ex:coordinates1_Shape a sh:NodeShape;
-  sh:targetClass ex:coordinates1;
-  sh:node dash:ListShape;
-  sh:property [
-    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype ex:directPosition_Shape;
-  ];
+ex:obj1_Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:directPosition_Shape;
+    ];
 
-ex:geometries1_Shape a sh:NodeShape;
-  sh:targetClass ex:geometries1;
+ex:obj2_Shape a sh:NodeShape;
+  sh:targetClass ex:obj2;
   sh:or (
     ex:point_shape
     ex:lineString_shape

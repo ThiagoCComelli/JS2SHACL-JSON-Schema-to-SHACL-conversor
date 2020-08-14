@@ -1,8 +1,0 @@
-2 Warnings (Elements ignored!)
-
-Key: $id
-Element: {"$id": "https://example.com/person.schema.json"}
-
-Key: $schema
-Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
-
