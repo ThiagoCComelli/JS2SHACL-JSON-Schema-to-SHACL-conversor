@@ -467,6 +467,33 @@ module.exports = {
 
                             local += addSpaces(-1) + ']\n'
                         } 
+                    } else if(element_.properties){
+                        var prop = element_.properties
+                        for(var i in prop){
+                            console.log(i)
+                            console.log(prop[i])
+                            if(prop[i].type in dataTypes){
+                                local += addSpaces() + '[\n'
+                                
+                                scope++
+                                local += setPrimitiveProperty(prop[i],i,checkRequired(prop,i),false)
+    
+                                local += addSpaces(-1) + ']\n'
+                            } else if(prop[i].type == 'array'){
+                                local += addSpaces() + '[\n'
+                                
+                                local += setArray(prop[i],i,false,null,specialCase=true)
+    
+                                local += addSpaces(-1) + ']\n'
+                            } else if(prop[i].type == 'object'){
+                                local += addSpaces() + '[\n'
+
+                                scope++
+                                local += setComplexNodeShape(prop[i],i,false,null,false)
+    
+                                local += addSpaces(-1) + ']\n'
+                            } 
+                        }
                     } else {
                         for(var i in element_){
                             if(element_[i].$ref){

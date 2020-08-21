@@ -23,5 +23,17 @@ ex:address_Shape a sh:NodeShape;
 ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id;
   sh:and (
+    [
+      sh:property [
+        sh:path ex:name;
+        sh:datatype xsd:string;
+      ];
+    ]
+    [
+      sh:property [
+        sh:path ex:age;
+        sh:datatype xsd:integer;
+      ];
+    ]
     ex:address_shape
   ).

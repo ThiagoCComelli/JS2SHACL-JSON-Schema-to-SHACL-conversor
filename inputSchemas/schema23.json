@@ -1,4 +1,3 @@
-
 {
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "http://example.com/example.json",
@@ -23,21 +22,20 @@
     "title": "The root schema",
     "description": "The root schema comprises the entire JSON document.",
     "default": {},
-    "allOf": [ { "properties": { 
+    "allOf": [  { "properties": { 
                       "name": { "type": "string" } }
-               },
-        {
-            "properties": {
-                "age": {
-                    "type": "integer"
+                },
+                {
+                    "properties": {
+                        "age": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/address"
                 }
-            }
-        },
-        {
-            "$ref": "#/definitions/address"
-        }
 
-    ]
+            ]
 
 }
-
