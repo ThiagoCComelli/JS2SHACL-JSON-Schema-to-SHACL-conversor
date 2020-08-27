@@ -1,0 +1,66 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/> .
+
+ex:person_Shape a sh:NodeShape;
+  sh:targetClass ex:person;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:street;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:number;
+    sh:datatype xsd:integer;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:city;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:cpf;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ].
+
+ex:legalPerson_Shape a sh:NodeShape;
+  sh:targetClass ex:legalPerson;
+  sh:property [
+    sh:path ex:companyName;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:street;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:number;
+    sh:datatype xsd:integer;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:city;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:cnpj;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ].
+
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
+  sh:or (
+    ex:person_shape
+    ex:legalPerson_shape
+  ).

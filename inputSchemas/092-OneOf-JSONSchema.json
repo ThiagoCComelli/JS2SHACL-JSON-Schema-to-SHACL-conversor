@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "definitions": {
+        "person": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },                
+                "cpf": {"type": "string"}
+            },
+            "required": ["name", "street", "number", "city", "cpf"]
+        },
+        "legalPerson": {
+            "type": "object",
+            "properties": {
+                "companyName": { "type": "string" },                
+                "cnpj": {"type": "string"}
+            },
+            "required": ["companyName", "street", "number", "city", "cnpj"]
+        }
+    },
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "properties": {
+        "street": { "type": "string" },
+        "number": { "type": "integer" },
+        "city": { "type": "string" },
+    
+        "oneOf": [  
+                    {
+                        "$ref": "#/definitions/person"
+                    },
+                    {
+                        "$ref": "#/definitions/legalPerson"
+                    }
+                ]
+    }
+
+}

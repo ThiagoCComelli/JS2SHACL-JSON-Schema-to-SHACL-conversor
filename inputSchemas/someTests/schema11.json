@@ -10,8 +10,7 @@
             "default": "always",
             "oneOf": [
               {
-                "enum": ["always"],
-                "description": "Always include parens. Example: `(x) => x`"
+                "enum": ["always"]
               },
               {
                 "enum": ["avoid"],

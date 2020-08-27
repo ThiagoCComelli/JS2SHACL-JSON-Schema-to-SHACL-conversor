@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "definitions": {
+        "address": {
+            "type": "object",
+            "properties": {
+                "street": { "type": "string" },
+                "number": { "type": "integer" },
+                "city": { "type": "string" }
+            },
+            "required": ["street", "number", "city"]
+        }
+    },
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "allOf": [  { "properties": { 
+                      "name": { "type": "string" } }
+                },
+                {
+                    "properties": {
+                        "age": {  "type": "integer" }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/address"
+                }
+
+            ]
+
+}

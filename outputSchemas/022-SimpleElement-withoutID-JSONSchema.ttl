@@ -7,7 +7,7 @@ ex:JS_id_Shape a sh:NodeShape;
   sh:property [
     sh:path ex:coordinates;
     sh:datatype xsd:string;
-    sh:name "The coordinates schema";
-    sh:description "An explanation about the purpose of this instance.";
+    sh:name "The Coordinates Schema";
+    sh:pattern "^(.*)$";
     sh:minCount 1;
   ].

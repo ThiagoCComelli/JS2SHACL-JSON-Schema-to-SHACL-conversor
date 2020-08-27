@@ -139,6 +139,11 @@ module.exports = {
             
             if('$ref' in element.items){
                 local += addSpaces() + `sh:datatype ex:${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n'
+                // if(last){
+                //     local += '.\n'
+                // }else{
+                //     local += ';\n'
+                // }
             } else {
                 if(element.items.type in dataTypes){
                     addPrefixes['xsd'] = true
@@ -284,11 +289,11 @@ module.exports = {
             checkUndefined(element)
 
             if('type' in element && 'items' in element && element['items'].length != undefined){
-                local = setTupleArrayProperty(element,name,required,last=last)
+                local = setTupleArrayProperty(element,name,required,last)
             } else if ('type' in element && 'items' in element){
                 local = setListValidationArrayProperty(element,name,required,last,specialCase)
             } else {
-                local = setGenericArrayProperty(element,name,required,last=last)
+                local = setGenericArrayProperty(element,name,required,last)
             }
             return local
         }
@@ -398,7 +403,7 @@ module.exports = {
             return local
         }
 
-        function setShInProperty(element,name,item,required){
+        function setShInProperty(element,name,item,required,last){
             var local = ''
             local += addSpaces() + `sh:property [\n` 
             scope++
@@ -422,13 +427,18 @@ module.exports = {
             if(required){
                 local += addSpaces() + `sh:minCount 1;\n`
             }
-            local += addSpaces(-1) + `];\n`
+            local += addSpaces(-1) + `]`
+            if(last){
+                local += '.\n'
+            }else{
+                local +=  ';\n'
+            }
             return local
         }
 
         //#region NAO TA FUNCIONANDO
 
-        function setOthersProperty(element,name,especialCase,path){
+        function setOthersProperty(element,name,especialCase,path,last){
             var local = ''
 
             if(especialCase){
@@ -470,8 +480,6 @@ module.exports = {
                     } else if(element_.properties){
                         var prop = element_.properties
                         for(var i in prop){
-                            console.log(i)
-                            console.log(prop[i])
                             if(prop[i].type in dataTypes){
                                 local += addSpaces() + '[\n'
                                 
@@ -530,7 +538,13 @@ module.exports = {
                 }
             })
 
-            local += addSpaces(-1) + ').\n'
+            local += addSpaces(-1) + ')'
+
+            if(last){
+                local += '.\n'
+            }else{
+                local += ';\n'
+            }
 
             if(especialCase){
                 local += addSpaces(-1) + '];\n'
@@ -566,27 +580,25 @@ module.exports = {
                 }
                 for(var item in propertiesElements){
                     
-                    var last = checkLastElement(propertiesElements,item)
-                    
                     if(propertiesElements[item].type in dataTypes){
-                        local += setPrimitiveProperty(propertiesElements[item],item,checkRequired(element,item),last=last)
+                        local += setPrimitiveProperty(propertiesElements[item],item,checkRequired(element,item),checkLastElement(propertiesElements,item))
                     } else if(propertiesElements[item].type == 'object'){
                         newNodes[item] = propertiesElements[item]
-                        local += setComplexNodeShape(propertiesElements[item],item,checkRequired(element,item),null,last)
+                        local += setComplexNodeShape(propertiesElements[item],item,checkRequired(element,item),null,checkLastElement(propertiesElements,item))
                     } else if(propertiesElements[item].type == 'array'){
-                        local += setArray(propertiesElements[item],item,checkRequired(element,item),last=last)
+                        local += setArray(propertiesElements[item],item,checkRequired(element,item),checkLastElement(propertiesElements,item))
                     } else if(propertiesElements[item].$ref){
-                        local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2],last=last)
+                        local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2],checkLastElement(propertiesElements,item))
                     } else if(item in anotherConstraints){
-                        local += setOthersProperty(propertiesElements[item],item)
+                        local += setOthersProperty(propertiesElements[item],item,null,null,checkLastElement(propertiesElements,item))
                     } else {
                         
                         for(var i in propertiesElements[item]){
                             if (i in constraints){
-                                local += setShInProperty(propertiesElements[item],i,item,checkRequired(element,item))
+                                local += setShInProperty(propertiesElements[item],i,item,checkRequired(element,item),checkLastElement(element,item))
                             }
                             else if(i in anotherConstraints){
-                                local += setOthersProperty(propertiesElements[item][i],i,true,item)
+                                local += setOthersProperty(propertiesElements[item][i],i,true,item,checkLastElement(element,item))
                             }
                         }
                     }
@@ -602,13 +614,13 @@ module.exports = {
                 else if(element.type == 'object'){
                     if('allOf' in element){
                         local += ';\n'
-                        local += setOthersProperty(element.allOf,'allOf')
+                        local += setOthersProperty(element.allOf,'allOf',null,null,checkLastElement(element,'allOf'))
                     } else if('anyOf' in element){
                         local += ';\n'
-                        local += setOthersProperty(element.anyOf,'anyOf')
+                        local += setOthersProperty(element.anyOf,'anyOf',null,null,checkLastElement(element,'anyOf'))
                     } else if('oneOf' in element){
                         local += ';\n'
-                        local += setOthersProperty(element.oneOf,'oneOf')
+                        local += setOthersProperty(element.oneOf,'oneOf',null,null,checkLastElement(element,'oneOf'))
                     }
                     else{
                         local += '.\n'
@@ -619,10 +631,10 @@ module.exports = {
                     for(var i in element){
                         if(i in anotherConstraints){
                             local += ';\n'
-                            local += setOthersProperty(element[i],i)
+                            local += setOthersProperty(element[i],i,null,null,checkLastElement(element,i))
                         } else if(i in constraints){
                             local += ';\n'
-                            local += setShInProperty(element[i],i,required=checkRequired(element,i))
+                            local += setShInProperty(element[i],i,undefined,checkRequired(element,i),checkLastElement(element,i))
                         } 
                     }
                 }
@@ -643,11 +655,9 @@ module.exports = {
 
         function checkLastElement(element,name){
             var index = []
-
+            
             for(var i in element){
-                if(!(i in constraints || i in anotherConstraints )){
-                    index.push(i)
-                }
+                index.push(i)
             }
             if(name == index[index.length-1]){
                 return true
