@@ -132,7 +132,7 @@ module.exports = {
             var local = ''
 
             if(specialCase){
-                local += addSpaces(1) + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
+                local += addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             } else {
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             }
@@ -303,9 +303,9 @@ module.exports = {
 
             addPrefixes['xsd'] = true
 
-            if(name != null){
+            // if(name != null){
                 local += addSpaces() + 'sh:property [\n'
-            }            
+            // }            
 
             checkUndefined(element,true)
 
@@ -346,7 +346,7 @@ module.exports = {
                 local += addSpaces() + `sh:minCount 1;\n`
             }
 
-            if(name != null){
+            // if(name != null){
                 local += addSpaces(-1) + ']'
                 if(last!=null){
                     if(last){
@@ -357,8 +357,7 @@ module.exports = {
                 }else{
                     local += '\n'
                 }
-                
-            }
+            // }
 
             return local
         }

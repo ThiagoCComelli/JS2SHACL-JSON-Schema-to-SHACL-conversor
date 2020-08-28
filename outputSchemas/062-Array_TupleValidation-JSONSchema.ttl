@@ -46,8 +46,8 @@ ex:obj1_Shape a sh:NodeShape;
 
 ex:obj2_Shape a sh:NodeShape;
   sh:targetClass ex:obj2;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:datatype xsd:integer;
-    ].
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
+  ].
