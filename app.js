@@ -38,6 +38,8 @@ var fileName = [{
 }]
 
 function writeFile(_name,cont){
+  var log = ''
+
   try {
     t11 = performance.now()
 
@@ -56,8 +58,10 @@ function writeFile(_name,cont){
     
   })
 
-  var log = `${cont.elements.length} Warnings (Elements ignored!)\n\n`
-  
+  // JSON.stringify(cont.count)
+
+  log += `Created Nodes (Shapefile): ${cont.count['node']}\nCreated Propertys (Shapefile): ${cont.count['property']}\nElements analyzed (JSON Schema): ${cont.count['elements']}\nProperties analyzed (JSON Schema): ${cont.count['properties']}\n\n==============================\n\n${cont.elements.length} Warnings (Elements ignored!)\n\n`
+
   for(var i in cont.elements){
     log += 'Key: ' + cont.elements[i].element
     if(cont.elements[i].primitive){
@@ -67,7 +71,7 @@ function writeFile(_name,cont){
     
   }
 
-  fs.writeFile(`${dirOutputName}/outputLog/${name[0]}_log.txt`,log,(err,contents)=>{
+  fs.writeFile(`/home/thiago/Documents/SHACL-Conversor/outputLog/${name[0]}_log.txt`,log,(err,contents)=>{
     
   })
 

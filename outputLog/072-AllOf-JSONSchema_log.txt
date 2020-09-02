@@ -1,0 +1,18 @@
+Created Nodes (Shapefile): 2
+Created Propertys (Shapefile): 5
+Elements analyzed (JSON Schema): 0
+Properties analyzed (JSON Schema): 0
+
+==============================
+
+3 Warnings (Elements ignored!)
+
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-07/schema"}
+
+Key: $id
+Element: {"$id": "http://example.com/example.json"}
+
+Key: default
+Element: {"default": {}}
+

@@ -31,6 +31,7 @@ module.exports = {
         var addPrefixes = {}
         var nodesReady = {}
         var newNodes = {}
+        var elementsCount = {"node":0,"property":0,"elements":0,"properties":0}
         var number = 0
         var elementsUndefined = []
         var log = ''
@@ -92,6 +93,7 @@ module.exports = {
         function setMainNodeShape(element){
             addPrefixes['ex'] = true
             addPrefixes['sh'] = true
+            elementsCount['node']++
 
             var local = 'ex:JS_id_Shape a sh:NodeShape;\n' + addSpaces() + 'sh:targetClass ex:JS_id'
             return local
@@ -99,8 +101,10 @@ module.exports = {
 
         function setGenericArrayProperty(element,name,required,last){
             var local = ''
+            elementsCount['property']++
 
             if(name != null){
+                elementsCount['property']++
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n` + addSpaces(-1) + '];\n'
             }else{
                 local += addSpaces(1) + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n` + addSpaces(-1) + '];\n'
@@ -130,10 +134,12 @@ module.exports = {
 
         function setListValidationArrayProperty(element,name,required,last,specialCase=false){
             var local = ''
-
+            elementsCount['property']++
+            
             if(specialCase){
                 local += addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             } else {
+                elementsCount['property']++
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             }
             
@@ -206,6 +212,7 @@ module.exports = {
             var index = 0
 
             if(name != null){
+                elementsCount['property']++
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n`
             } else {
                 local += addSpaces(1) + `sh:node dash:ListShape;\n`
@@ -216,8 +223,9 @@ module.exports = {
 
                 checkUndefined(element_)
 
-                if(element_.type in dataTypes){
+                elementsCount['property']++
 
+                if(element_.type in dataTypes){
                     addPrefixes['xsd'] = true
 
                     local += addSpaces() + `sh:property [\n`
@@ -280,7 +288,7 @@ module.exports = {
             return local
         }
 
-        function setArray(element,name,required,last,specialCase){
+        function setArray(element,name,required,last,specialCase=false){
             var local
 
             addPrefixes['dash'] = true
@@ -300,6 +308,7 @@ module.exports = {
 
         function setPrimitiveProperty(element,name,required,last){
             var local = ''
+            elementsCount['property']++
 
             addPrefixes['xsd'] = true
 
@@ -364,6 +373,7 @@ module.exports = {
         
         function setComplexNodeShape(element,name,required,ref = null,last){
             var local = ''
+            elementsCount['property']++
 
             checkUndefined(element)
 
@@ -459,7 +469,7 @@ module.exports = {
                     if(element_.type){
                         if(element_.type in dataTypes){
                             local += addSpaces() + '[\n'
-
+                            
                             local += setPrimitiveProperty(element_,null,checkRequired(element_,i),false)
 
                             local += addSpaces(-1) + ']\n'
@@ -506,6 +516,7 @@ module.exports = {
                             if(element_[i].$ref){
                                 local += addSpaces() + '[\n'
 
+                                elementsCount['property']++
                                 local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape;\n`
     
                                 local += addSpaces(-1) + ']\n'
@@ -554,6 +565,8 @@ module.exports = {
         //#endregion
 
         function create_New_Complex_NodeShape(element,name){
+            elementsCount['node']++
+
             scope = 1
             var node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name}`
 
@@ -570,6 +583,7 @@ module.exports = {
             var propertiesElements = getPropertyElements(element)
 
             checkUndefined(element)
+
             if(propertiesElements != undefined){
                 
                 if(isEmpty(propertiesElements)){
@@ -585,7 +599,7 @@ module.exports = {
                         newNodes[item] = propertiesElements[item]
                         local += setComplexNodeShape(propertiesElements[item],item,checkRequired(element,item),null,checkLastElement(propertiesElements,item))
                     } else if(propertiesElements[item].type == 'array'){
-                        local += setArray(propertiesElements[item],item,checkRequired(element,item),checkLastElement(propertiesElements,item))
+                        local += setArray(propertiesElements[item],item,checkRequired(element,item),checkLastElement(propertiesElements,item),false)
                     } else if(propertiesElements[item].$ref){
                         local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2],checkLastElement(propertiesElements,item))
                     } else if(item in anotherConstraints){
@@ -671,7 +685,7 @@ module.exports = {
                     var local = `{"${i}": ${JSON.stringify(element[i])}}`
 
                     elementsUndefined.push({schema:local,element:i,primitive:primitive})
-                }
+                } 
             }
         }
         
@@ -700,7 +714,7 @@ module.exports = {
         
         function setup(schema) {
             t0 = performance.now()
-            setMainNodeShape(schema)
+            // setMainNodeShape(schema)
             createDefSectionElements(schema)
             createSchemaSectionElementes(schema)
         }
@@ -738,6 +752,6 @@ module.exports = {
 
         t1 = performance.now()
 
-        return {shacl:shacl,log:log,elements:elementsUndefined,time:t1-t0}
+        return {shacl:shacl,log:log,elements:elementsUndefined,time:t1-t0,count:elementsCount}
     }
 }
