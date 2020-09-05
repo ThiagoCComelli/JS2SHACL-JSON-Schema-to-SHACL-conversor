@@ -3,5 +3,5 @@
 ### Executation
 
 ```sh
-$ node app.js
+$ node app.js (filename in /inputSchemas)
 ```
