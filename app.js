@@ -4,14 +4,13 @@ const {performance} = require('perf_hooks')
 const { Console } = require('console')
 const conversor = require('./conversor')
 
+var args = process.argv
 var totalFilesAnalized = 0
 var totalFilesInRepository = 0
 var totalTime = 0
 var totalTimeOnlyConversion = 0
-var finalTime = 0
 var finalTimeConversion = 0
 var totalFiles = 0
-var file
 var STOP = 1
 var session = 0
 var option
@@ -19,23 +18,6 @@ var t0
 var t1
 var t00
 var t11
-var dirInputName = __dirname+"/inputSchemas"
-var dirOutputName = __dirname+"/outputSchemas"
-var initialQuestion = [{
-  type:'input',
-  name:'option',
-  message:'Convert single file or a repository (0 => file || 1 => repository)'
-}]
-var dirLocation = [{
-  type:'input',
-  name:'location',
-  message:'Directory location (ex: /home/thiago/Documents/JSON-Schema-SHACL/random/v3/inputSchemas)'
-}]
-var fileName = [{
-  type:'input',
-  name:'name',
-  message:'File name (ex: schema00.json)'
-}]
 
 function writeFile(_name,cont){
   var log = ''
@@ -46,15 +28,14 @@ function writeFile(_name,cont){
     totalTimeOnlyConversion += t11-t00
 
     if(session > 0){
-      finalTimeConversion += totalTimeOnlyConversion
+      finalTimeConversion += t11-t00
     }
   } catch {
 
   }
-
   var name = _name.split('.')
 
-  fs.writeFile(`${dirOutputName}/${name[0]}.ttl`,cont.shacl,(err,contents)=>{
+  fs.writeFile(__dirname + `/outputSchemas/${name[0]}.ttl`,cont.shacl,(err,contents)=>{
     
   })
 
@@ -71,7 +52,7 @@ function writeFile(_name,cont){
     
   }
 
-  fs.writeFile(`/home/thiago/Documents/SHACL-Conversor/outputLog/${name[0]}_log.txt`,log,(err,contents)=>{
+  fs.writeFile(__dirname + `/outputLog/${name[0]}_log.txt`,log,(err,contents)=>{
     
   })
 
@@ -100,16 +81,14 @@ function stats(){
   if (totalFiles < STOP + 1){
     
     if(option){
-      readSingleFile(file)
-    }else{
       readRepository()
+    }else{
+      readSingleFile(args[2])
     }
     
   } else {
     console.log(`Average time conversion: ${finalTimeConversion/(session-1)} ms\nTotal sessions analized: ${session-1}\n`)
   }
-
-  // readFiles()
 }
 
 // READ ALL FILES IN DIRECTORY TO MAKE A CONVERSION
@@ -120,19 +99,24 @@ function readRepository(){
   
   // session++
 
-  fs.readdir("/home/thiago/Documents/SHACL-Conversor/inputSchemas",(err,filenames)=>{
+  fs.readdir(__dirname + "/inputSchemas",(err,filenames)=>{
     if(err){
       return
     }
 
     lastFile = filenames[filenames.length-1]
-    totalFilesInRepository = filenames.length
+    totalFilesInRepository = filenames.length-1
 
     filenames.forEach((filename)=>{
-      fs.readFile("/home/thiago/Documents/SHACL-Conversor/inputSchemas" + '/' + filename,'utf8',(err,contents)=>{
+      if(filename == 'someTests'){
+        return
+      }
+
+      fs.readFile(__dirname + "/inputSchemas/" + filename,'utf8',(err,contents)=>{
         try{
           var cont = JSON.parse(contents)
         } catch {
+          console.log(filename)
           totalFilesInRepository--
           return
         }
@@ -151,8 +135,7 @@ function readRepository(){
 
 function readSingleFile(name){
   t0 = performance.now()
-  // console.log(dirInputName['location'])
-  fs.readFile("/home/thiago/Documents/SHACL-Conversor/inputSchemas" + '/' + name,'utf8',(err,contents)=>{
+  fs.readFile(__dirname + "/inputSchemas/" + args[2],'utf8',(err,contents)=>{
     try{
       var cont = JSON.parse(contents)
     } catch {
@@ -172,22 +155,22 @@ function readSingleFile(name){
 
 // START THE WHOLE PROCESS
 
-inquirer.prompt(initialQuestion).then(answers => {
-  if(answers['option'] == "1"){
-    inquirer.prompt(dirLocation).then(location => {
-      dirInputName = location
-      option = false
-      readRepository()
-    })
-    
-  }else if (answers['option'] == "0"){
-    inquirer.prompt(dirLocation).then(location => {
-      inquirer.prompt(fileName).then(name => {
-        dirInputName = location
-        file = name['name']
+function setup(){
+  try{
+    args.forEach(element => {
+      if(element == '-a'){
         option = true
-        readSingleFile(name['name'])
-      })
+      }
     })
+  }catch{
+
   }
-})
+  
+  if(option){
+    readRepository()
+  } else {
+    readSingleFile(args[2])
+  }
+}
+
+setup()

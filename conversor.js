@@ -52,6 +52,7 @@ module.exports = {
         function getPropertyElements(element){
             if(element != null){
                 if(element.properties){
+                    elementsCount['properties'] += Object.keys(element.properties).length
                     return element.properties
                 }
             } else {
