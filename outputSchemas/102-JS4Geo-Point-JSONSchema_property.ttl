@@ -36,6 +36,26 @@ ex:PointShape a sh:NodeShape;
     sh:maxCount 1;
   ].
 
+ex:directPositionShape a sh:NodeShape ;
+  sh:node dash:ListShape ;
+  dash:hasMinLength ex:coordMinSize ;
+  sh:property [
+    sh:path ( [sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:decimal ;
+  ] .
+
+ex:coordMinOccurConstraintComponent a sh:ConstraintComponent ;
+  sh:parameter [
+    sh:path ex:coordMinSize ;
+    sh:datatype xsd:integer ;
+  ] ;
+  sh:validator ex:coordMinOccur .
+
+ex:coordMinOccur a sh:JSValidator ;
+  sh:message "Verify minOccur in JS4Geo coordinates!!!" ;
+  sh:jsLibrary [ sh:jsLibraryURL "http://localhost/JS4Geo-SHACL-Validators.js" ] ;
+  sh:jsFunctionName "coordMinOccur" .
+
 ex:bboxShape a sh:NodeShape ;
   sh:node dash:ListShape ;
   dash:hasMinLength ex:bboxMinSize ;
@@ -56,24 +76,4 @@ ex:bboxMinOccur a sh:JSValidator ;
   sh:message 'Verify minOccur in JS4Geo bbox!!!' ;
   sh:jsLibrary [ sh:jsLibraryURL 'http://localhost/JS4Geo-SHACL-Validators.js' ] ;
   sh:jsFunctionName 'bboxMinOccur' .
-
-ex:directPositionShape a sh:NodeShape ;
-  sh:node dash:ListShape ;
-  dash:hasMinLength ex:coordMinSize ;
-  sh:property [
-    sh:path ( [sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype xsd:decimal ;
-  ] .
-
-ex:coordMinOccurConstraintComponent a sh:ConstraintComponent ;
-  sh:parameter [
-    sh:path ex:coordMinSize ;
-    sh:datatype xsd:integer ;
-  ] ;
-  sh:validator ex:coordMinOccur .
-
-ex:coordMinOccur a sh:JSValidator ;
-  sh:message "Verify minOccur in JS4Geo coordinates!!!" ;
-  sh:jsLibrary [ sh:jsLibraryURL "http://localhost/JS4Geo-SHACL-Validators.js" ] ;
-  sh:jsFunctionName "coordMinOccur" .
 

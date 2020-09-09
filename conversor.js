@@ -29,7 +29,7 @@ module.exports = {
         var defSection = true
         var scope = 1
         var addPrefixes = {}
-        var addGeo = {}
+        var addGeo = {'point':null,'directPosition':null,'Bbox':null}
         var nodesReady = {}
         var newNodes = {}
         var elementsCount = {"node":0,"property":0,"elements":0,"properties":0}
@@ -767,7 +767,11 @@ module.exports = {
             addPrefixes['sf'] = true
             addPrefixes['dash'] = true
 
-            addGeo[name] = true
+            if(name == 'point'){
+                addGeo['point'] = true
+                addGeo['Bbox'] = true
+                addGeo['directPosition'] = true
+            }
         }
         
         //#region FUNCTIONS TO HELP
@@ -858,14 +862,8 @@ module.exports = {
         shacl += '\n'
 
         for(var i in addGeo){
-            if(i == 'point'){
-                shacl += JS4Geo['point']
-                shacl += JS4Geo['Bbox']
-                shacl += JS4Geo['directPosition']
-            } else if(i == 'directPosition'){
-                shacl += JS4Geo['directPosition']
-            } else if(i == 'Bbox'){
-                shacl += JS4Geo['Bbox']
+            if(i != null){
+                shacl += JS4Geo[i]
             }
         }
 
