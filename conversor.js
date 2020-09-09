@@ -740,6 +740,10 @@ module.exports = {
 
         function setJS4GeoProperty(name,JS4GeoType,last=null,required){
             var local = ''
+
+            elementsCount['property']++
+            elementsCount['elements']++
+
             if(name != null){
                 if(JS4GeoType != null){
                     local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node ex:${JS4GeoDataTypes[JS4GeoType]};\n`
