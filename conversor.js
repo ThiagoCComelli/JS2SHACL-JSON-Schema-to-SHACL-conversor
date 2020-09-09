@@ -1,6 +1,7 @@
 var fs = require('fs')
 const { error } = require('console')
 const {performance} = require('perf_hooks')
+const JS4Geo = require('./JS4GeoDefs.js')
 
 module.exports = {
     check: function(schema){
@@ -16,19 +17,19 @@ module.exports = {
         }
     },
     start: function(schema){
-        var JS4GeoDataTypes = {'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
+        var JS4GeoDataTypes = {'point':'PointShape','directPosition':'directPositionShape','Bbox':'bboxShape'}
         var dataTypes = {"string":"string","integer":"integer","boolean":"boolean","null":"null","number":"decimal",
-        "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean",
-        'Point':'Point','LineString':'LineString','Polygon':'Polygon','MultiPoint':'MultiPoint','MultiLineString':'MultiLineString','GeometryCollection':'GeometryCollection'}
+        "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in",
         "default_":"defaultValue","title":"name","description":"description"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
         var jsonReservedWords = {"properties":true,"definitions":true,"items":true,"required":true,"$ref":true,"type":true}
         var prefix = {"dash":"@prefix dash: <http://datashapes.org/dash#> .","rdf":"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .","rdfs":"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .","ex":"@prefix ex: <http://example.org/> .","sh":"@prefix sh: <http://www.w3.org/ns/shacl#> .","xsd":"@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .","sf":"@prefix sf:   <http://www.opengis.net/ont/sf#> ."}
 
-
+        var defSection = true
         var scope = 1
         var addPrefixes = {}
+        var addGeo = {}
         var nodesReady = {}
         var newNodes = {}
         var elementsCount = {"node":0,"property":0,"elements":0,"properties":0}
@@ -65,12 +66,17 @@ module.exports = {
             defSectionElements = getDefSectionElements(element)
             if(defSectionElements != undefined){
                 for(var item in defSectionElements){
-                    if(!(item.type in dataTypes)){
-                        if(item.type in JS4GeoDataTypes){
+                    // if(!(item.type in dataTypes)){
+                    //     if(item.type in JS4GeoDataTypes){
 
-                        } else {
-                            create_New_Complex_NodeShape(defSectionElements[item],item)
-                        }
+                    //     } else {
+                    //         create_New_Complex_NodeShape(defSectionElements[item],item)
+                    //     }
+                    // }
+                    if(item in JS4GeoDataTypes){
+                        create_New_JS4Geo_NodeShape(item)
+                    } else {
+                        create_New_Complex_NodeShape(defSectionElements[item],item)
                     }
                 }
                 mappedDatatypes.push(item)
@@ -145,7 +151,23 @@ module.exports = {
             }
             
             if('$ref' in element.items){
-                local += addSpaces() + `sh:datatype ex:${element.items.$ref.split('/')[2]}_Shape;\n` + addSpaces(-1) + '];\n'
+                try{
+                    typeItem = element.items.$ref.split('/')
+                    if(typeItem.length == 1){
+                        typeItem = element.items.$ref.split('#')[1]
+                    }else{
+                        typeItem = element.items.$ref.split('/')[2]
+                    }
+                }catch{
+
+                }
+
+                if(typeItem in JS4GeoDataTypes){
+                    local += addSpaces() + `sh:datatype ex:${typeItem}Shape;\n` + addSpaces(-1) + '];\n'
+                } else {
+                    local += addSpaces() + `sh:datatype ex:${typeItem}_Shape;\n` + addSpaces(-1) + '];\n'
+                }
+
                 // if(last){
                 //     local += '.\n'
                 // }else{
@@ -295,6 +317,8 @@ module.exports = {
             addPrefixes['dash'] = true
             addPrefixes['rdf'] = true
 
+            elementsCount['elements']++
+
             checkUndefined(element)
 
             if('type' in element && 'items' in element && element['items'].length != undefined){
@@ -310,6 +334,7 @@ module.exports = {
         function setPrimitiveProperty(element,name,required,last){
             var local = ''
             elementsCount['property']++
+            elementsCount['elements']++
 
             addPrefixes['xsd'] = true
 
@@ -375,6 +400,7 @@ module.exports = {
         function setComplexNodeShape(element,name,required,ref = null,last){
             var local = ''
             elementsCount['property']++
+            elementsCount['elements']++
 
             checkUndefined(element)
 
@@ -418,6 +444,9 @@ module.exports = {
             local += addSpaces() + `sh:property [\n` 
             scope++
 
+            elementsCount['properties']++
+            elementsCount['elements']++
+
             if(item != undefined){
                 local += addSpaces() + `sh:path ex:${item};\n`
             }
@@ -451,6 +480,8 @@ module.exports = {
         function setOthersProperty(element,name,especialCase,path,last){
             var local = ''
 
+            elementsCount['elements']++
+
             if(especialCase){
                 local += addSpaces() + 'sh:property [\n' + addSpaces(1) + `sh:path ex:${path};\n`
             }
@@ -464,8 +495,26 @@ module.exports = {
             }
             scope++
             element.forEach(element_ => {
+                elementsCount['properties']++
+                elementsCount['elements']++
+
                 if('$ref' in element_){
-                    local += addSpaces() + `ex:${element_.$ref.split('/')[2]}_shape\n`
+                    try{
+                        typeItem = element_.$ref.split('/')
+                        if(typeItem.length == 1){
+                            typeItem = element_.$ref.split('#')[1]
+                        }else{
+                            typeItem = element_.$ref.split('/')[2]
+                        }
+                    }catch{
+    
+                    }
+    
+                    if(typeItem in JS4GeoDataTypes){
+                        local += addSpaces() + `ex:${typeItem}Shape\n`
+                    } else {
+                        local += addSpaces() + `ex:${typeItem}_shape\n`
+                    }
                 } else {
                     if(element_.type){
                         if(element_.type in dataTypes){
@@ -518,7 +567,23 @@ module.exports = {
                                 local += addSpaces() + '[\n'
 
                                 elementsCount['property']++
-                                local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${element_[i].$ref.split('/')[2]}_shape;\n`
+
+                                try{
+                                    typeItem = element_[i].$ref.split('/')
+                                    if(typeItem.length == 1){
+                                        typeItem = element_[i].$ref.split('#')[1]
+                                    }else{
+                                        typeItem = element_[i].$ref.split('/')[2]
+                                    }
+                                }catch{
+                
+                                }
+                
+                                if(typeItem in JS4GeoDataTypes){
+                                    local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${typeItem}Shape;\n`
+                                } else {
+                                    local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${typeItem}_shape;\n`
+                                }
     
                                 local += addSpaces(-1) + ']\n'
                             } else {
@@ -593,16 +658,32 @@ module.exports = {
                     local += ';\n'
                 }
                 for(var item in propertiesElements){
-                    
                     if(propertiesElements[item].type in dataTypes){
                         local += setPrimitiveProperty(propertiesElements[item],item,checkRequired(element,item),checkLastElement(propertiesElements,item))
                     } else if(propertiesElements[item].type == 'object'){
                         newNodes[item] = propertiesElements[item]
                         local += setComplexNodeShape(propertiesElements[item],item,checkRequired(element,item),null,checkLastElement(propertiesElements,item))
+                    } else if(propertiesElements[item].type in JS4GeoDataTypes){
+
                     } else if(propertiesElements[item].type == 'array'){
                         local += setArray(propertiesElements[item],item,checkRequired(element,item),checkLastElement(propertiesElements,item),false)
                     } else if(propertiesElements[item].$ref){
-                        local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2],checkLastElement(propertiesElements,item))
+                        try{
+                            typeItem = propertiesElements[item].$ref.split('/')
+                            if(typeItem.length == 1){
+                                typeItem = propertiesElements[item].$ref.split('#')[1]
+                            }else{
+                                typeItem = propertiesElements[item].$ref.split('/')[2]
+                            }
+                        }catch{
+
+                        }
+                        if(typeItem in JS4GeoDataTypes){
+                            local += setJS4GeoProperty(item,typeItem,checkLastElement(propertiesElements,item),checkRequired(element,item))
+                        } else {
+                            local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2],checkLastElement(propertiesElements,item))
+                        }
+
                     } else if(item in anotherConstraints){
                         local += setOthersProperty(propertiesElements[item],item,null,null,checkLastElement(propertiesElements,item))
                     } else {
@@ -655,6 +736,39 @@ module.exports = {
             }
 
             return local
+        }
+
+        function setJS4GeoProperty(name,JS4GeoType,last=null,required){
+            var local = ''
+            if(name != null){
+                if(JS4GeoType != null){
+                    local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node ex:${JS4GeoDataTypes[JS4GeoType]};\n`
+                }
+                if(required){
+                    local += addSpaces() + `sh:minCount 1;\n`
+                }
+
+                local += addSpaces(-1) + ']'
+
+                if(last!=null){
+                    if(last){
+                        local += '.\n'
+                    } else {
+                        local += ';\n'
+                    }
+                }else{
+                    local += '\n'
+                }
+            }
+            return local
+        }
+
+        function create_New_JS4Geo_NodeShape(name){
+            if(name == 'point'){
+                addPrefixes['sf'] = true
+                addPrefixes['dash'] = true
+                addGeo[name] = true
+            }
         }
         
         //#region FUNCTIONS TO HELP
@@ -717,6 +831,7 @@ module.exports = {
             t0 = performance.now()
             // setMainNodeShape(schema)
             createDefSectionElements(schema)
+            defSection = false
             createSchemaSectionElementes(schema)
         }
         
@@ -739,6 +854,16 @@ module.exports = {
 
         for(var i in addPrefixes){
             shacl = prefix[i] + '\n' + shacl
+        }
+
+        shacl += '\n'
+
+        for(var i in addGeo){
+            if(i == 'point'){
+                shacl += JS4Geo['point']
+                shacl += JS4Geo['Bbox']
+                shacl += JS4Geo['directPosition']
+            }
         }
 
         log += `${elementsUndefined.length} Warnings (Elements ignored!)\n\n`

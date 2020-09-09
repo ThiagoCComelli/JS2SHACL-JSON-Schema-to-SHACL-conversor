@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://dominio.edu/JS4Geo.json",
+  "title": "JS4Geo schema for a points collection.",
+  "description": "This document represents a JS4Geo schema for a collection of points, whose key to each document starts with the letter 'p'.",
+
+  "definitions": {
+    "directPosition": {
+      "$id": "#directPosition",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "Bbox": {
+      "$id": "#Bbox",
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 6, 
+      "items": {"type": "number"},
+      "additionalItems": false
+    },
+    "point": {
+      "$id": "#point",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "Point"
+        },
+        "bbox": {
+          "$ref": "#Bbox"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/directPosition"
+        }
+      }
+    }
+  },
+
+  "type": "object",
+
+  "properties": {
+    "p1": { "$ref": "#point" },
+    "p2": { "$ref": "#point" }
+  },
+  "additionalProperties": false
+}
