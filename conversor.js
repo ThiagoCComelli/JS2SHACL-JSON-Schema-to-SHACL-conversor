@@ -771,6 +771,10 @@ module.exports = {
                 addGeo['point'] = true
                 addGeo['Bbox'] = true
                 addGeo['directPosition'] = true
+            } else if (name=='Bbox'){
+                addGeo['Bbox'] = true
+            } else if (name=='directPosition'){
+                addGeo['directPosition'] = true
             }
         }
         
