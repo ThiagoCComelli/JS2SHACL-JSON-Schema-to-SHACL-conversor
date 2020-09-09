@@ -764,11 +764,10 @@ module.exports = {
         }
 
         function create_New_JS4Geo_NodeShape(name){
-            if(name == 'point'){
-                addPrefixes['sf'] = true
-                addPrefixes['dash'] = true
-                addGeo[name] = true
-            }
+            addPrefixes['sf'] = true
+            addPrefixes['dash'] = true
+
+            addGeo[name] = true
         }
         
         //#region FUNCTIONS TO HELP
@@ -863,6 +862,10 @@ module.exports = {
                 shacl += JS4Geo['point']
                 shacl += JS4Geo['Bbox']
                 shacl += JS4Geo['directPosition']
+            } else if(i == 'directPosition'){
+                shacl += JS4Geo['directPosition']
+            } else if(i == 'Bbox'){
+                shacl += JS4Geo['Bbox']
             }
         }
 
