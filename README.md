@@ -5,3 +5,9 @@
 ```sh
 $ node app.js (filename in /inputSchemas)
 ```
+or
+
+```sh
+$ node app.js -a
+# Convert all files in /inputSchemas
+```
