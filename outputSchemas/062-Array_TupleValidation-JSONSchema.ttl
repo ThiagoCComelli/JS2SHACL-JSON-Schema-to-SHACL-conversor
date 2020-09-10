@@ -51,3 +51,4 @@ ex:obj2_Shape a sh:NodeShape;
     sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
     sh:datatype xsd:integer;
   ].
+

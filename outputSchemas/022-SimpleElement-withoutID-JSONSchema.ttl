@@ -11,3 +11,4 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:pattern "^(.*)$";
     sh:minCount 1;
   ].
+

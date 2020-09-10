@@ -13,3 +13,4 @@ ex:JS_id_Shape a sh:NodeShape;
     ];
     sh:minCount 1;
   ].
+

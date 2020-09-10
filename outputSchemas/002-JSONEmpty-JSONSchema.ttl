@@ -3,3 +3,4 @@
 
 ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id.
+

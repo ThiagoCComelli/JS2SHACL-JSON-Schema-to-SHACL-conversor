@@ -37,3 +37,4 @@ ex:JS_id_Shape a sh:NodeShape;
     ]
     ex:address_shape
   ).
+

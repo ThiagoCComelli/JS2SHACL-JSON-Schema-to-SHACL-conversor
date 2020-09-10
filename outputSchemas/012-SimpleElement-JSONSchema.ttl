@@ -11,3 +11,4 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:description "An explanation about the purpose of this instance.";
     sh:minCount 1;
   ].
+

@@ -1,7 +1,7 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix ex: <http://example.org/> .
 @prefix dash: <http://datashapes.org/dash#> .
-@prefix sf:   <http://www.opengis.net/ont/sf#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
 
 ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id;

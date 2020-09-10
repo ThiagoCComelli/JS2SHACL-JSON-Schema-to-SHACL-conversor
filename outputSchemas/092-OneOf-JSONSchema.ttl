@@ -46,3 +46,4 @@ ex:JS_id_Shape a sh:NodeShape;
     ex:person_shape
     ex:legalPerson_shape
   ).
+
