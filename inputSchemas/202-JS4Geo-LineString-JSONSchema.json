@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://dominio.edu/JS4Geo.json",
+  "title": "JS4Geo schema for a LineStrings collection.",
+  "description": "This document represents a JS4Geo schema for a collection of LineStrings, whose key to each document starts with the prefix 'ls'.",
+
+  "definitions": {
+    "directPosition": {
+      "$id": "#directPosition",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "lineString": {
+      "$id": "#lineString",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "LineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/directPosition"
+          },
+          "minItems": 2
+        }
+      }
+    }
+  },
+
+  "type": "object",
+
+  "patternProperties": {
+    "^ls": {
+      "$ref": "#lineString"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+Created Nodes (Shapefile): 1
+Created Propertys (Shapefile): 0
+Elements analyzed (JSON Schema): 0
+Properties analyzed (JSON Schema): 0
+
+==============================
+
+4 Warnings (Elements ignored!)
+
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
+
+Key: $id
+Element: {"$id": "http://dominio.edu/JS4Geo.json"}
+
+Key: patternProperties
+Element: {"patternProperties": {"^ls":{"$ref":"#lineString"}}}
+
+Key: additionalProperties
+Element: {"additionalProperties": false}
+

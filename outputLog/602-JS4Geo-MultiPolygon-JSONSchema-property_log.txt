@@ -1,0 +1,18 @@
+Created Nodes (Shapefile): 1
+Created Propertys (Shapefile): 2
+Elements analyzed (JSON Schema): 2
+Properties analyzed (JSON Schema): 2
+
+==============================
+
+3 Warnings (Elements ignored!)
+
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
+
+Key: $id
+Element: {"$id": "http://dominio.edu/JS4Geo.json"}
+
+Key: additionalProperties
+Element: {"additionalProperties": false}
+

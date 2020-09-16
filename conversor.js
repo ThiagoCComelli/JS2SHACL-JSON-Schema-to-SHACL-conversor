@@ -2,6 +2,7 @@ var fs = require('fs')
 const { error } = require('console')
 const {performance} = require('perf_hooks')
 const JS4Geo = require('./JS4GeoDefs.js')
+const { directPosition } = require('./JS4GeoDefs.js')
 
 module.exports = {
     check: function(schema){
@@ -17,19 +18,19 @@ module.exports = {
         }
     },
     start: function(schema){
-        var JS4GeoDataTypes = {'point':'PointShape','directPosition':'directPositionShape','Bbox':'bboxShape'}
+        var JS4GeoDataTypes = {'point':'PointShape','directPosition':'directPositionShape','Bbox':'bboxShape','lineString':'lineStringShape','polygon':'polygonShape','multiPoint':'multiPointShape','multiLineString':'multiLineStringShape','multiPolygon':'multiPolygonShape'}
         var dataTypes = {"string":"string","integer":"integer","boolean":"boolean","null":"null","number":"decimal",
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in",
         "default_":"defaultValue","title":"name","description":"description"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
         var jsonReservedWords = {"properties":true,"definitions":true,"items":true,"required":true,"$ref":true,"type":true}
-        var prefix = {"dash":"@prefix dash: <http://datashapes.org/dash#> .","rdf":"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .","rdfs":"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .","ex":"@prefix ex: <http://example.org/> .","sh":"@prefix sh: <http://www.w3.org/ns/shacl#> .","xsd":"@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .","sf":"@prefix sf: <http://www.opengis.net/ont/sf#> ."}
+        var prefix = {"dash":"@prefix dash: <http://datashapes.org/dash#> .","rdf":"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .","rdfs":"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .","ex":"@prefix ex: <http://example.org/#> .","sh":"@prefix sh: <http://www.w3.org/ns/shacl#> .","xsd":"@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .","sf":"@prefix sf: <http://www.opengis.net/ont/sf#> ."}
 
         var defSection = true
         var scope = 1
         var addPrefixes = {}
-        var addGeo = {'point':null,'directPosition':null,'Bbox':null}
+        var addGeo = {}
         var nodesReady = {}
         var newNodes = {}
         var elementsCount = {"node":0,"property":0,"elements":0,"properties":0}
@@ -773,12 +774,25 @@ module.exports = {
 
             if(name == 'point'){
                 addGeo['point'] = true
-                addGeo['Bbox'] = true
-                addGeo['directPosition'] = true
             } else if (name=='Bbox'){
                 addGeo['Bbox'] = true
             } else if (name=='directPosition'){
                 addGeo['directPosition'] = true
+            } else if (name=='lineString'){
+                addGeo['lineString'] = true
+            } else if (name=='polygon'){
+                addGeo['polygon'] = true
+            } else if (name=='multiPoint'){
+                addGeo['multiPoint'] = true
+            } else if (name=='multiLineString'){
+                addGeo['multiLineString'] = true
+            } else if (name=='multiPolygon'){
+                addGeo['multiPolygon'] = true
+            }
+
+            if(!(name == 'directPosition' || name == 'Bbox')){
+                addGeo['directPosition'] = true
+                addGeo['Bbox'] = true
             }
         }
         
@@ -870,9 +884,7 @@ module.exports = {
         shacl += '\n'
 
         for(var i in addGeo){
-            if(addGeo[i] != null){
-                shacl += JS4Geo[i]
-            }
+            shacl += JS4Geo[i]
         }
 
         log += `${elementsUndefined.length} Warnings (Elements ignored!)\n\n`

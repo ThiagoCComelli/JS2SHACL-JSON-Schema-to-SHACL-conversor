@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://dominio.edu/JS4Geo.json",
+  "title": "JS4Geo schema for a MultiLineStrings collection.",
+  "description": "This document represents a JS4Geo schema for a collection of MultiLineStrings, whose key to each document starts with the prefix 'mls_'.",
+
+  "definitions": {
+    "directPosition": {
+      "$id": "#directPosition",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "lineString": {
+      "$id": "#lineString",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "LineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/directPosition"
+          },
+          "minItems": 2
+        }
+      }
+    },
+    "multiLineString": {
+      "$id": "#multiLineString",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "MultiLineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lineString/properties/coordinates"
+          }
+        }
+      }
+    }
+
+  },
+
+
+  "type": "object",
+
+  "properties": {
+    "mls_01": { "$ref": "#multiLineString" },
+    "mls_02": { "$ref": "#multiLineString" }    
+  },
+  "additionalProperties": false
+}

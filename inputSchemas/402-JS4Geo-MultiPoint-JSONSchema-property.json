@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://dominio.edu/JS4Geo.json",
+  "title": "JS4Geo schema for a MultiPoints collection.",
+  "description": "This document represents a JS4Geo schema for a collection of MultiPoints, whose key to each document starts with the prefix 'mp'.",
+
+  "definitions": {
+    "directPosition": {
+      "$id": "#directPosition",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "multiPoint": {
+      "$id": "#multiPoint",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "MultiPoint"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/directPosition"
+          }
+        }
+      }
+    }
+
+  },
+
+  "type": "object",
+
+  "properties": {
+    "mp01": { "$ref": "#multiPoint" },
+    "mp02": { "$ref": "#multiPoint" }
+
+  },
+  "additionalProperties": false
+}

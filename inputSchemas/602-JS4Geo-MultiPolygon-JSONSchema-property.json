@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://dominio.edu/JS4Geo.json",
+  "title": "JS4Geo schema for a MultiPolygons collection.",
+  "description": "This document represents a JS4Geo schema for a collection of MultiPolygons, whose key to each document starts with the letter 'mPol'.",
+
+  "definitions": {
+    "directPosition": {
+      "$id": "#directPosition",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "polygon": {
+      "$id": "#polygon",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "enum": ["Polygon"]
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/directPosition"
+            },
+            "minItems": 4
+          }
+        }
+      }
+    },
+    "multiPolygon": {
+      "$id": "#multiPolygon",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "MultiPolygon"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/polygon/properties/coordinates"
+          }
+        }
+      }
+    }
+  },
+
+  "type": "object",
+
+  "properties": {
+    "mPol01": { "$ref": "#multiPolygon" },
+    "mPol02": { "$ref": "#multiPolygon" }
+  },
+  "additionalProperties": false
+}
