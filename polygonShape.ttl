@@ -1,0 +1,84 @@
+ex:polygonShape a sh:NodeShape ;
+  sh:targetClass sf:Polygon ;
+  sh:property [
+    sh:path ex:type ;
+    sh:in ("Polygon") ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path ex:coordinates ;
+    sh:node dash:ListShape ;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first) ;
+      sh:node ex:internalPolygonShape ;
+    ] ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path ex:bbox ;
+    sh:node ex:bboxShape ;
+    ex:bboxMinSize 4 ;
+    ex:bboxMaxSize 6 ;
+    sh:minCount 1 ;   # opcional, verificar quando existe
+    sh:maxCount 1 ;
+   ] .
+   
+ex:internalPolygonShape a sh:NodeShape ;
+  sh:node dash:ListShape ;
+  sh:property [
+      sh:path ( [sh:zeroOrMorePath rdf:rest] rdf:first) ;
+      sh:node ex:directPositionShape ;
+   ] .
+
+ex:directPositionShape a sh:NodeShape ;
+   sh:node dash:ListShape ;
+   sh:property [
+      sh:path ( [sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal ;
+   ] .
+
+ex:coordMinOccurConstraintComponent a sh:ConstraintComponent ;
+   sh:parameter [
+      sh:path ex:coordMinSize ;
+      sh:datatype xsd:integer ;
+   ] ;
+   sh:validator ex:coordMinOccur .
+
+ex:coordMinOccur a sh:JSValidator ;   
+      sh:message "Verify minOccur in JS4Geo coordinates!!!" ;
+      sh:jsLibrary [ sh:jsLibraryURL "http://54.201.29.21/shapes/JS4Geo-SHACL-Validators.js" ] ;
+      sh:jsFunctionName "coordMinOccur" .
+
+ex:bboxShape a sh:NodeShape ;
+  sh:node dash:ListShape ;
+  sh:property [
+     sh:path ( [sh:zeroOrMorePath rdf:rest] rdf:first) ;
+     sh:datatype xsd:decimal ;
+  ] .   
+
+ex:bboxMinOccurConstraintComponent a sh:ConstraintComponent ;
+   sh:parameter [
+      sh:path ex:bboxMinSize ;
+      sh:datatype xsd:integer ;
+   ] ;
+   sh:validator ex:bboxMinOccur .
+
+ex:bboxMinOccur a sh:JSValidator ;   
+      sh:message "Verify minOccur in JS4Geo bbox!!!" ;
+      sh:jsLibrary [ sh:jsLibraryURL "http://54.201.29.21/shapes/JS4Geo-SHACL-Validators.js" ] ;
+      sh:jsFunctionName "bboxMinOccur" .
+
+ex:bboxMaxOccurConstraintComponent a sh:ConstraintComponent ;
+   sh:parameter [
+      sh:path ex:bboxMaxSize ;
+      sh:datatype xsd:integer ;
+   ] ;
+   sh:validator ex:bboxMaxOccur .
+
+ex:bboxMaxOccur a sh:JSValidator ;   
+      sh:message "Verify maxOccur in JS4Geo bbox!!!" ;
+      sh:jsLibrary [ sh:jsLibraryURL "http://54.201.29.21/shapes/JS4Geo-SHACL-Validators.js" ] ;
+      sh:jsFunctionName "bboxMaxOccur" .      
+
