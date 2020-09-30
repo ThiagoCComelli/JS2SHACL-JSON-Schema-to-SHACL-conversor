@@ -18,7 +18,7 @@ module.exports = {
         }
     },
     start: function(schema){
-        var JS4GeoDataTypes = {'point':'PointShape','directPosition':'directPositionShape','Bbox':'bboxShape','lineString':'lineStringShape','polygon':'polygonShape','multiPoint':'multiPointShape','multiLineString':'multiLineStringShape','multiPolygon':'multiPolygonShape'}
+        var JS4GeoDataTypes = {'point':'PointShape','directPosition':'directPositionShape','Bbox':'bboxShape','lineString':'lineStringShape','polygon':'polygonShape','multiPoint':'multiPointShape','multiLineString':'multiLineStringShape','multiPolygon':'multiPolygonShape','feature':'featureShape'}
         var dataTypes = {"string":"string","integer":"integer","boolean":"boolean","null":"null","number":"decimal",
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in",
@@ -512,6 +512,7 @@ module.exports = {
                     }
     
                     if(typeItem in JS4GeoDataTypes){
+                        addGeo[typeItem] = true
                         local += addSpaces() + `ex:${typeItem}Shape\n`
                     } else {
                         local += addSpaces() + `ex:${typeItem}_shape\n`
@@ -788,9 +789,11 @@ module.exports = {
                 addGeo['multiLineString'] = true
             } else if (name=='multiPolygon'){
                 addGeo['multiPolygon'] = true
+            } else if (name=='feature'){
+                addGeo['feature'] == true
             }
 
-            if(!(name == 'directPosition' || name == 'Bbox')){
+            if(!(name == 'directPosition' || name == 'Bbox' || name == 'feature')){
                 addGeo['directPosition'] = true
                 addGeo['Bbox'] = true
             }
@@ -884,6 +887,7 @@ module.exports = {
         shacl += '\n'
 
         for(var i in addGeo){
+            console.log(i)
             shacl += JS4Geo[i]
         }
 

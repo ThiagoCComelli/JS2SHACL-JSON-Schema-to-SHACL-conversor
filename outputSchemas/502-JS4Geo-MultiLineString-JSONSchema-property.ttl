@@ -96,11 +96,21 @@ ex:bboxMinOccurConstraintComponent a sh:ConstraintComponent ;
   sh:validator ex:bboxMinOccur .
 
 ex:bboxMinOccur a sh:JSValidator ;
-  sh:message 'Verify minOccur in JS4Geo bbox!!!' ;
-  sh:jsLibrary [ sh:jsLibraryURL 'http://localhost/JS4Geo-SHACL-Validators.js' ] ;
-  sh:jsFunctionName 'bboxMinOccur' .
+  sh:message "Verify minOccur in JS4Geo bbox!!!" ;
+  sh:jsLibrary [ sh:jsLibraryURL "http://localhost/JS4Geo-SHACL-Validators.js" ] ;
+  sh:jsFunctionName "bboxMinOccur" .
 
-ex:multiLineStringShape a sh:NodeShape;
+ex:bboxMaxOccurConstraintComponent a sh:ConstraintComponent
+  sh:parameter [
+    sh:path ex:bboxMaxSize
+    sh:datatype xsd:integer ;
+  ] ;
+  sh:validator ex:bboxMaxOccur .
+
+ex:bboxMaxOccur a sh:JSValidator ;
+  sh:message "Verify maxOccur in JS4Geo bbox!!!" ;
+  sh:jsLibrary [ sh:jsLibraryURL "http://localhost/JS4Geo-SHACL-Validators.js" ] ;
+  sh:jsFunctionName "bboxMaxOccur" .ex:multiLineStringShape a sh:NodeShape;
   sh:targetClass sf:MultiLineString;
   sh:property [
     sh:path ex:type;
