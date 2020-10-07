@@ -1,7 +1,13 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix ex: <http://example.org/#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix dash: <http://datashapes.org/dash#> .
 @prefix sf: <http://www.opengis.net/ont/sf#> .
+
+<http://www.example.org>
+  rdf:type owl:Ontology ;
+  owl:imports <http://localhost/SHACL/JS4Geo-ShapesGraph.ttl> .
 
 ex:JS_id_Shape a sh:NodeShape;
   sh:targetClass ex:JS_id;
@@ -14,84 +20,3 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:node ex:multiPointShape;
   ].
 
-ex:directPositionShape a sh:NodeShape ;
-  sh:node dash:ListShape ;
-  dash:hasMinLength ex:coordMinSize ;
-  sh:property [
-    sh:path ( [sh:zeroOrMorePath rdf:rest] rdf:first);
-    sh:datatype xsd:decimal ;
-  ] .
-
-ex:coordMinOccurConstraintComponent a sh:ConstraintComponent ;
-  sh:parameter [
-    sh:path ex:coordMinSize ;
-    sh:datatype xsd:integer ;
-  ] ;
-  sh:validator ex:coordMinOccur .
-
-ex:coordMinOccur a sh:JSValidator ;
-  sh:message "Verify minOccur in JS4Geo coordinates!!!" ;
-  sh:jsLibrary [ sh:jsLibraryURL "http://localhost/JS4Geo-SHACL-Validators.js" ] ;
-  sh:jsFunctionName "coordMinOccur" .
-
-ex:multiPointShape a sh:NodeShape ;
-  sh:targetClass sf:MultiPoint ;
-  sh:property [
-    sh:path ex:type ;
-    sh:in ("MultiPoint") ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-  ];
-  sh:property [
-    sh:path ex:coordinates;
-    sh:node dash:ListShape;
-    sh:property [
-      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-      sh:node ex:directPositionShape;
-    ];
-    ex:lineStringMinSize 2 ;
-    ex:LScoordMinSize 2 ;
-    sh:minCount 1;
-    sh:maxCount 1 ;
-  ];
-  sh:property [
-    sh:path ex:bbox ;
-    sh:node ex:bboxShape ;
-    ex:bboxMinSize 4 ;
-    ex:bboxMaxSize 6 ;
-    sh:minCount 1 ;   # opcional, verificar quando existe
-    sh:maxCount 1 ;
-   ] .
-
-ex:bboxShape a sh:NodeShape ;
-  sh:node dash:ListShape ;
-  dash:hasMinLength ex:bboxMinSize ;
-  dash:hasMaxLength 6 ;
-  sh:property [
-    sh:path ( [sh:zeroOrMorePath rdf:rest] rdf:first) ;
-    sh:datatype xsd:decimal ;
-  ] .
-
-ex:bboxMinOccurConstraintComponent a sh:ConstraintComponent ;
-  sh:parameter [
-    sh:path ex:bboxMinSize ;
-    sh:datatype xsd:integer ;
-  ] ;
-  sh:validator ex:bboxMinOccur .
-
-ex:bboxMinOccur a sh:JSValidator ;
-  sh:message "Verify minOccur in JS4Geo bbox!!!" ;
-  sh:jsLibrary [ sh:jsLibraryURL "http://localhost/JS4Geo-SHACL-Validators.js" ] ;
-  sh:jsFunctionName "bboxMinOccur" .
-
-ex:bboxMaxOccurConstraintComponent a sh:ConstraintComponent
-  sh:parameter [
-    sh:path ex:bboxMaxSize
-    sh:datatype xsd:integer ;
-  ] ;
-  sh:validator ex:bboxMaxOccur .
-
-ex:bboxMaxOccur a sh:JSValidator ;
-  sh:message "Verify maxOccur in JS4Geo bbox!!!" ;
-  sh:jsLibrary [ sh:jsLibraryURL "http://localhost/JS4Geo-SHACL-Validators.js" ] ;
-  sh:jsFunctionName "bboxMaxOccur" .

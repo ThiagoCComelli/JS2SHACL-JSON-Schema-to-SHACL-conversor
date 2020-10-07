@@ -1,8 +1,6 @@
-var fs = require('fs')
-const { error } = require('console')
 const {performance} = require('perf_hooks')
+const { feature } = require('./JS4GeoDefs.js')
 const JS4Geo = require('./JS4GeoDefs.js')
-const { directPosition } = require('./JS4GeoDefs.js')
 
 module.exports = {
     check: function(schema){
@@ -18,19 +16,18 @@ module.exports = {
         }
     },
     start: function(schema){
-        var JS4GeoDataTypes = {'point':'PointShape','directPosition':'directPositionShape','Bbox':'bboxShape','lineString':'lineStringShape','polygon':'polygonShape','multiPoint':'multiPointShape','multiLineString':'multiLineStringShape','multiPolygon':'multiPolygonShape','feature':'featureShape'}
+        var JS4GeoDataTypes = {'point':'pointShape','directPosition':'directPositionShape','Bbox':'bboxShape','lineString':'lineStringShape','polygon':'polygonShape','multiPoint':'multiPointShape','multiLineString':'multiLineStringShape','multiPolygon':'multiPolygonShape','feature':'featureShape','featureCollection':'featureCollectionShape','geometryCollection':'geometryCollectionShape'}
         var dataTypes = {"string":"string","integer":"integer","boolean":"boolean","null":"null","number":"decimal",
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in",
         "default_":"defaultValue","title":"name","description":"description"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
         var jsonReservedWords = {"properties":true,"definitions":true,"items":true,"required":true,"$ref":true,"type":true}
-        var prefix = {"dash":"@prefix dash: <http://datashapes.org/dash#> .","rdf":"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .","rdfs":"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .","ex":"@prefix ex: <http://example.org/#> .","sh":"@prefix sh: <http://www.w3.org/ns/shacl#> .","xsd":"@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .","sf":"@prefix sf: <http://www.opengis.net/ont/sf#> ."}
+        var prefix = {"dash":"@prefix dash: <http://datashapes.org/dash#> .","rdf":"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .","rdfs":"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .","ex":"@prefix ex: <http://example.org/#> .","sh":"@prefix sh: <http://www.w3.org/ns/shacl#> .","xsd":"@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .","sf":"@prefix sf: <http://www.opengis.net/ont/sf#> .",'owl':'@prefix owl: <http://www.w3.org/2002/07/owl#> .'}
 
-        var defSection = true
         var scope = 1
         var addPrefixes = {}
-        var addGeo = {}
+        var addGeo = {'imports':false,'feature':false}
         var nodesReady = {}
         var newNodes = {}
         var elementsCount = {"node":0,"property":0,"elements":0,"properties":0}
@@ -164,6 +161,12 @@ module.exports = {
                 }
 
                 if(typeItem in JS4GeoDataTypes){
+                    addGeo['imports'] = true
+                    addPrefixes['owl'] = true
+                    addPrefixes['rdf'] = true
+                    if(typeItem == 'feature' || typeItem == 'featureCollection'){
+                        addGeo['feature'] = true
+                    }
                     local += addSpaces() + `sh:datatype ex:${typeItem}Shape;\n` + addSpaces(-1) + '];\n'
                 } else {
                     local += addSpaces() + `sh:datatype ex:${typeItem}_Shape;\n` + addSpaces(-1) + '];\n'
@@ -512,7 +515,12 @@ module.exports = {
                     }
     
                     if(typeItem in JS4GeoDataTypes){
-                        addGeo[typeItem] = true
+                        addGeo['imports'] = true
+                        addPrefixes['owl'] = true
+                        addPrefixes['rdf'] = true
+                        if(typeItem == 'feature' || typeItem == 'featureCollection'){
+                            addGeo['feature'] = true
+                        }
                         local += addSpaces() + `ex:${typeItem}Shape\n`
                     } else {
                         local += addSpaces() + `ex:${typeItem}_shape\n`
@@ -582,6 +590,12 @@ module.exports = {
                                 }
                 
                                 if(typeItem in JS4GeoDataTypes){
+                                    addGeo['imports'] = true
+                                    addPrefixes['owl'] = true
+                                    addPrefixes['rdf'] = true
+                                    if(typeItem == 'feature' || typeItem == 'featureCollection'){
+                                        addGeo['feature'] = true
+                                    }
                                     local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${typeItem}Shape;\n`
                                 } else {
                                     local +=  addSpaces(1) + `sh:path ex:${i};\n` + addSpaces() + `sh:node ex:${typeItem}_shape;\n`
@@ -666,7 +680,12 @@ module.exports = {
                         newNodes[item] = propertiesElements[item]
                         local += setComplexNodeShape(propertiesElements[item],item,checkRequired(element,item),null,checkLastElement(propertiesElements,item))
                     } else if(propertiesElements[item].type in JS4GeoDataTypes){
-
+                        addGeo['imports'] = true
+                        addPrefixes['owl'] = true
+                        addPrefixes['rdf'] = true
+                        if(typeItem == 'feature' || typeItem == 'featureCollection'){
+                            addGeo['feature'] = true
+                        }
                     } else if(propertiesElements[item].type == 'array'){
                         local += setArray(propertiesElements[item],item,checkRequired(element,item),checkLastElement(propertiesElements,item),false)
                     } else if(propertiesElements[item].$ref){
@@ -681,6 +700,12 @@ module.exports = {
 
                         }
                         if(typeItem in JS4GeoDataTypes){
+                            addGeo['imports'] = true
+                            addPrefixes['owl'] = true
+                            addPrefixes['rdf'] = true
+                            if(typeItem == 'feature' || typeItem == 'featureCollection'){
+                                addGeo['feature'] = true
+                            }
                             local += setJS4GeoProperty(item,typeItem,checkLastElement(propertiesElements,item),checkRequired(element,item))
                         } else {
                             local += setComplexNodeShape(null,item,checkRequired(element,item),propertiesElements[item].$ref.split('/')[2],checkLastElement(propertiesElements,item))
@@ -773,29 +798,12 @@ module.exports = {
             addPrefixes['sf'] = true
             addPrefixes['dash'] = true
 
-            if(name == 'point'){
-                addGeo['point'] = true
-            } else if (name=='Bbox'){
-                addGeo['Bbox'] = true
-            } else if (name=='directPosition'){
-                addGeo['directPosition'] = true
-            } else if (name=='lineString'){
-                addGeo['lineString'] = true
-            } else if (name=='polygon'){
-                addGeo['polygon'] = true
-            } else if (name=='multiPoint'){
-                addGeo['multiPoint'] = true
-            } else if (name=='multiLineString'){
-                addGeo['multiLineString'] = true
-            } else if (name=='multiPolygon'){
-                addGeo['multiPolygon'] = true
-            } else if (name=='feature'){
-                addGeo['feature'] == true
-            }
+            addGeo['imports'] == true
+            addPrefixes['owl'] = true
+            addPrefixes['rdf'] = true
 
-            if(!(name == 'directPosition' || name == 'Bbox' || name == 'feature')){
-                addGeo['directPosition'] = true
-                addGeo['Bbox'] = true
+            if(name == 'feature' || name == 'featureCollection'){
+                addGeo['feature'] = true
             }
         }
         
@@ -880,15 +888,18 @@ module.exports = {
             }
         }
 
+        if(addGeo['imports'] == true){
+            shacl = '\n' + JS4Geo['imports'] + shacl
+        }
+
         for(var i in addPrefixes){
             shacl = prefix[i] + '\n' + shacl
         }
-
+        
         shacl += '\n'
 
-        for(var i in addGeo){
-            console.log(i)
-            shacl += JS4Geo[i]
+        if(addGeo['feature'] == true){
+            shacl += JS4Geo['feature']
         }
 
         log += `${elementsUndefined.length} Warnings (Elements ignored!)\n\n`
