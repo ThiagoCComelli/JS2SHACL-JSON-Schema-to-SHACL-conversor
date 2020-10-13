@@ -356,7 +356,9 @@ module.exports = {
                 // } else {
                 //     local += addSpaces(1) + `sh:datatype ex:${element};\n`
                 // }
-                local += addSpaces(1) + `sh:datatype xsd:${dataTypes[element.type]};\n`
+
+                // SOLUCAO TEMPORARIA PARA O ERRO CASESTUDY ARRAY PEGANDO VALOR NEGATIVO
+                local += addSpaces(2) + `sh:datatype xsd:${dataTypes[element.type]};\n`
                 
             }
             for(var item in element){

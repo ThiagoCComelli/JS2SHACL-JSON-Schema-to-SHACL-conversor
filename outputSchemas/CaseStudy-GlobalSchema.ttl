@@ -1,0 +1,188 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+
+<http://www.example.org>
+  rdf:type owl:Ontology ;
+  owl:imports <http://localhost/SHACL/JS4Geo-ShapesGraph.ttl> .
+
+ex:hsProperties_Shape a sh:NodeShape;
+  sh:targetClass ex:hsProperties;
+  sh:property [
+    sh:path ex:ADDRESS;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:CATEGORIA;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:CDL;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:CLASSIFICA;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:CNES;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:CITY;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:COUNTRY;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:DESCRIPTION;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:DISTRITO;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:FINAL;
+    sh:or (
+      [
+      sh:property [
+          sh:datatype xsd:integer;
+        ];
+      ]
+      [
+      sh:property [
+          sh:datatype xsd:null;
+        ];
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:GERENCIA;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:INICIAL;
+    sh:or (
+      [
+      sh:property [
+          sh:datatype xsd:integer;
+        ];
+      ]
+      [
+      sh:property [
+          sh:datatype xsd:null;
+        ];
+      ]
+    );
+  ];
+  sh:property [
+    sh:path ex:NAME;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:PREPOSI;
+    sh:datatype xsd:null;
+  ];
+  sh:property [
+    sh:path ex:SERVICES;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:STATE;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:TIPO;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:timestamp;
+    sh:datatype xsd:null;
+  ];
+  sh:property [
+    sh:path ex:addrtype;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:addrlocat;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ].
+
+ex:nbProperties_Shape a sh:NodeShape;
+  sh:targetClass ex:nbProperties.
+
+ex:stProperties_Shape a sh:NodeShape;
+  sh:targetClass ex:stProperties.
+
+ex:psProperties_Shape a sh:NodeShape;
+  sh:targetClass ex:psProperties.
+
+ex:scProperties_Shape a sh:NodeShape;
+  sh:targetClass ex:scProperties.
+
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:healthServices;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:featureShape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:neighbourhoods;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:featureShape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:streets;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:featureShape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:policeStations;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:featureShape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:schools;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:featureShape;
+    ];
+  ].
+
+ex:propertiesShape a sh:NodeShape ;
+  sh:targetClass ex:properties ;
+  sh:property [
+    sh:path ex:name ;
+    sh:datatype xsd:string ;
+    sh:minCount 1;
+    sh:maxCount 1 ;
+  ] .
+
