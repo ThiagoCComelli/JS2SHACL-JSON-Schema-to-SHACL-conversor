@@ -10,7 +10,7 @@
   rdf:type owl:Ontology ;
   owl:imports <http://localhost/SHACL/JS4Geo-ShapesGraph.ttl> .
 
-ex:hsProperties_Shape a sh:NodeShape;
+ex:hsPropertiesShape a sh:NodeShape;
   sh:targetClass ex:hsProperties;
   sh:property [
     sh:path ex:ADDRESS;
@@ -121,16 +121,16 @@ ex:hsProperties_Shape a sh:NodeShape;
     sh:minCount 1;
   ].
 
-ex:nbProperties_Shape a sh:NodeShape;
+ex:nbPropertiesShape a sh:NodeShape;
   sh:targetClass ex:nbProperties.
 
-ex:stProperties_Shape a sh:NodeShape;
+ex:stPropertiesShape a sh:NodeShape;
   sh:targetClass ex:stProperties.
 
-ex:psProperties_Shape a sh:NodeShape;
+ex:psPropertiesShape a sh:NodeShape;
   sh:targetClass ex:psProperties.
 
-ex:scProperties_Shape a sh:NodeShape;
+ex:scPropertiesShape a sh:NodeShape;
   sh:targetClass ex:scProperties.
 
 ex:JS_id_Shape a sh:NodeShape;
@@ -177,12 +177,13 @@ ex:JS_id_Shape a sh:NodeShape;
     ];
   ].
 
-ex:propertiesShape a sh:NodeShape ;
-  sh:targetClass ex:properties ;
-  sh:property [
-    sh:path ex:name ;
-    sh:datatype xsd:string ;
-    sh:minCount 1;
-    sh:maxCount 1 ;
-  ] .
+ex:propertiesShape a sh:NodeShape;
+  sh:targetClass ex:properties;
+  sh:or (
+    ex:hsProperties_shape
+    ex:nbProperties_shape
+    ex:stProperties_shape
+    ex:psProperties_shape
+    ex:scProperties_shape
+  ).
 

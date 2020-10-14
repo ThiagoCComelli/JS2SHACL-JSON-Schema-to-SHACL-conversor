@@ -72,7 +72,7 @@ module.exports = {
                     //     }
                     // }
                     if(item in JS4GeoDataTypes){
-                        create_New_JS4Geo_NodeShape(item)
+                        create_New_JS4Geo_NodeShape(element,item)
                     } else {
                         create_New_Complex_NodeShape(defSectionElements[item],item)
                     }
@@ -652,7 +652,7 @@ module.exports = {
             elementsCount['node']++
 
             scope = 1
-            var node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name}`
+            var node = `ex:${name}Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name}`
 
             nodesReady[name] = node + create_New_Complex_NodeShape_Structure(element,name)
         }
@@ -796,7 +796,7 @@ module.exports = {
             return local
         }
 
-        function create_New_JS4Geo_NodeShape(name){
+        function create_New_JS4Geo_NodeShape(element,name){
             addPrefixes['sf'] = true
             addPrefixes['dash'] = true
 
@@ -806,6 +806,9 @@ module.exports = {
 
             if(name == 'feature' || name == 'featureCollection'){
                 addGeo['feature'] = true
+
+                newNodes['properties'] = element.definitions.feature.properties.properties
+
             }
         }
         
@@ -900,9 +903,9 @@ module.exports = {
         
         shacl += '\n'
 
-        if(addGeo['feature'] == true){
-            shacl += JS4Geo['feature']
-        }
+        // if(addGeo['feature'] == true){
+        //     shacl += JS4Geo['feature']
+        // }
 
         log += `${elementsUndefined.length} Warnings (Elements ignored!)\n\n`
 
