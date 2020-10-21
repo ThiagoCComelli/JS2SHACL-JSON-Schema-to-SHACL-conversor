@@ -27,7 +27,7 @@ ex:JS_id_Shape a sh:NodeShape;
     ];
   ].
 
-ex:obj1_Shape a sh:NodeShape;
+ex:obj1Shape a sh:NodeShape;
   sh:targetClass ex:obj1;
   sh:property [
     sh:path ex:name;
@@ -44,7 +44,7 @@ ex:obj1_Shape a sh:NodeShape;
     sh:minCount 1;
   ].
 
-ex:obj2_Shape a sh:NodeShape;
+ex:obj2Shape a sh:NodeShape;
   sh:targetClass ex:obj2;
   sh:node dash:ListShape;
   sh:property [

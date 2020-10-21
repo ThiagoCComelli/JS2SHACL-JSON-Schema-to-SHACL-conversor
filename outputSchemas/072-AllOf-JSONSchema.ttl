@@ -2,7 +2,7 @@
 @prefix ex: <http://example.org/#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:address_Shape a sh:NodeShape;
+ex:addressShape a sh:NodeShape;
   sh:targetClass ex:address;
   sh:property [
     sh:path ex:street;

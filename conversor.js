@@ -1,5 +1,4 @@
 const {performance} = require('perf_hooks')
-const { feature } = require('./JS4GeoDefs.js')
 const JS4Geo = require('./JS4GeoDefs.js')
 
 module.exports = {

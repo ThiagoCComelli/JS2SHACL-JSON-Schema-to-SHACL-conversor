@@ -2,7 +2,7 @@
 @prefix ex: <http://example.org/#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:person_Shape a sh:NodeShape;
+ex:personShape a sh:NodeShape;
   sh:targetClass ex:person;
   sh:property [
     sh:path ex:name;
@@ -30,7 +30,7 @@ ex:person_Shape a sh:NodeShape;
     sh:minCount 1;
   ].
 
-ex:legalPerson_Shape a sh:NodeShape;
+ex:legalPersonShape a sh:NodeShape;
   sh:targetClass ex:legalPerson;
   sh:property [
     sh:path ex:companyName;

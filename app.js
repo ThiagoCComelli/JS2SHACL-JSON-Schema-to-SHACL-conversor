@@ -1,7 +1,5 @@
 const fs = require('fs')
-const inquirer = require('inquirer')
 const {performance} = require('perf_hooks')
-const { Console } = require('console')
 const conversor = require('./conversor')
 
 var args = process.argv
@@ -11,7 +9,9 @@ var totalTime = 0
 var totalTimeOnlyConversion = 0
 var finalTimeConversion = 0
 var totalFiles = 0
-var STOP = 1
+// Change that value for most precise conversion time
+// Do the conversion 'STOP' times and return the average time conversion
+var STOP = 10000
 var session = 0
 var option
 var t0
@@ -116,7 +116,6 @@ function readRepository(){
         try{
           var cont = JSON.parse(contents)
         } catch {
-          console.log(filename)
           totalFilesInRepository--
           return
         }

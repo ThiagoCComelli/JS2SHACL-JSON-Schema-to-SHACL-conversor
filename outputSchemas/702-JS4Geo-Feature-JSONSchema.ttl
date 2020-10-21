@@ -15,12 +15,5 @@ ex:JS_id_Shape a sh:NodeShape;
     ex:featureShape
   ).
 
-ex:propertiesShape a sh:NodeShape ;
-  sh:targetClass ex:properties ;
-  sh:property [
-    sh:path ex:name ;
-    sh:datatype xsd:string ;
-    sh:minCount 1;
-    sh:maxCount 1 ;
-  ] .
-
+ex:propertiesShape a sh:NodeShape;
+  sh:targetClass ex:properties
