@@ -11,7 +11,7 @@ var finalTimeConversion = 0
 var totalFiles = 0
 // Change that value for most precise conversion time
 // Do the conversion 'STOP' times and return the average time conversion
-var STOP = 0
+var STOP = 1
 var session = 0
 var option
 var t0
