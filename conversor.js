@@ -74,8 +74,6 @@ module.exports = {
                         create_New_JS4Geo_NodeShape(element,item)
                     } else if (item in extendedDataTypes){
                         elementsCount['elements'] += 1
-                        console.log(item)
-                        console.log(elementsCount['elements'])
 
                         elementsCount['property'] += 1
                     } else {
@@ -116,8 +114,6 @@ module.exports = {
 
 
             elementsCount['elements'] += 1
-            console.log(element)
-            console.log(elementsCount['elements'])
             elementsCount['property'] += 1
             elementsCount['properties'] += 1
 
@@ -154,8 +150,6 @@ module.exports = {
 
 
             elementsCount['elements'] += 1
-            console.log(element)
-            console.log(elementsCount['elements'])
             elementsCount['property'] += 2
             elementsCount['properties'] += 2
             
@@ -257,8 +251,6 @@ module.exports = {
 
 
             elementsCount['elements'] += 1
-            console.log(element)
-            console.log(elementsCount['elements'])
             elementsCount['property'] += 1
             elementsCount['properties'] += 2
 
@@ -277,8 +269,6 @@ module.exports = {
                     addPrefixes['xsd'] = true
 
                     elementsCount['elements'] += 1
-                    console.log(element_)
-                    console.log(elementsCount['elements'])
                     elementsCount['property'] += 1
                     elementsCount['properties'] += 1
                     
@@ -300,8 +290,6 @@ module.exports = {
                 } else {
 
                     elementsCount['elements'] += 1
-                    console.log(element_)
-                    console.log(elementsCount['elements'])
 
                     local += addSpaces() + `sh:property [\n`
                     if(index == 0){
@@ -372,8 +360,6 @@ module.exports = {
 
 
             elementsCount['elements'] += 1
-            console.log(element)
-            console.log(elementsCount['elements'])
             elementsCount['property'] += 1
             elementsCount['properties'] += 1
 
@@ -442,8 +428,6 @@ module.exports = {
             var local = ''
 
             elementsCount['elements'] += 1
-            console.log(element)
-            console.log(elementsCount['elements'])
 
             checkUndefined(element)
             if(name != null){
@@ -505,8 +489,6 @@ module.exports = {
             if(name == 'const' || name == 'enum'){
 
                 elementsCount['elements'] += 1
-                console.log(element)
-                console.log(elementsCount['elements'])
                 elementsCount['property'] += 1
                 elementsCount['properties'] += 1
 
@@ -549,8 +531,6 @@ module.exports = {
             var local = ''
 
             elementsCount['elements'] += 1
-            console.log(element)
-            console.log(elementsCount['elements'])
             elementsCount['property'] += 1
             elementsCount['properties'] += 1
 
@@ -581,8 +561,6 @@ module.exports = {
                     }
 
                     elementsCount['elements'] += 1
-                    console.log(element_)
-                    console.log(elementsCount['elements'])
                     // elementsCount['property'] += 1
                     elementsCount['properties'] += 1
     
@@ -853,8 +831,6 @@ module.exports = {
             var local = ''
 
             elementsCount['elements'] += 1
-            console.log(name)
-            console.log(elementsCount['elements'])
             elementsCount['property'] += 1
             elementsCount['properties'] += 1
 
@@ -939,8 +915,6 @@ module.exports = {
                 elementsCount['properties'] += 1
             }
 
-            console.log(name)
-            console.log(elementsCount['elements'])
 
         }
         
