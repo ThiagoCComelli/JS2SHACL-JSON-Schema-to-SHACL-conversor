@@ -1,0 +1,220 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/#> .
+
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:@context;
+    sh:datatype xsd:string;
+    sh:pattern "http://schema.org";
+    sh:description "override the @context property to ensure the schema.org URI is used";
+  ];
+  sh:property [
+    sh:path ex:@type;
+    sh:datatype xsd:string;
+    sh:pattern "Place";
+    sh:description "override the @type property to ensure Place is used";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:additionalProperty;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj1_Shape;
+    ];
+  ];
+  sh:property [
+  sh:xone (
+    [
+      sh:node ex:obj2_Shape;
+    ]
+    [
+    sh:property [
+        sh:datatype xsd:string;
+        sh:description "Physical address of the item.";
+      ];
+    ]
+  );
+  ];
+  sh:property [
+    sh:path ex:aggregateRating;
+    sh:node ex:aggregateRating_Shape;
+  ];
+  sh:property [
+    sh:path ex:amenityFeature;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj3_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:branchCode;
+    sh:datatype xsd:string;
+    sh:description "A short textual code (also called "store code") that uniquely identifies a place of business. The code is typically assigned by the parentOrganization and used in structured URLs.";
+  ];
+  sh:property [
+    sh:path ex:containedInPlace;
+    sh:node ex:json.schemastore.org_Shape;
+  ];
+  sh:property [
+    sh:path ex:containsPlace;
+    sh:node ex:json.schemastore.org_Shape;
+  ];
+  sh:property [
+    sh:path ex:event;
+    sh:node ex:event_Shape;
+  ];
+  sh:property [
+    sh:path ex:faxNumber;
+    sh:datatype xsd:string;
+    sh:description "The fax number.";
+  ];
+  sh:property [
+    sh:path ex:geo;
+    sh:description "The geo coordinates of the place.";
+    sh:xone (
+      [
+        sh:node ex:obj4_Shape;
+      ]
+      [
+        sh:node ex:obj5_Shape;
+      ]
+    );
+    ];
+    sh:property [
+      sh:path ex:globalLocationNumber;
+      sh:datatype xsd:string;
+      sh:description "The Global Location Number (GLN, sometimes also referred to as International Location Number or ILN) of the respective organization, person, or place. The GLN is a 13-digit number used to identify parties and physical locations.";
+      sh:pattern "\b\d{13}\b";
+    ];
+    sh:property [
+      sh:path ex:hasMap;
+      sh:description "A URL to a map of the place. Supersedes map, maps.";
+      sh:xone (
+        [
+        sh:property [
+            sh:datatype xsd:string;
+          ];
+        ]
+        [
+          sh:node ex:obj6_Shape;
+        ]
+      );
+      ];
+      sh:property [
+        sh:path ex:isicV4;
+        sh:datatype xsd:string;
+        sh:description "The International Standard of Industrial Classification of All Economic Activities (ISIC), Revision 4 code for a particular organization, business person, or place.";
+      ];
+      sh:property [
+        sh:path ex:logo;
+        sh:description "An associated logo.";
+        sh:xone (
+          [
+            sh:node ex:obj7_Shape;
+          ]
+          [
+          sh:property [
+              sh:datatype xsd:string;
+            ];
+          ]
+        );
+        ];
+        sh:property [
+          sh:path ex:openingHoursSpecification;
+          sh:node ex:openingHoursSpecification_Shape;
+        ];
+        sh:property [
+          sh:path ex:photo;
+          sh:description "A photograph of this place. Supersedes photos.";
+          sh:or (
+            [
+            sh:node dash:ListShape;
+            sh:property [
+              sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+              sh:datatype ex:obj8_Shape;
+            ].
+          ]
+          [
+          sh:node dash:ListShape;
+          sh:property [
+            sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+            sh:datatype ex:obj9_Shape;
+          ].
+        ]
+      );
+      ];
+      sh:property [
+        sh:path ex:review;
+        sh:node dash:ListShape;
+        sh:property [
+          sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+          sh:datatype ex:obj10_Shape;
+        ];
+      ];
+      sh:property [
+        sh:path ex:smokingAllowed;
+        sh:datatype xsd:boolean;
+        sh:description "Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room.";
+      ];
+      sh:property [
+        sh:path ex:specialOpeningHoursSpecification;
+        sh:node dash:ListShape;
+        sh:property [
+          sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+          sh:datatype ex:obj11_Shape;
+        ];
+      ];
+      sh:property [
+        sh:path ex:telephone;
+        sh:datatype xsd:string;
+        sh:description "The telephone number.";
+      ].
+
+ex:obj1Shape a sh:NodeShape;
+  sh:targetClass ex:obj1.
+
+ex:obj2Shape a sh:NodeShape;
+  sh:targetClass ex:obj2.
+
+ex:aggregateRatingShape a sh:NodeShape;
+  sh:targetClass ex:aggregateRating.
+
+ex:obj3Shape a sh:NodeShape;
+  sh:targetClass ex:obj3.
+
+ex:eventShape a sh:NodeShape;
+  sh:targetClass ex:event.
+
+ex:obj4Shape a sh:NodeShape;
+  sh:targetClass ex:obj4.
+
+ex:obj5Shape a sh:NodeShape;
+  sh:targetClass ex:obj5.
+
+ex:obj6Shape a sh:NodeShape;
+  sh:targetClass ex:obj6.
+
+ex:obj7Shape a sh:NodeShape;
+  sh:targetClass ex:obj7.
+
+ex:openingHoursSpecificationShape a sh:NodeShape;
+  sh:targetClass ex:openingHoursSpecification.
+
+ex:obj8Shape a sh:NodeShape;
+  sh:targetClass ex:obj8.
+
+ex:obj9Shape a sh:NodeShape;
+  sh:targetClass ex:obj9.
+
+ex:obj10Shape a sh:NodeShape;
+  sh:targetClass ex:obj10.
+
+ex:obj11Shape a sh:NodeShape;
+  sh:targetClass ex:obj11.
+

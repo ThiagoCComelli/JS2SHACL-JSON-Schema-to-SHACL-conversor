@@ -1,0 +1,203 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://dominio.edu/JS4Geo.json",
+  "title": "JS4Geo schema for a Feature Collection.",
+  "description": "This document represents a JS4Geo schema for a collection of Features.",
+
+
+  "definitions": {
+    "directPosition": {
+      "$id": "#directPosition",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "point": {
+      "$id": "#point",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "Point"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/directPosition"
+        }
+      }
+    },
+    "lineString": {
+      "$id": "#lineString",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "LineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/directPosition"
+          },
+          "minItems": 2
+        }
+      }
+    },
+    "polygon": {
+      "$id": "#polygon",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "Polygon"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/directPosition"
+            },
+            "minItems": 4
+          }
+        }
+      }
+    },
+    "multiPoint": {
+      "$id": "#multiPoint",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "MultiPoint"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/directPosition"
+          }
+        }
+      }
+    },
+    "multiLineString": {
+      "$id": "#multiLineString",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "MultiLineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lineString/properties/coordinates"
+          }
+        }
+      }
+    },
+    "multiPolygon": {
+      "$id": "#multiPolygon",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {
+          "const": "MultiPolygon"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/polygon/properties/coordinates"
+          }
+        }
+      }
+    },
+    "geometryCollection": {
+      "id": "#geometryCollection",
+      "required": ["type", "geometries"],
+
+      "properties": {
+        "type": {
+          "const": "GeometryCollection"
+        },
+
+        "geometries": {
+          "type": "array",
+          "items": {
+
+            "anyOf": [{
+                "$ref": "#/definitions/point"
+              },
+              {
+                "$ref": "#/definitions/lineString"
+              },
+              {
+                "$ref": "#/definitions/polygon"
+              },
+              {
+                "$ref": "#/definitions/multiPoint"
+              },
+              {
+                "$ref": "#/definitions/multiLineString"
+              },
+              {
+                "$ref": "#/definitions/multiPolygon"
+              }
+            ],
+            "additionalItems": false
+          }
+        }
+      }
+    },
+    "feature": {
+      "id": "#feature",
+      "required": ["type", "geometry", "properties"],
+      "properties": {
+        "type": {
+          "const": "Feature"
+        },
+        "geometry": {
+          "type": "object",
+          "anyOf": [{
+              "$ref": "#/definitions/point"
+            },
+            {
+              "$ref": "#/definitions/lineString"
+            },
+            {
+              "$ref": "#/definitions/polygon"
+            },
+            {
+              "$ref": "#/definitions/multiPoint"
+            },
+            {
+              "$ref": "#/definitions/multiLineString"
+            },
+            {
+              "$ref": "#/definitions/multiPolygon"
+            },
+            {
+              "$ref": "#/definitions/geometryCollection"
+            }
+          ]
+        },
+        "properties": {}
+      }
+    },
+    "featureCollection": {
+      "required": ["type", "features"],
+      "properties": {
+        "type": {
+          "const": "FeatureCollection"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/feature"
+          }
+        }
+      }
+    }
+
+  },
+
+  "type": "object",
+
+  "anyOf": [{
+    "$ref": "#/definitions/featureCollection"
+  }]
+}

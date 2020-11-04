@@ -51,38 +51,36 @@ ex:hsPropertiesShape a sh:NodeShape;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path ex:FINAL;
-    sh:or (
-      [
-      sh:property [
-          sh:datatype xsd:integer;
-        ];
-      ]
-      [
-      sh:property [
-          sh:datatype xsd:null;
-        ];
-      ]
-    );
+  sh:or (
+    [
+    sh:property [
+        sh:datatype xsd:integer;
+      ];
+    ]
+    [
+    sh:property [
+        sh:datatype xsd:null;
+      ];
+    ]
+  );
   ];
   sh:property [
     sh:path ex:GERENCIA;
     sh:datatype xsd:string;
   ];
   sh:property [
-    sh:path ex:INICIAL;
-    sh:or (
-      [
-      sh:property [
-          sh:datatype xsd:integer;
-        ];
-      ]
-      [
-      sh:property [
-          sh:datatype xsd:null;
-        ];
-      ]
-    );
+  sh:or (
+    [
+    sh:property [
+        sh:datatype xsd:integer;
+      ];
+    ]
+    [
+    sh:property [
+        sh:datatype xsd:null;
+      ];
+    ]
+  );
   ];
   sh:property [
     sh:path ex:NAME;

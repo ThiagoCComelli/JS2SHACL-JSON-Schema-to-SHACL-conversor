@@ -1,7 +1,7 @@
 Created Nodes (Shapefile): 1
 Created Propertys (Shapefile): 0
-Elements analyzed (JSON Schema): 0
-Properties analyzed (JSON Schema): 0
+Elements analyzed (JSON Schema): 2
+Properties analyzed (JSON Schema): 3
 
 ==============================
 

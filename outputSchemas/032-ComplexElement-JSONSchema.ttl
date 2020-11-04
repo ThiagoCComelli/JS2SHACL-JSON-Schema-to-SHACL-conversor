@@ -23,6 +23,7 @@ ex:nmPropShape a sh:NodeShape;
     sh:path ex:nmPropB;
     sh:datatype xsd:integer;
     sh:name "The nmPropB schema";
+    sh:in ("asd");
     sh:description "An explanation about the purpose of this instance.";
     sh:minCount 1;
   ].

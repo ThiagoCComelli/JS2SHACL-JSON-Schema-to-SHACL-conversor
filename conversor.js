@@ -18,6 +18,7 @@ module.exports = {
         var JS4GeoDataTypes = {'point':'pointShape','directPosition':'directPositionShape','Bbox':'bboxShape','lineString':'lineStringShape','polygon':'polygonShape','multiPoint':'multiPointShape','multiLineString':'multiLineStringShape','multiPolygon':'multiPolygonShape','feature':'featureShape','featureCollection':'featureCollectionShape','geometryCollection':'geometryCollectionShape'}
         var dataTypes = {"string":"string","integer":"integer","boolean":"boolean","null":"null","number":"decimal",
         "Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
+        var extendedDataTypes = {"Binary":"base64Binary","Date":"date","Decimal128":"precisionDecimal","Double":"double","Int32":"int","Int64":"long","ObjectId":"ID","Regular Expression":"string + pattern","TimeStamp":"dateTimeStamp","String":"string","Datetime":"dateTime","Long":"long","Boolean":"boolean"}
         var constraints = {"maximun":"maxInclusive","exclusiveMaximum":"maxExclusive","minimum":"minInclusive","exclusiveMinimum":"minExclusive","minLength":"minLength","maxLength":"maxLength","pattern":"pattern","enum":"in","const":"in",
         "default_":"defaultValue","title":"name","description":"description"}
         var anotherConstraints = {"allOf":"and","anyOf":"or","oneOf":"xone"}
@@ -50,7 +51,6 @@ module.exports = {
         function getPropertyElements(element){
             if(element != null){
                 if(element.properties){
-                    elementsCount['properties'] += Object.keys(element.properties).length
                     return element.properties
                 }
             } else {
@@ -72,11 +72,19 @@ module.exports = {
                     // }
                     if(item in JS4GeoDataTypes){
                         create_New_JS4Geo_NodeShape(element,item)
+                    } else if (item in extendedDataTypes){
+                        elementsCount['elements'] += 1
+                        console.log(item)
+                        console.log(elementsCount['elements'])
+
+                        elementsCount['property'] += 1
                     } else {
+                        elementsCount['elements']++
                         create_New_Complex_NodeShape(defSectionElements[item],item)
                     }
+                    mappedDatatypes.push(item)
                 }
-                mappedDatatypes.push(item)
+                
             }
         }
 
@@ -105,10 +113,15 @@ module.exports = {
 
         function setGenericArrayProperty(element,name,required,last){
             var local = ''
-            elementsCount['property']++
+
+
+            elementsCount['elements'] += 1
+            console.log(element)
+            console.log(elementsCount['elements'])
+            elementsCount['property'] += 1
+            elementsCount['properties'] += 1
 
             if(name != null){
-                elementsCount['property']++
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n` + addSpaces(-1) + '];\n'
             }else{
                 local += addSpaces(1) + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n` + addSpaces(-1) + '];\n'
@@ -138,12 +151,17 @@ module.exports = {
 
         function setListValidationArrayProperty(element,name,required,last,specialCase=false){
             var local = ''
-            elementsCount['property']++
+
+
+            elementsCount['elements'] += 1
+            console.log(element)
+            console.log(elementsCount['elements'])
+            elementsCount['property'] += 2
+            elementsCount['properties'] += 2
             
             if(specialCase){
                 local += addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             } else {
-                elementsCount['property']++
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             }
             
@@ -237,8 +255,14 @@ module.exports = {
             var local = ''
             var index = 0
 
+
+            elementsCount['elements'] += 1
+            console.log(element)
+            console.log(elementsCount['elements'])
+            elementsCount['property'] += 1
+            elementsCount['properties'] += 2
+
             if(name != null){
-                elementsCount['property']++
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n`
             } else {
                 local += addSpaces(1) + `sh:node dash:ListShape;\n`
@@ -249,11 +273,15 @@ module.exports = {
 
                 checkUndefined(element_)
 
-                elementsCount['property']++
-
                 if(element_.type in dataTypes){
                     addPrefixes['xsd'] = true
 
+                    elementsCount['elements'] += 1
+                    console.log(element_)
+                    console.log(elementsCount['elements'])
+                    elementsCount['property'] += 1
+                    elementsCount['properties'] += 1
+                    
                     local += addSpaces() + `sh:property [\n`
                     if(index == 0){
                         local += addSpaces(1) + `sh:path rdf:first;\n`
@@ -270,6 +298,11 @@ module.exports = {
                     }
                     local += addSpaces() + `sh:datatype xsd:${dataTypes[element_.type]};\n` + addSpaces(-1) + '];\n'
                 } else {
+
+                    elementsCount['elements'] += 1
+                    console.log(element_)
+                    console.log(elementsCount['elements'])
+
                     local += addSpaces() + `sh:property [\n`
                     if(index == 0){
                         local += addSpaces(1) + `sh:path rdf:first;\n`
@@ -320,8 +353,6 @@ module.exports = {
             addPrefixes['dash'] = true
             addPrefixes['rdf'] = true
 
-            elementsCount['elements']++
-
             checkUndefined(element)
 
             if('type' in element && 'items' in element && element['items'].length != undefined){
@@ -336,10 +367,15 @@ module.exports = {
 
         function setPrimitiveProperty(element,name,required,last){
             var local = ''
-            elementsCount['property']++
-            elementsCount['elements']++
 
             addPrefixes['xsd'] = true
+
+
+            elementsCount['elements'] += 1
+            console.log(element)
+            console.log(elementsCount['elements'])
+            elementsCount['property'] += 1
+            elementsCount['properties'] += 1
 
             // if(name != null){
                 local += addSpaces() + 'sh:property [\n'
@@ -404,12 +440,16 @@ module.exports = {
         
         function setComplexNodeShape(element,name,required,ref = null,last){
             var local = ''
-            elementsCount['property']++
-            elementsCount['elements']++
+
+            elementsCount['elements'] += 1
+            console.log(element)
+            console.log(elementsCount['elements'])
 
             checkUndefined(element)
-
             if(name != null){
+
+                elementsCount['properties'] += 1
+
                 if(ref != null){
                     local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node ex:${ref}_Shape;\n`
                 } else {
@@ -417,6 +457,8 @@ module.exports = {
 
                     local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node ex:${name}_Shape;\n`
                 }
+
+                
                 if(required){
                     local += addSpaces() + `sh:minCount 1;\n`
                 }
@@ -444,39 +486,60 @@ module.exports = {
             return local
         }
 
-        function setShInProperty(element,name,item,required,last){
+        function setShInProperty(element,name,item,required,last,specialCase){
             var local = ''
-            local += addSpaces() + `sh:property [\n` 
+
+            
+            if(!specialCase){
+                local += addSpaces() + `sh:property [\n` 
+            }
+            
             scope++
-
-            elementsCount['properties']++
-            elementsCount['elements']++
-
+            
+            
+            
             if(item != undefined){
                 local += addSpaces() + `sh:path ex:${item};\n`
             }
-
-            var str = ''
             
-            try{
-                element.forEach(Element_ => {
-                    str += `"${Element_}" `
-                })
+            if(name == 'const' || name == 'enum'){
 
-                local += addSpaces() + `sh:in (${str});\n`
-            } catch{
-                local += addSpaces() + `sh:in (${element[name]});\n`
+                elementsCount['elements'] += 1
+                console.log(element)
+                console.log(elementsCount['elements'])
+                elementsCount['property'] += 1
+                elementsCount['properties'] += 1
+
+                try{
+                    var str = ''
+
+                    element[name].forEach(element_ => {
+                        str += `"${element_}"`
+                    })
+
+                    local += addSpaces() + `sh:${constraints[name]} (${str});\n`
+                } catch{
+                    local += addSpaces() + `sh:${constraints[name]} ("${element[name]}");\n`
+                }
+            } else if(name == 'pattern' || name == "description" || name == "title" || (name == "default" && element.type == "string")){
+                local += addSpaces() + `sh:${constraints[name]} "${element[name]}";\n`
+            } else {
+                local += addSpaces() + `sh:${constraints[name]} ${element[name]};\n`
             }
 
             if(required){
                 local += addSpaces() + `sh:minCount 1;\n`
             }
-            local += addSpaces(-1) + `]`
-            if(last){
-                local += '.\n'
-            }else{
-                local +=  ';\n'
+
+            if(!specialCase){
+                local += addSpaces(-1) + `]`
+                if(last){
+                    local += '.\n'
+                }else{
+                    local +=  ';\n'
+                }
             }
+            
             return local
         }
 
@@ -485,7 +548,11 @@ module.exports = {
         function setOthersProperty(element,name,especialCase,path,last){
             var local = ''
 
-            elementsCount['elements']++
+            elementsCount['elements'] += 1
+            console.log(element)
+            console.log(elementsCount['elements'])
+            elementsCount['property'] += 1
+            elementsCount['properties'] += 1
 
             if(especialCase){
                 local += addSpaces() + 'sh:property [\n' + addSpaces(1) + `sh:path ex:${path};\n`
@@ -500,8 +567,6 @@ module.exports = {
             }
             scope++
             element.forEach(element_ => {
-                elementsCount['properties']++
-                elementsCount['elements']++
 
                 if('$ref' in element_){
                     try{
@@ -514,11 +579,19 @@ module.exports = {
                     }catch{
     
                     }
+
+                    elementsCount['elements'] += 1
+                    console.log(element_)
+                    console.log(elementsCount['elements'])
+                    // elementsCount['property'] += 1
+                    elementsCount['properties'] += 1
     
                     if(typeItem in JS4GeoDataTypes){
+
                         addGeo['imports'] = true
                         addPrefixes['owl'] = true
                         addPrefixes['rdf'] = true
+
                         if(typeItem == 'feature' || typeItem == 'featureCollection'){
                             addGeo['feature'] = true
                         }
@@ -577,7 +650,6 @@ module.exports = {
                             if(element_[i].$ref){
                                 local += addSpaces() + '[\n'
 
-                                elementsCount['property']++
 
                                 try{
                                     typeItem = element_[i].$ref.split('/')
@@ -591,6 +663,7 @@ module.exports = {
                                 }
                 
                                 if(typeItem in JS4GeoDataTypes){
+
                                     addGeo['imports'] = true
                                     addPrefixes['owl'] = true
                                     addPrefixes['rdf'] = true
@@ -633,6 +706,8 @@ module.exports = {
 
             local += addSpaces(-1) + ')'
 
+
+
             if(last){
                 local += '.\n'
             }else{
@@ -642,6 +717,9 @@ module.exports = {
             if(especialCase){
                 local += addSpaces(-1) + '];\n'
             }
+
+            scope++
+
             return local
         }
 
@@ -715,14 +793,19 @@ module.exports = {
                     } else if(item in anotherConstraints){
                         local += setOthersProperty(propertiesElements[item],item,null,null,checkLastElement(propertiesElements,item))
                     } else {
-                        
+                        local += addSpaces() + `sh:property [\n` 
                         for(var i in propertiesElements[item]){
                             if (i in constraints){
-                                local += setShInProperty(propertiesElements[item],i,item,checkRequired(element,item),checkLastElement(element,item))
+                                local += setShInProperty(propertiesElements[item],i,item,checkRequired(element,item),checkLastElement(element,item),true)
                             }
                             else if(i in anotherConstraints){
-                                local += setOthersProperty(propertiesElements[item][i],i,true,item,checkLastElement(element,item))
+                                local += setOthersProperty(propertiesElements[item][i],i,false,item,checkLastElement(element,item))
                             }
+                        }
+                        if(checkLastElement(propertiesElements,i)){
+                            local += addSpaces(-1) + `].\n`
+                        }else{
+                            local += addSpaces(-1) + '];\n'
                         }
                     }
                 }
@@ -769,8 +852,11 @@ module.exports = {
         function setJS4GeoProperty(name,JS4GeoType,last=null,required){
             var local = ''
 
-            elementsCount['property']++
-            elementsCount['elements']++
+            elementsCount['elements'] += 1
+            console.log(name)
+            console.log(elementsCount['elements'])
+            elementsCount['property'] += 1
+            elementsCount['properties'] += 1
 
             if(name != null){
                 if(JS4GeoType != null){
@@ -809,6 +895,53 @@ module.exports = {
                 newNodes['properties'] = element.definitions.feature.properties.properties
 
             }
+
+            
+            
+            if(name == 'point'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'lineString'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'polygon'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'multiPoint'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'multiLineString'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'multiPolygon'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'feature'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 3
+            } 
+            else if(name == 'featureCollection'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'geometryCollection'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 2
+            } 
+            else if(name == 'directPosition'){
+                elementsCount['elements'] += 1
+                elementsCount['properties'] += 1
+            }
+
+            console.log(name)
+            console.log(elementsCount['elements'])
+
         }
         
         //#region FUNCTIONS TO HELP
@@ -917,6 +1050,7 @@ module.exports = {
         }
 
         t1 = performance.now()
+
 
         return {shacl:shacl,log:log,elements:elementsUndefined,time:t1-t0,count:elementsCount}
     }

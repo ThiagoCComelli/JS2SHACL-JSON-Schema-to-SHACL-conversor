@@ -1,0 +1,27 @@
+Created Nodes (Shapefile): 15
+Created Propertys (Shapefile): 28
+Elements analyzed (JSON Schema): 32
+Properties analyzed (JSON Schema): 33
+
+==============================
+
+6 Warnings (Elements ignored!)
+
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-04/schema#"}
+
+Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"format": "regex"}
+
+Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"format": "regex"}
+
+Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"format": "regex"}
+
+Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"format": "uri"}
+
+Key: format => ATTENTION THIS IS A PRIMITIVE ELEMENT, IT MAY NOT BE ACCURATE!!!
+Element: {"format": "uri"}
+

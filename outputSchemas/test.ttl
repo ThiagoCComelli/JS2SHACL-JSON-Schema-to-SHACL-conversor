@@ -1,0 +1,89 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/#> .
+
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:@context;
+    sh:datatype xsd:string;
+    sh:pattern "http://schema.org";
+    sh:description "override the @context property to ensure the schema.org URI is used";
+  ];
+  sh:property [
+    sh:path ex:additionalType;
+    sh:datatype xsd:string;
+    sh:description "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.";
+  ];
+  sh:property [
+    sh:path ex:alternateName;
+    sh:datatype xsd:string;
+    sh:description "An alias for the item.";
+  ];
+  sh:property [
+    sh:path ex:description;
+    sh:datatype xsd:string;
+    sh:description "A description of the item.";
+  ];
+  sh:property [
+    sh:path ex:disambiguatingDescription;
+    sh:datatype xsd:string;
+    sh:description "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.";
+  ];
+  sh:property [
+    sh:path ex:image;
+    sh:description "An image of the item. This can be a URL or a fully described ImageObject.";
+    sh:xone (
+      [
+      sh:property [
+          sh:datatype xsd:string;
+        ];
+      ]
+      [
+        sh:node ex:obj1_Shape;
+      ]
+    );
+    ];
+    sh:property [
+      sh:path ex:mainEntityOfPage;
+      sh:description "Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See background notes for details. Inverse property mainEntity.";
+      sh:xone (
+        [
+        sh:property [
+            sh:datatype xsd:string;
+          ];
+        ]
+        [
+          sh:node ex:obj2_Shape;
+        ]
+      );
+      ];
+      sh:property [
+        sh:path ex:name;
+        sh:datatype xsd:string;
+        sh:description "The name of the item.";
+      ];
+      sh:property [
+        sh:path ex:potentialAction;
+        sh:node ex:potentialAction_Shape;
+      ];
+      sh:property [
+        sh:path ex:sameAs;
+        sh:datatype xsd:string;
+        sh:description "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website.";
+      ];
+      sh:property [
+        sh:path ex:url;
+        sh:datatype xsd:string;
+        sh:description "URL of the item.";
+      ].
+
+ex:obj1Shape a sh:NodeShape;
+  sh:targetClass ex:obj1.
+
+ex:obj2Shape a sh:NodeShape;
+  sh:targetClass ex:obj2.
+
+ex:potentialActionShape a sh:NodeShape;
+  sh:targetClass ex:potentialAction.
+

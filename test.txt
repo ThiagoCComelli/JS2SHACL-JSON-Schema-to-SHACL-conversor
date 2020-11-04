@@ -1,0 +1,14 @@
+JSON Schema:
+OK +1 elemento Rule 2 - Primitivo
+OK +1 elemento Rule 3 - Complexo
+OK +1 elemento Rule 4 - Generic Array
+OK +1 elemento Rule 5 - Validation Array
+OK +1 elemento Rule 6 - Tuple Array
+ +1 elemento Rule 7 - Extended
+OK +1 elemento para cada em Rule 8 - AllOf, AnyOf, OneOf
+OK +1 elemento Rule X - (enum,const)
+
+
+
+TUPLE COMPLEX VERIFICAR
+SETCOMMPLEXNODESAHPE VERIFICAR

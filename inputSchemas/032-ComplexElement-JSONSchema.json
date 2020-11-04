@@ -31,6 +31,7 @@
                     "$id": "#/properties/nmProp/properties/nmPropB",
                     "type": "integer",
                     "title": "The nmPropB schema",
+                    "enum": "asd",
                     "description": "An explanation about the purpose of this instance.",
                     "default": 0,
                     "examples": [ 10 ]
