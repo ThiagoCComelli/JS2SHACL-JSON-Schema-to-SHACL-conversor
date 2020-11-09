@@ -1034,7 +1034,6 @@ module.exports = {
 
         t1 = performance.now()
 
-
         return {shacl:shacl,log:log,elements:elementsUndefined,time:t1-t0,count:elementsCount}
     }
 }
