@@ -1,0 +1,1697 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/#> .
+
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("CityJSON");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:version;
+    sh:datatype xsd:string;
+    sh:pattern "^(\d\.)(\d)$";
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:metadata;
+    sh:node ex:metadata_Shape;
+  ];
+  sh:property [
+    sh:path ex:extensions;
+    sh:node ex:extensions_Shape;
+  ];
+  sh:property [
+    sh:path ex:CityObjects;
+    sh:node ex:CityObjects_Shape;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:vertices;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj1_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:transform;
+    sh:node ex:transform_Shape;
+  ];
+  sh:property [
+    sh:path ex:appearance;
+    sh:node ex:appearance_Shape;
+  ];
+  sh:property [
+    sh:path ex:geometry-templates;
+    sh:node ex:geometry-templates_Shape;
+  ].
+
+ex:metadataShape a sh:NodeShape;
+  sh:targetClass ex:metadata;
+  sh:property [
+    sh:path ex:citymodelIdentifier;
+    sh:datatype xsd:string;
+    sh:pattern "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$";
+  ];
+  sh:property [
+    sh:path ex:datasetTitle;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:datasetReferenceDate;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:geographicLocation;
+    sh:datatype xsd:string;
+    sh:description "the name of the area for instance";
+  ];
+  sh:property [
+    sh:path ex:datasetLanguage;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:datasetCharacterSet;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:datasetTopicCategory;
+    sh:datatype xsd:string;
+    sh:description "from ISO19115 codelist";
+    sh:in ("farming,bioata,boundaries,climatology,meteorology,atmosphere,economy,elevation,environment,geoscientificInformation,health,imageryBaseMapsEarthCover,intelligenceMilitary,inlandWaters,location,oceans,planningCadastre,society,structure,transportation,utilitiesCommunication,extraTerrestrial,disaster");
+  ];
+  sh:property [
+    sh:path ex:distributionFormatVersion;
+    sh:datatype xsd:string;
+    sh:pattern "\d.\d";
+  ];
+  sh:property [
+    sh:path ex:spatialRepresentationType;
+    sh:datatype xsd:string;
+    sh:description "from ISO19115 codelist";
+    sh:in ("vector,grid,TIN,textTable,stereoModel,video");
+  ];
+  sh:property [
+    sh:path ex:referenceSystem;
+    sh:datatype xsd:string;
+    sh:pattern "^urn:ogc:def:crs:EPSG::[0-9]{4,5}$";
+  ];
+  sh:property [
+    sh:path ex:onlineResource;
+    sh:datatype xsd:string;
+    sh:pattern "^(https?|ftp)://";
+  ];
+  sh:property [
+    sh:path ex:fileIdentifier;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:datasetPointOfContact;
+    sh:node ex:datasetPointOfContact_Shape;
+  ];
+  sh:property [
+    sh:path ex:metadataStandard;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:metadataStandardVersion;
+    sh:datatype xsd:string;
+    sh:pattern "\d.\d";
+  ];
+  sh:property [
+    sh:path ex:metadataLanguage;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:metadataCharacterSet;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:metadataDateStamp;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:metadataPointOfContact;
+    sh:node ex:metadataPointOfContact_Shape;
+  ];
+  sh:property [
+    sh:path ex:lineage;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj2_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:geographicalExtent;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ];
+  ];
+  sh:property [
+    sh:path ex:temporalExtent;
+    sh:node ex:temporalExtent_Shape;
+  ];
+  sh:property [
+    sh:path ex:abstract;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:specificUsage;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:keywords;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:constraints;
+    sh:node ex:constraints_Shape;
+  ];
+  sh:property [
+    sh:path ex:thematicModels;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:textures;
+    sh:datatype xsd:string;
+    sh:in ("present,absent");
+  ];
+  sh:property [
+    sh:path ex:materials;
+    sh:datatype xsd:string;
+    sh:in ("present,absent");
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ];
+  sh:property [
+    sh:path ex:cityfeatureMetadata;
+    sh:node ex:cityfeatureMetadata_Shape;
+  ].
+
+ex:extensionsShape a sh:NodeShape;
+  sh:targetClass ex:extensions.
+
+ex:CityObjectsShape a sh:NodeShape;
+  sh:targetClass ex:CityObjects.
+
+ex:obj1Shape a sh:NodeShape;
+  sh:targetClass ex:obj1;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:decimal;
+  ].
+
+ex:transformShape a sh:NodeShape;
+  sh:targetClass ex:transform;
+  sh:property [
+    sh:path ex:scale;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:translate;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ];
+    sh:minCount 1;
+  ].
+
+ex:appearanceShape a sh:NodeShape;
+  sh:targetClass ex:appearance;
+  sh:property [
+    sh:path ex:default-theme-texture;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:default-theme-material;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:materials;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj3_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:textures;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj4_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:vertices-texture;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj5_Shape;
+    ];
+  ].
+
+ex:geometry-templatesShape a sh:NodeShape;
+  sh:targetClass ex:geometry-templates;
+  sh:property [
+    sh:path ex:templates;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj6_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:vertices-templates;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj7_Shape;
+    ];
+    sh:minCount 1;
+  ].
+
+ex:datasetPointOfContactShape a sh:NodeShape;
+  sh:targetClass ex:datasetPointOfContact;
+  sh:property [
+    sh:path ex:contactName;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:phone;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:address;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:emailAddress;
+    sh:datatype xsd:string;
+  ].
+
+ex:metadataPointOfContactShape a sh:NodeShape;
+  sh:targetClass ex:metadataPointOfContact;
+  sh:property [
+    sh:path ex:contactName;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:phone;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:address;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:emailAddress;
+    sh:datatype xsd:string;
+  ].
+
+ex:obj2Shape a sh:NodeShape;
+  sh:targetClass ex:obj2;
+  sh:property [
+    sh:path ex:statement;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:scope;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:additionalDocumentation;
+    sh:datatype xsd:string;
+    sh:pattern "^(https?|ftp)://";
+  ];
+  sh:property [
+    sh:path ex:featureIDs;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:thematicModels;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:string;
+    ];
+  ];
+  sh:property [
+    sh:path ex:source;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj8_Shape;
+    ];
+  ];
+  sh:property [
+    sh:path ex:processStep;
+    sh:node ex:processStep_Shape;
+  ].
+
+ex:temporalExtentShape a sh:NodeShape;
+  sh:targetClass ex:temporalExtent;
+  sh:property [
+    sh:path ex:startDate;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:endDate;
+    sh:datatype xsd:string;
+  ].
+
+ex:constraintsShape a sh:NodeShape;
+  sh:targetClass ex:constraints;
+  sh:property [
+    sh:path ex:legalConstraints;
+    sh:datatype xsd:string;
+    sh:in ("copyright,patent,patentPending,trademark,licence,intellectualPropertyRights,restricted,otherRestrictions,unrestricted,licenseUnrestricted,licenseEndUser,licenseDistributor,private,statutory,confidential,sensitiveButUnclassified,in-confidence");
+  ];
+  sh:property [
+    sh:path ex:securityConstraints;
+    sh:datatype xsd:string;
+    sh:in ("unclassified,restricted,confidential,secret,topSecret,sensitiveButUnclassified,forOfficialUseOnly,protected,limitedDistribution");
+  ];
+  sh:property [
+    sh:path ex:userNote;
+    sh:datatype xsd:string;
+  ].
+
+ex:presentLoDsShape a sh:NodeShape;
+  sh:targetClass ex:presentLoDs;
+  sh:property [
+    sh:path ex:0.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.3;
+    sh:datatype xsd:integer;
+  ].
+
+ex:cityfeatureMetadataShape a sh:NodeShape;
+  sh:targetClass ex:cityfeatureMetadata;
+  sh:property [
+    sh:path ex:Building;
+    sh:node ex:Building_Shape;
+  ];
+  sh:property [
+    sh:path ex:Bridge;
+    sh:node ex:Bridge_Shape;
+  ];
+  sh:property [
+    sh:path ex:Tunnel;
+    sh:node ex:Tunnel_Shape;
+  ];
+  sh:property [
+    sh:path ex:TINRelief;
+    sh:node ex:TINRelief_Shape;
+  ];
+  sh:property [
+    sh:path ex:Road;
+    sh:node ex:Road_Shape;
+  ];
+  sh:property [
+    sh:path ex:Railway;
+    sh:node ex:Railway_Shape;
+  ];
+  sh:property [
+    sh:path ex:TransportSquare;
+    sh:node ex:TransportSquare_Shape;
+  ];
+  sh:property [
+    sh:path ex:WaterBody;
+    sh:node ex:WaterBody_Shape;
+  ];
+  sh:property [
+    sh:path ex:PlantCover;
+    sh:node ex:PlantCover_Shape;
+  ];
+  sh:property [
+    sh:path ex:SolitaryVegetationObject;
+    sh:node ex:SolitaryVegetationObject_Shape;
+  ];
+  sh:property [
+    sh:path ex:LandUse;
+    sh:node ex:LandUse_Shape;
+  ];
+  sh:property [
+    sh:path ex:CityFurniture;
+    sh:node ex:CityFurniture_Shape;
+  ];
+  sh:property [
+    sh:path ex:GenericCityObject;
+    sh:node ex:GenericCityObject_Shape;
+  ];
+  sh:property [
+    sh:path ex:CityObjectGroup;
+    sh:node ex:CityObjectGroup_Shape;
+  ].
+
+ex:obj3Shape a sh:NodeShape;
+  sh:targetClass ex:obj3;
+  sh:property [
+    sh:path ex:name;
+    sh:datatype xsd:string;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:ambientIntensity;
+    sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path ex:diffuseColor;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ];
+  ];
+  sh:property [
+    sh:path ex:emissiveColor;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ];
+  ];
+  sh:property [
+    sh:path ex:specularColor;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ];
+  ];
+  sh:property [
+    sh:path ex:shininess;
+    sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path ex:transparency;
+    sh:datatype xsd:decimal;
+  ];
+  sh:property [
+    sh:path ex:isSmooth;
+    sh:datatype xsd:boolean;
+  ].
+
+ex:obj4Shape a sh:NodeShape;
+  sh:targetClass ex:obj4;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("PNG""JPG");
+  ];
+  sh:property [
+    sh:path ex:image;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:wrapMode;
+    sh:in ("none""wrap""mirror""clamp""border");
+  ];
+  sh:property [
+    sh:path ex:textureType;
+    sh:in ("unknown""specific""typical");
+  ];
+  sh:property [
+    sh:path ex:borderColor;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:decimal;
+    ];
+  ].
+
+ex:obj5Shape a sh:NodeShape;
+  sh:targetClass ex:obj5;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:decimal;
+  ].
+
+ex:obj6Shape a sh:NodeShape;
+  sh:targetClass ex:obj6;
+  sh:xone (
+    [
+      sh:node ex:obj9_Shape;
+    ]
+    [
+      sh:node ex:obj10_Shape;
+    ]
+    [
+      sh:node ex:obj11_Shape;
+    ]
+    [
+      sh:node ex:obj12_Shape;
+    ]
+    [
+      sh:node ex:obj13_Shape;
+    ]
+    [
+      sh:node ex:obj14_Shape;
+    ]
+    [
+      sh:node ex:obj15_Shape;
+    ]
+  ).
+
+ex:obj7Shape a sh:NodeShape;
+  sh:targetClass ex:obj7;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:decimal;
+  ].
+
+ex:obj8Shape a sh:NodeShape;
+  sh:targetClass ex:obj8;
+  sh:property [
+    sh:path ex:description;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:sourceSpatialResolution;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:sourceReferenceSystem;
+    sh:datatype xsd:string;
+    sh:pattern "^urn:ogc:def:crs:EPSG::[0-9]{4,5}$";
+  ];
+  sh:property [
+    sh:path ex:sourceCitation;
+    sh:datatype xsd:string;
+    sh:pattern "^(https?|ftp)://";
+  ];
+  sh:property [
+    sh:path ex:sourceMetadata;
+    sh:datatype xsd:string;
+    sh:pattern "^(https?|ftp)://";
+  ];
+  sh:property [
+    sh:path ex:scope;
+    sh:datatype xsd:string;
+  ].
+
+ex:processStepShape a sh:NodeShape;
+  sh:targetClass ex:processStep;
+  sh:property [
+    sh:path ex:description;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:rationale;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:stepDateTime;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:processor;
+    sh:node ex:processor_Shape;
+  ];
+  sh:property [
+    sh:path ex:reference;
+    sh:datatype xsd:string;
+    sh:pattern "^(https?|ftp)://";
+  ];
+  sh:property [
+    sh:path ex:scope;
+    sh:datatype xsd:string;
+  ].
+
+ex:BuildingShape a sh:NodeShape;
+  sh:targetClass ex:Building;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:BridgeShape a sh:NodeShape;
+  sh:targetClass ex:Bridge;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:TunnelShape a sh:NodeShape;
+  sh:targetClass ex:Tunnel;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:TINReliefShape a sh:NodeShape;
+  sh:targetClass ex:TINRelief;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:RoadShape a sh:NodeShape;
+  sh:targetClass ex:Road;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:RailwayShape a sh:NodeShape;
+  sh:targetClass ex:Railway;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:TransportSquareShape a sh:NodeShape;
+  sh:targetClass ex:TransportSquare;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:WaterBodyShape a sh:NodeShape;
+  sh:targetClass ex:WaterBody;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:PlantCoverShape a sh:NodeShape;
+  sh:targetClass ex:PlantCover;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:SolitaryVegetationObjectShape a sh:NodeShape;
+  sh:targetClass ex:SolitaryVegetationObject;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:LandUseShape a sh:NodeShape;
+  sh:targetClass ex:LandUse;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:CityFurnitureShape a sh:NodeShape;
+  sh:targetClass ex:CityFurniture;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:GenericCityObjectShape a sh:NodeShape;
+  sh:targetClass ex:GenericCityObject;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:CityObjectGroupShape a sh:NodeShape;
+  sh:targetClass ex:CityObjectGroup;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ];
+  sh:property [
+    sh:path ex:Building;
+    sh:node ex:Building_Shape;
+  ];
+  sh:property [
+    sh:path ex:Bridge;
+    sh:node ex:Bridge_Shape;
+  ];
+  sh:property [
+    sh:path ex:Tunnel;
+    sh:node ex:Tunnel_Shape;
+  ];
+  sh:property [
+    sh:path ex:TINRelief;
+    sh:node ex:TINRelief_Shape;
+  ];
+  sh:property [
+    sh:path ex:Road;
+    sh:node ex:Road_Shape;
+  ];
+  sh:property [
+    sh:path ex:Railway;
+    sh:node ex:Railway_Shape;
+  ];
+  sh:property [
+    sh:path ex:TransportSquare;
+    sh:node ex:TransportSquare_Shape;
+  ];
+  sh:property [
+    sh:path ex:WaterBody;
+    sh:node ex:WaterBody_Shape;
+  ];
+  sh:property [
+    sh:path ex:PlantCover;
+    sh:node ex:PlantCover_Shape;
+  ];
+  sh:property [
+    sh:path ex:SolitaryVegetationObject;
+    sh:node ex:SolitaryVegetationObject_Shape;
+  ];
+  sh:property [
+    sh:path ex:LandUse;
+    sh:node ex:LandUse_Shape;
+  ];
+  sh:property [
+    sh:path ex:CityFurniture;
+    sh:node ex:CityFurniture_Shape;
+  ];
+  sh:property [
+    sh:path ex:GenericCityObject;
+    sh:node ex:GenericCityObject_Shape;
+  ].
+
+ex:obj9Shape a sh:NodeShape;
+  sh:targetClass ex:obj9;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("MultiPoint");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:lod;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:boundaries;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype xsd:integer;
+    ];
+    sh:minCount 1;
+  ].
+
+ex:obj10Shape a sh:NodeShape;
+  sh:targetClass ex:obj10;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("MultiLineString");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:lod;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:boundaries;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj16_Shape;
+    ];
+    sh:minCount 1;
+  ].
+
+ex:obj11Shape a sh:NodeShape;
+  sh:targetClass ex:obj11;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("Solid");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:lod;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:boundaries;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj17_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:semantics;
+    sh:node ex:semantics_Shape;
+  ];
+  sh:property [
+    sh:path ex:material;
+    sh:node ex:material_Shape;
+  ];
+  sh:property [
+    sh:path ex:texture;
+    sh:node ex:texture_Shape;
+  ].
+
+ex:obj12Shape a sh:NodeShape;
+  sh:targetClass ex:obj12;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("MultiSolid");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:lod;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:boundaries;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj18_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:semantics;
+    sh:node ex:semantics_Shape;
+  ];
+  sh:property [
+    sh:path ex:material;
+    sh:node ex:material_Shape;
+  ];
+  sh:property [
+    sh:path ex:texture;
+    sh:node ex:texture_Shape;
+  ].
+
+ex:obj13Shape a sh:NodeShape;
+  sh:targetClass ex:obj13;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("CompositeSolid");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:lod;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:boundaries;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj19_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:semantics;
+    sh:node ex:semantics_Shape;
+  ];
+  sh:property [
+    sh:path ex:material;
+    sh:node ex:material_Shape;
+  ];
+  sh:property [
+    sh:path ex:texture;
+    sh:node ex:texture_Shape;
+  ].
+
+ex:obj14Shape a sh:NodeShape;
+  sh:targetClass ex:obj14;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("MultiSurface");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:lod;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:boundaries;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj20_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:semantics;
+    sh:node ex:semantics_Shape;
+  ];
+  sh:property [
+    sh:path ex:material;
+    sh:node ex:material_Shape;
+  ];
+  sh:property [
+    sh:path ex:texture;
+    sh:node ex:texture_Shape;
+  ].
+
+ex:obj15Shape a sh:NodeShape;
+  sh:targetClass ex:obj15;
+  sh:property [
+    sh:path ex:type;
+    sh:in ("CompositeSurface");
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:lod;
+    sh:datatype xsd:decimal;
+    sh:minInclusive 0;
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:boundaries;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj21_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+    sh:path ex:semantics;
+    sh:node ex:semantics_Shape;
+  ];
+  sh:property [
+    sh:path ex:material;
+    sh:node ex:material_Shape;
+  ];
+  sh:property [
+    sh:path ex:texture;
+    sh:node ex:texture_Shape;
+  ].
+
+ex:processorShape a sh:NodeShape;
+  sh:targetClass ex:processor;
+  sh:property [
+    sh:path ex:contactName;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:phone;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:address;
+    sh:datatype xsd:string;
+  ];
+  sh:property [
+    sh:path ex:emailAddress;
+    sh:datatype xsd:string;
+  ].
+
+ex:presentLoDsShape a sh:NodeShape;
+  sh:targetClass ex:presentLoDs;
+  sh:property [
+    sh:path ex:0.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.3;
+    sh:datatype xsd:integer;
+  ].
+
+ex:BuildingShape a sh:NodeShape;
+  sh:targetClass ex:Building;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:BridgeShape a sh:NodeShape;
+  sh:targetClass ex:Bridge;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:TunnelShape a sh:NodeShape;
+  sh:targetClass ex:Tunnel;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:TINReliefShape a sh:NodeShape;
+  sh:targetClass ex:TINRelief;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:RoadShape a sh:NodeShape;
+  sh:targetClass ex:Road;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:RailwayShape a sh:NodeShape;
+  sh:targetClass ex:Railway;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:TransportSquareShape a sh:NodeShape;
+  sh:targetClass ex:TransportSquare;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:WaterBodyShape a sh:NodeShape;
+  sh:targetClass ex:WaterBody;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:PlantCoverShape a sh:NodeShape;
+  sh:targetClass ex:PlantCover;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:SolitaryVegetationObjectShape a sh:NodeShape;
+  sh:targetClass ex:SolitaryVegetationObject;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:LandUseShape a sh:NodeShape;
+  sh:targetClass ex:LandUse;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:CityFurnitureShape a sh:NodeShape;
+  sh:targetClass ex:CityFurniture;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:GenericCityObjectShape a sh:NodeShape;
+  sh:targetClass ex:GenericCityObject;
+  sh:property [
+    sh:path ex:uniqueFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:aggregateFeatureCount;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:presentLoDs;
+    sh:node ex:presentLoDs_Shape;
+  ].
+
+ex:obj16Shape a sh:NodeShape;
+  sh:targetClass ex:obj16;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
+  ].
+
+ex:obj17Shape a sh:NodeShape;
+  sh:targetClass ex:obj17;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj22_Shape;
+  ].
+
+ex:semanticsShape a sh:NodeShape;
+  sh:targetClass ex:semantics;
+  sh:property [
+    sh:path ex:surfaces;
+    sh:node dash:ListShape;
+    sh:property [
+      sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+      sh:datatype ex:obj23_Shape;
+    ];
+    sh:minCount 1;
+  ];
+  sh:property [
+];
+
+ex:materialShape a sh:NodeShape;
+  sh:targetClass ex:material.
+
+ex:textureShape a sh:NodeShape;
+  sh:targetClass ex:texture.
+
+ex:obj18Shape a sh:NodeShape;
+  sh:targetClass ex:obj18;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj24_Shape;
+  ].
+
+ex:obj19Shape a sh:NodeShape;
+  sh:targetClass ex:obj19;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj25_Shape;
+  ].
+
+ex:obj20Shape a sh:NodeShape;
+  sh:targetClass ex:obj20;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj26_Shape;
+  ].
+
+ex:obj21Shape a sh:NodeShape;
+  sh:targetClass ex:obj21;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj27_Shape;
+  ].
+
+ex:presentLoDsShape a sh:NodeShape;
+  sh:targetClass ex:presentLoDs;
+  sh:property [
+    sh:path ex:0.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:0.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:1.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:2.3;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.0;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.1;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.2;
+    sh:datatype xsd:integer;
+  ];
+  sh:property [
+    sh:path ex:3.3;
+    sh:datatype xsd:integer;
+  ].
+
+ex:obj22Shape a sh:NodeShape;
+  sh:targetClass ex:obj22;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj28_Shape;
+  ].
+
+ex:obj23Shape a sh:NodeShape;
+  sh:targetClass ex:obj23;
+  sh:property [
+    sh:path ex:type;
+    sh:datatype xsd:string;
+  ].
+
+ex:obj24Shape a sh:NodeShape;
+  sh:targetClass ex:obj24;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj29_Shape;
+  ].
+
+ex:obj25Shape a sh:NodeShape;
+  sh:targetClass ex:obj25;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj30_Shape;
+  ].
+
+ex:obj26Shape a sh:NodeShape;
+  sh:targetClass ex:obj26;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
+  ].
+
+ex:obj27Shape a sh:NodeShape;
+  sh:targetClass ex:obj27;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
+  ].
+
+ex:obj28Shape a sh:NodeShape;
+  sh:targetClass ex:obj28;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
+  ].
+
+ex:obj29Shape a sh:NodeShape;
+  sh:targetClass ex:obj29;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj31_Shape;
+  ].
+
+ex:obj30Shape a sh:NodeShape;
+  sh:targetClass ex:obj30;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype ex:obj32_Shape;
+  ].
+
+ex:obj31Shape a sh:NodeShape;
+  sh:targetClass ex:obj31;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
+  ].
+
+ex:obj32Shape a sh:NodeShape;
+  sh:targetClass ex:obj32;
+  sh:node dash:ListShape;
+  sh:property [
+    sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+    sh:datatype xsd:integer;
+  ].
+

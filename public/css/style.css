@@ -1,0 +1,87 @@
+textarea {
+    resize: none;
+    width: 50%;
+    color: white;
+    border: solid 1px #fff;
+    padding: 10px;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+}
+#centro {
+    text-align: center;
+}
+.areaEsquerda{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.middle {
+    width: 50%;
+    text-align: center;
+}
+.middle-side{
+    position: relative;
+    left: 50%;
+    top: -34px;
+}
+button {
+    width: 49%;
+}
+p {
+    font: 15px bold Arial;
+}
+.divBaixo{
+    display: flex;
+    float: left;
+    margin: 10px;
+    width: 50%;
+}
+.bgBody{
+    background-color: #24292e;
+  }
+.bgNavbar{
+    background-color: #2c313a;
+}
+div {
+    color: white;
+}
+#test{
+    background-color: red;
+    display: flex;
+
+}
+#shacl{
+    left: 50%;
+    position: absolute;
+}
+
+
+.boxer {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+ }
+  
+.boxer .box-row {
+    display: table-row;
+}
+
+.boxer .box {
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+    width: 50%;
+}
+.Area {
+    width: 100%;
+}
+.customFooter{
+    color: blue;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+}
+
+.download{
+    width: 98.5%;
+}

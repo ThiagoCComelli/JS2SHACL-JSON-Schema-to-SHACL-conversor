@@ -2,15 +2,24 @@ const {performance} = require('perf_hooks')
 const JS4Geo = require('./JS4GeoDefs.js')
 
 module.exports = {
-    check: function(schema){
+    check: function(schema,runs){
         try{
             schema = JSON.parse(schema)
 
-            return {text:'Valid JSON Schema',shacl:this.start(schema)}
-        } catch {
-            if(err == 'SyntaxError: Unexpected token o in JSON at position 1'){
-                return {text:"Valid JSON Schema!",shacl:this.start(schema)}
+            var time = 0
+
+            for(var i = 0;i<runs+1;i++){
+                result = this.start(schema)
+                if(i!=0){
+                    time += result.time
+                    if(i==runs){
+                        return {text:'Valid JSON Schema',shacl:result,time:time/runs,runs:runs}
+                    }
+                } 
             }
+            
+        } catch {
+            console.log(err)
             return {text:"Invalid JSON Schema!",shacl:''}
         }
     },

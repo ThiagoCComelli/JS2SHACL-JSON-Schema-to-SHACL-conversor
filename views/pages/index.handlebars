@@ -1,0 +1,49 @@
+<div class="mt-4">
+    <form action="/check" method="post">
+        <div>
+            <label>JSON Schema:</label>
+            <label id="shacl">SHACL Schema:</label>
+            <div class="boxer">
+                <div class="box-row">
+                    <div class="box">
+                        <textarea class="bgNavbar Area" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" name="schema" id="schemaArea" rows=20>{{#if schema}}{{schema}}{{/if}}</textarea>
+                    </div>
+                    <div class="box">
+                        <textarea class="bgNavbar Area" name="shacl" id="schemaArea1" readonly rows=20>{{#if shacl}}{{shacl.shacl}}{{/if}}</textarea>
+                    </div>
+                </div>
+                <div class="box-row">
+                    <div class="box">
+                        <button class="btn btn-success mt-1" type="submit">Check</button>
+                        <a href="/"><button type="button" class="btn btn-danger mt-1">Clear</button></a>
+                        <input class="mt-2" type="file" id="jsonDoc" accept=".json,.txt">
+                        <label for="quantity">How many executions? (between 1 and 20000):</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="20000" value={{#if runs}}{{runs}}{{else}}10{{/if}}>
+                        <div class="mt-4">
+                            {{#if resultado}}
+                            Result:
+                            {{resultado}}
+                            {{/if}}
+                            <br>
+                            {{#if shacl}}
+                            Conversion Time (average of 
+                            {{#if runs}}
+                            {{runs}}
+                            {{/if}}
+                             runs):
+                            {{time}} ms<br><br><br>
+                            {{/if}}
+                            {{#if shacl}}
+                            <button class="btn btn-info mt-1 download" onclick=saveTextAsFile(schemaArea1.value,'SHACLShape.ttl')>Download Shapes File</button>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="box">
+                        Conversion Log:<br>
+                        <textarea class="bgNavbar Area" readonly rows=20>{{#if shacl}}{{shacl.log}}{{/if}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
