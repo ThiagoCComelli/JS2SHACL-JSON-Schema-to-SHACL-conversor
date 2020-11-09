@@ -1,6 +1,7 @@
 const fs = require('fs')
 const {performance} = require('perf_hooks')
 const conversor = require('./conversor')
+const server = require('./server')
 
 var args = process.argv
 var totalFilesAnalized = 0
@@ -168,7 +169,11 @@ function setup(){
   if(option){
     readRepository()
   } else {
-    readSingleFile(args[2])
+    if(args[2] === undefined){
+      server.startServer()
+    } else {
+      readSingleFile(args[2])
+    }
   }
 }
 
