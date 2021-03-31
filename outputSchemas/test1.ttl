@@ -134,87 +134,87 @@ ex:JS_id_Shape a sh:NodeShape;
           sh:description "A photograph of this place. Supersedes photos.";
           sh:or (
             [
+              sh:node dash:ListShape;
+              sh:property [
+                sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+                sh:datatype ex:obj8_Shape;
+              ].
+            ]
+            [
+              sh:node dash:ListShape;
+              sh:property [
+                sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+                sh:datatype ex:obj9_Shape;
+              ].
+            ]
+          );
+          ];
+          sh:property [
+            sh:path ex:review;
             sh:node dash:ListShape;
             sh:property [
               sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-              sh:datatype ex:obj8_Shape;
-            ].
-          ]
-          [
-          sh:node dash:ListShape;
+              sh:datatype ex:obj10_Shape;
+            ];
+          ];
           sh:property [
-            sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-            sh:datatype ex:obj9_Shape;
+            sh:path ex:smokingAllowed;
+            sh:datatype xsd:boolean;
+            sh:description "Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room.";
+          ];
+          sh:property [
+            sh:path ex:specialOpeningHoursSpecification;
+            sh:node dash:ListShape;
+            sh:property [
+              sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+              sh:datatype ex:obj11_Shape;
+            ];
+          ];
+          sh:property [
+            sh:path ex:telephone;
+            sh:datatype xsd:string;
+            sh:description "The telephone number.";
           ].
-        ]
-      );
-      ];
-      sh:property [
-        sh:path ex:review;
-        sh:node dash:ListShape;
-        sh:property [
-          sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-          sh:datatype ex:obj10_Shape;
-        ];
-      ];
-      sh:property [
-        sh:path ex:smokingAllowed;
-        sh:datatype xsd:boolean;
-        sh:description "Indicates whether it is allowed to smoke in the place, e.g. in the restaurant, hotel or hotel room.";
-      ];
-      sh:property [
-        sh:path ex:specialOpeningHoursSpecification;
-        sh:node dash:ListShape;
-        sh:property [
-          sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
-          sh:datatype ex:obj11_Shape;
-        ];
-      ];
-      sh:property [
-        sh:path ex:telephone;
-        sh:datatype xsd:string;
-        sh:description "The telephone number.";
-      ].
 
-ex:obj1Shape a sh:NodeShape;
+ex:obj1_Shape a sh:NodeShape;
   sh:targetClass ex:obj1.
 
-ex:obj2Shape a sh:NodeShape;
+ex:obj2_Shape a sh:NodeShape;
   sh:targetClass ex:obj2.
 
-ex:aggregateRatingShape a sh:NodeShape;
+ex:aggregateRating_Shape a sh:NodeShape;
   sh:targetClass ex:aggregateRating.
 
-ex:obj3Shape a sh:NodeShape;
+ex:obj3_Shape a sh:NodeShape;
   sh:targetClass ex:obj3.
 
-ex:eventShape a sh:NodeShape;
+ex:event_Shape a sh:NodeShape;
   sh:targetClass ex:event.
 
-ex:obj4Shape a sh:NodeShape;
+ex:obj4_Shape a sh:NodeShape;
   sh:targetClass ex:obj4.
 
-ex:obj5Shape a sh:NodeShape;
+ex:obj5_Shape a sh:NodeShape;
   sh:targetClass ex:obj5.
 
-ex:obj6Shape a sh:NodeShape;
+ex:obj6_Shape a sh:NodeShape;
   sh:targetClass ex:obj6.
 
-ex:obj7Shape a sh:NodeShape;
+ex:obj7_Shape a sh:NodeShape;
   sh:targetClass ex:obj7.
 
-ex:openingHoursSpecificationShape a sh:NodeShape;
+ex:openingHoursSpecification_Shape a sh:NodeShape;
   sh:targetClass ex:openingHoursSpecification.
 
-ex:obj8Shape a sh:NodeShape;
+ex:obj8_Shape a sh:NodeShape;
   sh:targetClass ex:obj8.
 
-ex:obj9Shape a sh:NodeShape;
+ex:obj9_Shape a sh:NodeShape;
   sh:targetClass ex:obj9.
 
-ex:obj10Shape a sh:NodeShape;
+ex:obj10_Shape a sh:NodeShape;
   sh:targetClass ex:obj10.
 
-ex:obj11Shape a sh:NodeShape;
+ex:obj11_Shape a sh:NodeShape;
   sh:targetClass ex:obj11.
 

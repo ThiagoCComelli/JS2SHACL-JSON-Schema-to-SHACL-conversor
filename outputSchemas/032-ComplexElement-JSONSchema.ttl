@@ -10,7 +10,7 @@ ex:JS_id_Shape a sh:NodeShape;
     sh:minCount 1;
   ].
 
-ex:nmPropShape a sh:NodeShape;
+ex:nmProp_Shape a sh:NodeShape;
   sh:targetClass ex:nmProp;
   sh:property [
     sh:path ex:nmPropA;

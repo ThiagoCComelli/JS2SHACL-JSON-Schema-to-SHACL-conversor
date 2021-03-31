@@ -1,0 +1,40 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <http://example.org/#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dash: <http://datashapes.org/dash#> .
+
+ex:DomainUnionWith_Shape a sh:NodeShape;
+  sh:targetClass ex:DomainUnionWith;
+  sh:property [
+  sh:or (
+    [
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+        sh:datatype xsd:decimal;
+      ];
+    ]
+    [
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+        sh:datatype xsd:string;
+      ];
+    ]
+    [
+      sh:node dash:ListShape;
+      sh:property [
+        sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);
+        sh:datatype xsd:boolean;
+      ];
+    ]
+  );
+      sh:path ex:unionWith;
+      sh:description "Customized domain values to be union with the field's values or explicitly defined domain. Should be an array of valid scale domain values.";
+      sh:minCount 1;
+    ].
+
+ex:JS_id_Shape a sh:NodeShape;
+  sh:targetClass ex:JS_id.
+
