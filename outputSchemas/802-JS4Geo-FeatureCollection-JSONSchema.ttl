@@ -15,5 +15,6 @@ ex:JS_id_Shape a sh:NodeShape;
     ex:featureCollectionShape
   ).
 
-ex:propertiesShape a sh:NodeShape;
-  sh:targetClass ex:properties
+ex:properties_Shape a sh:NodeShape;
+  sh:targetClass ex:properties.
+

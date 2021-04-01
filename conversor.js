@@ -59,9 +59,7 @@ module.exports = {
         
         function getPropertyElements(element){
             if(element != null){
-                if(element.properties){
-                    return element.properties
-                }
+                return element.properties
             } else {
                 return undefined
             }
@@ -163,7 +161,7 @@ module.exports = {
             elementsCount['properties'] += 2
             
             if(specialCase){
-                local += addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
+                local += addSpaces(1) + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             } else {
                 local += addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ex:${name};\n` + addSpaces() + `sh:node dash:ListShape;\n` + addSpaces() + `sh:property [\n` + addSpaces(1) + `sh:path ([sh:zeroOrMorePath rdf:rest] rdf:first);\n`
             }
@@ -716,9 +714,10 @@ module.exports = {
             elementsCount['node']++
 
             scope = 1
-            var node = `ex:${name}Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name}`
+            var node = `ex:${name}_Shape a sh:NodeShape;\n` + addSpaces() + `sh:targetClass ex:${name}`
 
             nodesReady[name] = node + create_New_Complex_NodeShape_Structure(element,name)
+            scope = 1
         }
 
         function create_Complex_Property(element,name){
@@ -789,7 +788,7 @@ module.exports = {
                                 local += setOthersProperty(propertiesElements[item][i],i,false,item,checkLastElement(element,item))
                             }
                         }
-                        if(checkLastElement(propertiesElements,i)){
+                        if(checkLastElement(propertiesElements,item)){
                             local += addSpaces(-1) + `].\n`
                         }else{
                             local += addSpaces(-1) + '];\n'
@@ -821,15 +820,24 @@ module.exports = {
                     
                 } 
                 else {
+                    let anyType = false
                     for(var i in element){
                         if(i in anotherConstraints){
+                            anyType = true
                             local += ';\n'
                             local += setOthersProperty(element[i],i,null,null,checkLastElement(element,i))
                         } else if(i in constraints){
+                            anyType = true
                             local += ';\n'
                             local += setShInProperty(element[i],i,undefined,checkRequired(element,i),checkLastElement(element,i))
                         } 
                     }
+                    if(!anyType) {
+                        local += '.\n'
+                    }
+                    // else {
+                    //     local += ';\n'
+                    // }
                 }
             }
 
@@ -962,6 +970,7 @@ module.exports = {
         
         function addSpaces(quant = 0){
             scope += quant
+            scope < 0 ? scope = 0 : null;
             return Array(scope*2).fill(' ').join('')
         }
         

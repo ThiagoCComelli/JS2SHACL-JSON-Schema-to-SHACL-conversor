@@ -1,0 +1,15 @@
+Created Nodes (Shapefile): 2
+Created Propertys (Shapefile): 7
+Elements analyzed (JSON Schema): 5
+Properties analyzed (JSON Schema): 7
+
+==============================
+
+2 Warnings (Elements ignored!)
+
+Key: additionalProperties
+Element: {"additionalProperties": false}
+
+Key: $schema
+Element: {"$schema": "http://json-schema.org/draft-07/schema#"}
+

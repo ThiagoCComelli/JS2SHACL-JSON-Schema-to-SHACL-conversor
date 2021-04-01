@@ -78,12 +78,12 @@ ex:JS_id_Shape a sh:NodeShape;
         sh:description "URL of the item.";
       ].
 
-ex:obj1Shape a sh:NodeShape;
+ex:obj1_Shape a sh:NodeShape;
   sh:targetClass ex:obj1.
 
-ex:obj2Shape a sh:NodeShape;
+ex:obj2_Shape a sh:NodeShape;
   sh:targetClass ex:obj2.
 
-ex:potentialActionShape a sh:NodeShape;
+ex:potentialAction_Shape a sh:NodeShape;
   sh:targetClass ex:potentialAction.
 
